@@ -21,7 +21,7 @@ include './tuFamiliaBusiness.php';
                     $result = $familiaBis->insertarFamilias($familia);
 
                     if ($result == 1) {
-                         header("location: ../tuFamiliaView.php?success=inserted");
+                         header("location: ../view/tuFamiliaView.php?success=inserted");
                     } else {
                         header("location: ../view/tuFamiliaView.php?error=dbError");
                     }
@@ -37,15 +37,15 @@ include './tuFamiliaBusiness.php';
 }else if (isset($_POST['update'])) {
 
 
-  if (isset($_POST['idfamilia']) &&$_POST['cantidadadultosmayores']) && isset($_POST['cantidadadultos']) && isset($_POST['cantidadadolecentes']) && isset($_POST['cantidadninos'])) {
+  if (isset($_POST['idfamilia']) && isset($_POST['cantidadadultosmayores']) && isset($_POST['cantidadadultos']) && isset($_POST['cantidadadolecentes']) && isset($_POST['cantidadninos'])) {
   $id=$_POST['idfamilia'];
   $mayores = $_POST['cantidadadultosmayores'];
   $adultos = $_POST['cantidadadultos'];
   $adolecentes = $_POST['cantidadadolecentes'];
   $ninos=$_POST['cantidadninos'];
 
-        if (strlen($id) >= 0 && strlen($mayores)>=0 && strlen($adultos)>=0 && strlen($adolecentes)>=0) && strlen($ninos)>=0) {
-            if (!is_numeric($nombre)) {
+        if ( strlen($mayores)>=0 && strlen($adultos)>=0 && strlen($adolecentes)>=0 && strlen($ninos)>=0 ) {
+            if (is_numeric($mayores)) {
               $familia = new TuFamilia($id,$mayores,$adultos,$adolecentes,$ninos);
               $familiaBis = new TuFamiliaBusiness();
 
