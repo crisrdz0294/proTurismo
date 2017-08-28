@@ -1,23 +1,13 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of tuFamilia
- *
- * @author steff
- */
-class tuFamilia {
+class TuFamilia {
     private $idFamilia;
     private $adulltoMayorFamilia;
     private $adultoFamilia;
     private $adolecenteFamilia;
     private $ninoFamilia;
-    function tuFamilia($idFamilia, $adulltoMayorFamilia, $adultoFamilia, $adolecenteFamilia, $ninoFamilia) {
+    function TuFamilia($idFamilia, $adulltoMayorFamilia, $adultoFamilia, $adolecenteFamilia, $ninoFamilia) {
         $this->idFamilia = $idFamilia;
         $this->adulltoMayorFamilia = $adulltoMayorFamilia;
         $this->adultoFamilia = $adultoFamilia;
@@ -65,5 +55,5 @@ class tuFamilia {
     }
 
 
-    
+
 }
