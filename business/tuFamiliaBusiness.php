@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
 include '../data/tuFamiliaData.php';
 
 class TuFamiliaBusiness {

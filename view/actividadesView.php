@@ -12,6 +12,16 @@
 
 </head>
 
+<style type="text/css">
+    #posicion2Radios{
+
+        margin-left: 10%;
+        margin-top: -81px;
+    }
+
+
+</style>
+
 <body>
 
     <header> 
@@ -28,21 +38,48 @@
                      <select name="estadoActividad" id="estadoActividad">
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
-                       </select> 
-                        <br>
-                        <br>
-                        <br>
-                        
-                    
+                       </select><br>
+                    Cantidad de personas:<br>
+                        <input required type="number" name="cantidadpersonas" id="cantidadpersonas"/><br>
+
+                    Lugar de la actividad:<br>
+                        <textarea required  name="lugaractividad" id="lugaractividad" placeholder="Escriba el lugar de la actividad"></textarea><br>
+                    Distancia del lugar de hospedaje:<br>
+                    <input required type="text" name="distanciahospedaje" id="distanciahospedaje"/><br>
+                    Habilidades requeridas:<br>
+                          Caminar <input type="checkbox" name="habilidades[]" value="caminar" /><br>
+                          Limpiar <input type="checkbox" name="habilidades[]" value="limpiar" /><br> 
+                          Pintar <input type="checkbox" name="habilidades[]" value="pintar" /><br> 
+                          Cocinar <input type="checkbox" name="habilidades[]" value="cocinar" /><br>
+                          <div id="posicion2Radios">
+                            Jugar <input type="checkbox" name="habilidades[]" value="jugar" /><br> 
+                            Construir <input type="checkbox" name="habilidades[]" value="construir" /><br> 
+                            Artesanales<input type="checkbox" name="habilidades[]" value="artesanales" /><br>
+                            Buena memoria<input type="checkbox" name="habilidades[]" value="buena memoria" />
+                          </div><br>
+                      
+
+                    Horario de la actividad:<br>
+                    <textarea required  name="horarioactividad" id="horarioactividad" placeholder="Describa el horario de la actividad"></textarea><br><br>
+    
+                   
                     <input type="submit" value="Guardar" name="guardarActividad" id="guardarActividad"/><br><br>
     </form>
     
-    <h2>Actividades</h2>
-    <table border="1">
+   
+    <div id="posicionTabla">
+         <h1>Lista de actividades</h1>
+
+          <table border="1">
         <tr>
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Estado</th>
+            <th>Cantidad personas</th>
+            <th>Lugar actividad</th>
+            <th>Distancia de hospedaje</th>
+            <th>Habilidades</th>
+            <th>Horario</th>
             <th>Opcion1</th>
             <th>Opcion2</th>
         </tr>
@@ -73,6 +110,13 @@
                        </td>';
 
                 }
+
+                echo '<td><input type="number" name="cantidadpersonas" id="cantidadpersonas" value="' . $tipoActividad->getCantidadPersonasActividadTuristica() . '"/></td>';
+                echo '<td><input type="text" name="lugaractividad" id="lugaractividad" value="' . $tipoActividad->getLugarActividadTuristica() . '"/></td>';
+                echo '<td><input type="text" name="distanciahospedaje" id="distanciahospedaje" value="' . $tipoActividad->getDistanciaHospedajeActividadTuristica() . '"/></td>';
+                echo '<td><textarea name="habilidades" id="habilidades" >'. $tipoActividad->getHabilidadesActividadTuristica().'</textarea></td>';
+                echo '<td><textarea name="horarioactividad" id="horarioactividad" >'. $tipoActividad->getHorarioActividadTuristica().'</textarea></td>';
+
                 echo '<td><input type="submit" value="Actualizar" name="update"/></td>';
                 echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
              
@@ -81,6 +125,9 @@
             }
           ?>
     </table>
+
+    </div>
+   
 
     <footer>
     </footer>

@@ -18,7 +18,7 @@ class TuFamilia {
         return $this->idFamilia;
     }
 
-    function getAdulltoMayorFamilia() {
+    function getAdultoMayorFamilia() {
         return $this->adulltoMayorFamilia;
     }
 
