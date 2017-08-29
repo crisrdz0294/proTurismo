@@ -1,4 +1,5 @@
 <?php
+
 include '../data/tuFamiliaData.php';
 
 class TuFamiliaBusiness {
@@ -9,8 +10,6 @@ class TuFamiliaBusiness {
         $this->familia= new TuFamiliaData();
 
     }
-
-
 		public function insertarFamilias($tuFamilia){
 			return $this->familia->insertarFamilia($tuFamilia );
 		}

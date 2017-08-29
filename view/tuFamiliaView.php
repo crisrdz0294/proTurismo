@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<? php
+<?php
 
 include '../business/tuFamiliaBusiness.php';
 
@@ -45,8 +45,8 @@ include '../business/tuFamiliaBusiness.php';
 
             <?php
 
-                $TuFamiliaBusiness = new TuFamiliaBusiness();
-                $todasFamilias= $TuFamiliaBusiness->mostrarFamilias();
+                $tuFamiliaBusiness = new TuFamiliaBusiness();
+                $todasFamilias= $tuFamiliaBusiness->mostrarFamilias();
                 foreach ($todasFamilias as $tuFamilia) {
 
 
