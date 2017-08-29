@@ -15,6 +15,11 @@
 			$nombre=$tipoActividadTuristica->getNombreTipoActividadTuristica();
 			$descripcion=$tipoActividadTuristica->getDescripciontipoactividadturistica();
 			$estado=$tipoActividadTuristica->getEstadoactividadturistica();
+			$cantidadpersonas=$tipoActividadTuristica->getCantidadPersonasActividadTuristica();
+			$lugaractividad=$tipoActividadTuristica->getLugarActividadTuristica();
+     		$distanciahospedaje=$tipoActividadTuristica->getDistanciaHospedajeActividadTuristica();
+     		$habilidadesactividad=$tipoActividadTuristica->getHabilidadesActividadTuristica();
+    		$horarioactividad=$tipoActividadTuristica->getHorarioActividadTuristica();
 
 			$consultaUltimoId ="SELECT MAX(idtipoactividad) AS idtipoactividad FROM tbtipoactividad";
 			$maximoId=mysqli_query($conexion,$consultaUltimoId);
@@ -26,7 +31,8 @@
 
         	$consultaInsertar="INSERT INTO tbtipoactividad VALUES (".$idSiguiente.",'".
         		$nombre."','".
-        		$descripcion."',".$estado.");";
+        		$descripcion."',".$estado.",".$cantidadpersonas.",'".$lugaractividad."','".$distanciahospedaje."',
+        		'".$habilidadesactividad."','".$horarioactividad."');";
 
               	$result = mysqli_query($conexion, $consultaInsertar);
         	mysqli_close($conexion);
@@ -42,7 +48,7 @@
 			mysqli_close($conexion);
         	$tiposActividadesTuristica = [];
         	while ($row = mysqli_fetch_array($result)) {
-            	$temporaralTipoActividad = new TurismoRural($row['idtipoactividad'], $row['nombretipoactividad'], $row['descripciontipoactividad'], $row['estadotipoactividad']);
+            	$temporaralTipoActividad = new TurismoRural($row['idtipoactividad'], $row['nombretipoactividad'], $row['descripciontipoactividad'], $row['estadotipoactividad'],$row['cantidadpersonas'],$row['lugaractividad'],$row['distanciahospedaje'],$row['habilidadesactividad'],$row['horarioactividad']);
             	array_push($tiposActividadesTuristica, $temporaralTipoActividad);
         	}
         	return $tiposActividadesTuristica;
@@ -51,10 +57,22 @@
 
 		public function actualizarTiposActividades($tipoActividad){
 
+			$nombre=$tipoActividad->getNombreTipoActividadTuristica();
+			$descripcion=$tipoActividad->getDescripciontipoactividadturistica();
+			$estado=$tipoActividad->getEstadoactividadturistica();
+			$cantidadpersonas=$tipoActividad->getCantidadPersonasActividadTuristica();
+			$lugaractividad=$tipoActividad->getLugarActividadTuristica();
+     		$distanciahospedaje=$tipoActividad->getDistanciaHospedajeActividadTuristica();
+     		$habilidadesactividad=$tipoActividad->getHabilidadesActividadTuristica();
+    		$horarioactividad=$tipoActividad->getHorarioActividadTuristica();
+
 			$con = new Data();
 			$conexion = $con->conect();
 
-			 $consultaActualizar = "UPDATE tbtipoactividad SET nombretipoactividad= '" . $tipoActividad->getNombreTipoActividadTuristica() . "', descripciontipoactividad='" . $tipoActividad->getDescripciontipoactividadturistica() . "',estadotipoactividad=" . $tipoActividad->getEstadoactividadturistica() ." WHERE idtipoactividad=" . $tipoActividad->getIdtipoactividadturistica() . ";";
+			 $consultaActualizar = "UPDATE tbtipoactividad SET nombretipoactividad= '".$nombre."', descripciontipoactividad='" .$descripcion. "',estadotipoactividad=" .$estado.",
+			 	 cantidadpersonas=".$cantidadpersonas.",lugaractividad='".$lugaractividad."',
+			 	 distanciahospedaje='".$distanciahospedaje."',habilidadesactividad='".$habilidadesactividad."',
+			 	 horarioactividad='".$horarioactividad."' WHERE idtipoactividad=" . $tipoActividad->getIdtipoactividadturistica() . ";";
 
               	$result = mysqli_query($conexion, $consultaActualizar);
         	mysqli_close($conexion);

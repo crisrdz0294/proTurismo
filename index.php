@@ -2,9 +2,7 @@
 <html>
 <head>
 	<title>Menu Principal</title>
-	<script type="text/javascript" src="js/jQuery.js"></script>
-	<script type="text/javascript" src="js/jsSistema.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/estilosSistema.css">
+		
 
 </head>
 <body>
@@ -15,7 +13,11 @@
 	<a href="view/servicioTransporteView.php">Manipular Transporte</a><br>
 	<a href="view/tuRoomView.php">Manipular Habitaciones</a><br>
 	<a href="view/servicioAlimentacionView.php">Manipular Alimentacion</a><br>
-	<a href="view/requisitosActividadView.php">Manipular Requisitos</a>
-	
+	<a href="view/requisitosActividadView.php">Manipular Requisitos</a><br>
+	<a href="view/sitioturistico.php">Manipular Sitio Turistico</a><br>
+	<a href="view/tuFamiliaView.php">Manipular Familia</a><br>
+
 </body>
+
+
 </html>
