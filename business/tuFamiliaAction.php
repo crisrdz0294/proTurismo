@@ -37,10 +37,17 @@ include './tuFamiliaBusiness.php';
 }else if (isset($_POST['update'])) {
 
 
+<<<<<<< HEAD
+  if (isset($_POST['idfamilia']) && isset($_POST['cantidadadultosmayores']) && isset($_POST['adultosfamilia']) && isset($_POST['cantidadadolecentes']) && isset($_POST['cantidadninos'])) {
+  $id=$_POST['idfamilia'];
+  $mayores = $_POST['cantidadadultosmayores'];
+  $adultos = $_POST['adultosfamilia'];
+=======
   if (isset($_POST['idfamilia']) && isset($_POST['cantidadadultosmayores']) && isset($_POST['cantidadadultos']) && isset($_POST['cantidadadolecentes']) && isset($_POST['cantidadninos'])) {
   $id=$_POST['idfamilia'];
   $mayores = $_POST['cantidadadultosmayores'];
   $adultos = $_POST['cantidadadultos'];
+>>>>>>> origin/master
   $adolecentes = $_POST['cantidadadolecentes'];
   $ninos=$_POST['cantidadninos'];
 
@@ -52,7 +59,11 @@ include './tuFamiliaBusiness.php';
               $result = $familiaBis->actualizarFamilias($familia);
 
                     if ($result == 1) {
+<<<<<<< HEAD
+                                       header("location: ../view/tuFamiliaView.php?success=inserted");
+=======
                                        header("location: ../tuFamiliaView.php?success=inserted");
+>>>>>>> origin/master
                                   } else {
                                       header("location: ../view/tuFamiliaView.php?error=dbError");
                                   }

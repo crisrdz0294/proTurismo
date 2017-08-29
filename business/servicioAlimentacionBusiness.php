@@ -5,6 +5,7 @@
 	class ServicioAlimentacionBusiness{
 
 		private $servicioAlimentacionData=null;
+		
 
 		public function ServicioAlimentacionBusiness(){
 			$this->servicioAlimentacionData = new ServicioAlimentacionData();
@@ -12,20 +13,20 @@
 
 
 
-		public function insertarServicioAlimentacionData($servicioalimentacion){
-			return $this->servicioAlimentacionData->insertarServicioAlimentacionData($servicioalimentacion);
+		public function insertarServicioAlimentacion($servicioAlimentacion){
+			return $this->servicioAlimentacionData->insertarServicioTransporte($servicioAlimentacion);
 		}
 
 		public function mostrarTodosServicioAlimentacion(){
 			return $this->servicioAlimentacionData->mostrarTodosServicioAlimentacion();
 		}
 
-		public function actualizarServicioAlimentacion($servicioalimentacion){
-			return $this->servicioAlimentacionData->actualizarServicioAlimentacion($servicioalimentacion);
+		public function actualizarServicioAlimentacion($servicioAlimentacion){
+			return $this->servicioAlimentacionData->actualizarServicioAlimentacion($servicioAlimentacion);
 		}
 
-		public function eliminarServicioAlimentacion($servicioalimentacion){
-			return $this->servicioAlimentacionData->eliminarServicioAlimentacion($servicioalimentacion);
+		public function eliminarServicioAlimentacion($servicioAlimentacion){
+			return $this->servicioAlimentacionData->eliminarServicioAlimentacion($servicioAlimentacion);
 		}
 	}
   ?>

@@ -10,7 +10,11 @@ class TuFamiliaData{
 
     $con = new Data();
     $conexion = $con->conect();
+<<<<<<< HEAD
+    $mayores=$tuFamilia->getAdultoMayorFamilia();
+=======
     $mayores=$tuFamilia->getAdulltoMayorFamilia();
+>>>>>>> origin/master
     $adultos=$tuFamilia->getAdultoFamilia();
     $adolecente=$tuFamilia->getAdolecenteFamilia();
     $ninos=$tuFamilia->getNinoFamilia();
@@ -54,6 +58,18 @@ class TuFamiliaData{
     $con = new Data();
     $conexion = $con->conect();
 
+<<<<<<< HEAD
+    $mayores=$tuFamilia->getAdultoMayorFamilia();
+    $adultos=$tuFamilia->getAdultoFamilia();
+    $adolecente=$tuFamilia->getAdolecenteFamilia();
+    $ninos=$tuFamilia->getNinoFamilia();
+    $id=$tuFamilia->getIdFamilia();
+
+    $consultaUpdate="UPDATE tbfamilia SET adultosmayoresfamilia=".$mayores." , adultosfamilia=".$adultos.",adolecentesfamilia=".$adolecente.",ninosfamilia=".$ninos." WHERE idfamilia=".$id.";";
+    
+    $result = mysqli_query($conexion, $consultaUpdate);
+    mysqli_close($conexion);
+=======
     $consultaActualizar = "UPDATE tbfamilia SET
 
       adultosmayoresfamilia= ".$tuFamilia->getAdulltoMayorFamilia(). ",
@@ -63,6 +79,7 @@ class TuFamiliaData{
 
           $result = mysqli_query($conexion, $consultaActualizar);
         mysqli_close($conexion);
+>>>>>>> origin/master
 
         return $result;
   }

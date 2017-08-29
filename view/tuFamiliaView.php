@@ -5,6 +5,10 @@ include '../business/tuFamiliaBusiness.php';
 
 ?>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 <head>
     <meta charset="UTF-8">
     <title>Manipular</title>
@@ -16,7 +20,11 @@ include '../business/tuFamiliaBusiness.php';
             Cantidad de adultos mayores:
                 <input type="number" id="cantidadadultosmayores" name="cantidadadultosmayores">
             <br>
+<<<<<<< HEAD
+            Cantidad adultos:
+=======
             Cantidad:
+>>>>>>> origin/master
               <input type="number" id="cantidadadultos" name="cantidadadultos">
             <br>
           Cantidad de Adolecentes:
@@ -40,7 +48,12 @@ include '../business/tuFamiliaBusiness.php';
                 <th>Adultos</th>
                 <th>Adolecentes</th>
                 <th>Niños</th>
+<<<<<<< HEAD
+                <th>Opcion 1</th>
+                <th>Opcion 2 </th>
+=======
 
+>>>>>>> origin/master
             </tr>
 
             <?php
@@ -51,6 +64,16 @@ include '../business/tuFamiliaBusiness.php';
 
 
                     echo '<form method="post" enctype="multipart/form-data" action="../business/tuFamiliaAction.php">';
+<<<<<<< HEAD
+
+                    echo '<input type="hidden" name="idfamilia" id="idfamilia" value="' . $tuFamilia->getIdFamilia().'">';
+
+                    echo '<td><input type="number" name="cantidadadultosmayores" id="cantidadadultosmayores" value="' . $tuFamilia->getAdultoMayorFamilia().'"/></td>';
+
+                    echo '<td><input type="number" name="adultosfamilia" id="adultosfamilia" value="' . $tuFamilia->getAdultoFamilia().'"/></td>';
+                    echo '<td><input type="number" name="cantidadadolecentes" id="cantidadadolecentes" value="' . $tuFamilia->getAdolecenteFamilia().'">';
+                    echo '<td><input type="number" name="cantidadninos" id="cantidadninos" value="' . $tuFamilia->getNinoFamilia().'">';
+=======
                     echo '<input type="hidden" name="idfamilia" id="idfamilia" value="' . $tuFamilia->getIdFamilia().'">';
 
                     echo '<td><input type="number" name="cantidadadultosmayores" id="cantidadadultosmayores value="' . $tuFamilia->getAdulltoMayorFamilia().'">';
@@ -58,6 +81,7 @@ include '../business/tuFamiliaBusiness.php';
                     echo '<td><input type="number" name="adultosfamilia" id="adultosfamilia" value="' . $tuFamilia->getAdulltoFamilia().'">';
                     echo '<td><input type="number" name="cantidadadolecentes" id="cantidadadolecentes" value="' . $tuFamilia->getAdolecenteFamilia().'">';
                     echo '<td><input type="number" name="cantidadninos" id="cantidadninos" value="' . $tuFamilia->getNinos().'">';
+>>>>>>> origin/master
 
                     echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                     echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
