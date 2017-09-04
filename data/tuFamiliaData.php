@@ -44,7 +44,7 @@ class TuFamiliaData{
 
         $todasFamilias = [];
         while ($row = mysqli_fetch_array($result)) {
-            $tempFamilia = new TuFamilia($row['idfamilia'], $row['adultosmayoresfamilia'], $row['adultosfamilia'], $row['adolecentesfamilia'], $row['ninosfamilia']);
+            $tempFamilia = new TuFamilia($row['idfamilia'], $row['adultosmayoresfamilia'], $row['adultosfamilia'], $row['adolescentesfamilia'], $row['ninosfamilia']);
             array_push($todasFamilias, $tempFamilia);
         }
         return $todasFamilias;
@@ -63,8 +63,8 @@ class TuFamiliaData{
     $ninos=$tuFamilia->getNinoFamilia();
     $id=$tuFamilia->getIdFamilia();
 
-    $consultaUpdate="UPDATE tbfamilia SET adultosmayoresfamilia=".$mayores." , adultosfamilia=".$adultos.",adolecentesfamilia=".$adolecente.",ninosfamilia=".$ninos." WHERE idfamilia=".$id.";";
-    
+    $consultaUpdate="UPDATE tbfamilia SET adultosmayoresfamilia=".$mayores." , adultosfamilia=".$adultos.",adolescentesfamilia=".$adolecente.",ninosfamilia=".$ninos." WHERE idfamilia=".$id.";";
+
     $result = mysqli_query($conexion, $consultaUpdate);
     mysqli_close($conexion);
 
