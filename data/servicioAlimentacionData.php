@@ -24,7 +24,7 @@
 
 
 
-            $consultaUltimoId ="SELECT MAX(idalimentacion) AS idalimentacion FROM tbserviciodealimentacion";
+            $consultaUltimoId ="SELECT MAX(idservicioalimentacion) AS idservicioalimentacion FROM tbservicioalimentacion";
             $maximoId=mysqli_query($conexion,$consultaUltimoId);
             $idSiguiente=1;
 
@@ -32,7 +32,7 @@
                 $idSiguiente = trim($row[0]) + 1;
             }
 
-            $consultaInsertar="INSERT INTO tbserviciodealimentacion VALUES (
+            $consultaInsertar="INSERT INTO tbservicioalimentacion VALUES (
             
             ".$idSiguiente.",
             '".$tiempoComidas."',
@@ -56,14 +56,11 @@
 
 
 
-
-
-
         public function mostrarTodosServicioAlimentacion(){
 
             $con = new Data();
             $conexion = $con->conect();
-            $consultaMostrar = "SELECT * FROM tbserviciodealimentacion;";
+            $consultaMostrar = "SELECT * FROM tbservicioalimentacion;";
             $result = mysqli_query($conexion, $consultaMostrar);
             mysqli_close($conexion);
 
@@ -71,12 +68,12 @@
             while ($row = mysqli_fetch_array($result)) {
                 $temporaralServicioAlimentacion = new ServicioAlimentacion(
 
-                    $row['idalimentacion'], 
-                    $row['tiempocomidas'], 
-                    $row['descripcionalimentacion'],
-                    $row['precio'],
-                    $row['adicionales'], 
-                    $row['alimentacionllevar']
+                    $row['idservicioalimentacion'], 
+                    $row['tiemposervicioalimentacion'], 
+                    $row['descripcionservicioalimentacion'],
+                    $row['precioservicioalimentacion'],
+                    $row['adicionalservicioalimentacion'], 
+                    $row['llevarservicioalimentacion']
                 );
 
                 array_push($servicioDeAlimentacion, $temporaralServicioAlimentacion);
@@ -95,14 +92,14 @@
             $con = new Data();
             $conexion = $con->conect();
 
-            $consultaActualizar = "UPDATE tbserviciodealimentacion SET 
+            $consultaActualizar = "UPDATE tbservicioalimentacion SET 
 
-        tiempocomidas = '".$servicioAlimentacion->getTiempoComidasServicioAlimentacion()."',
-    descripcionalimentacion = '".$servicioAlimentacion->getDescripcionAlimentacionServicioAlimentacion()."',
-    precio = '".$servicioAlimentacion->getPrecioServicioAlimentacion()."',
-    adicionales = '".$servicioAlimentacion->getAdicionalesServicioAlimentacion()."',
-    alimentacionllevar = '".$servicioAlimentacion->getAlimentacionllevarServicioAlimentacion()."' 
-    WHERE idalimentacion =" . $servicioAlimentacion->getIdServicioAlimentacion() . ";";
+        tiemposervicioalimentacion = '".$servicioAlimentacion->getTiempoComidasServicioAlimentacion()."',
+    descripcionservicioalimentacion = '".$servicioAlimentacion->getDescripcionAlimentacionServicioAlimentacion()."',
+    precioservicioalimentacion = '".$servicioAlimentacion->getPrecioServicioAlimentacion()."',
+    adicionalservicioalimentacion = '".$servicioAlimentacion->getAdicionalesServicioAlimentacion()."',
+    llevarservicioalimentacion = '".$servicioAlimentacion->getAlimentacionllevarServicioAlimentacion()."' 
+    WHERE idservicioalimentacion =" . $servicioAlimentacion->getIdServicioAlimentacion() . ";";
 
 
 
@@ -119,14 +116,12 @@
 
 
 
-
-
         public function eliminarServicioAlimentacion($idalimentacion)
         {
             $con = new Data();
             $conexion = $con->conect();
 
-            $consultaEliminar="DELETE FROM tbserviciodealimentacion WHERE idalimentacion=".$idalimentacion.";";
+            $consultaEliminar="DELETE FROM tbservicioalimentacion WHERE idservicioalimentacion =".$idalimentacion.";";
 
             $result=mysqli_query($conexion,$consultaEliminar);
             mysqli_close($conexion);
