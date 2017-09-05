@@ -56,15 +56,13 @@
 			$con =new Data();
 			$conexion=$con->conect();
 
-			$nombrecomercial=$sitioTuristico->getNombreComercial();
-			$nombreresponsable=$sitioTuristico->getNombreResponsable();
-		 	$telefonositio=$sitioTuristico->getTelefonoSitio();
-			$idprovincia=$sitioTuristico->getIdProvincia();
-		 	$idcanton=$sitioTuristico->getIdCanton();
-		 	$iddistrito=$sitioTuristico->getIdDistrito();
-		 	$direccionexacta=$sitioTuristico->getDireccionExacta();
+			$nombrecomercial=$sitioturistico->getNombreComercial();
+			$nombreresponsable=$sitioturistico->getNombreResponsable();
+		 	$telefonositio=$sitioturistico->getTelefonoSitio();
+		 	$direccionexacta=$sitioturistico->getDireccionExacta();
+		 	$idsitio=$sitioturistico->getIdSitio();
 
-		 	$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',nombreresponsablesitioturistico='".$nombreresponsable."',telefonositioturistico=".$telefonositio.",idprovinciasitioturistico=".$idprovincia.",idcantonsitioturistico=".$idcanton.",iddistritositioturistico=".$iddistrito.",direccionexactasitioturistico='".$direccionexacta."'";
+		 	$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',nombreresponsablesitioturistico='".$nombreresponsable."',telefonositioturistico=".$telefonositio.",direccionexactasitioturistico='".$direccionexacta."' WHERE idsitioturistico=".$idsitio.";";
 
 		 		$result = mysqli_query($conexion, $consultaActualizar);
         	mysqli_close($conexion);
@@ -78,9 +76,9 @@
 			$con =new Data();
 			$conexion=$con->conect();
 
-			$consultaEliminar="DELETE FROM tbsitioturistico WHERE idsitioturistico=".$idsitioturistico."";
+			$consultaEliminar="DELETE FROM tbsitioturistico WHERE idsitioturistico=".$idsitioturistico.";";
 
-			$result = mysqli_query($conexion, $consultaActualizar);
+			$result = mysqli_query($conexion, $consultaEliminar);
         	mysqli_close($conexion);
 
         	return $result;

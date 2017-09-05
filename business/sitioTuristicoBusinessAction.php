@@ -35,5 +35,55 @@
 		}else{
 			header("location: ../view/sitioturisticoview.php?error=error");
 		}
+	}else if(isset($_POST['update'])){
+
+		if(isset($_POST['idsitio'])&&isset($_POST['nombrecomercial']) && isset($_POST['nombreresponsable']) && isset($_POST['telefono']) &&  isset($_POST['direccion'])){
+
+			$nombrecomercial=$_POST['nombrecomercial'];
+			$nombreresponsable=$_POST['nombreresponsable'];
+			$telefono=$_POST['telefono'];
+			$direccion=$_POST['direccion'];
+			$id=$_POST['idsitio'];
+
+			if(strlen($nombrecomercial)>0 && strlen($nombreresponsable)>0 && $telefono>0 && strlen($direccion)>0){
+
+				$sitioTuristico = new SitioTuristico($id,$nombrecomercial,$nombreresponsable,$telefono,0,
+					0,0,$direccion);
+
+				$sitioTuristicoBusiness= new SitioTuristicoBusiness();
+
+				$result=$sitioTuristicoBusiness->actualizarSitioTuristico($sitioTuristico);
+
+				if($result==1){
+					header("location: ../view/sitioturisticoview.php?success=update");
+				}else{
+					header("location: ../view/sitioturisticoview.php?error=dbError");
+				}
+			}else{
+				header("location: ../view/sitioturisticoview.php?error=camposvacios");
+			}
+		}else{
+			header("location: ../view/sitioturisticoview.php?error=error");
+		}
+
+	}else if(isset($_POST['delete'])){
+
+		if (isset($_POST['idsitio'])) {
+
+			$id=$_POST['idsitio'];
+
+			$sitioTuristicoBusiness= new SitioTuristicoBusiness();
+			$result=$sitioTuristicoBusiness->eliminarSitioTuristico($id);
+
+			if ($resultado==1) {
+				header("location: ../view/sitioturisticoview.php?success=delete");
+			}else{
+				header("location: ../view/sitioturisticoview.php?error=dbError");
+			}
+
+		}else{
+			header("location: ../view/sitioturisticoview.php?error=error");
+		}
+
 	}
 ?>
