@@ -68,7 +68,49 @@
 		  <input type="submit" value="Guardar" name="guardarSitio" /><br><br>
 
 	</form>
+
+	<h2>Sitios Turisticos</h2>
+	<table border="1">
 		
+		<tr>
+			<th>Nombre del sitio</th>
+			<th>Nombre del responsable</th>
+			<th>Telefono</th>
+			<th>Direccion Exacta</th>
+			<th>Opcion 1</th>
+			<th>Opcion 2</th>
+		</tr>	
+
+		<?php 
+
+			require('../data/data2.php');
+			$query="SELECT * from tbprovincia";
+			$resultado=$mysqli->query($query);
+
+			include '../business/sitioTuristicoBusiness.php';
+			$sitioTuristicoBusiness= new SitioTuristicoBusiness();
+			$todosSitiosTuristicos=$sitioTuristicoBusiness->mostrarTodosSitiosTuristicos();
+
+			foreach($todosSitiosTuristicos as $sitioturistico){
+
+				 echo '<form method="post" enctype="multipart/form-data" action="../business/sitioTuristicoBusinessAction.php">';
+                    echo '<input type="hidden" name="idsitio" value="' . $sitioturistico->getIdSitio().'">';
+
+                    echo '<td><input type="text" name="nombrecomercial" value="' .$sitioturistico->getNombreComercial().'"/></td>';
+                    echo '<td><input type="text" name="nombreresponsable" value="' .$sitioturistico->getNombreResponsable().'"/></td>';
+                    echo '<td><input type="number" name="telefono" value="' . $sitioturistico->getTelefonoSitio().'"/></td>';
+
+                     echo '<td><input type="text" name="direccion" value="' .$sitioturistico->getDireccionExacta().'"/></td>';
+                    echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
+                    echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
+
+                    echo '</tr>';
+                    echo '</form>';
+			}
+		?>
+
+	</table>
+	
 
 	</body>
 </html>
