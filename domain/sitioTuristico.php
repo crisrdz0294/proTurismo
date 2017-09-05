@@ -9,13 +9,8 @@
 		private $idcanton;
 		private $iddistrito;
 		private $direccionexacta;
-		private $idactividad;
-		private $idservicioalimentacion;
-		private $idserviciohospedaje;
-		private $idserviciotransporte;
-		private $idtrabajocomunal;
-
-		function SitioTuristico($idsitio,$nombrecomercial,$nombreresponsable,$telefonositio,$idprovincia,$idcanton,$iddistrito,$direccionexacta,$idactividad,$idservicioalimentacion,$idserviciohospedaje,$idserviciotransporte,$idtrabajocomunal){
+	
+		function SitioTuristico($idsitio,$nombrecomercial,$nombreresponsable,$telefonositio,$idprovincia,$idcanton,$iddistrito,$direccionexacta){
 
 			 $this->idsitio=$idsitio;
 			 $this->nombrecomercial=$nombrecomercial;
@@ -25,11 +20,6 @@
 			 $this->idcanton=$idcanton;
 			 $this->iddistrito=$iddistrito;
 			 $this->direccionexacta=$direccionexacta;
-			 $this->idactividad=$idactividad;
-			 $this->idservicioalimentacion=$idservicioalimentacion;
-			 $this->idserviciohospedaje=$idserviciohospedaje;
-			 $this->idserviciotransporte=$idserviciotransporte;
-			 $this->idtrabajocomunal=$idtrabajocomunal;
 		}
 
 		public function getIdSitio() {
@@ -56,21 +46,7 @@
     	public function getDireccionExacta() {
         	return $this->direccionexacta;
     	}
-    	public function getIdActividad() {
-        	return $this->idactividad;
-    	}
-    	public function getIdServicioAlimentacion() {
-        	return $this->idservicioalimentacion;
-    	}
-    	public function getIdServicioHospedaje() {
-        	return $this->idserviciohospedaje;
-    	}
-    	public function getIdServicioTransporte() {
-        	return $this->idserviciotransporte;
-    	}
-    	public function getIdTrabajoComunal() {
-        	return $this->idtrabajocomunal;
-    	}
+
 
 	}
   ?>
