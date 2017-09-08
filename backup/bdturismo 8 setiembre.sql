@@ -364,8 +364,8 @@ DROP TABLE IF EXISTS `tbtipoactividad`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbtipoactividad` (
   `idtipoactividad` int(11) NOT NULL,
-  `nombretipoactividad` int(11) NOT NULL,
-  `descripciontipoactividad` int(11) NOT NULL
+  `nombretipoactividad` varchar(30) NOT NULL,
+  `descripciontipoactividad` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -415,4 +415,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-05  6:17:41
+-- Dump completed on 2017-09-08 15:15:05
