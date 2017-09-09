@@ -3,7 +3,7 @@
 <head>
 	<title>Menu Principal</title>
 		
-
+	<script src="js/jquery-3.2.1.js"></script>
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 	<a href="view/tuRoomView.php">Manipular Habitaciones</a><br>
 	<a href="view/servicioAlimentacionView.php">Manipular Alimentacion</a><br>
 	<a href="view/requisitosActividadView.php">Manipular Requisitos</a><br>
-	<a href="view/sitioturistico.php">Manipular Sitio Turistico</a><br>
+	<a href="view/sitioturisticoview.php">Manipular Sitio Turistico</a><br>
 	<a href="view/tuFamiliaView.php">Manipular Familia</a><br>
 
 </body>

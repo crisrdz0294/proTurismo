@@ -1,6 +1,6 @@
 <?php
 	include 'data.php';
-	include '../domain/sitioTuristico.php'
+	include '../domain/sitioTuristico.php';
 
 	class DataSitioTuristico{
 
@@ -17,11 +17,6 @@
 		 	$idcanton=$sitioTuristico->getIdCanton();
 		 	$iddistrito=$sitioTuristico->getIdDistrito();
 		 	$direccionexacta=$sitioTuristico->getDireccionExacta();
-		 	$idactividad=$sitioTuristico->getIdActividad();
-		 	$idservicioalimentacion=$sitioTuristico->getIdServicioAlimentacion();
-		 	$idserviciohospedaje=$sitioTuristico->getIdServicioHospedaje();
-		 	$idserviciotransporte=$sitioTuristico->getIdServicioTransporte();
-		 	$idtrabajocomunal=$sitioTuristico->getIdTrabajoComunal();
 
 		 	$consultaUltimoId ="SELECT MAX(idsitioturistico) AS idsitioturistico FROM tbsitioturistico";
 			$maximoId=mysqli_query($conexion,$consultaUltimoId);
@@ -31,9 +26,11 @@
             	$idSiguiente = trim($row[0]) + 1;
         	}
 
-        	$consultaInsertar="INSERT INTO tbsitioturistico VALUES(".$idSiguiente.",'".$nombrecomercial"','".$nombreresponsable."','".$telefonositio."',".$idprovincia.",".$idcanton.",".$iddistrito.",'".$direccionexacta."',".$idactividad",".$idservicioalimentacion.",".$idserviciohospedaje.",".$idserviciotransporte.",".$idtrabajocomunal.");";
+        	$consultaInsertar="INSERT INTO tbsitioturistico VALUES (".$idSiguiente.",'".$nombrecomercial."','".$nombreresponsable."',".$telefonositio.",".$idprovincia.",".$idcanton.",".$iddistrito.",'".$direccionexacta."');";
 
-              	$result = mysqli_query($conexion, $consultaInsertar);
+
+
+             $result = mysqli_query($conexion, $consultaInsertar);
         	mysqli_close($conexion);
         	return $result;
 
@@ -48,10 +45,47 @@
 			mysqli_close($conexion);
         	$sitiosTuristicos = [];
         	while ($row = mysqli_fetch_array($result)) {
-            	$sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercial'],$row['nombreresponsable'],$row['telefonositio'],$row['idprovincia'],$row['idcanton'],$row['iddistrito'],$row['direccionexacta'],$row['idactividadturistica'],$row['idservicioalimentacion'],$row['idserviciohospedaje'],$row['idserviciotransporte'],$row['idtrabajocomunal']);
+            	$sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercialsitioturistico'],$row['nombreresponsablesitioturistico'],$row['telefonositioturistico'],$row['idprovinciasitioturistico'],$row['idcantonsitioturistico'],$row['iddistritositioturistico'],$row['direccionexactasitioturistico']);
             	array_push($sitiosTuristicos, $sitioTuristicoTemporal);
         	}
         	return $sitiosTuristicos;
 		}
+
+		public function actualizarSitioTuristico($sitioturistico){
+
+			$con =new Data();
+			$conexion=$con->conect();
+
+			$nombrecomercial=$sitioturistico->getNombreComercial();
+			$nombreresponsable=$sitioturistico->getNombreResponsable();
+		 	$telefonositio=$sitioturistico->getTelefonoSitio();
+		 	$direccionexacta=$sitioturistico->getDireccionExacta();
+		 	$idsitio=$sitioturistico->getIdSitio();
+
+		 	$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',nombreresponsablesitioturistico='".$nombreresponsable."',telefonositioturistico=".$telefonositio.",direccionexactasitioturistico='".$direccionexacta."' WHERE idsitioturistico=".$idsitio.";";
+
+		 		$result = mysqli_query($conexion, $consultaActualizar);
+        	mysqli_close($conexion);
+
+        	return $result;
+
+		}
+
+		public function eliminarSitioTuristico($idsitioturistico){
+
+			$con =new Data();
+			$conexion=$con->conect();
+
+			$consultaEliminar="DELETE FROM tbsitioturistico WHERE idsitioturistico=".$idsitioturistico.";";
+
+			$result = mysqli_query($conexion, $consultaEliminar);
+        	mysqli_close($conexion);
+
+        	return $result;
+
+		}
+
+		
+
 	}
 ?>
