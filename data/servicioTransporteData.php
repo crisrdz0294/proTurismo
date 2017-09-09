@@ -24,7 +24,7 @@
 
 
 
-			$consultaUltimoId ="SELECT MAX(idserviciotransporte) AS idserviciotransporte FROM tbserviciotrasporte";
+			$consultaUltimoId ="SELECT MAX(idserviciotransporte) AS idserviciotransporte FROM tbserviciotransporte";
 			$maximoId=mysqli_query($conexion,$consultaUltimoId);
 			$idSiguiente=1;
 
@@ -32,7 +32,7 @@
             	$idSiguiente = trim($row[0]) + 1;
         	}
 
-        	$consultaInsertar="INSERT INTO tbserviciotrasporte VALUES (
+        	$consultaInsertar="INSERT INTO tbserviciotransporte VALUES (
         	
         	".$idSiguiente.",
         	'".$origen."',
@@ -65,7 +65,7 @@
 
 			$con = new Data();
 			$conexion = $con->conect();
-			$consultaMostrar = "SELECT * FROM tbserviciotrasporte;";
+			$consultaMostrar = "SELECT * FROM tbserviciotransporte;";
 			$result = mysqli_query($conexion, $consultaMostrar);
 			mysqli_close($conexion);
 
@@ -74,13 +74,13 @@
             	$temporalServicioTransporte = new ServicioTransporte(
 
             		$row['idserviciotransporte'], 
-          			$row['origen'], 
-    				$row['destino'],  
-    				$row['kilometros'], 
-   					$row['tipocarretera'], 
-    				$row['tipovehiculo'], 
-    				$row['precio'], 
-    				$row['cantidadpersonas']
+          			$row['origenserviciotransporte'], 
+    				$row['destinoserviciotransporte'],  
+    				$row['kilometroserviciotransporte'], 
+   					$row['tipocarreteraserviciotransporte'], 
+    				$row['tipovehiculoserviciotransporte'], 
+    				$row['precioserviciotransporte'], 
+    				$row['cantidadpersonasserviciotransporte']
     			);
 
             	array_push($servicioDeTransporte, $temporalServicioTransporte);
@@ -99,15 +99,15 @@
 			$con = new Data();
 			$conexion = $con->conect();
 
-			$consultaActualizar = "UPDATE tbserviciotrasporte SET 
+			$consultaActualizar = "UPDATE tbserviciotransporte SET 
     		
-          	origen = '".$serviciotransporte->getOrigenServicioTransporte()."',
-    		destino = '".$serviciotransporte->getDestinoServicioTransporte(). "',
-    		kilometros = ".$serviciotransporte->getKilometrosServicioTransporte().",
-   			tipocarretera = '".$serviciotransporte->getTipoCarreteraServicioTransporte()."',
-    		tipovehiculo = '".$serviciotransporte->getTipoVehiculoServicioTransporte()."',
-    		precio = ".$serviciotransporte->getPrecioServicioTransporte().",
-    		cantidadpersonas = ".$serviciotransporte->getCantidadPersonasServicioTransporte()." 		
+          	origenserviciotransporte = '".$serviciotransporte->getOrigenServicioTransporte()."',
+    		destinoserviciotransporte = '".$serviciotransporte->getDestinoServicioTransporte(). "',
+    		kilometroserviciotransporte = ".$serviciotransporte->getKilometrosServicioTransporte().",
+   			tipocarreteraserviciotransporte = '".$serviciotransporte->getTipoCarreteraServicioTransporte()."',
+    		tipovehiculoserviciotransporte = '".$serviciotransporte->getTipoVehiculoServicioTransporte()."',
+    		precioserviciotransporte = ".$serviciotransporte->getPrecioServicioTransporte().",
+    		cantidadpersonasserviciotransporte = ".$serviciotransporte->getCantidadPersonasServicioTransporte()." 		
             WHERE idserviciotransporte =" . $serviciotransporte->getIdServicioTransporte() . ";";
 
 
@@ -131,7 +131,7 @@
 			$con = new Data();
 			$conexion = $con->conect();
 
-			$consultaEliminar="DELETE FROM tbserviciotrasporte WHERE idserviciotransporte=".$idserviciotransporte.";";
+			$consultaEliminar="DELETE FROM tbserviciotransporte WHERE idserviciotransporte = ".$idserviciotransporte.";";
 
 			$result=mysqli_query($conexion,$consultaEliminar);
 			mysqli_close($conexion);
