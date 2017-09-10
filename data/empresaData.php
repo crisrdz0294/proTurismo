@@ -3,7 +3,7 @@
 
 	include '../domain/empresa.php';
 	include '../domain/sitioTuristico.php';
-
+   include '../domain/responsable.php';
 
 	class EmpresaData{
 
@@ -119,8 +119,31 @@
         	return $sitiosTuristicos;
 		}
 
+	public function mostrarResponsables(){
 
+			$con = new Data();
+			$conexion = $con->conect();
+			$consultaMostrar = "SELECT * FROM tbresponsable;";
+			$result = mysqli_query($conexion, $consultaMostrar);
+			mysqli_close($conexion);
 
+			$responsable = [];
+			while ($row = mysqli_fetch_array($result)) {
+					$temporaralResponsable = new Responsable(
 
+							$row['idresponsable'],
+							$row['cedularesponsable'],
+							$row['nombreresponsable'],
+							$row['primerapellidoresponsable'],
+							$row['segundoapellidoresponsable'],
+							$row['telefonoresponsable'],
+							$row['emailresponsable']
+					);
+
+					array_push($responsable, $temporaralResponsable);
+			}
+			return $responsable;
 	}
+
+}
 ?>

@@ -28,7 +28,9 @@
  public function mostrarSitios(){
 	 return $this->empresaData->mostrarSitiosTuristicos();
  }
-
+public function mostrarTodosResponsables(){
+	return $this->empresaData->mostrarResponsables();
+}
 
 	}
   ?>

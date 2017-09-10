@@ -9,7 +9,7 @@
 include '../business/empresaBusiness.php';
 $empresaBusiness = new EmpresaBusiness();
 $mostrarSitiosTuristicos=$empresaBusiness->mostrarSitios();
-
+$mostrarResponsables=$empresaBusiness->mostrarTodosResponsables();
  ?>
 </head>
 <body>
@@ -23,9 +23,9 @@ $mostrarSitiosTuristicos=$empresaBusiness->mostrarSitios();
  <select id="idEncargado" name="idEncargado">';
 
 
-			 foreach ($mostrarSitiosTuristicos as $sitioTuristico){
+			 foreach ($mostrarResponsables as $Responsable){
 
-			 echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+			 echo '<option value="'.$Responsable->getIdResponsable().'">'.$Responsable->getNombreResponsable().'</option>;';
 
 				}
 
@@ -84,6 +84,7 @@ echo ' </select><br><br>';
 
             $todosEmpresa= $empresaBusiness->mostrarEmpresas();
 						$todosSitios=$empresaBusiness->mostrarSitios();
+						$todosEncargados=$empresaBusiness->mostrarTodosResponsables();
             foreach ($todosEmpresa as $empresa) {
 
             	 echo '<form method="post" enctype="multipart/form-data" action="../business/empresaAction.php">';
@@ -121,9 +122,9 @@ echo ' </select><br><br>';
 	 																		 <select id="idEncargado" name="idEncargado">';
 
 
-	 																					 foreach ($todosSitios as $sitioTuristico){
+	 																					 foreach ($todosEncargados as $responsable){
 
-	 																					 echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+	 																					 echo '<option value="'.$responsable->getIdResponsable().'">'.$responsable->getNombreResponsable().'</option>;';
 
 	 																						}
 
