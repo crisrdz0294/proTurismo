@@ -39,10 +39,11 @@ include './empresaBusiness.php';
     } else {
         header("location: ../view/empresaView.php?error=error");
     }
+
 }else if (isset($_POST['update'])) {
 
 
-  if (isset($_POST['idEmpresa'])isset($_POST['nombreEmpresa']) && isset($_POST['telefonoEmpresa']) && isset($_POST['emailEmpresa'])
+  if (isset($_POST['idEmpresa'])&&isset($_POST['nombreEmpresa']) && isset($_POST['telefonoEmpresa']) && isset($_POST['emailEmpresa'])
   && isset($_POST['paginaEmpresa'])&& isset($_POST['idSitio'])&& isset($_POST['idEncargado'])) {
     $id=$_POST['idEmpresa'];
     $nombre = $_POST['nombreEmpresa'];

@@ -5,8 +5,10 @@
   <title>Turismo Rural</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
      <?php
-     include '../business/empresaBusiness.php';
 
+        include '../business/sitioTuristicoBusiness.php';
+        $sitioBusiness=new SitioTuristicoBusiness();
+        $listaSitios=$sitioBusiness->mostrarTodosSitiosTuristicos();
      ?>
 
 </head
@@ -17,7 +19,7 @@
   <br>
 <form id="form" method="post" action="../business/empresaAction.php">
  Encargado de la empresa:
- <select name="idEncargado" id="idEncargado" required>
+ <select name="idEncargado" id="idEncargado" >
    <?php
    /*
        $empresaBusiness = new empresaBusiness();
@@ -39,23 +41,26 @@
     <input type="email" id="emailEmpresa" name="emailEmpresa" required /><br>
     <br>
   Pagina Web:
-    <input type="text" id="paginaEmpresa" name="paginaEmpresa" required /><br>
+    <input type="text" id="paginaEmpresa" name="paginaEmpresa"  /><br>
     <br>
+Sitio Turistico:<br>
+    <select id="sitioturistico" name="sitioturistico">
 
-    Sitio Turistico:
-    <select name="idSitio" id="idSitio" required>
-      <?php/*
-          $sitioTuristicoBusiness = new sitioTuristico();
-          $todosSitios= $sitioTuristicoBusiness->mostrarTodosSitios();
+        <?php
+          foreach ($listaSitios as $sitio){
+        ?>
+          <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+        <?php
+           }
+        ?>
 
-          foreach($todosSitios as $sitioTuristico){
-       echo '<option value="sitioTuristico.getIdSitioTuristico()">sitioTuristico.getNombre()</option>';
-          }
-   */?>
-   </select><br>
+     </select><br><br>
    <br>
 
    <input type="submit" value="Guardar" name="guardarEmpresa" id="guardarEmpresa"/><br><br>
 </form>
+<?php
+      include '../business/empresaBusiness.php';
+?>
 
 </body>

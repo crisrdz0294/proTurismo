@@ -6,7 +6,7 @@
     <title>Turismo Rural</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-     <?php 
+     <?php
 
          include '../business/sitioTuristicoBusiness.php';
          include '../data/dataTipoActividad.php';
@@ -32,9 +32,9 @@
 
 <body>
 
-    <header> 
+    <header>
         </header>
-    
+
              <h1>Registrar Actividad</h1>
              <br>
         <form id="form" method="post" action="../business/actividadAction.php">
@@ -56,53 +56,53 @@
                     <input required type="text" name="distanciahospedaje" id="distanciahospedaje"/><br>
                     Habilidades requeridas:<br>
                           Caminar <input type="checkbox" name="habilidades[]" value="caminar" /><br>
-                          Limpiar <input type="checkbox" name="habilidades[]" value="limpiar" /><br> 
-                          Pintar <input type="checkbox" name="habilidades[]" value="pintar" /><br> 
+                          Limpiar <input type="checkbox" name="habilidades[]" value="limpiar" /><br>
+                          Pintar <input type="checkbox" name="habilidades[]" value="pintar" /><br>
                           Cocinar <input type="checkbox" name="habilidades[]" value="cocinar" /><br>
                           <div id="posicion2Radios">
-                            Jugar <input type="checkbox" name="habilidades[]" value="jugar" /><br> 
-                            Construir <input type="checkbox" name="habilidades[]" value="construir" /><br> 
+                            Jugar <input type="checkbox" name="habilidades[]" value="jugar" /><br>
+                            Construir <input type="checkbox" name="habilidades[]" value="construir" /><br>
                             Artesanales<input type="checkbox" name="habilidades[]" value="artesanales" /><br>
                             Buena memoria<input type="checkbox" name="habilidades[]" value="buena memoria" />
                           </div><br>
-                      
+
 
                     Horario de la actividad:<br>
                     <textarea required  name="horarioactividad" id="horarioactividad" placeholder="Describa el horario de la actividad"></textarea><br><br>
-                    
+
                     Tipo de actividad:<br>
 
                     <select id="tipoactividad" name="tipoactividad">
-                     
+
                         <?php
                           foreach ($listaTipos as $tipoActividad){
                         ?>
                           <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
-                        <?php 
-                           } 
+                        <?php
+                           }
                         ?>
-                      
+
                      </select><br><br>
 
                     Sitio Turistico:<br>
 
                     <select id="sitioturistico" name="sitioturistico">
-                     
+
                         <?php
                           foreach ($listaSitios as $sitio){
                         ?>
                           <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
-                        <?php 
-                           } 
+                        <?php
+                           }
                         ?>
-                      
+
                      </select><br><br>
 
-                   
+
                     <input type="submit" value="Guardar" name="guardarActividad" id="guardarActividad"/><br><br>
     </form>
-    
-   
+
+
     <div id="posicionTabla">
          <h1>Lista de actividades</h1>
 
@@ -124,15 +124,15 @@
 
         <?php
 
-            
+
           include '../business/actividadBusiness.php';
             $actividadBusiness = new ActividadBusiness();
             $todasActividades= $actividadBusiness->mostrarTodasActividades();
-        
-           
+
+
 
             foreach($todasActividades as $actividad){
-           
+
                 echo '<form method="post" enctype="multipart/form-data" action="../business/actividadAction.php">';
                 echo '<input type="hidden" name="idActividad" id="idActividad" value="' . $actividad->getIdActividad().'">';
                 echo '<tr>';
@@ -142,14 +142,14 @@
                        echo '<td> <select name="estadoActividad" id="estadoActividad">
                          <option selected value="1">Activo</option>
                         <option value="0">Inactivo</option>
-                       </select> 
+                       </select>
                        </td>';
                 }else{
 
                     echo '<td> <select name="estadoActividad" id="estadoActividad">
                          <option value="1">Activo</option>
                         <option selected value="0">Inactivo</option>
-                       </select> 
+                       </select>
                        </td>';
 
                 }
@@ -172,15 +172,15 @@
 
                                 <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
                               <?php  } ?>
-                          
-                         
-                        <?php 
-                           } 
+
+
+                        <?php
+                           }
                         ?>
-                <?php  
+                <?php
 
                 echo '</select>';
-                echo '</td>'; 
+                echo '</td>';
 
                  echo '<td><select name="idsitio" id="idsitio"> '?>
                         <?php
@@ -194,31 +194,31 @@
 
                                  <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
                               <?php  } ?>
-                          
-                         
-                        <?php 
-                           } 
+
+
+                        <?php
+                           }
                         ?>
-                <?php  
+                <?php
 
                 echo '</select>';
-                echo '</td>'; 
+                echo '</td>';
 
                 echo '<td><input type="submit" value="Actualizar" name="update"/></td>';
                 echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
-             
+
                 echo '</tr>';
                 echo '</form>';
 
                  }
                  ?>
 
-            
-          
+
+
     </table>
 
     </div>
-   
+
 
     <footer>
     </footer>
