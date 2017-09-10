@@ -11,12 +11,12 @@
 			$conexion=$con->conect();
 
 			$nombrecomercial=$sitioTuristico->getNombreComercial();
-			$nombreresponsable=$sitioTuristico->getNombreResponsable();
 		 	$telefonositio=$sitioTuristico->getTelefonoSitio();
 			$idprovincia=$sitioTuristico->getIdProvincia();
 		 	$idcanton=$sitioTuristico->getIdCanton();
 		 	$iddistrito=$sitioTuristico->getIdDistrito();
 		 	$direccionexacta=$sitioTuristico->getDireccionExacta();
+		 	$sitioWeb=$sitioTuristico->getSitioWeb();
 
 		 	$consultaUltimoId ="SELECT MAX(idsitioturistico) AS idsitioturistico FROM tbsitioturistico";
 			$maximoId=mysqli_query($conexion,$consultaUltimoId);
@@ -26,7 +26,7 @@
             	$idSiguiente = trim($row[0]) + 1;
         	}
 
-        	$consultaInsertar="INSERT INTO tbsitioturistico VALUES (".$idSiguiente.",'".$nombrecomercial."','".$nombreresponsable."',".$telefonositio.",".$idprovincia.",".$idcanton.",".$iddistrito.",'".$direccionexacta."');";
+        	$consultaInsertar="INSERT INTO tbsitioturistico VALUES (".$idSiguiente.",'".$nombrecomercial."',".$telefonositio.",".$idprovincia.",".$idcanton.",".$iddistrito.",'".$direccionexacta."','".$sitioWeb."');";
 
 
 
@@ -45,7 +45,7 @@
 			mysqli_close($conexion);
         	$sitiosTuristicos = [];
         	while ($row = mysqli_fetch_array($result)) {
-            	$sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercialsitioturistico'],$row['nombreresponsablesitioturistico'],$row['telefonositioturistico'],$row['idprovinciasitioturistico'],$row['idcantonsitioturistico'],$row['iddistritositioturistico'],$row['direccionexactasitioturistico']);
+            	$sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercialsitioturistico'],$row['telefonositioturistico'],$row['idprovinciasitioturistico'],$row['idcantonsitioturistico'],$row['iddistritositioturistico'],$row['direccionexactasitioturistico'],$row['sitiowebsitioturistico']);
             	array_push($sitiosTuristicos, $sitioTuristicoTemporal);
         	}
         	return $sitiosTuristicos;

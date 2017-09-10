@@ -1,7 +1,7 @@
 <?php
 
 
-include './tipoActividadBusiness.php';
+include_once './actividadBusiness.php';
 
  if (isset($_POST['guardarActividad'])) {
 
@@ -18,6 +18,8 @@ include './tipoActividadBusiness.php';
             $distanciahospedaje=$_POST['distanciahospedaje'];
             $habilidades=$_POST['habilidades'];
             $horarioactividad=$_POST['horarioactividad'];
+            $idSitio=$_POST['sitioturistico'];
+            $idTipoActividad=$_POST['tipoactividad'];
 
             $habilidadesSeleccionadas="";
  
@@ -30,11 +32,12 @@ include './tipoActividadBusiness.php';
 
             json_encode($habilidadesSeleccionadas);
             
-            $tipoActividadRural = new TurismoRural(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad);
+            $actividad = new Actividad(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad,$idSitio,$idTipoActividad);
 
-            $tipoActividadBusiness = new TipoActividadBusiness();
 
-            $result = $tipoActividadBusiness->insertarTipoActividad($tipoActividadRural);
+            $actividadBusiness = new ActividadBusiness();
+
+            $result = $actividadBusiness->insertarActividad($actividad);
 
                     if ($result == 1) {
                          header("location: ../view/actividadesView.php?success=inserted");
@@ -47,51 +50,50 @@ include './tipoActividadBusiness.php';
     }
 }else if (isset($_POST['update'])) {
    
+   if (isset($_POST['nombreActividad']) && isset($_POST['descripcionActividad']) && isset($_POST['estadoActividad'])&& isset($_POST['cantidadpersonas'])&&isset($_POST['lugaractividad'])&&isset($_POST['distanciahospedaje'])&&
+        isset($_POST['habilidades'])&&isset($_POST['horarioactividad']) &&isset($_POST['idActividad'])&&isset($_POST['idtipo'])&&isset($_POST['idsitio'])) {
 
-        
-    if (isset($_POST['nombreActividad']) && isset($_POST['descripcionActividad']) && isset($_POST['estadoActividad'])&& isset($_POST['cantidadpersonas']) && isset($_POST['lugaractividad'])&&isset($_POST['distanciahospedaje'])&& isset($_POST['habilidades']) && isset($_POST['horarioactividad']) && isset($_POST['idTipoActividad'])) {
-            
-            $id = $_POST['idTipoActividad'];
-            $nombre = $_POST['nombreActividad'];
-            $descripcion = $_POST['descripcionActividad'];
-            $estado = $_POST['estadoActividad'];
+
+            $name = $_POST['nombreActividad'];
+            $description = $_POST['descripcionActividad'];
+            $estadoActividad = $_POST['estadoActividad'];
             $cantidadpersonas=$_POST['cantidadpersonas'];
             $lugaractividad=$_POST['lugaractividad'];
             $distanciahospedaje=$_POST['distanciahospedaje'];
             $habilidades=$_POST['habilidades'];
             $horarioactividad=$_POST['horarioactividad'];
-     
-       
-        if (strlen($id) > 0 && strlen($nombre)>0 && strlen($descripcion)>0 && strlen($estado)>0) {
-            if (!is_numeric($nombre)) {
+            $idSitio=$_POST['idsitio'];
+            $idTipoActividad=$_POST['idtipo'];
+            $id=$_POST['idActividad'];
 
-                $tipoActividadRural = new TurismoRural($id,$nombre,$descripcion,$estado,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidades,$horarioactividad);
-                    $tipoActividadBusiness = new TipoActividadBusiness();
+             $actividad = new Actividad($id,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidades,$horarioactividad,$idSitio,$idTipoActividad);
+             
 
-                $result = $tipoActividadBusiness->actualizarTipoActividad($tipoActividadRural);
-                if ($result == 1) {
+
+            $actividadBusiness = new ActividadBusiness();
+
+            $result = $actividadBusiness->actualizarActividad($actividad);
+
+            if ($result == 1) {
                          header("location: ../view/actividadesView.php?success=update");
                     } else {
                         header("location: ../view/actividadesView.php?error=dbError");
-                    }
-            } else {
-                header("location: ../view/actividadesView.php?error=numberFormat");
-            }
+                    }    
+
         } else {
-            header("location: ../view/actividadesView.php?error=emptyField");
+            header("location: ../view/actividadesView.php?error=error");
         }
-    } else {
-        header("location: ../view/actividadesView.php?error=error");
-    }
+   
+
 } else if (isset($_POST['delete'])) {
 
-    if (isset($_POST['idTipoActividad'])) {
+    if (isset($_POST['idActividad'])) {
 
-        $id = $_POST['idTipoActividad'];
+        $id = $_POST['idActividad'];
        
 
-         $tipoActividadBusiness = new TipoActividadBusiness();
-        $result = $tipoActividadBusiness->eliminarTipoActividad($id);
+        $actividadBusiness = new ActividadBusiness();
+        $result = $actividadBusiness->eliminarActividad($id);
         if ($result == 1) {
             header("location: ../view/actividadesView.php?success=deleted");
         } else {
