@@ -1,5 +1,6 @@
 <?php
 
+
 class requisitosActividad {
     
     private $idRequisitosActividad;
