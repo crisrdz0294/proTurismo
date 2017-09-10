@@ -7,7 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
      <?php 
-         include '../business/tipoActividadBusiness.php';
+
+         include '../business/sitioTuristicoBusiness.php';
+         include '../data/dataTipoActividad.php';
+
+         $dataTipoActividad=new DataTipoActividad();
+         $listaTipos=$dataTipoActividad->mostrarTodosTiposActividades();
+         $sitioBusiness=new SitioTuristicoBusiness();
+         $listaSitios= $sitioBusiness->mostrarTodosSitiosTuristicos();
+
      ?>
 
 </head>
@@ -29,7 +37,7 @@
     
              <h1>Registrar Actividad</h1>
              <br>
-        <form id="form" method="post" action="../business/tipoActividadAction.php">
+        <form id="form" method="post" action="../business/actividadAction.php">
                     Nombre:
                     <input required type="text" name="nombreActividad" id="nombreActividad"/><br>
                     Descripcion:<br>
@@ -61,7 +69,35 @@
 
                     Horario de la actividad:<br>
                     <textarea required  name="horarioactividad" id="horarioactividad" placeholder="Describa el horario de la actividad"></textarea><br><br>
-    
+                    
+                    Tipo de actividad:<br>
+
+                    <select id="tipoactividad" name="tipoactividad">
+                     
+                        <?php
+                          foreach ($listaTipos as $tipoActividad){
+                        ?>
+                          <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                        <?php 
+                           } 
+                        ?>
+                      
+                     </select><br><br>
+
+                    Sitio Turistico:<br>
+
+                    <select id="sitioturistico" name="sitioturistico">
+                     
+                        <?php
+                          foreach ($listaSitios as $sitio){
+                        ?>
+                          <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                        <?php 
+                           } 
+                        ?>
+                      
+                     </select><br><br>
+
                    
                     <input type="submit" value="Guardar" name="guardarActividad" id="guardarActividad"/><br><br>
     </form>
@@ -80,22 +116,29 @@
             <th>Distancia de hospedaje</th>
             <th>Habilidades</th>
             <th>Horario</th>
+            <th>Tipo Actividad</th>
+            <th>Sitio Turistico</th>
             <th>Opcion1</th>
             <th>Opcion2</th>
         </tr>
 
         <?php
-            $tipoActividadBusiness = new TipoActividadBusiness();
-            $todosTiposActividades= $tipoActividadBusiness->mostrarTodosTiposActividades();
 
-            foreach($todosTiposActividades as $tipoActividad){
+            
+          include '../business/actividadBusiness.php';
+            $actividadBusiness = new ActividadBusiness();
+            $todasActividades= $actividadBusiness->mostrarTodasActividades();
+        
            
-                echo '<form method="post" enctype="multipart/form-data" action="../business/tipoActividadAction.php">';
-                echo '<input type="hidden" name="idTipoActividad" id="idTipoActividad" value="' . $tipoActividad->getIdtipoactividadturistica().'">';
+
+            foreach($todasActividades as $actividad){
+           
+                echo '<form method="post" enctype="multipart/form-data" action="../business/actividadAction.php">';
+                echo '<input type="hidden" name="idActividad" id="idActividad" value="' . $actividad->getIdActividad().'">';
                 echo '<tr>';
-                echo '<td><input type="text" name="nombreActividad" id="nombreActividad" value="' . $tipoActividad->getNombreTipoActividadTuristica() . '"/></td>';
-                echo '<td><input type="text" name="descripcionActividad" id="descripcionActividad" value="' . $tipoActividad->getDescripciontipoactividadturistica() . '"/></td>';
-                if($tipoActividad->getEstadoactividadturistica()==1){
+                echo '<td><input type="text" name="nombreActividad" id="nombreActividad" value="' . $actividad->getNombreActividad() . '"/></td>';
+                echo '<td><input type="text" name="descripcionActividad" id="descripcionActividad" value="' . $actividad->getDescripcionActividad() . '"/></td>';
+                if($actividad->getEstadoActividad()==1){
                        echo '<td> <select name="estadoActividad" id="estadoActividad">
                          <option selected value="1">Activo</option>
                         <option value="0">Inactivo</option>
@@ -111,19 +154,67 @@
 
                 }
 
-                echo '<td><input type="number" name="cantidadpersonas" id="cantidadpersonas" value="' . $tipoActividad->getCantidadPersonasActividadTuristica() . '"/></td>';
-                echo '<td><input type="text" name="lugaractividad" id="lugaractividad" value="' . $tipoActividad->getLugarActividadTuristica() . '"/></td>';
-                echo '<td><input type="text" name="distanciahospedaje" id="distanciahospedaje" value="' . $tipoActividad->getDistanciaHospedajeActividadTuristica() . '"/></td>';
-                echo '<td><textarea name="habilidades" id="habilidades" >'. $tipoActividad->getHabilidadesActividadTuristica().'</textarea></td>';
-                echo '<td><textarea name="horarioactividad" id="horarioactividad" >'. $tipoActividad->getHorarioActividadTuristica().'</textarea></td>';
+                echo '<td><input type="number" name="cantidadpersonas" id="cantidadpersonas" value="' . $actividad->getCantidadPersonasActividad() . '"/></td>';
+                echo '<td><input type="text" name="lugaractividad" id="lugaractividad" value="' . $actividad->getLugarActividad() . '"/></td>';
+                echo '<td><input type="text" name="distanciahospedaje" id="distanciahospedaje" value="' . $actividad->getDistanciaHospedajeActividad() . '"/></td>';
+                echo '<td><textarea name="habilidades" id="habilidades" >'. $actividad->getHabilidadesActividad().'</textarea></td>';
+                echo '<td><textarea name="horarioactividad" id="horarioactividad" >'. $actividad->getHorarioActividad().'</textarea></td>';
+
+                echo '<td><select name="idtipo" id="idtipo"> '?>
+                        <?php
+                          foreach ($listaTipos as $tipoActividad){
+                        ?>
+                          <?php
+                            if($tipoActividad->getIdTipoActividad()==$actividad->getIdTipoActividadSitio()){  ?>
+
+                               <option selected value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                              <?php }else{?>
+
+                                <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                              <?php  } ?>
+                          
+                         
+                        <?php 
+                           } 
+                        ?>
+                <?php  
+
+                echo '</select>';
+                echo '</td>'; 
+
+                 echo '<td><select name="idsitio" id="idsitio"> '?>
+                        <?php
+                          foreach ($listaSitios as $sitio){
+                        ?>
+                          <?php
+                            if($sitio->getIdSitio()==$actividad->getIdSitioActividad()){  ?>
+
+                               <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php }else{?>
+
+                                 <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php  } ?>
+                          
+                         
+                        <?php 
+                           } 
+                        ?>
+                <?php  
+
+                echo '</select>';
+                echo '</td>'; 
 
                 echo '<td><input type="submit" value="Actualizar" name="update"/></td>';
                 echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
              
                 echo '</tr>';
                 echo '</form>';
-            }
-          ?>
+
+                 }
+                 ?>
+
+            
+          
     </table>
 
     </div>
