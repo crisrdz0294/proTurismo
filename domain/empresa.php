@@ -14,7 +14,7 @@ class Empresa
   private $idSitioTuristico;
   private $nombreEmpresa;
 
-  function Empresa($idempresa,$nombre,$idresponsable,$contacto,$email,$sitio,$idSitio)
+  function Empresa($idempresa,$nombre,$contacto,$email,$sitio,$idSitio,$idresponsable)
   {
   $this->idEmpresa=$idempresa;
   $this->idResponsableEmpresa=$idresponsable;

@@ -25,6 +25,10 @@
    return $this->empresaData->actualizarEmpresa($empresa);
  }
 
+ public function mostrarSitios(){
+	 return $this->empresaData->mostrarSitiosTuristicos();
+ }
+
 
 	}
   ?>
