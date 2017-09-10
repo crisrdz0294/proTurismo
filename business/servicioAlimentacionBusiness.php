@@ -14,7 +14,7 @@
 
 
 		public function insertarServicioAlimentacion($servicioAlimentacion){
-			return $this->servicioAlimentacionData->insertarServicioTransporte($servicioAlimentacion);
+			return $this->servicioAlimentacionData->insertarServicioAlimentacion($servicioAlimentacion);
 		}
 
 		public function mostrarTodosServicioAlimentacion(){

@@ -7,7 +7,7 @@
 
         public function ServicioAlimentacionData(){}
 
-        public function insertarServicioTransporte($servicioalimentacion)
+        public function insertarServicioAlimentacion($servicioalimentacion)
         {
 
             $con = new Data();

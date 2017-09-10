@@ -63,12 +63,8 @@ else if (isset($_POST['update']))
         ) 
     {
         $id = $_POST['idServicioAlimentacion'];
-        
         $tiempoComidas = $_POST['tiempoComidasServicioAlimentacion'];
-
-        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacion'];
-
-        
+        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacion'];        
         $precio = $_POST['precioServicioAlimentacion'];
         $Adicionales  = $_POST['AdicionalesServicioAlimentacion'];
         $alimentacionLlevar  = $_POST['alimentacionLlevarServicioAlimentacion'];
