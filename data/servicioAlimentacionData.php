@@ -2,7 +2,9 @@
     
     include_once 'data.php';
     include '../domain/servicioAlimentacion.php';
+    include '../domain/sitioTuristico.php';
     
+
     class ServicioAlimentacionData{
 
         public function ServicioAlimentacionData(){}
@@ -20,7 +22,7 @@
         $adicionales = $servicioalimentacion->getAdicionalesServicioAlimentacion();
         $alimentacionLlevar = $servicioalimentacion->getAlimentacionllevarServicioAlimentacion();
 
-
+        $idSitio=$servicioalimentacion->getSitioTuristico();
 
 
 
@@ -36,10 +38,11 @@
             
             ".$idSiguiente.",
             '".$tiempoComidas."',
-            '".$descripcionAlimentacion."','
-            ".$precio."', 
+            '".$descripcionAlimentacion."',
+            '".$precio."', 
             '".$adicionales."', 
-            '".$alimentacionLlevar."'
+            ".$alimentacionLlevar.",
+            ".$idSitio."
             
             );";
 
@@ -69,11 +72,12 @@
                 $temporaralServicioAlimentacion = new ServicioAlimentacion(
 
                     $row['idservicioalimentacion'], 
-                    $row['tiemposervicioalimentacion'], 
+                    $row['tiemposservicioalimentacion'], 
                     $row['descripcionservicioalimentacion'],
                     $row['precioservicioalimentacion'],
-                    $row['adicionalservicioalimentacion'], 
-                    $row['llevarservicioalimentacion']
+                    $row['adicionalesservicioalimentacion'], 
+                    $row['llevarservicioalimentacion'],
+                    $row['idsitioturistico']
                 );
 
                 array_push($servicioDeAlimentacion, $temporaralServicioAlimentacion);
@@ -82,6 +86,21 @@
         }
 
 
+
+        public function mostrarTodosSitiosTuristicos(){
+
+            $con = new Data();
+            $conexion = $con->conect();
+            $consultaMostrar = "SELECT * FROM tbsitioturistico;";
+            $result = mysqli_query($conexion, $consultaMostrar);
+            mysqli_close($conexion);
+            $sitiosTuristicos = [];
+            while ($row = mysqli_fetch_array($result)) {
+                $sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercialsitioturistico'],$row['telefonositioturistico'],$row['idprovinciasitioturistico'],$row['idcantonsitioturistico'],$row['iddistritositioturistico'],$row['direccionexactasitioturistico'],$row['sitiowebsitioturistico']);
+                array_push($sitiosTuristicos, $sitioTuristicoTemporal);
+            }
+            return $sitiosTuristicos;
+        }
 
 
 
@@ -94,11 +113,14 @@
 
             $consultaActualizar = "UPDATE tbservicioalimentacion SET 
 
-        tiemposervicioalimentacion = '".$servicioAlimentacion->getTiempoComidasServicioAlimentacion()."',
+        tiemposservicioalimentacion = '".$servicioAlimentacion->getTiempoComidasServicioAlimentacion()."',
     descripcionservicioalimentacion = '".$servicioAlimentacion->getDescripcionAlimentacionServicioAlimentacion()."',
     precioservicioalimentacion = '".$servicioAlimentacion->getPrecioServicioAlimentacion()."',
-    adicionalservicioalimentacion = '".$servicioAlimentacion->getAdicionalesServicioAlimentacion()."',
-    llevarservicioalimentacion = '".$servicioAlimentacion->getAlimentacionllevarServicioAlimentacion()."' 
+    adicionalesservicioalimentacion = '".$servicioAlimentacion->getAdicionalesServicioAlimentacion()."',
+    
+    llevarservicioalimentacion = ".$servicioAlimentacion->getAlimentacionllevarServicioAlimentacion().",
+    idsitioturistico = " .$servicioAlimentacion->getSitioTuristico()."
+    
     WHERE idservicioalimentacion =" . $servicioAlimentacion->getIdServicioAlimentacion() . ";";
 
 
@@ -109,8 +131,7 @@
             return $result;
         }
 
-
-
+    
 
 
 

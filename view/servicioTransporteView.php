@@ -4,6 +4,11 @@
 	<title></title>
 	<?php
 		include '../business/servicioTransporteBusiness.php';
+    
+     $serviciotransporteBusiness = new ServicioTransporteBusiness();
+      $todosServiciotransporte = $serviciotransporteBusiness->mostrarTodosServicioTransporte();
+
+      $listaSitios = $serviciotransporteBusiness->mostrarTodosSitiosTuristicos();
 	?>
 </head>
 <body>
@@ -28,15 +33,13 @@
                     <br>
                     <br>
                     <br>
-                    Tipo de Carretera:
-                    <select required name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte">                
-                          <option selected value="Asfalto">Asfalto</option>
-                          <option value="Calle de piedra">Calle de Piedra</option>
-                          <option value="Calle de Tierra">Calle de Tierra</option>
-                          <option value="Acuatica">Acuatica</option>
-                          <option value="Via Ferrea">Via Ferrea</option>
-                          <option value="Aerea">Aerea</option>
-                    </select>
+                    Tipos de Carretera:
+                    <input type="checkbox" name="tipoCarreteraServicioTransporte1" id="tipoCarreteraServicioTransporte1" value="Asfalto">Asfalto&emsp;
+                    <input type="checkbox" name="tipoCarreteraServicioTransporte2" id="tipoCarreteraServicioTransporte2" value="Calle de Piedra">Calle de Piedra&emsp;
+                    <input type="checkbox" name="tipoCarreteraServicioTransporte3" id="tipoCarreteraServicioTransporte3" value="Calle de Tierra">Calle de Tierra&emsp;
+                    <input type="checkbox" name="tipoCarreteraServicioTransporte4" id="tipoCarreteraServicioTransporte4" value="Acuatica">Acuatica&emsp;
+                    <input type="checkbox" name="tipoCarreteraServicioTransporte5" id="tipoCarreteraServicioTransporte5" value="Via Ferrea">Via Ferrea&emsp;
+                    <input type="checkbox" name="tipoCarreteraServicioTransporte6" id="tipoCarreteraServicioTransporte6" value="Aerea">Aerea
                     <br>
                     <br>
                     <br>
@@ -61,6 +64,19 @@
                     <br>
                     <br>
                     <br>
+                    Sitio Turistico:
+                     <select id="sitioturistico" name="sitioturistico">
+                    <?php
+                        foreach ($listaSitios as $SitioTuristico){
+                    ?>
+                    <option value="<?php echo $SitioTuristico->getIdSitio();?>"><?php echo $SitioTuristico->getNombreComercial();?></option>;
+                    <?php 
+                    } 
+                    ?>                      
+                    </select>
+                    <br>
+                    <br>
+                    <br>
                     
                     <input type="submit" value="Guardar" name="guardarServicioTransporte" id="guardarServicioTransporte"/><br><br>
 
@@ -77,13 +93,13 @@
               <th>tipoVehiculo</th>
               <th>Precio</th>
               <th>CantidadPersonas</th>
+              <th>Sitio Turistico</th>
               <th>Opcion 1</th>
               <th>Opcion 2</th>
     			</tr>
 
           <?php
-                    $serviciotransporteBusiness = new ServicioTransporteBusiness();
-                    $todosServiciotransporte = $serviciotransporteBusiness->mostrarTodosServicioTransporte();
+                   
                     foreach ($todosServiciotransporte as $servicioTransporte) 
                     {
                         
@@ -100,89 +116,9 @@
                     echo '<td><input type="text" name="destinoServicioTransporte" id="destinoServicioTransporte" value="' . $servicioTransporte->getDestinoServicioTransporte() . '"/></td>';
                     
                     echo '<td><input type="number" name="KilometrosServicioTransporte" id="KilometrosServicioTransporte" value="' . $servicioTransporte->getKilometrosServicioTransporte() . '"/></td>';
+                   
 
-                        
-
-
-
-                if($servicioTransporte->getTipoCarreteraServicioTransporte()=="Asfalto")
-                {
-                    echo '<td> 
-                           <select name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte">                
-                                <option selected value="Asfalto">Asfalto</option>
-                                <option value="Calle de piedra">Calle de Piedra</option>
-                                <option value="Calle de Tierra">Calle de Tierra</option>
-                                <option value="Acuatica">Acuatica</option>
-                                <option value="Via Ferrea">Via Ferrea</option>
-                                <option value="Aerea">Aerea</option>
-                            </select>
-                           </td>';
-                }
-                else if($servicioTransporte->getTipoCarreteraServicioTransporte()=="Calle de piedra")
-                {
-                    echo '<td> 
-                           <select name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte">                
-                                <option value="Asfalto">Asfalto</option>
-                                <option selected value="Calle de piedra">Calle de Piedra</option>
-                                <option value="Calle de Tierra">Calle de Tierra</option>
-                                <option value="Acuatica">Acuatica</option>
-                                <option value="Via Ferrea">Via Ferrea</option>
-                                <option value="Aerea">Aerea</option>
-                            </select>
-                           </td>';
-                }
-                else if($servicioTransporte->getTipoCarreteraServicioTransporte()=="Calle de Tierra")
-                {
-                    echo '<td> 
-                           <select name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte">                
-                                <option value="Asfalto">Asfalto</option>
-                                <option value="Calle de piedra">Calle de Piedra</option>
-                                <option selected value="Calle de Tierra">Calle de Tierra</option>
-                                <option value="Acuatica">Acuatica</option>
-                                <option value="Via Ferrea">Via Ferrea</option>
-                                <option value="Aerea">Aerea</option>
-                            </select>
-                           </td>';
-                }
-                else if($servicioTransporte->getTipoCarreteraServicioTransporte()=="Acuatica")
-                {
-                    echo '<td> 
-                           <select name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte">                
-                                <option value="Asfalto">Asfalto</option>
-                                <option value="Calle de piedra">Calle de Piedra</option>
-                                <option value="Calle de Tierra">Calle de Tierra</option>
-                                <option selected value="Acuatica">Acuatica</option>
-                                <option value="Via Ferrea">Via Ferrea</option>
-                                <option value="Aerea">Aerea</option>
-                            </select>
-                           </td>';
-                }
-                else if($servicioTransporte->getTipoCarreteraServicioTransporte()=="Via Ferrea")
-                {
-                    echo '<td> 
-                           <select name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte">                
-                                <option value="Asfalto">Asfalto</option>
-                                <option value="Calle de piedra">Calle de Piedra</option>
-                                <option value="Calle de Tierra">Calle de Tierra</option>
-                                <option value="Acuatica">Acuatica</option>
-                                <option selected value="Via Ferrea">Via Ferrea</option>
-                                <option value="Aerea">Aerea</option>
-                            </select>
-                           </td>';
-                }
-                else
-                {
-                    echo '<td> 
-                           <select name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte">                
-                                <option value="Asfalto">Asfalto</option>
-                                <option value="Calle de piedra">Calle de Piedra</option>
-                                <option value="Calle de Tierra">Calle de Tierra</option>
-                                <option value="Acuatica">Acuatica</option>
-                                <option value="Via Ferrea">Via Ferrea</option>
-                                <option selected value="Aerea">Aerea</option>
-                            </select>
-                        </td>';
-                }
+                echo '<td><input type="text" name="tipoCarreteraServicioTransporte" id="tipoCarreteraServicioTransporte" value="' .$servicioTransporte->getTipoCarreteraServicioTransporte().'"/></td>';
 
 
 
@@ -258,6 +194,31 @@
                     echo '<td><input type="number" name="precioServicioTransporte" id="precioServicioTransporte" value="' . $servicioTransporte->getPrecioServicioTransporte() . '"/></td>';
                    
                     echo '<td><input type="number" name="cantidadPersonasServicioTransporte" id="cantidadPersonasServicioTransporte" value="' . $servicioTransporte->getCantidadPersonasServicioTransporte() . '"/></td>';
+
+
+
+                    echo '</select>';
+                echo '</td>'; 
+
+                 echo '<td><select name="idsitio" id="idsitio"> '?>
+                        <?php
+                          foreach ($listaSitios as $sitio){
+                        ?>
+                          <?php
+                            if($sitio->getIdSitio() == $servicioTransporte->getSitioTuristico()){  ?>
+
+                               <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php }else{?>
+
+                                 <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php  } ?>
+                          
+                         
+                        <?php 
+                           } 
+                        ?>
+                <?php  
+
 
 
                         echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';

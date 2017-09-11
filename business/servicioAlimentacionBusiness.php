@@ -21,6 +21,12 @@
 			return $this->servicioAlimentacionData->mostrarTodosServicioAlimentacion();
 		}
 
+		public function mostrarTodosSitiosTuristicos(){
+			return $this->servicioAlimentacionData->mostrarTodosSitiosTuristicos();
+		}
+
+		
+
 		public function actualizarServicioAlimentacion($servicioAlimentacion){
 			return $this->servicioAlimentacionData->actualizarServicioAlimentacion($servicioAlimentacion);
 		}

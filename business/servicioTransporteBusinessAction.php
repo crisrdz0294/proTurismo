@@ -9,7 +9,7 @@ include './servicioTransporteBusiness.php';
  {
 
     if (isset($_POST['origenServicioTransporte']) && isset($_POST['destinoServicioTransporte']) && 
-        isset($_POST['KilometrosServicioTransporte']) && isset($_POST['tipoCarreteraServicioTransporte']) && 
+        isset($_POST['KilometrosServicioTransporte']) && 
         isset($_POST['tipoVehiculoServicioTransporte']) && isset($_POST['precioServicioTransporte']) && 
         isset($_POST['cantidadPersonasServicioTransporte'])
         ) 
@@ -19,10 +19,15 @@ include './servicioTransporteBusiness.php';
         $origen = $_POST['origenServicioTransporte'];
         $destino = $_POST['destinoServicioTransporte'];
         $kilometros = $_POST['KilometrosServicioTransporte'];
-        $tipoCarretera = $_POST['tipoCarreteraServicioTransporte'];
+        
+
+        $tipoCarretera = $_POST['tipoCarreteraServicioTransporte1']."  ,  ".$_POST['tipoCarreteraServicioTransporte2']."  ,  ".$_POST['tipoCarreteraServicioTransporte3']."  ,  ".$_POST['tipoCarreteraServicioTransporte4']."  ,  ".$_POST['tipoCarreteraServicioTransporte5']."  ,  ".$_POST['tipoCarreteraServicioTransporte6'];
+
+
         $tipoVehiculo =  $_POST['tipoVehiculoServicioTransporte'];
         $precio = $_POST['precioServicioTransporte'];
         $cantidadPersonas = $_POST['cantidadPersonasServicioTransporte'];
+        $idSitio=$_POST['sitioturistico'];
 
 
 
@@ -31,7 +36,7 @@ include './servicioTransporteBusiness.php';
         {
             
             $servicioTransporte = new ServicioTransporte(0,$origen ,$destino,$kilometros,$tipoCarretera,$tipoVehiculo,
-            $precio,$cantidadPersonas);
+            $precio,$cantidadPersonas,$idSitio);
             $servicioTransporteBusiness = new ServicioTransporteBusiness();
             $result = $servicioTransporteBusiness->insertarTransporteBusiness($servicioTransporte);
 
@@ -58,7 +63,8 @@ else if (isset($_POST['update']))
   if (isset($_POST['origenServicioTransporte']) && isset($_POST['destinoServicioTransporte']) && 
         isset($_POST['KilometrosServicioTransporte']) && isset($_POST['idServicioTransporte']) &&  
         isset($_POST['tipoCarreteraServicioTransporte']) && isset($_POST['tipoVehiculoServicioTransporte']) && 
-        isset($_POST['precioServicioTransporte']) && isset($_POST['cantidadPersonasServicioTransporte'])
+        isset($_POST['precioServicioTransporte']) && isset($_POST['cantidadPersonasServicioTransporte']) && 
+        isset($_POST['idsitio'])
         ) 
     {
 
@@ -70,7 +76,7 @@ else if (isset($_POST['update']))
         $tipoVehiculo =  $_POST['tipoVehiculoServicioTransporte'];
         $precio = $_POST['precioServicioTransporte'];
         $cantidadPersonas = $_POST['cantidadPersonasServicioTransporte'];
-
+        $idSitio=$_POST['idsitio'];
 
 
 
@@ -78,7 +84,7 @@ else if (isset($_POST['update']))
         {
             
             $servicioTransporte = new ServicioTransporte($id,$origen ,$destino,$kilometros,$tipoCarretera,
-            $tipoVehiculo,$precio,$cantidadPersonas);
+            $tipoVehiculo,$precio,$cantidadPersonas,$idSitio);
             
             $serviciotransporteBusiness = new ServicioTransporteBusiness();
             $result = $serviciotransporteBusiness->actualizarServicioTransporte($servicioTransporte);                
