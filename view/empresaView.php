@@ -129,7 +129,7 @@ echo ' </select><br><br>';
 	 																						}
 
 
-	 																		 echo ' </select><br><br>';
+	 																		 echo ' </select><br><br></td>';
 
 																			 echo '<td><input type="submit" value="Actualizar" name="update"/></td>';
 																	 		echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';

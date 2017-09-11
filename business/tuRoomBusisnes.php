@@ -26,4 +26,7 @@ class TuRoomBusisnes {
         return $this->tuRoomData->eliminarHabitacion($id);
     }
 
+   public function mostrarSitios(){
+     return $this->tuRoomData->mostrarTodosSitiosTuristicos();
+   }
 }

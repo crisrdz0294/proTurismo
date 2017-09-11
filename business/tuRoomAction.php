@@ -17,12 +17,12 @@ include './tuRoomBusisnes.php';
             $vista=$_POST['vista'];
             $acces=$_POST['acceso'];
             $banos=$_POST['banos'];
-
+            $idSitio=$_POST['idEncargado'];
             if (strlen($cama) >=0 && strlen($aire) >= 0 && strlen($inter) >= 0&& strlen($cable) >= 0
             && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0) {
 
 
-                    $nuevoCuarto = new TuRoom($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$banos,$acces);
+                    $nuevoCuarto = new TuRoom($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
 
                     $tuRoonBusisnes = new TuRoomBusisnes();
 
@@ -56,11 +56,11 @@ include './tuRoomBusisnes.php';
               $vista=$_POST['vista'];
               $acces=$_POST['acceso'];
               $banos=$_POST['banos'];
-
+                $idSitio=$_POST['idEncargado'];
             if (strlen($cama) >=0 && strlen($aire) >= 0 && strlen($inter) >= 0&& strlen($cable) >= 0
             && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0) {
             if (is_numeric($id)) {
-                  $nuevoCuarto = new TuRoom($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$banos,$acces);
+                  $nuevoCuarto = new TuRoom($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
 
                     $tuRoonBusisnes = new TuRoomBusisnes();
 
