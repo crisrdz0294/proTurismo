@@ -17,6 +17,16 @@ class TuFamiliaBusiness {
 		public function mostrarFamilias(){
 			return $this->familia->mostrarTodosFamilias();
 		}
+	
+
+		public function mostrarTodosResponsable()
+		{return $this->familia->mostrarTodosResponsable();}
+
+
+		public function mostrarTodosSitiosTuristicos(){
+			return $this->familia->mostrarTodosSitiosTuristicos();
+		}
+		
 
 		public function actualizarFamilias($tuFamilia){
 			return $this->familia->actualizarFamilia($tuFamilia);
@@ -25,6 +35,8 @@ class TuFamiliaBusiness {
 		public function eliminarFamilias($idFamilia){
 			return $this->familia->eliminarFamilia($idFamilia);
 		}
+
+
 	}
 
 

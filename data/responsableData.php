@@ -1,6 +1,6 @@
 <?php
     
-    include_once 'data.php';
+    include 'data.php';
     include '../domain/responsable.php';
     
     class responsableData{

@@ -85,7 +85,7 @@
 
                 echo '<td><input type="text" name="telefonoResponsable" id="telefonoResponsable" value="' . $responsable->getTelefonoResponsable() . '"/></td>';
 
-                 echo '<td><input type="text" name="emailResponsable" id="emailResponsable" value="' . $responsable->getEmailResponsable() . '"/></td>';
+                 echo '<td><input type="Email" name="emailResponsable" id="emailResponsable" value="' . $responsable->getEmailResponsable() . '"/></td>';
 
 
 

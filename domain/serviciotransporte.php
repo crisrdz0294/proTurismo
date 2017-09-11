@@ -11,9 +11,10 @@ class ServicioTransporte {
     private $precioServicioTransporte;
     private $cantidadPersonasServicioTransporte;
 
+    private $sitioTuristico;
 
 
-   function ServicioTransporte($idServicioTransporte,$origenServicioTransporte,$destinoServicioTransporte,$kilometrosServicioTransporte,$tipoCarreteraServicioTransporte,$tipoVehiculoServicioTransporte,$precioServicioTransporte, $cantidadPersonasServicioTransporte) 
+   function ServicioTransporte($idServicioTransporte,$origenServicioTransporte,$destinoServicioTransporte,$kilometrosServicioTransporte,$tipoCarreteraServicioTransporte,$tipoVehiculoServicioTransporte,$precioServicioTransporte, $cantidadPersonasServicioTransporte,$sitioTuristico) 
     {   
         $this->idServicioTransporte=$idServicioTransporte;
         $this->origenServicioTransporte=$origenServicioTransporte;
@@ -23,6 +24,8 @@ class ServicioTransporte {
         $this->tipoVehiculoServicioTransporte=$tipoVehiculoServicioTransporte;
         $this->precioServicioTransporte=$precioServicioTransporte;
         $this->cantidadPersonasServicioTransporte=$cantidadPersonasServicioTransporte;
+
+        $this->sitioTuristico=$sitioTuristico;
     }
 
 
@@ -51,6 +54,13 @@ class ServicioTransporte {
     public function getCantidadPersonasServicioTransporte() {
         return $this->cantidadPersonasServicioTransporte;
     }
+    public function getSitioTuristico() {
+        return $this->sitioTuristico;
+    }
+
+
+
+
 
 
 
