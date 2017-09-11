@@ -21,12 +21,15 @@ include './servicioAlimentacionBusiness.php';
         $Adicionales  = $_POST['AdicionalesServicioAlimentacion'];
         $alimentacionLlevar  = $_POST['alimentacionLlevarServicioAlimentacion'];
 
+        $idSitio=$_POST['sitioturistico'];
+
 
 
         if (strlen($tiempoComidas) > 0 && strlen($descripcionAlimentacion) > 0 && strlen($precio) > 0 && strlen($Adicionales) > 0 && strlen($alimentacionLlevar) > 0)
         {
             
-        $servicioAlimentacion = new ServicioAlimentacion(0,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar);
+        $servicioAlimentacion = new ServicioAlimentacion(0,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar,$idSitio);
+        
         
         $servicioAlimentacionBusiness = new ServicioAlimentacionBusiness();
         $result = $servicioAlimentacionBusiness->insertarServicioAlimentacion($servicioAlimentacion);
@@ -59,26 +62,24 @@ else if (isset($_POST['update']))
         isset($_POST['descripcionAlimentacionServicioAlimentacion']) &&
         isset($_POST['precioServicioAlimentacion']) && 
         isset($_POST['AdicionalesServicioAlimentacion']) && 
-        isset($_POST['alimentacionLlevarServicioAlimentacion'])
+        isset($_POST['alimentacionLlevarServicioAlimentacion']) && 
+        isset($_POST['idsitio'])
         ) 
     {
         $id = $_POST['idServicioAlimentacion'];
-        
         $tiempoComidas = $_POST['tiempoComidasServicioAlimentacion'];
-
-        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacion'];
-
-        
+        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacion'];        
         $precio = $_POST['precioServicioAlimentacion'];
         $Adicionales  = $_POST['AdicionalesServicioAlimentacion'];
         $alimentacionLlevar  = $_POST['alimentacionLlevarServicioAlimentacion'];
+        $idSitio=$_POST['idsitio'];
 
 
 
         if (strlen($id) > 0 && strlen($tiempoComidas) > 0 && strlen($descripcionAlimentacion) > 0 && strlen($precio) > 0 && strlen($Adicionales) > 0 && strlen($alimentacionLlevar) > 0)
         {
             
-        $servicioAlimentacion = new ServicioAlimentacion($id,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar);
+        $servicioAlimentacion = new ServicioAlimentacion($id,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar,$idSitio);
         
         
         $servicioAlimentacionBusiness = new ServicioAlimentacionBusiness();

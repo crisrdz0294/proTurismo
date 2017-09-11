@@ -13,7 +13,8 @@ class TuRoom {
    private $cantidadPersonasHabitacion;
    private $banosHabitacion;
    private $accesibilidadHabitacion;
-   function TuRoom($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$banosHabitacion,$accesibilidadHabitacion){
+   private $idSitio;
+   function TuRoom($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$banosHabitacion,$accesibilidadHabitacion,$idsitio){
        $this->camaHabitacion=$cama;
        $this->internetHabitacion=$internet;
        $this->aireAcondicionadoHabitacion=$ac;
@@ -25,6 +26,7 @@ class TuRoom {
        $this->cantidadPersonasHabitacion=$cantidadPersonasHabitacion;
        $this->banosHabitacion=$banosHabitacion;
        $this->accesibilidadHabitacion=$accesibilidadHabitacion;
+       $this->idSitio=$idsitio;
    }
 
    function setCamaHabitacion($cama){
@@ -111,6 +113,14 @@ class TuRoom {
 
    function getVentiladorHabitacion(){
        return $this->accesibilidadHabitacion;
+   }
+
+   function setIdSitio($id){
+     $this->idSitio=$id;
+   }
+
+   function getIdSitio(){
+     return $this->idSitio;
    }
 
 

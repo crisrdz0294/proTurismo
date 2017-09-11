@@ -1,22 +1,24 @@
 <?php
 
+
 class requisitosActividad {
-    
+
     private $idRequisitosActividad;
     private $edadRequisitosActividad;
     private $conocimientoRequisitosActividad;
     private $estadoFisicoRequisitosActividad;
     private $equipoNecesarioRequisitosActividad;
     private $aptitudesRequisitosActividad;
-
-   function requisitosActividad($idRequisitosActividad,$edadRequisitosActividad,$conocimientoRequisitosActividad,$estadoFisicoRequisitosActividad,$equipoNecesarioRequisitosActividad,$aptitudesRequisitosActividad) 
-    {   
+    private $idActividad;
+   function requisitosActividad($idRequisitosActividad,$edadRequisitosActividad,$conocimientoRequisitosActividad,$estadoFisicoRequisitosActividad,$equipoNecesarioRequisitosActividad,$aptitudesRequisitosActividad,$act)
+    {
         $this->idRequisitosActividad=$idRequisitosActividad;
         $this->edadRequisitosActividad=$edadRequisitosActividad;
         $this->conocimientoRequisitosActividad=$conocimientoRequisitosActividad;
         $this->estadoFisicoRequisitosActividad=$estadoFisicoRequisitosActividad;
         $this->equipoNecesarioRequisitosActividad=$equipoNecesarioRequisitosActividad;
         $this->aptitudesRequisitosActividad=$aptitudesRequisitosActividad;
+        $this->idActividad=$act;
     }
 
 
@@ -57,5 +59,11 @@ class requisitosActividad {
     public function setAptitudesRequisitosActividad($aptitudesRequisitosActividad) {
         $this->aptitudesRequisitosActividad = $aptitudesRequisitosActividad;
     }
-   
+    public function setIdActividad($act){
+      $this->idActividad=$act;
+    }
+    public function getIdActividad(){
+      return $this->idActividad;
+    }
+
 }

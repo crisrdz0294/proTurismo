@@ -16,6 +16,7 @@
 	<a href="view/requisitosActividadView.php">Manipular Requisitos</a><br>
 	<a href="view/sitioturisticoview.php">Manipular Sitio Turistico</a><br>
 	<a href="view/tuFamiliaView.php">Manipular Familia</a><br>
+	<a href="view/responsableView.php">Manipular Responsable</a><br>
 
 </body>
 

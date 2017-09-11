@@ -2,6 +2,7 @@
 	
 	include_once 'data.php';
 	include '../domain/serviciotransporte.php';
+    include '../domain/sitioTuristico.php';
 	
 	class ServicioTransporteData{
 
@@ -21,7 +22,7 @@
     		$precio=$serviciotransporte->getPrecioServicioTransporte();
     		$cantidadPersonas=$serviciotransporte->getCantidadPersonasServicioTransporte();
 
-
+            $idSitio=$serviciotransporte->getSitioTuristico();
 
 
 			$consultaUltimoId ="SELECT MAX(idserviciotransporte) AS idserviciotransporte FROM tbserviciotransporte";
@@ -41,7 +42,8 @@
         	'".$tipoCarretera."',
        	 	'".$tipoVehiculo."',
         	".$precio.",        	
-        	".$cantidadPersonas."
+        	".$cantidadPersonas.",
+            ".$idSitio."
         	
         	);";
 
@@ -76,11 +78,12 @@
             		$row['idserviciotransporte'], 
           			$row['origenserviciotransporte'], 
     				$row['destinoserviciotransporte'],  
-    				$row['kilometroserviciotransporte'], 
+    				$row['kilometrosserviciotransporte'], 
    					$row['tipocarreteraserviciotransporte'], 
     				$row['tipovehiculoserviciotransporte'], 
     				$row['precioserviciotransporte'], 
-    				$row['cantidadpersonasserviciotransporte']
+    				$row['cantidadpersonasserviciotransporte'],
+                    $row['idsitioturistico']
     			);
 
             	array_push($servicioDeTransporte, $temporalServicioTransporte);
@@ -91,6 +94,23 @@
 
 
 
+
+         public function mostrarTodosSitiosTuristicos(){
+
+            $con = new Data();
+            $conexion = $con->conect();
+            $consultaMostrar = "SELECT * FROM tbsitioturistico;";
+            $result = mysqli_query($conexion, $consultaMostrar);
+            mysqli_close($conexion);
+            $sitiosTuristicos = [];
+            while ($row = mysqli_fetch_array($result)) {
+                $sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercialsitioturistico'],$row['telefonositioturistico'],$row['idprovinciasitioturistico'],$row['idcantonsitioturistico'],$row['iddistritositioturistico'],$row['direccionexactasitioturistico'],$row['sitiowebsitioturistico']);
+                array_push($sitiosTuristicos, $sitioTuristicoTemporal);
+            }
+            return $sitiosTuristicos;
+        }
+
+        
 
 
 
@@ -103,11 +123,12 @@
     		
           	origenserviciotransporte = '".$serviciotransporte->getOrigenServicioTransporte()."',
     		destinoserviciotransporte = '".$serviciotransporte->getDestinoServicioTransporte(). "',
-    		kilometroserviciotransporte = ".$serviciotransporte->getKilometrosServicioTransporte().",
+    		kilometrosserviciotransporte = ".$serviciotransporte->getKilometrosServicioTransporte().",
    			tipocarreteraserviciotransporte = '".$serviciotransporte->getTipoCarreteraServicioTransporte()."',
     		tipovehiculoserviciotransporte = '".$serviciotransporte->getTipoVehiculoServicioTransporte()."',
     		precioserviciotransporte = ".$serviciotransporte->getPrecioServicioTransporte().",
-    		cantidadpersonasserviciotransporte = ".$serviciotransporte->getCantidadPersonasServicioTransporte()." 		
+    		cantidadpersonasserviciotransporte = ".$serviciotransporte->getCantidadPersonasServicioTransporte().",
+            idsitioturistico = ".$serviciotransporte->getSitioTuristico()."		
             WHERE idserviciotransporte =" . $serviciotransporte->getIdServicioTransporte() . ";";
 
 

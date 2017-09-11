@@ -22,6 +22,12 @@
 			return $this->servicioTransporteData->mostrarTodosServicioTransporte();
 		}
 
+		public function mostrarTodosSitiosTuristicos(){
+			return $this->servicioTransporteData->mostrarTodosSitiosTuristicos();
+		}
+
+		
+
 		public function actualizarServicioTransporte($servicioTransporte){
 			return $this->servicioTransporteData->actualizarServicioTransporte($servicioTransporte);
 		}

@@ -6,6 +6,11 @@
 
     <?php 
          include '../business/servicioAlimentacionBusiness.php';
+
+         $servicioalimentacionBusiness = new ServicioAlimentacionBusiness();
+         $todosServicioalimentacion = $servicioalimentacionBusiness->mostrarTodosServicioAlimentacion();
+
+         $listaSitios = $servicioalimentacionBusiness->mostrarTodosSitiosTuristicos();
      ?>
 
 
@@ -53,12 +58,25 @@
                     <br>
                     Alimentacion para Llevar:
                     <select name="alimentacionLlevarServicioAlimentacion" id="alimentacionLlevarServicioAlimentacion">                
-                          <option selected value="Si">Si</option>
-                          <option value="No">No</option>
+                          <option selected value="1">Si</option>
+                          <option value="0">No</option>
                     </select>
                     <br>
                     <br>
                     <br>
+                     Sitio Turistico:
+                     <select id="sitioturistico" name="sitioturistico">
+                    <?php
+                        foreach ($listaSitios as $SitioTuristico){
+                    ?>
+                    <option value="<?php echo $SitioTuristico->getIdSitio();?>"><?php echo $SitioTuristico->getNombreComercial();?></option>;
+                    <?php 
+                    } 
+                    ?>
+                      
+            </select>
+            <br>
+            <br>
                     
                     
                     <input type="submit" value="Guardar" name="guardarServicioAlimentacion" id="guardarServicioAlimentacion"/><br><br>
@@ -74,6 +92,7 @@
             <th>Precio</th>
             <th>Adicionales</th>
             <th>AlimentacionLlevar</th>
+            <th>Sitio Turistico</th>
             <th>Opcion 1</th>
             <th>Opcion 2</th>
         </tr>
@@ -84,8 +103,6 @@
 
         <?php
 
-         $servicioalimentacionBusiness = new ServicioAlimentacionBusiness();
-         $todosServicioalimentacion = $servicioalimentacionBusiness->mostrarTodosServicioAlimentacion();
             foreach ($todosServicioalimentacion as $servicioAlimentacion) 
             {
 
@@ -109,12 +126,12 @@
 
 
 
-                if($servicioAlimentacion->getAlimentacionllevarServicioAlimentacion()=="Si")
+                if($servicioAlimentacion->getAlimentacionllevarServicioAlimentacion()=="1")
                 {
                     echo '<td> 
                     <select name="alimentacionLlevarServicioAlimentacion" id="alimentacionLlevarServicioAlimentacion">                
-                          <option selected value="Si">Si</option>
-                          <option value="No">No</option>
+                          <option selected value="1">Si</option>
+                          <option value="0">No</option>
                     </select>
                      </td>';
                 }
@@ -122,14 +139,34 @@
                 {
                     echo '<td> 
                     <select name="alimentacionLlevarServicioAlimentacion" id="alimentacionLlevarServicioAlimentacion">                
-                          <option value="Si">Si</option>
-                          <option selected  value="No">No</option>
+                          <option value="1">Si</option>
+                          <option selected  value="0">No</option>
                     </select>
                      </td>';
                 }
 
 
+                echo '</select>';
+                echo '</td>'; 
 
+                 echo '<td><select name="idsitio" id="idsitio"> '?>
+                        <?php
+                          foreach ($listaSitios as $sitio){
+                        ?>
+                          <?php
+                            if($sitio->getIdSitio() == $servicioAlimentacion->getSitioTuristico()){  ?>
+
+                               <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php }else{?>
+
+                                 <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php  } ?>
+                          
+                         
+                        <?php 
+                           } 
+                        ?>
+                <?php  
 
 
 
