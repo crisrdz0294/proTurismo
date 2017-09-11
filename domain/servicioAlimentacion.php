@@ -10,8 +10,10 @@ class ServicioAlimentacion
     private $adicionalesServicioAlimentacion;
     private $alimentacionllevarServicioAlimentacion;
 
+    private $sitioTuristico;
 
-   function ServicioAlimentacion($idServicioAlimentacion,$tiempoComidasServicioAlimentacion,$descripcionAlimentacionServicioAlimentacion,$precioServicioAlimentacion,$adicionalesServicioAlimentacion,$alimentacionllevarServicioAlimentacion) 
+
+   function ServicioAlimentacion($idServicioAlimentacion,$tiempoComidasServicioAlimentacion,$descripcionAlimentacionServicioAlimentacion,$precioServicioAlimentacion,$adicionalesServicioAlimentacion,$alimentacionllevarServicioAlimentacion,$sitioTuristico) 
     {   
        $this->idServicioAlimentacion=$idServicioAlimentacion;
 	   $this->tiempoComidasServicioAlimentacion=$tiempoComidasServicioAlimentacion;
@@ -19,6 +21,8 @@ class ServicioAlimentacion
        $this->precioServicioAlimentacion=$precioServicioAlimentacion;
        $this->adicionalesServicioAlimentacion=$adicionalesServicioAlimentacion;
        $this->alimentacionllevarServicioAlimentacion=$alimentacionllevarServicioAlimentacion;
+
+       $this->sitioTuristico=$sitioTuristico;
     }
 
 
@@ -41,6 +45,9 @@ class ServicioAlimentacion
     }
     public function getAlimentacionllevarServicioAlimentacion() {
         return $this->alimentacionllevarServicioAlimentacion;
+    }
+    public function getSitioTuristico() {
+        return $this->sitioTuristico;
     }
 
 

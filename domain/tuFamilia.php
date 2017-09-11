@@ -7,12 +7,20 @@ class TuFamilia {
     private $adultoFamilia;
     private $adolecenteFamilia;
     private $ninoFamilia;
-    function TuFamilia($idFamilia, $adulltoMayorFamilia, $adultoFamilia, $adolecenteFamilia, $ninoFamilia) {
+
+    private $idResponsable;
+    private $sitioTuristico;
+
+    function TuFamilia($idFamilia, $adulltoMayorFamilia, $adultoFamilia, $adolecenteFamilia, $ninoFamilia,$idResponsable,$sitioTuristico) {
+
         $this->idFamilia = $idFamilia;
         $this->adulltoMayorFamilia = $adulltoMayorFamilia;
         $this->adultoFamilia = $adultoFamilia;
         $this->adolecenteFamilia = $adolecenteFamilia;
         $this->ninoFamilia = $ninoFamilia;
+
+        $this->idResponsable = $idResponsable;
+        $this->sitioTuristico = $sitioTuristico;
     }
     function getIdFamilia() {
         return $this->idFamilia;
@@ -34,6 +42,20 @@ class TuFamilia {
         return $this->ninoFamilia;
     }
 
+
+    function getIdResponsable() {
+        return $this->idResponsable;
+    }
+    function getSitioTuristico() {
+        return $this->sitioTuristico;
+    }
+
+
+
+
+
+
+
     function setIdFamilia($idFamilia) {
         $this->idFamilia = $idFamilia;
     }
@@ -53,7 +75,7 @@ class TuFamilia {
     function setNinoFamilia($ninoFamilia) {
         $this->ninoFamilia = $ninoFamilia;
     }
-
+    
 
 
 }
