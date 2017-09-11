@@ -2,6 +2,11 @@
 <html>
 <head>
 	<title>GUI Trabajo Comunal</title>
+	<?php
+		include '../business/sitioTuristicoBusiness.php';
+         $sitioBusiness=new SitioTuristicoBusiness();
+         $listaSitios= $sitioBusiness->mostrarTodosSitiosTuristicos();
+	?>
 </head>
 
 <body>
@@ -21,6 +26,19 @@
 			<textarea required name="requisitos" id="requisitos" placeholder="Ingrese los requisitos"></textarea><br>
 			Direccion Trabajo Comunal:<br>
 			<textarea required name="direccion" id="direccion" placeholder="Ingrese la direccion"></textarea><br>
+			 Sitio Turistico:<br>
+
+                    <select id="sitioturistico" name="sitioturistico">
+                     
+                        <?php
+                          foreach ($listaSitios as $sitio){
+                        ?>
+                          <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                        <?php 
+                           } 
+                        ?>
+                      
+                     </select><br><br>
 
 			<input type="submit" value="Guardar" name="guardarTrabajoComunal" id="guardarTrabajoComunal"/><br><br>
 		</form>
@@ -34,6 +52,7 @@
 				<th>Actividades</th>
 				<th>Requisitos</th>
 				<th>Direccion</th>
+				<th>Sitio Turistico</th>
 				<th>Opcion 1</th>
 				<th>Opcion 2</th>
 			</tr>
@@ -54,6 +73,28 @@
                 	echo '<td><input type="text" name="actividadesTrabajoComunal" id="actividadesTrabajoComunal" value="'.$trabajoComunal->getActividadesTrabajoComunal().'"/></td>';
                 	echo '<td><input type="text" name="requisitosTrabajoComunal" id="requisitosTrabajoComunal" value="'.$trabajoComunal->getRequisitosTrabajoComunal().'"/></td>';
                 	echo '<td><input type="text" name="direccionTrabajoComunal" id="direccionTrabajoComunal" value="'.$trabajoComunal->getDireccionTrabajoComunal().'"/></td>';
+
+                	echo '<td><select name="idsitio" id="idsitio"> '?>
+                        <?php
+                          foreach ($listaSitios as $sitio){
+                        ?>
+                          <?php
+                            if($sitio->getIdSitio()==$trabajoComunal->getIdSitioTrabajoComunal()){  ?>
+
+                               <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php }else{?>
+
+                                 <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                              <?php  } ?>
+                          
+                         
+                        <?php 
+                           } 
+                        ?>
+                <?php  
+
+                echo '</select>';
+                echo '</td>'; 
               
                 	echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                		echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';

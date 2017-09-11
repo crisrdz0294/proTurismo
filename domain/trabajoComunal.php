@@ -8,15 +8,17 @@
 		private $actividadesTrabajoComunal;
 		private $requisitosTrabajoComunal;
 		private $direccionTrabajoComunal;
+		private $idsitio;
 
 		function TrabajoComunal($idTrabajoComunal,$nombreTrabajoComunal,$descripcionTrabajoComunal,
-			$actividadesTrabajoComunal,$requisitosTrabajoComunal,$direccionTrabajoComunal){
+			$actividadesTrabajoComunal,$requisitosTrabajoComunal,$direccionTrabajoComunal,$idsitio){
 			$this->idTrabajoComunal=$idTrabajoComunal;
 			$this->nombreTrabajoComunal=$nombreTrabajoComunal;
 			$this->descripcionTrabajoComunal=$descripcionTrabajoComunal;
 			$this->actividadesTrabajoComunal=$actividadesTrabajoComunal;
 			$this->requisitosTrabajoComunal=$requisitosTrabajoComunal;
 			$this->direccionTrabajoComunal=$direccionTrabajoComunal;
+			$this->idsitio=$idsitio;
 		}
 
 		public function getIdTrabajoComunal(){
@@ -61,6 +63,10 @@
 
 		public function setDireccionTrabajoComunal($direccionTrabajoComunal){
 			$this->direccionTrabajoComunal=$direccionTrabajoComunal;
+		}
+
+		public function getIdSitioTrabajoComunal(){
+			return $this->idsitio;
 		}
 	}
  ?>

@@ -61,8 +61,9 @@
 		 	$telefonositio=$sitioturistico->getTelefonoSitio();
 		 	$direccionexacta=$sitioturistico->getDireccionExacta();
 		 	$idsitio=$sitioturistico->getIdSitio();
+		 	$sitioWeb=$sitioturistico->getSitioWeb();
 
-		 	$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',nombreresponsablesitioturistico='".$nombreresponsable."',telefonositioturistico=".$telefonositio.",direccionexactasitioturistico='".$direccionexacta."' WHERE idsitioturistico=".$idsitio.";";
+		 	$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',nombreresponsablesitioturistico='".$nombreresponsable."',telefonositioturistico=".$telefonositio.",direccionexactasitioturistico='".$direccionexacta."', sitiowebsitioturistico='".$sitioWeb."' WHERE idsitioturistico=".$idsitio.";";
 
 		 		$result = mysqli_query($conexion, $consultaActualizar);
         	mysqli_close($conexion);
