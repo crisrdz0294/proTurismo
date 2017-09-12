@@ -25,9 +25,10 @@
         	$actividades=$trabajoComunal->getActividadesTrabajoComunal();
         	$requisitos=$trabajoComunal->getRequisitosTrabajoComunal();
         	$direccion=$trabajoComunal->getDireccionTrabajoComunal();
+        	$idSitio=$trabajoComunal->getIdSitioTrabajoComunal();
 
         	$consultaInsertar="INSERT INTO tbtrabajocomunal values (".$idSiguiente.", '".$nombre."',
-			'".$descripcion."','".$actividades."','".$requisitos."','".$direccion."');";
+			'".$descripcion."','".$actividades."','".$requisitos."','".$direccion."',".$idSitio.");";
 
 
             $result = mysqli_query($conexion, $consultaInsertar);
@@ -48,7 +49,8 @@
 
 			while($row = mysqli_fetch_array($result)){
 				$temporalTrabajoComunal= new TrabajoComunal($row['idtrabajocomunal'],$row['nombretrabajocomunal'],
-				$row['descripciontrabajocomunal'],$row['actividadestrabajocomunal'],$row['requisitostrabajocomunal'],$row['direcciontrabajocomunal']);
+				$row['descripciontrabajocomunal'],$row['actividadestrabajocomunal'],$row['requisitostrabajocomunal'],$row['direcciontrabajocomunal'],$row['idsitioturistico']);
+
 				array_push($trabajosComunales, $temporalTrabajoComunal);
 			}
 
@@ -61,7 +63,7 @@
 			$con = new Data();
 			$conexion = $con->conect();
 
-			$consultaActualizar = "UPDATE tbtrabajocomunal SET nombretrabajocomunal= '".$trabajoComunal->getNombreTrabajoComunal()."', descripciontrabajocomunal= '".$trabajoComunal->getDescripcionTrabajoComunal()."', actividadestrabajocomunal = '".$trabajoComunal->getActividadesTrabajoComunal()."', requisitostrabajocomunal = '".$trabajoComunal->getRequisitosTrabajoComunal()."', direcciontrabajocomunal = '".$trabajoComunal->getDireccionTrabajoComunal()."' WHERE idtrabajocomunal= ".$trabajoComunal->getIdTrabajoComunal().";";
+			$consultaActualizar = "UPDATE tbtrabajocomunal SET nombretrabajocomunal= '".$trabajoComunal->getNombreTrabajoComunal()."', descripciontrabajocomunal= '".$trabajoComunal->getDescripcionTrabajoComunal()."', actividadestrabajocomunal = '".$trabajoComunal->getActividadesTrabajoComunal()."', requisitostrabajocomunal = '".$trabajoComunal->getRequisitosTrabajoComunal()."', direcciontrabajocomunal = '".$trabajoComunal->getDireccionTrabajoComunal()."', idsitioturistico=".$trabajoComunal->getIdSitioTrabajoComunal()." WHERE idtrabajocomunal= ".$trabajoComunal->getIdTrabajoComunal().";";
 
 			$result= mysqli_query($conexion,$consultaActualizar);
 			mysqli_close($conexion);

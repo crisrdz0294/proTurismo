@@ -4,13 +4,13 @@ include '../data/requisitosActividadData.php';
 
 class requisitosActividadBusiness {
     private $requisito;
-    
+
     public function requisitosActividadBusiness(){
         $this->requisito= new requisitosActividadData();
-        
+
     }
-    
-    
+
+
 		public function insertarRequisitosActividad($requisitosActividad){
 			return $this->requisito->insertarRequisitosActividad($requisitosActividad );
 		}
@@ -26,5 +26,8 @@ class requisitosActividadBusiness {
 		public function eliminarRequisitoActividad($idRequisitosActividad){
 			return $this->requisito->eliminarRequisitosActividad($idRequisitosActividad);
 		}
-	}
 
+    public function mostrarActividades(){
+      return $this->requisito->mostrarTodasActividades();
+    }
+	}
