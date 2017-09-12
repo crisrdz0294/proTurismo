@@ -1,8 +1,9 @@
 <?php
-	include 'data.php';
+	include_once 'data.php';
 
 	include '../domain/empresa.php';
-
+	include '../domain/sitioTuristico.php';
+   include '../domain/responsable.php';
 
 	class EmpresaData{
 
@@ -35,7 +36,8 @@
             '".$contacto."',
             '".$email."',
              '".$web."',
-            '".$sitio."');";
+            '.$sitio.',
+					'.$responsable.');";
 
 
 
@@ -54,7 +56,7 @@
 			mysqli_close($conexion);
         	$empresas = [];
         	while ($row = mysqli_fetch_array($result)) {
-            	$empresaNueva = new Empresa($row['idmicroempresa'],$row['nombremicroempresa'],$row['responsablemicroempresa '],$row['contactotelefonomicroempresa'],$row['emailmicroempresa '],$row['sitiowebmicroempresa'],$row['idsitioturistico']);
+            	$empresaNueva = new Empresa($row['idmicroempresa'],$row['nombremicroempresa'],$row['contactotelefonomicroempresa'],$row['emailmicroempresa'],$row['sitiowebmicroempresa'],$row['idsitioturistico'],$row['idresponsable']);
             	array_push($empresas, $empresaNueva);
         	}
         	return $empresas;
@@ -102,7 +104,46 @@
 
 		}
 
+		public function mostrarSitiosTuristicos(){
 
+			$con = new Data();
+			$conexion = $con->conect();
+			$consultaMostrar = "SELECT * FROM tbsitioturistico;";
+			$result = mysqli_query($conexion, $consultaMostrar);
+			mysqli_close($conexion);
+        	$sitiosTuristicos = [];
+        	while ($row = mysqli_fetch_array($result)) {
+            	$sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercialsitioturistico'],$row['telefonositioturistico'],$row['idprovinciasitioturistico'],$row['idcantonsitioturistico'],$row['iddistritositioturistico'],$row['direccionexactasitioturistico'],$row['sitiowebsitioturistico']);
+            	array_push($sitiosTuristicos, $sitioTuristicoTemporal);
+        	}
+        	return $sitiosTuristicos;
+		}
 
+	public function mostrarResponsables(){
+
+			$con = new Data();
+			$conexion = $con->conect();
+			$consultaMostrar = "SELECT * FROM tbresponsable;";
+			$result = mysqli_query($conexion, $consultaMostrar);
+			mysqli_close($conexion);
+
+			$responsable = [];
+			while ($row = mysqli_fetch_array($result)) {
+					$temporaralResponsable = new Responsable(
+
+							$row['idresponsable'],
+							$row['cedularesponsable'],
+							$row['nombreresponsable'],
+							$row['primerapellidoresponsable'],
+							$row['segundoapellidoresponsable'],
+							$row['telefonoresponsable'],
+							$row['emailresponsable']
+					);
+
+					array_push($responsable, $temporaralResponsable);
+			}
+			return $responsable;
 	}
+
+}
 ?>

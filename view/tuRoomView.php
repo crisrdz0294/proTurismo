@@ -3,6 +3,9 @@
 <?php
     include '../business/tuRoomBusisnes.php';
 
+    $tuRoomBusisnes= new TuRoomBusisnes();
+
+    $listasitios=$tuRoomBusisnes->mostrarSitios();
 ?>
 
     <head>
@@ -80,6 +83,21 @@
                 </select>
                 <br>
                 <br>
+                Sitio:
+                <?php
+                echo '
+                <select id="idEncargado" name="idEncargado">';
+
+
+               			 foreach ($listasitios as $sitioTuristico){
+
+               			 echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+
+               				}
+
+
+                echo ' </select><br><br>';
+               ?>
 
                  <input type="submit" id="enviarFormulario" name="enviarFormulario" value="ENVIAR">
 
@@ -97,6 +115,7 @@
                     <th>Vista</th>
                     <th>Cantidad personas</th>
                     <th>Accesibilidad</th>
+                    <th>Sitio</th>
                     <th>Actulizar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -104,6 +123,7 @@
                 <?php
                     $tuRoomdBusiness = new TuRoomBusisnes();
                     $todosHabitaciones= $tuRoomdBusiness->mostrarTuRoom();
+                    $sitios=$tuRoomBusisnes->mostrarSitios();
                     foreach ($todosHabitaciones as $tuRoom) {
                         echo '<form method="post" enctype="multipart/form-data" action="../business/tuRoomAction.php">';
                         echo '<input type="hidden" name="idhabitacion" id="idhabitacion" value="' . $tuRoom->getIdHabitacion().'">';
@@ -247,6 +267,7 @@
 
 
                       echo '<td>  <textarea type="text" name="vista" placeholder="Describa la vista que tiene la habitacion">'.$tuRoom->getVistaHabitacion().'</textarea></td>';
+
                      echo '<td><input type="number" name="cantidadpersonas" value="'.$tuRoom->getCantidadPersonasHabitacion().'"/></td>"';
 
 
@@ -271,7 +292,20 @@
                          default:
                              # code...
                              break;
+
                      }
+                     echo '<td>
+                     <select id="idEncargado" name="idEncargado">';
+
+
+                           foreach ($sitios as $sitioTuristico){
+
+                           echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+
+                            }
+
+
+                     echo ' </select><br><br></td>';
 
                         echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                         echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
