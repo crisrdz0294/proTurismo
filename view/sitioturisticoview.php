@@ -44,7 +44,7 @@
 		Nombre comercial:<br>
 		<input type="text" name="nombrecomercial" placeholder="Ingrese el nombre del sitio"><br><br>
 		Numero de telefono del sitio:<br>
-		<input type="number" name="telefono" placeholder="Ingrese el numero de telefono del sitio"><br><br>
+		<input type="text" name="telefono" placeholder="Ingrese el numero de telefono del sitio"><br><br>
 		Provincia del sitio:<br>
 		<select id="provincia" name="provincia">
 			<option value="0" selected disabled="true">Seleccione una provincia</option> 
@@ -95,10 +95,10 @@
 
                     echo '<td><input type="text" name="nombrecomercial" value="' .$sitioturistico->getNombreComercial().'"/></td>';
                     
-                    echo '<td><input type="number" name="telefono" value="' . $sitioturistico->getTelefonoSitio().'"/></td>';
+                    echo '<td><input type="text" name="telefono" value="' . $sitioturistico->getTelefonoSitio().'"/></td>';
 
                      echo '<td><input type="text" name="direccion" value="' .$sitioturistico->getDireccionExacta().'"/></td>';
-                     echo '<td><input type="text" name="nombreresponsable" value="' .$sitioturistico->getSitioWeb().'"/></td>';
+                     echo '<td><input type="text" name="sitioweb" value="' .$sitioturistico->getSitioWeb().'"/></td>';
                     echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                     echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
 
