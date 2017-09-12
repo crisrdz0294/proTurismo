@@ -36,8 +36,8 @@
             '".$contacto."',
             '".$email."',
              '".$web."',
-            '.$sitio.',
-					'.$responsable.');";
+            ".$sitio.",
+					".$responsable.");";
 
 
 
@@ -76,11 +76,10 @@
 
 		 	$consultaActualizar="UPDATE tbmicroempresa SET
 			 nombremicroempresa='".$nombre."',
-			 responsablemicroempresa ='".$responsable."',
       contactotelefonomicroempresa ='".$contacto."',
       emailmicroempresa='".$email."',
        sitiowebmicroempresa ='".$web."',
-        	idsitioturistico =".$sitio."
+        	idsitioturistico =".$sitio.",idresponsable=".$responsable."
        WHERE idmicroempresa=".$id.";";
 
 		 		$result = mysqli_query($conexion, $consultaActualizar);

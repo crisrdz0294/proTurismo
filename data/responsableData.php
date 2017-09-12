@@ -23,7 +23,7 @@
 
 
 
-            $consultaUltimoId ="SELECT MAX(idresponsable) AS idresponsable FROM tbresponsablefamilia";
+            $consultaUltimoId ="SELECT MAX(idresponsable) AS idresponsable FROM tbresponsable";
             $maximoId=mysqli_query($conexion,$consultaUltimoId);
             $idSiguiente=1;
 
@@ -31,7 +31,7 @@
                 $idSiguiente = trim($row[0]) + 1;
             }
 
-            $consultaInsertar="INSERT INTO tbresponsablefamilia VALUES (
+            $consultaInsertar="INSERT INTO tbresponsable VALUES (
             
             ".$idSiguiente.",
             '".$cedula."',
@@ -60,7 +60,7 @@
 
             $con = new Data();
             $conexion = $con->conect();
-            $consultaMostrar = "SELECT * FROM tbresponsablefamilia;";
+            $consultaMostrar = "SELECT * FROM tbresponsable;";
             $result = mysqli_query($conexion, $consultaMostrar);
             mysqli_close($conexion);
 
@@ -93,7 +93,7 @@
             $con = new Data();
             $conexion = $con->conect();
 
-            $consultaActualizar = "UPDATE tbresponsablefamilia SET 
+            $consultaActualizar = "UPDATE tbresponsable SET 
 
         cedularesponsable = '".$responsable->getCedulaResponsable()."',
         nombreresponsable = '".$responsable->getNombreResponsable()."',
@@ -123,7 +123,7 @@
             $con = new Data();
             $conexion = $con->conect();
 
-            $consultaEliminar="DELETE FROM tbresponsablefamilia WHERE idresponsable =".$idresponsable.";";
+            $consultaEliminar="DELETE FROM tbresponsable WHERE idresponsable =".$idresponsable.";";
 
             $result=mysqli_query($conexion,$consultaEliminar);
             mysqli_close($conexion);

@@ -167,7 +167,7 @@
                         }
 
 
-                         echo '<td><input type="number" name="cantidadcamas" value="'.$tuRoom->getCantidadCamasHabitacion().'"/></td>"';
+                         echo '<td><input type="number" name="cantidadcamas" value="'.$tuRoom->getCantidadCamasHabitacion().'"/></td>';
 
                         if($tuRoom->getInternetHabitacion()==0){
                             echo '<td><select name="cable" id="cable">
@@ -268,7 +268,7 @@
 
                       echo '<td>  <textarea type="text" name="vista" placeholder="Describa la vista que tiene la habitacion">'.$tuRoom->getVistaHabitacion().'</textarea></td>';
 
-                     echo '<td><input type="number" name="cantidadpersonas" value="'.$tuRoom->getCantidadPersonasHabitacion().'"/></td>"';
+                     echo '<td><input type="number" name="cantidadpersonas" value="'.$tuRoom->getCantidadPersonasHabitacion().'"/></td>';
 
 
                      switch ($tuRoom->getAccesibilidadHabitacion()) {
@@ -300,7 +300,7 @@
 
                            foreach ($sitios as $sitioTuristico){
 
-                           echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+                           echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>';
 
                             }
 
