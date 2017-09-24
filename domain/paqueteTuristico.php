@@ -1,33 +1,28 @@
 <?php
 
-/**
- *
- */
+
 class PaqueteTuristico
 {
-  private $idPaqueteTuristico;
-  private $nombrePaqueteTuristico;
-  private $descripcionPaqueteTuristico;
-  private $precioPaqueteTurisco;
+      private $idPaqueteTuristico;
+      private $nombrePaqueteTuristico;
+      private $descripcionPaqueteTuristico;
+      private $precioPaqueteTurisco;
 
-  function PaqueteTuristico(){
-  }
 
-  function PaqueteTuristico($id,$name,$descripcion,$precio)
-  {
-    $this->idPaqueteTuristico=$id;
-    $this->nombrePaqueteTuristico=$name;
-    $this->descripcionPaqueteTuristico=$descripcion;
-    $this->precioPaqueteTurisco=$precio;
+      function PaqueteTuristico($id,$name,$descripcion,$precio){
+           $this->idPaqueteTuristico=$id;
+            $this->nombrePaqueteTuristico=$name;
+            $this->descripcionPaqueteTuristico=$descripcion;
+            $this->precioPaqueteTurisco=$precio;
 
-  }
+      }
 
   public function setIdPaqueteTuristico($id){
     $this->idPaqueteTuristico=$id;
 
   }
 
-  public function getIdPaqueteActividad(){
+  public function getIdPaqueteTuristico(){
     return $this->idPaqueteTuristico;
   }
 

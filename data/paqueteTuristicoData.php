@@ -1,14 +1,15 @@
 <?php
 
-include '../domain/PaqueteTuristico.php'
+include '../domain/paqueteTuristico.php';
+include 'data.php';
 
-class PaqueteTuristicoData(){
+class PaqueteTuristicoData{
 
 public function PaqueteTuristicoData(){
 
 }
 
-public function insertarPaqueteActividad($PaqueteTuristico){
+public function insertarPaqueteTuristico($PaqueteTuristico){
   $con = new Data();
   $conexion = $con->conect();
 
@@ -38,7 +39,7 @@ public function insertarPaqueteActividad($PaqueteTuristico){
 public function mostrarTodosPaqueteTuristicos(){
 
   $con= new Data();
-$conexion=$con->conect();
+  $conexion=$con->conect();
 
 $consultaMostrar="SELECT * FROM tbpaqueteturistico;";
 
@@ -56,17 +57,18 @@ mysqli_close($conexion);
 }
 
 public function actualizarPaqueteTuristico($PaqueteTuristico){
-$con = new Data();
-$conexion = $con->conect();
+    $con = new Data();
+    $conexion = $con->conect();
 
-$nombre=$PaqueteTuristico->getNombreActividad();
-$descripcion=$PaqueteTuristico->getDescripcionActividad();
-$id=$PaqueteTuristico->getPrecioPaqueteTuristico();
-$precio=$PaqueteTuristico->idPaqueteTuristico();
+    $nombre=$PaqueteTuristico->getNombrePaqueteTuristico();
+    $descripcion=$PaqueteTuristico->getDescripcionPaqueteTuristico();
+    $id=$PaqueteTuristico->getIdPaqueteTuristico();
+    $precio=$PaqueteTuristico->getPrecioPaqueteTuristico();
+
 
 $consultaActualizar = "UPDATE tbpaqueteturistico SET  nombrepaqueteturistico= '".$nombre."',
  descripcionpaqueteturistico= '".$descripcion."',
-  preciopaqueteturistico = ".$precio.",
+  preciopaqueteturistico = ".$precio."
    WHERE idpaqueteturistico= ".$id.";";
 
 $result= mysqli_query($conexion,$consultaActualizar);
