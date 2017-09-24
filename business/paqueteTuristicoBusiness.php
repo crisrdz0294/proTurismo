@@ -25,8 +25,5 @@
 			return $this->paqueteTuristicoData->actualizarPaqueteTuristico($paqueteTuristico);
 		}
 
-		public function eliminarPaqueteTuristico($paqueteTuristico){
-			return $this->paqueteTuristicoData->eliminarPaqueteTuristico($paqueteTuristico);
-		}
 	}
   ?>
