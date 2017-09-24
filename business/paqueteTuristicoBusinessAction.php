@@ -5,18 +5,18 @@ include './paqueteTuristicoBusiness.php';
 
  
 
- if (isset($_POST['guardarPaqueteTuristico'])) 
+ if (isset($_POST['guardarPaquete'])) 
  {
     
-    if (isset($_POST['nombrePaqueteTuristico']) && 
-        isset($_POST['descripcionPaqueteTuristico']) &&
-        isset($_POST['precioPaqueteTuristico']) && 
+    if (isset($_POST['nombre']) && 
+        isset($_POST['descripcion']) &&
+        isset($_POST['precio']) && 
         ) 
     {
-        $id = $_POST['idPaqueteTuristico'];
-        $nombre = $_POST['nombrePaqueteTuristico'];
-        $descripcion = $_POST['descripcionPaqueteTuristico'];        
-        $precio = $_POST['precioPaqueteTuristico'];
+        
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];        
+        $precio = $_POST['precio'];
         
 
 
@@ -54,16 +54,16 @@ include './paqueteTuristicoBusiness.php';
 else if (isset($_POST['update'])) 
 {   
     
-    if (isset($_POST['idPaqueteTuristico']) && 
-        isset($_POST['nombrePaqueteTuristico']) && 
-        isset($_POST['descripcionPaqueteTuristico']) &&
-        isset($_POST['precioPaqueteTuristico']) && 
+    if (isset($_POST['id']) && 
+        isset($_POST['nombre']) && 
+        isset($_POST['descripcion']) &&
+        isset($_POST['precio']) && 
         ) 
     {
-        $id = $_POST['idPaqueteTuristico'];
-        $nombre = $_POST['nombrePaqueteTuristico'];
-        $descripcion = $_POST['descripcionPaqueteTuristico'];        
-        $precio = $_POST['precioPaqueteTuristico'];
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];        
+        $precio = $_POST['precio'];
         
 
 
