@@ -54,13 +54,13 @@ include './paqueteTuristicoBusiness.php';
 else if (isset($_POST['update'])) 
 {   
     
-    if (isset($_POST['id']) && 
+    if (isset($_POST['idpaquete']) && 
         isset($_POST['nombre']) && 
         isset($_POST['descripcion']) &&
         isset($_POST['precio']) && 
         ) 
     {
-        $id = $_POST['id'];
+        $id = $_POST['idpaquete'];
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];        
         $precio = $_POST['precio'];
