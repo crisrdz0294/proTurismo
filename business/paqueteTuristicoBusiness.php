@@ -17,7 +17,7 @@
 		}
 
 		public function mostrarTodosPaqueteTuristico(){
-			return $this->PaqueteTuristicoData->mostrarTodosPaqueteTuristico();
+			return $this->paqueteTuristicoData->mostrarTodosPaqueteTuristicos();
 		}
 
 
