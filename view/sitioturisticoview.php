@@ -43,10 +43,8 @@
 	
 		Nombre comercial:<br>
 		<input type="text" name="nombrecomercial" placeholder="Ingrese el nombre del sitio"><br><br>
-		Nombre Responsable:<br>
-		<input type="text" name="nombreresponsable" placeholder="Ingrese el nombre del responsable"><br><br>
 		Numero de telefono del sitio:<br>
-		<input type="number" name="telefono" placeholder="Ingrese el numero de telefono del sitio"><br><br>
+		<input type="text" name="telefono" placeholder="Ingrese el numero de telefono del sitio"><br><br>
 		Provincia del sitio:<br>
 		<select id="provincia" name="provincia">
 			<option value="0" selected disabled="true">Seleccione una provincia</option> 
@@ -65,7 +63,10 @@
 		<select id="distrito" name="distrito"></select><br><br>
 		Direccion Exacta del sitio:<br>
 		<textarea name="direccion" placeholder="Ingrese la direccion exacta del sitio"></textarea><br><br>
+		Sitio web:<br>
+		<input type="text" name="sitioweb" placeholder="Ingrese el sitio web"><br><br>
 		  <input type="submit" value="Guardar" name="guardarSitio" /><br><br>
+	
 
 	</form>
 
@@ -74,18 +75,14 @@
 		
 		<tr>
 			<th>Nombre del sitio</th>
-			<th>Nombre del responsable</th>
 			<th>Telefono</th>
 			<th>Direccion Exacta</th>
+			<th>Sitio Web</th>
 			<th>Opcion 1</th>
 			<th>Opcion 2</th>
 		</tr>	
 
 		<?php 
-
-			require('../data/data2.php');
-			$query="SELECT * from tbprovincia";
-			$resultado=$mysqli->query($query);
 
 			include '../business/sitioTuristicoBusiness.php';
 			$sitioTuristicoBusiness= new SitioTuristicoBusiness();
@@ -97,10 +94,11 @@
                     echo '<input type="hidden" name="idsitio" value="' . $sitioturistico->getIdSitio().'">';
 
                     echo '<td><input type="text" name="nombrecomercial" value="' .$sitioturistico->getNombreComercial().'"/></td>';
-                    echo '<td><input type="text" name="nombreresponsable" value="' .$sitioturistico->getNombreResponsable().'"/></td>';
-                    echo '<td><input type="number" name="telefono" value="' . $sitioturistico->getTelefonoSitio().'"/></td>';
+                    
+                    echo '<td><input type="text" name="telefono" value="' . $sitioturistico->getTelefonoSitio().'"/></td>';
 
                      echo '<td><input type="text" name="direccion" value="' .$sitioturistico->getDireccionExacta().'"/></td>';
+                     echo '<td><input type="text" name="sitioweb" value="' .$sitioturistico->getSitioWeb().'"/></td>';
                     echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                     echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
 
