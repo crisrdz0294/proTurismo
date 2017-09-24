@@ -18,7 +18,7 @@
 	<a href="view/tuFamiliaView.php">Manipular Familia</a><br>
 	<a href="view/responsableView.php">Manipular Responsable</a><br>
 	<a href="view/empresaView.php">Manipular MicroEmpresa</a><br>
-
+	<a href="view/paqueteTuristicoView.php">Manipular Paquete Turistico</a><br>
 </body>
 
 
