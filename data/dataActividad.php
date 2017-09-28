@@ -47,10 +47,10 @@
 
 			$result = mysqli_query($conexion, $consultaMostrar);
 			mysqli_close($conexion);
-        	$actividades = [];
+        	$actividades = array();
 
         	while($row = mysqli_fetch_array($result)){
-        		$temporalActividad=new Actividad($row['idactividad'],$row['nombreactividad'],$row['descripcionactividad'],$row['estadoactividad'],$row['cantidadpersonasactividad'],$row['lugaractividad'],$row['distanciahospedajeactividad'],$row['habilidadesactividad'],$row['horarioactividad'],$row['idsitioturistico'],$row['idtipoactividad']);
+        		$temporalActividad=new Actividad($row['idactividad'],$row['nombreactividad'],$row['descripcionactividad'],$row['estadoactividad'],$row['cantidadpersonasactividad'],$row['lugaractividad'],$row['distanciahospedajeactividad'],$row['habilidadesactividad'],$row['horarioactividad'],$row['idsitioturistico'],$row['idtipoactividad'],0);
 
         		array_push($actividades,$temporalActividad);
         	}
