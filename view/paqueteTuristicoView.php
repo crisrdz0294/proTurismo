@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title></title>
-
+<script src="../js/jquery-3.2.1.js"></script>
+  <script src="../js/jsPaqueteTuristico.js"></script>
 	
 </head>
 <body>
@@ -51,13 +52,14 @@
 
                  	echo '<td><input type="number" name="precio" id="precio" value="' . $paqueteTuristico->getPrecioPaqueteTuristico() . '"/></td>';
                 
-
-            
                 	echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
-               		echo '<td><input type="submit" value="Agregar Actividades" name="agregar"/></td>';
+                  echo "<td><input type=\"button\" value=\"Agregar actividades\" onclick=\"cargarPagina('../view/mostrarActividadesView.php?idpaquete=".$paqueteTuristico->getIdPaqueteTuristico()."')\"/></td>";
+                   echo '</form>';
 
-                echo '</tr>';
-                echo '</form>';
+                  
+                 echo '</tr>';
+               
+              
 
             }
        	
@@ -65,5 +67,9 @@
 	?>
 
 	</table>
+
+  <div id="divActividades">
+    
+  </div>
 </body>
 </html>
