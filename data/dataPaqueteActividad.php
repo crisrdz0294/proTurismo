@@ -20,13 +20,15 @@
         	return $result;
 		}
 
-		public function descartarActividadPaquete($idactividad){
+		public function descartarActividadPaquete($idactividad,$idpaquete){
 			$con =new Data();
 			$conexion=$con->conect();
-			
-			$consultaDescartar="DELETE FROM tbpaqueteturisticoactividad WHERE idactividad=".$idactividad.";";
+
+
+			$consultaDescartar = "DELETE FROM tbpaqueteturisticoactividad WHERE idpaqueteturistico = ".$idpaquete." AND idactividad = ".$idactividad.";";
 			$result = mysqli_query($conexion, $consultaDescartar);
         	mysqli_close($conexion);
+        
         	return $result;	
 		}
 
@@ -47,6 +49,8 @@
         	return $listaIdActividades;
 
 		}
+
+		
 
 	}
 ?>

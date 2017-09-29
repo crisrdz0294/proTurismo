@@ -25,5 +25,9 @@
 			return $this->paqueteTuristicoData->actualizarPaqueteTuristico($paqueteTuristico);
 		}
 
+		public function obtenerNombrePaquete($idpaquete){
+			return $this->paqueteTuristicoData->obtenerNombrePaquete($idpaquete);
+		}
+
 	}
   ?>

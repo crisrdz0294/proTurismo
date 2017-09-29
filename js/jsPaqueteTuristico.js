@@ -24,11 +24,12 @@ function agregarActividad(idPaquete, idActividad){
 }
 
 
-function descartarActividad(idActividad){
+function descartarActividad(idActividad,idPaquete){
 
     var formData= new FormData();
          formData.append("opcion",2);
          formData.append("idactividad",idActividad);
+         formData.append("idpaquete",idPaquete);
          $.ajax({
             url:"../business/agregarDescartarBusiness.php",
             type : "post",
