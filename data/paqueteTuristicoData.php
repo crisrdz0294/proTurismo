@@ -79,7 +79,21 @@ mysqli_close($conexion);
 
 
 
+public function obtenerNombrePaquete($idpaquete){
+      $con =new Data();
+      $conexion=$con->conect();
+      $consultaNombre="SELECT nombrepaqueteturistico FROM tbpaqueteturistico where idpaqueteturistico=".$idpaquete."";
 
+      $result = mysqli_query($conexion, $consultaNombre);
+      mysqli_close($conexion);
+      $nombrePaquete = array();
+          while ($row = mysqli_fetch_array($result)) {
+
+            $valores=array("nombrepaquete"=>$row["nombrepaqueteturistico"]);
+              array_push($nombrePaquete, $valores);
+          }
+          return $nombrePaquete;
+    }
 
 
 

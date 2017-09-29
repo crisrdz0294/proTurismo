@@ -23,7 +23,8 @@
 
 		public function descartarActividadPaquete(){
 			$idactividad=$_POST['idactividad'];
-			return $this->dataPaqueteActividad->descartarActividadPaquete($idactividad);
+			$idpaquete=$_POST['idpaquete'];
+			return $this->dataPaqueteActividad->descartarActividadPaquete($idactividad,$idpaquete);
 		}		
 
 	}
