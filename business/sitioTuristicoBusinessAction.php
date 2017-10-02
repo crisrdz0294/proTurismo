@@ -13,7 +13,7 @@
 			$direccion=$_POST['direccion'];
 			$sitioWeb=$_POST['sitioweb'];
 
-			if(strlen($nombrecomercial)>0 && $telefono>0 && strlen($provincia)>0 &&
+			if(strlen($nombrecomercial)>0 && strlen($telefono)>0  && strlen($provincia)>0 &&
 			   strlen($canton)>0 && strlen($distrito)>0 && strlen($direccion)>0 && strlen($sitioWeb)>0){
 
 				$sitioTuristico = new SitioTuristico(0,$nombrecomercial,$telefono,$provincia,
@@ -46,7 +46,7 @@
 			$id=$_POST['idsitio'];
 			$sitioweb=$_POST['sitioweb'];
 
-			if(strlen($nombrecomercial)>0 && $telefono>0 && strlen($direccion)>0){
+			if(strlen($nombrecomercial)>0 && strlen($telefono)>0 && strlen($direccion)>0){
 
 				$sitioTuristico = new SitioTuristico($id,$nombrecomercial,$telefono,0,
 					0,0,$direccion,$sitioweb);

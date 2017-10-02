@@ -65,7 +65,7 @@ class TuFamiliaData{
 
             $con = new Data();
             $conexion = $con->conect();
-            $consultaMostrar = "SELECT * FROM tbresponsablefamilia;";
+            $consultaMostrar = "SELECT * FROM tbresponsable;";
             $result = mysqli_query($conexion, $consultaMostrar);
             mysqli_close($conexion);
 
