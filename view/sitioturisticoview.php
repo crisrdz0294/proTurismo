@@ -6,7 +6,7 @@
 <html>
 	<head>
 
-		<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+		<script src="../js/jquery-3.2.1.js"></script>
 
 		<script language="javascript">
 			$(document).ready(function(){

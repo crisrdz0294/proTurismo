@@ -62,13 +62,39 @@
 		 	$direccionexacta=$sitioturistico->getDireccionExacta();
 		 	$idsitio=$sitioturistico->getIdSitio();
 		 	$sitioWeb=$sitioturistico->getSitioWeb();
+	
+		 	$consultaIdMicroEmpresa="SELECT idsitioturistico from tbfamilia;";	
+		 	$resultado1=mysqli_query($conexion,$consultaIdMicroEmpresa);
+		 	$listaIdSitio = array();
+		 		
+        		while ($row = mysqli_fetch_array($resultado1)) {
 
-		 	$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',telefonositioturistico='".$telefonositio."',direccionexactasitioturistico='".$direccionexacta."', sitiowebsitioturistico='".$sitioWeb."' WHERE idsitioturistico=".$idsitio.";";
+        			$valores=array("id"=>$row['idsitioturistico']);
+            		array_push($listaIdSitio, $valores);
 
-		 		$result = mysqli_query($conexion, $consultaActualizar);
-        	mysqli_close($conexion);
+        		}
 
-        	return $result;
+        	
+		 		for($i=0;$i<count($listaIdSitio);$i++){
+        			
+        			$temporalId=$listaIdSitio[$i];
+
+        			if($temporalId['id']===$idsitio){
+        				
+        			}else{
+
+        				$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',telefonositioturistico='".$telefonositio."',direccionexactasitioturistico='".$direccionexacta."', sitiowebsitioturistico='".$sitioWeb."' WHERE idsitioturistico=".$idsitio.";";
+
+		 				$result = mysqli_query($conexion, $consultaActualizar);
+        				mysqli_close($conexion);
+        				return $result;
+
+
+        			}
+        			
+
+        		}
+		 	
 
 		}
 
