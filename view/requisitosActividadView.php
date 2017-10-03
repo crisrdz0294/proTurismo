@@ -64,7 +64,7 @@
 
     </form>
 
-    <table>
+    <table border="1">
         <tr>
             <th>Edad  </th>
             <th>Conocimiento </th>
@@ -72,7 +72,8 @@
             <th>Equipo necesario </th>
             <th>Aptitudes </th>
             <th>Actividad</th>
-            <th>Acciones</th>
+            <th>Opcion 1</th>
+            <th>Opcion 2</th>
         </tr>
 
          <?php
