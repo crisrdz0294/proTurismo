@@ -69,8 +69,7 @@ echo ' </select><br><br>';
 
  <table border="1">
         <tr>
-            <th> NOMBRE</th>
-
+            <th>NOMBRE</th>
             <th>CONTACTO</th>
             <th>EMAIL</th>
             <th>SITIO WEB</th>
@@ -92,17 +91,17 @@ echo ' </select><br><br>';
                 echo '<tr>';
 
                 echo '<td>
-                        <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="' . $empresa->getNombreEmpresa().'"/>
+                        <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="'.$empresa->getNombreEmpresa().'"/>
                         </td>';
 												echo '<td>
-				                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" value="' . $empresa->getContactoTelefonicoEmpresa().'"/>
+				                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" value="'.$empresa->getContactoTelefonicoEmpresa().'"/>
 				                        </td>';
 
 												echo '<td>
-								                  <input type="email" name="emailEmpresa" id="emailEmpresa" value="' . $empresa->getEmailEmpresa().'"/>
+								                  <input type="email" name="emailEmpresa" id="emailEmpresa" value="'.$empresa->getEmailEmpresa().'"/>
 								                  </td>';
 												echo '<td>
-																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="' . $empresa->getSitioWebEmpresa().'"/>
+																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa().'"/>
 																						</td>';
 
 																				echo '<td>

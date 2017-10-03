@@ -55,10 +55,20 @@
 
 				$result=$sitioTuristicoBusiness->actualizarSitioTuristico($sitioTuristico);
 
-				if($result==1){
+				if($result==0){
 					header("location: ../view/sitioturisticoview.php?success=update");
+				}else if($result==1){
+					header("location: ../view/sitioturisticoview.php?error=agregadoFamilia");
+				}else if($result==2){
+					header("location: ../view/sitioturisticoview.php?error=agregadoMicroEmpresa");
+				}else if($result==3){
+					header("location: ../view/sitioturisticoview.php?error=agregadoHospedaje");
+				}else if($result==4){
+					header("location: ../view/sitioturisticoview.php?error=agregadoTransporte");
+				}else if($result==5){
+					header("location: ../view/sitioturisticoview.php?error=agregadoAlimentacion");
 				}else{
-					header("location: ../view/sitioturisticoview.php?error=dbError");
+					header("location: ../view/sitioturisticoview.php?error=agregadoTrabajoComunal");
 				}
 			}else{
 				header("location: ../view/sitioturisticoview.php?error=camposvacios");
@@ -77,10 +87,20 @@
 			
 			$result=$sitioTuristicoBusiness->eliminarSitioTuristico($id);
 
-			if ($result==1) {
+			if($result==0){
 				header("location: ../view/sitioturisticoview.php?success=delete");
+			}else if($result==1){
+				header("location: ../view/sitioturisticoview.php?error=agregadoFamilia");
+			}else if($result==2){
+				header("location: ../view/sitioturisticoview.php?error=agregadoMicroEmpresa");
+			}else if($result==3){
+				header("location: ../view/sitioturisticoview.php?error=agregadoHospedaje");
+			}else if($result==4){
+				header("location: ../view/sitioturisticoview.php?error=agregadoTransporte");
+			}else if($result==5){
+				header("location: ../view/sitioturisticoview.php?error=agregadoAlimentacion");
 			}else{
-				header("location: ../view/sitioturisticoview.php?error=dbError");
+				header("location: ../view/sitioturisticoview.php?error=agregadoTrabajoComunal");
 			}
 
 		}else{
