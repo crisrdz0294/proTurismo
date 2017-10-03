@@ -75,7 +75,7 @@ class TuFamilia {
     function setNinoFamilia($ninoFamilia) {
         $this->ninoFamilia = $ninoFamilia;
     }
-    
+
 
 
 }
