@@ -76,8 +76,10 @@ include_once './actividadBusiness.php';
 
             if ($result==0) {
                 header("location: ../view/actividadesView.php?success=update");
-            }else{
+            }else if($result==1){
                 header("location: ../view/actividadesView.php?error=AgregadaRequisitos");
+            }else{
+                header("location: ../view/actividadesView.php?error=agregadaPaquete");
             }    
 
         } else {
@@ -95,10 +97,12 @@ include_once './actividadBusiness.php';
         $actividadBusiness = new ActividadBusiness();
         $result = $actividadBusiness->eliminarActividad($id);
          if ($result==0) {
-            header("location: ../view/actividadesView.php?success=delete");
-        }else{
-            header("location: ../view/actividadesView.php?error=AgregadaRequisitos");
-         }
+                header("location: ../view/actividadesView.php?success=delete");
+            }else if($result==1){
+                header("location: ../view/actividadesView.php?error=AgregadaRequisitos");
+            }else{
+                header("location: ../view/actividadesView.php?error=agregadaPaquete");
+            } 
     } else {
         header("location: ../view/actividadesView.php?error=error");
     }

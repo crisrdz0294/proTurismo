@@ -87,13 +87,25 @@
         	if($idTemporal==$id){
         		$retorno=1;
         	}else{
-        		$consultaActualizar = "UPDATE tbactividad SET  nombreactividad= '".$nombre."', descripcionactividad= '".$descripcion."', estadoactividad = ".$estado.", cantidadpersonasactividad = ".$cantidadPersonas.", lugaractividad = '".$lugarActivdad."', distanciahospedajeactividad='".$distanciaHospedaje."',habilidadesactividad='".$habilidadesActividad."',horarioactividad='".$horarioActividad."',idsitioturistico=".$idSitio.",idtipoactividad=".$idTipoActividad." WHERE idactividad= ".$id.";";
+
+        		$consultaMostrar ="SELECT distinct idactividad FROM tbpaqueteturisticoactividad where idactividad=".$id."";
+        		$idActividadAgregada=mysqli_query($conexion,$consultaMostrar);
+
+        		if ($row = mysqli_fetch_row($idActividadAgregada)) {
+            		$idTemporal = trim($row[0]);
+        		}
+
+        		if($idTemporal==$id){
+        			$retorno=2;
+        		}else{
+        			$consultaActualizar = "UPDATE tbactividad SET  nombreactividad= '".$nombre."', descripcionactividad= '".$descripcion."', estadoactividad = ".$estado.", cantidadpersonasactividad = ".$cantidadPersonas.", lugaractividad = '".$lugarActivdad."', distanciahospedajeactividad='".$distanciaHospedaje."',habilidadesactividad='".$habilidadesActividad."',horarioactividad='".$horarioActividad."',idsitioturistico=".$idSitio.",idtipoactividad=".$idTipoActividad." WHERE idactividad= ".$id.";";
 		
-				$result= mysqli_query($conexion,$consultaActualizar);
-				mysqli_close($conexion);
+					$result= mysqli_query($conexion,$consultaActualizar);
+					mysqli_close($conexion);
+        		}
         	}
 
-			return $retorno;
+ 			return $retorno;
 		}
 
 
@@ -114,10 +126,22 @@
         	if($idTemporal==$idactividad){
         		$retorno=1;
         	}else{
-        		$consultaEliminar = "DELETE from tbactividad where idactividad=" . $idactividad . ";";
-       		 	$result = mysqli_query($conexion, $consultaEliminar);
-        		mysqli_close($conexion);
+        		$consultaMostrar="SELECT distinct idactividad FROM tbpaqueteturisticoactividad where idactividad=".$idactividad.";";
+        		$idActividadAgregada=mysqli_query($conexion,$consultaMostrar);
 
+        		if ($row = mysqli_fetch_row($idActividadAgregada)) {
+            		$idTemporal = trim($row[0]);
+        		}
+
+        		if($idTemporal==$idactividad){
+        			$retorno=2;
+        		}else{
+
+					$consultaEliminar="DELETE FROM tbactividad WHERE idactividad =".$idactividad.";";
+
+					$result = mysqli_query($conexion, $consultaEliminar);
+        			mysqli_close($conexion);
+        		}
         	}
         	return $retorno;
 
