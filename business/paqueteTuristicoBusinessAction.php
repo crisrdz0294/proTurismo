@@ -63,10 +63,10 @@ else if (isset($_POST['update'])) {
         $result = $paqueteTuristicoBusiness->actualizarPaqueteTuristico($paqueteTuristico);
 
 
-            if ($result == 1) {
+            if ($result == 0) {
                 header("location: ../view/paqueteTuristicoView.php?success=update");
             } else {
-               header("location: ../view/paqueteTuristicoView.php?error=dbError");
+               header("location: ../view/paqueteTuristicoView.php?error=actividadesAgregadas");
              }
         } else {
             header("location: ../view/paqueteTuristicoView.php?error=emptyField");

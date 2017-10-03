@@ -57,24 +57,38 @@ mysqli_close($conexion);
 }
 
 public function actualizarPaqueteTuristico($PaqueteTuristico){
+
     $con = new Data();
     $conexion = $con->conect();
+    $retorno;
+    $idTemporal=0;
 
     $nombre=$PaqueteTuristico->getNombrePaqueteTuristico();
     $descripcion=$PaqueteTuristico->getDescripcionPaqueteTuristico();
     $id=$PaqueteTuristico->getIdPaqueteTuristico();
     $precio=$PaqueteTuristico->getPrecioPaqueteTuristico();
 
+    $consultaMostrar ="SELECT distinct idpaqueteturistico FROM tbpaqueteturisticoactividad where idpaqueteturistico=".$id."";
+    $idPaquete=mysqli_query($conexion,$consultaMostrar);
 
-$consultaActualizar = "UPDATE tbpaqueteturistico SET  nombrepaqueteturistico= '".$nombre."',
- descripcionpaqueteturistico= '".$descripcion."',
-  preciopaqueteturistico = ".$precio."
-   WHERE idpaqueteturistico= ".$id.";";
+    if ($row = mysqli_fetch_row($idPaquete)) {
+        $idTemporal = trim($row[0]);
+    }
 
-$result= mysqli_query($conexion,$consultaActualizar);
-mysqli_close($conexion);
+    if($idTemporal==$id){
+      $retorno=1;
+    }else{
+        $consultaActualizar = "UPDATE tbpaqueteturistico SET  nombrepaqueteturistico= '".$nombre."',
+        descripcionpaqueteturistico= '".$descripcion."',
+        preciopaqueteturistico = ".$precio."
+        WHERE idpaqueteturistico= ".$id.";";
 
-  return $result;
+        $result= mysqli_query($conexion,$consultaActualizar);
+        mysqli_close($conexion);
+    }
+
+
+  return $retorno;
 }
 
 
