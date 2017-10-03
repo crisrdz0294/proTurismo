@@ -56,45 +56,99 @@
 
 			$con =new Data();
 			$conexion=$con->conect();
+			$retorno;
 
 			$nombrecomercial=$sitioturistico->getNombreComercial();
 		 	$telefonositio=$sitioturistico->getTelefonoSitio();
 		 	$direccionexacta=$sitioturistico->getDireccionExacta();
 		 	$idsitio=$sitioturistico->getIdSitio();
 		 	$sitioWeb=$sitioturistico->getSitioWeb();
-	
-		 	$consultaIdMicroEmpresa="SELECT idsitioturistico from tbfamilia;";	
-		 	$resultado1=mysqli_query($conexion,$consultaIdMicroEmpresa);
-		 	$listaIdSitio = array();
-		 		
-        		while ($row = mysqli_fetch_array($resultado1)) {
+		 	$idTemporal=0;
 
-        			$valores=array("id"=>$row['idsitioturistico']);
-            		array_push($listaIdSitio, $valores);
+		 	$consultaFamilia ="SELECT idsitioturistico FROM tbfamilia where idsitioturistico=".$idsitio."";
+			$idFamilia=mysqli_query($conexion,$consultaFamilia);
 
+			if ($row = mysqli_fetch_row($idFamilia)) {
+            	$idTemporal = trim($row[0]);
+        	}
+
+        	if($idTemporal==$idsitio){
+        		$retorno=1;
+        	}else{
+
+        		$consultaEmpresa ="SELECT idsitioturistico FROM tbmicroempresa where idsitioturistico=".$idsitio."";
+				$idEmpresa=mysqli_query($conexion,$consultaEmpresa);
+		
+				if ($row = mysqli_fetch_row($idEmpresa)) {
+            		$idTemporal = trim($row[0]);
         		}
 
-        	
-		 		for($i=0;$i<count($listaIdSitio);$i++){
-        			
-        			$temporalId=$listaIdSitio[$i];
+        		if($idTemporal==$idsitio){
+        			$retorno=2;
+        		}else{
 
-        			if($temporalId['id']===$idsitio){
-        				
+        			$consultaHospedaje ="SELECT idsitioturistico FROM tbserviciohospedaje where idsitioturistico=".$idsitio."";
+					$idHospedaje=mysqli_query($conexion,$consultaHospedaje);
+		
+					if ($row = mysqli_fetch_row($idHospedaje)) {
+            			$idTemporal = trim($row[0]);
+        			}
+
+        			if($idTemporal==$idsitio){
+        				$retorno=3;
         			}else{
 
-        				$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',telefonositioturistico='".$telefonositio."',direccionexactasitioturistico='".$direccionexacta."', sitiowebsitioturistico='".$sitioWeb."' WHERE idsitioturistico=".$idsitio.";";
+        				$consultaTransporte ="SELECT idsitioturistico FROM tbserviciotransporte where idsitioturistico=".$idsitio."";
+						$idTransporte=mysqli_query($conexion,$consultaTransporte);
+		
+						if ($row = mysqli_fetch_row($idTransporte)) {
+            				$idTemporal = trim($row[0]);
+        				}
 
-		 				$result = mysqli_query($conexion, $consultaActualizar);
-        				mysqli_close($conexion);
-        				return $result;
+        				if($idTemporal==$idsitio){
+        					$retorno=4;
+        				}else{
 
+        					$consultaAlimentacion ="SELECT idsitioturistico FROM tbservicioalimentacion where idsitioturistico=".$idsitio."";
+							$idAlimentacion=mysqli_query($conexion,$consultaAlimentacion);
+		
+							if ($row = mysqli_fetch_row($idAlimentacion)) {
+            					$idTemporal = trim($row[0]);
+        					}
 
+        					if($idTemporal==$idsitio){
+        						$retorno=5;
+        					}else{
+        						
+        						$consultaTrabajoComunal ="SELECT idsitioturistico FROM tbtrabajocomunal where idsitioturistico=".$idsitio."";
+								$idTrabajoComunal=mysqli_query($conexion,$consultaTrabajoComunal);
+		
+								if ($row = mysqli_fetch_row($idTrabajoComunal)) {
+            						$idTemporal = trim($row[0]);
+        						}
+
+        						if($idTemporal==$idsitio){
+        							$retorno=6;
+        						}else{
+        						
+        							$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',telefonositioturistico='".$telefonositio."',direccionexactasitioturistico='".$direccionexacta."', sitiowebsitioturistico='".$sitioWeb."' WHERE idsitioturistico=".$idsitio.";";
+
+		 							$result = mysqli_query($conexion, $consultaActualizar);
+        							mysqli_close($conexion);
+        						
+        					
+        						}
+
+        					
+        					}
+        				}
         			}
-        			
 
         		}
-		 	
+
+       		}	
+
+       		return $retorno;
 
 		}
 
@@ -102,13 +156,98 @@
 
 			$con =new Data();
 			$conexion=$con->conect();
+			$retorno;
 
-			$consultaEliminar="DELETE FROM tbsitioturistico WHERE idsitioturistico=".$idsitioturistico.";";
+			$idTemporal=0;
 
-			$result = mysqli_query($conexion, $consultaEliminar);
-        	mysqli_close($conexion);
+		 	$consultaFamilia ="SELECT idsitioturistico FROM tbfamilia where idsitioturistico=".$idsitioturistico."";
+			$idFamilia=mysqli_query($conexion,$consultaFamilia);
 
-        	return $result;
+			if ($row = mysqli_fetch_row($idFamilia)) {
+            	$idTemporal = trim($row[0]);
+        	}
+
+        	if($idTemporal==$idsitioturistico){
+        		$retorno=1;
+        	}else{
+
+        		$consultaEmpresa ="SELECT idsitioturistico FROM tbmicroempresa where idsitioturistico=".$idsitioturistico."";
+				$idEmpresa=mysqli_query($conexion,$consultaEmpresa);
+		
+				if ($row = mysqli_fetch_row($idEmpresa)) {
+            		$idTemporal = trim($row[0]);
+        		}
+
+        		if($idTemporal==$idsitioturistico){
+        			$retorno=2;
+        		}else{
+
+        			$consultaHospedaje ="SELECT idsitioturistico FROM tbserviciohospedaje where idsitioturistico=".$idsitioturistico."";
+					$idHospedaje=mysqli_query($conexion,$consultaHospedaje);
+		
+					if ($row = mysqli_fetch_row($idHospedaje)) {
+            			$idTemporal = trim($row[0]);
+        			}
+
+        			if($idTemporal==$idsitioturistico){
+        				$retorno=3;
+        			}else{
+
+        				$consultaTransporte ="SELECT idsitioturistico FROM tbserviciotransporte where idsitioturistico=".$idsitioturistico."";
+						$idTransporte=mysqli_query($conexion,$consultaTransporte);
+		
+						if ($row = mysqli_fetch_row($idTransporte)) {
+            				$idTemporal = trim($row[0]);
+        				}
+
+        				if($idTemporal==$idsitioturistico){
+        					$retorno=4;
+        				}else{
+
+        					$consultaAlimentacion ="SELECT idsitioturistico FROM tbservicioalimentacion where idsitioturistico=".$idsitioturistico."";
+							$idAlimentacion=mysqli_query($conexion,$consultaAlimentacion);
+		
+							if ($row = mysqli_fetch_row($idAlimentacion)) {
+            					$idTemporal = trim($row[0]);
+        					}
+
+        					if($idTemporal==$idsitioturistico){
+        						$retorno=5;
+        					}else{
+        						
+        						$consultaTrabajoComunal ="SELECT idsitioturistico FROM tbtrabajocomunal where idsitioturistico=".$idsitioturistico."";
+								$idTrabajoComunal=mysqli_query($conexion,$consultaTrabajoComunal);
+		
+								if ($row = mysqli_fetch_row($idTrabajoComunal)) {
+            						$idTemporal = trim($row[0]);
+        						}
+
+        						if($idTemporal==$idsitioturistico){
+        							$retorno=6;
+        						}else{
+        						
+        					
+        							$consultaEliminar="DELETE FROM tbsitioturistico WHERE idsitioturistico=".$idsitioturistico.";";
+
+									$result = mysqli_query($conexion, $consultaEliminar);
+        							mysqli_close($conexion);	
+        					
+        						}
+
+        					
+        					}
+        				}
+        			}
+
+        		}
+
+       		}	
+
+       		return $retorno;
+
+			
+
+        	
 
 		}
 
