@@ -67,8 +67,10 @@
 					header("location: ../view/sitioturisticoview.php?error=agregadoTransporte");
 				}else if($result==5){
 					header("location: ../view/sitioturisticoview.php?error=agregadoAlimentacion");
-				}else{
+				}else if($result==6){
 					header("location: ../view/sitioturisticoview.php?error=agregadoTrabajoComunal");
+				}else{
+					header("location: ../view/sitioturisticoview.php?error=agregadoActividad");
 				}
 			}else{
 				header("location: ../view/sitioturisticoview.php?error=camposvacios");
@@ -99,8 +101,10 @@
 				header("location: ../view/sitioturisticoview.php?error=agregadoTransporte");
 			}else if($result==5){
 				header("location: ../view/sitioturisticoview.php?error=agregadoAlimentacion");
-			}else{
+			}else if($result==6){
 				header("location: ../view/sitioturisticoview.php?error=agregadoTrabajoComunal");
+			}else{
+				header("location: ../view/sitioturisticoview.php?error=agregadoActividad");
 			}
 
 		}else{

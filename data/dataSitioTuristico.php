@@ -130,13 +130,23 @@
         						if($idTemporal==$idsitio){
         							$retorno=6;
         						}else{
-        						
-        							$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',telefonositioturistico='".$telefonositio."',direccionexactasitioturistico='".$direccionexacta."', sitiowebsitioturistico='".$sitioWeb."' WHERE idsitioturistico=".$idsitio.";";
 
-		 							$result = mysqli_query($conexion, $consultaActualizar);
-        							mysqli_close($conexion);
-        						
-        					
+        							$consultaActividad ="SELECT idsitioturistico FROM tbactividad where idsitioturistico=".$idsitio."";
+									$idActividad=mysqli_query($conexion,$consultaActividad);
+		
+									if ($row = mysqli_fetch_row($idActividad)) {
+            							$idTemporal = trim($row[0]);
+        							}
+
+        							if($idTemporal==$idsitio){
+        								$retorno=7;
+        							}else{
+        								$consultaActualizar="UPDATE tbsitioturistico SET nombrecomercialsitioturistico='".$nombrecomercial."',telefonositioturistico='".$telefonositio."',direccionexactasitioturistico='".$direccionexacta."', sitiowebsitioturistico='".$sitioWeb."' WHERE idsitioturistico=".$idsitio.";";
+
+		 								$result = mysqli_query($conexion, $consultaActualizar);
+        								mysqli_close($conexion);
+        							}
+        							
         						}
 
         					
@@ -225,12 +235,23 @@
         						if($idTemporal==$idsitioturistico){
         							$retorno=6;
         						}else{
-        						
-        					
-        							$consultaEliminar="DELETE FROM tbsitioturistico WHERE idsitioturistico=".$idsitioturistico.";";
 
-									$result = mysqli_query($conexion, $consultaEliminar);
-        							mysqli_close($conexion);	
+        							$consultaActividad ="SELECT idsitioturistico FROM tbactividad where idsitioturistico=".$idsitioturistico."";
+									$idActividad=mysqli_query($conexion,$consultaActividad);
+		
+									if ($row = mysqli_fetch_row($idActividad)) {
+            							$idTemporal = trim($row[0]);
+        							}
+
+        							if($idTemporal==$idsitioturistico){
+        								$retorno=7;
+        							}else{
+        								$consultaEliminar="DELETE FROM tbsitioturistico WHERE idsitioturistico=".$idsitioturistico.";";
+
+										$result = mysqli_query($conexion, $consultaEliminar);
+        								mysqli_close($conexion);
+        							}
+        						
         					
         						}
 
@@ -244,11 +265,6 @@
        		}	
 
        		return $retorno;
-
-			
-
-        	
-
 		}
 
 
