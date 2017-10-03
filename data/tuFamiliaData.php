@@ -3,7 +3,7 @@ include_once 'data.php';
 include '../domain/tuFamilia.php';
 include '../domain/responsable.php';
 include '../domain/sitioTuristico.php';
-
+include '../domain/empresa.php';
 
 class TuFamiliaData{
 
@@ -73,12 +73,12 @@ class TuFamiliaData{
             while ($row = mysqli_fetch_array($result)) {
                 $temporaralResponsable = new Responsable(
 
-                    $row['idresponsable'], 
-                    $row['cedularesponsable'], 
-                    $row['nombreresponsable'], 
+                    $row['idresponsable'],
+                    $row['cedularesponsable'],
+                    $row['nombreresponsable'],
                     $row['primerapellidoresponsable'],
                     $row['segundoapellidoresponsable'],
-                    $row['telefonoresponsable'], 
+                    $row['telefonoresponsable'],
                     $row['emailresponsable']
                 );
 
@@ -105,10 +105,6 @@ class TuFamiliaData{
         }
 
 
-
-
-
-
   public function actualizarFamilia($tuFamilia){
     $con = new Data();
     $conexion = $con->conect();
@@ -121,7 +117,7 @@ class TuFamiliaData{
     $id=$tuFamilia->getIdFamilia();
     $idresponsable=$tuFamilia->getIdResponsable();
     $idSitio=$tuFamilia->getSitioTuristico();
-    
+
 
     $consultaUpdate="UPDATE tbfamilia SET adultosmayoresfamilia=".$mayores." , adultosfamilia=".$adultos.",adolescentesfamilia=".$adolecente.",ninosfamilia=".$ninos.",idresponsable=".$idresponsable.",idsitioturistico=".$idSitio." WHERE idfamilia=".$id.";";
 
@@ -143,6 +139,21 @@ class TuFamiliaData{
     mysqli_close($conexion);
 
         return $result;
+  }
+
+  public function mostrarEmpresas(){
+
+    $con = new Data();
+    $conexion = $con->conect();
+    $consultaMostrar = "SELECT * FROM tbmicroempresa ;";
+    $result = mysqli_query($conexion, $consultaMostrar);
+    mysqli_close($conexion);
+        $empresas = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $empresaNueva = new Empresa($row['idmicroempresa'],$row['nombremicroempresa'],$row['contactotelefonomicroempresa'],$row['emailmicroempresa'],$row['sitiowebmicroempresa'],$row['idsitioturistico'],$row['idresponsable']);
+            array_push($empresas, $empresaNueva);
+        }
+        return $empresas;
   }
 
 }

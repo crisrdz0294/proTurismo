@@ -4,6 +4,7 @@
 	include '../domain/empresa.php';
 	include '../domain/sitioTuristico.php';
    include '../domain/responsable.php';
+	    include '../domain/tuFamilia.php';
 
 	class EmpresaData{
 
@@ -60,6 +61,21 @@
             	array_push($empresas, $empresaNueva);
         	}
         	return $empresas;
+		}
+		public function mostrarTodosFamilias(){
+
+			$con = new Data();
+			$conexion = $con->conect();
+			$consultaMostrar = "SELECT * FROM tbfamilia;";
+			$result = mysqli_query($conexion, $consultaMostrar);
+			mysqli_close($conexion);
+
+					$todasFamilias = [];
+					while ($row = mysqli_fetch_array($result)) {
+							$tempFamilia = new TuFamilia($row['idfamilia'], $row['adultosmayoresfamilia'], $row['adultosfamilia'], $row['adolescentesfamilia'], $row['ninosfamilia'],$row['idresponsable'],$row['idsitioturistico']);
+							array_push($todasFamilias, $tempFamilia);
+					}
+					return $todasFamilias;
 		}
 
 		public function actualizarEmpresa($empresa){

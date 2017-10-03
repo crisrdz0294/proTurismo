@@ -2,18 +2,18 @@
 
 include '../data/responsableData.php';
 
-class ResponsableBusiness 
+class ResponsableBusiness
 {
     private $responsable;
-    
+
     public function ResponsableBusiness()
     {
         $this->responsable = new responsableData();
-        
+
     }
 
 
-    
+
 	public function insertarResponsable($responsable){
 		return $this->responsable->insertarResponsable($responsable);
 	}
@@ -29,5 +29,7 @@ class ResponsableBusiness
 	public function eliminarResponsable($idResponsable){
 		return $this->responsable->eliminarResponsable($idResponsable);
 	}
-}
 
+
+
+}

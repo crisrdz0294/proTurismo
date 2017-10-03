@@ -9,7 +9,7 @@
 include '../business/empresaBusiness.php';
 $empresaBusiness = new EmpresaBusiness();
 $mostrarSitiosTuristicos=$empresaBusiness->mostrarSitios();
-$mostrarResponsables=$empresaBusiness->mostrarTodosResponsables();
+$mostrarResponsables=$empresaBusiness->obtenerResponsablesDisponibles();
  ?>
 </head>
 <body>
@@ -120,9 +120,13 @@ echo ' </select><br><br>';
 																				echo '<td>
 	 																		 <select id="idEncargado" name="idEncargado">';
 
+                                                   $listaRes=$empresaBusiness->obtenerResponsablesDisponiblesMasActual($empresa->getIdResponsableEmpresa());
 
-	 																					 foreach ($todosEncargados as $responsable){
+	 																					 foreach ($listaRes as $responsable){
+                                              if($responsable->getIdResponsable()==$empresa->getIdResponsableEmpresa()){
+																								 echo '<option selected value="'.$responsable->getIdResponsable().'">'.$responsable->getNombreResponsable().'</option>;';
 
+																							}
 	 																					 echo '<option value="'.$responsable->getIdResponsable().'">'.$responsable->getNombreResponsable().'</option>;';
 
 	 																						}
