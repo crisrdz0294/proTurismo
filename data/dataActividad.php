@@ -74,12 +74,26 @@
 			$habilidadesActividad=$actividad->getHabilidadesActividad();
 			$id=$actividad->getIdActividad();
 
-			$consultaActualizar = "UPDATE tbactividad SET  nombreactividad= '".$nombre."', descripcionactividad= '".$descripcion."', estadoactividad = ".$estado.", cantidadpersonasactividad = ".$cantidadPersonas.", lugaractividad = '".$lugarActivdad."', distanciahospedajeactividad='".$distanciaHospedaje."',habilidadesactividad='".$habilidadesActividad."',horarioactividad='".$horarioActividad."',idsitioturistico=".$idSitio.",idtipoactividad=".$idTipoActividad." WHERE idactividad= ".$id.";";
-		
-			$result= mysqli_query($conexion,$consultaActualizar);
-			mysqli_close($conexion);
+			$retorno;
+			$idTemporal=0;
 
-        	return $result;
+		 	$consultaActividad ="SELECT idactividad FROM tbrequisitos where idactividad=".$id."";
+			$idActividad=mysqli_query($conexion,$consultaActividad);
+
+			if ($row = mysqli_fetch_row($idActividad)) {
+            	$idTemporal = trim($row[0]);
+        	}
+
+        	if($idTemporal==$id){
+        		$retorno=1;
+        	}else{
+        		$consultaActualizar = "UPDATE tbactividad SET  nombreactividad= '".$nombre."', descripcionactividad= '".$descripcion."', estadoactividad = ".$estado.", cantidadpersonasactividad = ".$cantidadPersonas.", lugaractividad = '".$lugarActivdad."', distanciahospedajeactividad='".$distanciaHospedaje."',habilidadesactividad='".$habilidadesActividad."',horarioactividad='".$horarioActividad."',idsitioturistico=".$idSitio.",idtipoactividad=".$idTipoActividad." WHERE idactividad= ".$id.";";
+		
+				$result= mysqli_query($conexion,$consultaActualizar);
+				mysqli_close($conexion);
+        	}
+
+			return $retorno;
 		}
 
 
@@ -87,12 +101,25 @@
 			$con = new Data();
 			$conexion = $con->conect();
 
+			$retorno;
+			$idTemporal=0;
 
-			 $consultaEliminar = "DELETE from tbactividad where idactividad=" . $idactividad . ";";
-       		 $result = mysqli_query($conexion, $consultaEliminar);
-        	mysqli_close($conexion);
+		 	$consultaActividad ="SELECT idactividad FROM tbrequisitos where idactividad=".$idactividad."";
+			$idActividad=mysqli_query($conexion,$consultaActividad);
 
-        	return $result;
+			if ($row = mysqli_fetch_row($idActividad)) {
+            	$idTemporal = trim($row[0]);
+        	}
+
+        	if($idTemporal==$idactividad){
+        		$retorno=1;
+        	}else{
+        		$consultaEliminar = "DELETE from tbactividad where idactividad=" . $idactividad . ";";
+       		 	$result = mysqli_query($conexion, $consultaEliminar);
+        		mysqli_close($conexion);
+
+        	}
+        	return $retorno;
 
 		}
 

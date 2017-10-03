@@ -16,6 +16,13 @@
          $sitioBusiness=new SitioTuristicoBusiness();
          $listaSitios= $sitioBusiness->mostrarTodosSitiosTuristicos();
 
+         if(empty($listaSitios)){
+            echo "<h3>No se pueden crear actividades porque no hay sitios turisticos ingresados en el sistema</h3>";
+          ?>
+          <br><a href="../view/sitioturisticoview.php">Agregar Sitio Turistico</a>
+          <?php  
+          }else{
+
      ?>
 
 </head>
@@ -224,4 +231,7 @@
     </footer>
 
 </body>
+<?php  
+  }
+?>
 </html>
