@@ -9,19 +9,7 @@
 	
 </head>
 <body>
-
-
-
-	
-    <br>
-	<table border="1">
-		
-		  <tr>
-            <th>Nombre </th>
-            <th>Descripcion </th>
-            <th>Opcion 1</th>
-        </tr>
-
+<br>
         <?php	
             $paqueteBusiness=new paqueteTuristicoBusiness();
             $idPaquete = $_GET['idpaquete'];
@@ -34,14 +22,31 @@
                 echo "Nombre del paquete turistico:  ".$temporalNombre['nombrepaquete']."";
 
             }
-        ?><br>
+
+            $listaActividades=$paqueteActividadBusiness->obtenerActividadesAgregadas($idPaquete);
+
+            if(empty($listaActividades)){
+                echo "<h3>No se pueden agregar actividades al paquete porque no hay actividades ingresadas en el sistema</h3>";?>
+                <a href="../view/actividadesView.php">Agregar Actividades</a>
+        
+            <?php  
+            }else{
+        ?>
+
+         <br>
+        <table border="1">
+        
+          <tr>
+            <th>Nombre </th>
+            <th>Descripcion </th>
+            <th>Opcion 1</th>
+        </tr>
+        
         
         <h4>Lista de Actividades</h4>
         <?php
            
-			$listaActividades=$paqueteActividadBusiness->obtenerActividadesAgregadas($idPaquete);
-            
-
+        
         	foreach ($listaActividades as $actividad) {
                 	echo '<tr>';
 
@@ -65,6 +70,9 @@
         ?>
 
 	</table>
+    <?php
+        }
+    ?>
 
 </body>
 </html>

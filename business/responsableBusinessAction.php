@@ -91,7 +91,7 @@ if (isset($_POST['update']))
 
             if ($result == 1) 
             {
-                header("location: ../view/responsableView.php?success=inserted");
+                header("location: ../view/responsableView.php?success=update");
             } else {
                 header("location: ../view/responsableView.php?error=dbError");
             }

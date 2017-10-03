@@ -68,7 +68,7 @@ include_once './tuFamiliaBusiness.php';
 
                     if ($result == 1) {
 
-                          header("location: ../view/tuFamiliaView.php?success=inserted");
+                          header("location: ../view/tuFamiliaView.php?success=update");
                     } else {
                           header("location: ../view/tuFamiliaView.php?error=dbError");
                      }

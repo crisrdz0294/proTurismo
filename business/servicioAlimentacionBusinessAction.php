@@ -87,7 +87,7 @@ else if (isset($_POST['update']))
 
 
             if ($result == 1) {
-                header("location: ../view/servicioAlimentacionView.php?success=inserted");
+                header("location: ../view/servicioAlimentacionView.php?success=update");
             } else {
                header("location: ../view/servicioAlimentacionView.php?error=dbError");
              }

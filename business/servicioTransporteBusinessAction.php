@@ -90,7 +90,7 @@ else if (isset($_POST['update']))
             $result = $serviciotransporteBusiness->actualizarServicioTransporte($servicioTransporte);                
 
             if ($result == 1) {
-                header("location: ../view/servicioTransporteView.php?success=inserted");
+                header("location: ../view/servicioTransporteView.php?success=update");
             } else {
                header("location: ../view/servicioTransporteView.php?error=dbError");
              }

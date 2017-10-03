@@ -67,7 +67,7 @@ include './tuRoomBusisnes.php';
                     $result = $tuRoonBusisnes->actualizarTuRoom($nuevoCuarto);
 
                 if ($result == 1) {
-                         header("location: ../view/tuRoomView.php?success=inserted");
+                         header("location: ../view/tuRoomView.php?success=update");
                     } else {
                         header("location: ../view/tuRoomView.php?error=dbError");
                     }
