@@ -6,6 +6,12 @@
 		include '../business/sitioTuristicoBusiness.php';
          $sitioBusiness=new SitioTuristicoBusiness();
          $listaSitios= $sitioBusiness->mostrarTodosSitiosTuristicos();
+          if(empty($listaSitios)){
+            echo "<h3>No se pueden crear trabajos comunales porque no hay sitios turisticos ingresados en el sistema</h3>";
+          ?>
+          <br><a href="../view/sitioturisticoview.php">Crear Sitio Turistico</a>
+          <?php  
+          }else{
 	?>
 </head>
 
@@ -111,4 +117,7 @@
 		</table>
 
 </body>
+<?php  
+  }
+?>
 </html>

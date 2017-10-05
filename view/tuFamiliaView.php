@@ -15,9 +15,21 @@
 
 
                 $listaSitios = $tuFamiliaBusiness->mostrarTodosSitiosTuristicos();
+
+                if(empty($listaResponsables) && empty($listaSitios)){
+                    echo "<h3>No se pueden crear familias porque no hay responsables y sitios turisticos en el sistema</h3>";
+                    ?>
+                    <br><a href="../index.php">Menu Principal</a>
+                <?php  
+                    }else if(empty($listaResponsables)){
+                        echo "<h3>No se pueden crear familias porque no hay responsables ingresados en el sistema</h3?>";?>
+                      <br><br><a href="../view/responsableView.php">Crear Responsables</a>
+                      <?php } else if(empty($listaSitios)){
+                         echo "<h3>No se pueden crear familias porque no hay sitios turisticos en el sistema</h3>";?>
+                         <br><a href="../view/sitioturisticoview.php">Crear Sitios Turisticos</a>
+                         <?php }else {
+
 ?>
-
-
 
 
 
@@ -186,4 +198,8 @@
             ?>
     </table>
 </body>
+
+<?php  
+  }
+?>
 </html>

@@ -5,11 +5,25 @@
 	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Turismo Rural</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<?php
-include '../business/empresaBusiness.php';
-$empresaBusiness = new EmpresaBusiness();
-$mostrarSitiosTuristicos=$empresaBusiness->mostrarSitios();
-$mostrarResponsables=$empresaBusiness->obtenerResponsablesDisponibles();
+  <?php
+  include '../business/empresaBusiness.php';
+  $empresaBusiness = new EmpresaBusiness();
+  $mostrarSitiosTuristicos=$empresaBusiness->mostrarSitios();
+  $mostrarResponsables=$empresaBusiness->obtenerResponsablesDisponibles();
+
+    if(empty($mostrarResponsables) && empty($mostrarSitiosTuristicos)){
+                    echo "<h3>No se pueden crear microempresas porque no hay responsables y sitios turisticos en el sistema</h3>";
+                    ?>
+                    <br><a href="../index.php">Menu Principal</a>
+                <?php  
+                    }else if(empty($mostrarResponsables)){
+                        echo "<h3>No se pueden crear microempresas porque no hay responsables ingresados en el sistema</h3?>";?>
+                      <br><br><a href="../view/responsableView.php">Crear Responsables</a>
+                      <?php } else if(empty($mostrarSitiosTuristicos)){
+                         echo "<h3>No se pueden crear microempresas porque no hay sitios turisticos en el sistema</h3>";?>
+                         <br><a href="../view/sitioturisticoview.php">Crear Sitios Turisticos</a>
+                         <?php }else {
+
  ?>
 </head>
 <body>
@@ -150,4 +164,8 @@ echo ' </select><br><br>';
       ?>
 
 </body>
+
+<?php  
+  }
+?>
 </html>

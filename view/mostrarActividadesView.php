@@ -4,24 +4,20 @@
 	<title></title>
 
 <?php
-        include '../business/paqueteTuristicoBusiness.php';
+        
 ?>
 	
 </head>
 <body>
 <br>
-        <?php	
+        <?php
+            include '../business/paqueteTuristicoBusiness.php';
             $paqueteBusiness=new paqueteTuristicoBusiness();
             $idPaquete = $_GET['idpaquete'];
 			include '../business/paqueteActividadBusiness.php';
 			$paqueteActividadBusiness=new PaqueteActividadBusiness();
             $nombrePaquete=$paqueteBusiness->obtenerNombrePaquete($idPaquete);
 
-            for($j=0;$j<count($nombrePaquete);$j++){
-                $temporalNombre=$nombrePaquete[$j];
-                echo "Nombre del paquete turistico:  ".$temporalNombre['nombrepaquete']."";
-
-            }
 
             $listaActividades=$paqueteActividadBusiness->obtenerActividadesAgregadas($idPaquete);
 
@@ -31,6 +27,12 @@
         
             <?php  
             }else{
+
+                  for($j=0;$j<count($nombrePaquete);$j++){
+                $temporalNombre=$nombrePaquete[$j];
+                echo "Nombre del paquete turistico:  ".$temporalNombre['nombrepaquete']."";
+
+            }
         ?>
 
          <br>

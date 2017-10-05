@@ -11,6 +11,13 @@
     $requisitos = new requisitosActividadBusiness();
     $mostrarAct=$requisitos->mostrarActividades();
 
+    if(empty($mostrarAct)){
+            echo "<h3>No se pueden crear requisitos porque no hay actividades ingresadas en el sistema</h3>";
+          ?>
+          <br><a href="../view/actividadesView.php">Crear Actividades</a>
+          <?php  
+          }else{
+
      ?>
 
 </head>
@@ -121,4 +128,8 @@
     </footer>
 
 </body>
+
+<?php  
+  }
+?>
 </html>
