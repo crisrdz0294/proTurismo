@@ -1,16 +1,17 @@
 <?php
-	/*require('../data/data2.php');
+	require('../data/data2.php');
 	$query="SELECT * from tbprovincia";
-	$resultado=$mysqli->query($query);*/
+	$resultado=$mysqli->query($query);
  ?>
 <html>
 	<head>
 
 		<script src="../js/jquery-3.2.1.js"></script>
-		<script src="../js/jsSitioTuristico-3.2.1.js"></script>
+		 
 
-<!--
+
 		<script language="javascript">
+		
 			$(document).ready(function(){
 				$("#provincia").change(function () {
  
@@ -35,7 +36,9 @@
 					});
 				})
 			});
-		</script>-->
+
+			
+		</script>
 	</head>
 	<body>
 
@@ -57,7 +60,7 @@
 
 				<?php 
 				}
-				?>     		
+				?>   		
 		</select><br><br>
 		Canton del sitio:<br>
 		<select id="canton" name="canton"></select><br><br>
