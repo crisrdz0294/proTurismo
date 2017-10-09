@@ -1,6 +1,6 @@
 <?php
 
-include_once './tuFamiliaBusiness.php';
+include_once './familiaBusiness.php';
 
  if (isset($_POST['guardarfamilia'])) {
 
@@ -17,24 +17,24 @@ include_once './tuFamiliaBusiness.php';
 
                 if (is_numeric($mayores)) {
 
-                    $familia = new TuFamilia(0,$mayores,$adultos,$adolecentes,$ninos,$idrespon,$idSitio);
-                    $familiaBis = new TuFamiliaBusiness();
+                    $familia = new Familia(0,$mayores,$adultos,$adolecentes,$ninos,$idrespon,$idSitio);
+                    $familiaBis = new FamiliaBusiness();
 
                     $result = $familiaBis->insertarFamilias($familia);
 
                     if ($result == 1) {
-                         header("location: ../view/tuFamiliaView.php?success=inserted");
+                         header("location: ../view/familiaView.php?success=inserted");
                     } else {
-                        header("location: ../view/tuFamiliaView.php?error=dbError");
+                        header("location: ../view/familiaView.php?error=dbError");
                     }
             } else {
-                header("location: ../view/tuFamiliaView.php?error=numberFormat");
+                header("location: ../view/familiaView.php?error=numberFormat");
             }
         } else {
-            header("location: ../view/tuFamiliaView.php?error=emptyField");
+            header("location: ../view/familiaView.php?error=emptyField");
         }
     } else {
-        header("location: ../view/tuFamiliaView.php?error=error");
+        header("location: ../view/familiaView.php?error=error");
     }
 }else if (isset($_POST['update'])) {
 
@@ -61,25 +61,25 @@ include_once './tuFamiliaBusiness.php';
         if ( strlen($mayores)>=0 && strlen($adultos)>=0 && strlen($adolecentes)>=0 && strlen($ninos)>=0 ) {
             if (is_numeric($mayores)) {
              
-              $familia = new TuFamilia($id,$mayores,$adultos,$adolecentes,$ninos,$idrespon,$idSitio);
-              $familiaBis = new TuFamiliaBusiness();
+              $familia = new Familia($id,$mayores,$adultos,$adolecentes,$ninos,$idrespon,$idSitio);
+              $familiaBis = new FamiliaBusiness();
 
               $result = $familiaBis->actualizarFamilias($familia);
 
                     if ($result == 1) {
 
-                          header("location: ../view/tuFamiliaView.php?success=update");
+                          header("location: ../view/familiaView.php?success=update");
                     } else {
-                          header("location: ../view/tuFamiliaView.php?error=dbError");
+                          header("location: ../view/familiaView.php?error=dbError");
                      }
             } else {
-                  header("location: ../view/tuFamiliaView.php?error=numberFormat");
+                  header("location: ../view/familiaView.php?error=numberFormat");
             }
         } else {
-              header("location: ../view/tuFamiliaView.php?error=emptyField");
+              header("location: ../view/familiaView.php?error=emptyField");
          }
          } else {
-                      header("location: ../view/tuFamiliaView.php?error=error");
+                      header("location: ../view/familiaView.php?error=error");
         }
 
 
@@ -89,16 +89,16 @@ include_once './tuFamiliaBusiness.php';
 
         $id = $_POST['idfamilia'];
 
-        $familiaBis = new TuFamiliaBusiness();
+        $familiaBis = new FamiliaBusiness();
 
         $result = $familiaBis->eliminarFamilias($id);
         if ($result == 1) {
-            header("location: ../view/tuFamiliaView.php?success=deleted");
+            header("location: ../view/familiaView.php?success=deleted");
         } else {
-            header("location: ../view/tuFamiliaView.php?error=dbError");
+            header("location: ../view/familiaView.php?error=dbError");
         }
     } else {
-        header("location: ../view/tuFamiliaView.php?error=error");
+        header("location: ../view/familiaView.php?error=error");
     }
 }
 

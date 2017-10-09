@@ -1,15 +1,15 @@
 <?php
 
 include_once  'data.php';
-include '../domain/tuRoom.php';
+include '../domain/servicioHabitacion.php';
 include '../domain/sitioTuristico.php';
 
 
-class TuRoomData {
+class ServicioHabitacionData {
 
-    function TuRoomData(){}
+    function ServicioHabitacionData(){}
 
-    public function insertTuRoom($tuRoom){
+    public function insertServicioHabitacion($servicioHabitacion){
         $con= new Data();
         $conexion=$con->conect();
 
@@ -21,17 +21,17 @@ class TuRoomData {
             	$idSiguiente = trim($row[0]) + 1;
         }
 
-           $internet=$tuRoom->getInternetHabitacion();
-           $cable=$tuRoom->getCableHabitacion();
-           $cama=$tuRoom->getCamaHabitacion();
-           $aire=$tuRoom->getAireAcondicionadoHabitacion();
-           $ventilador=$tuRoom->getVentiladorHabitacion();
-           $vista=$tuRoom->getVistaHabitacion();
-           $camas=$tuRoom->getCantidadCamasHabitacion();
-           $personas=$tuRoom->getCantidadPersonasHabitacion();
-           $acceso=$tuRoom->getAccesibilidadHabitacion();
-           $banos=$tuRoom->getBanosHabitacion();
-           $idSitio=$tuRoom->getIdSitio();
+           $internet=$servicioHabitacion->getInternetHabitacion();
+           $cable=$servicioHabitacion->getCableHabitacion();
+           $cama=$servicioHabitacion->getCamaHabitacion();
+           $aire=$servicioHabitacion->getAireAcondicionadoHabitacion();
+           $ventilador=$servicioHabitacion->getVentiladorHabitacion();
+           $vista=$servicioHabitacion->getVistaHabitacion();
+           $camas=$servicioHabitacion->getCantidadCamasHabitacion();
+           $personas=$servicioHabitacion->getCantidadPersonasHabitacion();
+           $acceso=$servicioHabitacion->getAccesibilidadHabitacion();
+           $banos=$servicioHabitacion->getBanosHabitacion();
+           $idSitio=$servicioHabitacion->getIdSitio();
 
            $consultaInsertar="INSERT INTO tbserviciohospedaje
             VALUES (".$idSiguiente.",
@@ -63,7 +63,7 @@ class TuRoomData {
         	$tuRoom = [];
         	while ($row = mysqli_fetch_array($result)) {
 
-            	$temporalHabitacion = new TuRoom(
+            	$temporalHabitacion = new ServicioHabitacion(
               $row['tipocamaserviciohospedaje'],
                $row['internetserviciohospedaje'],
                 $row['aireacondicionadoserviciohospedaje'],
@@ -85,22 +85,22 @@ class TuRoomData {
 		}
 
 
-		public function actualizarHabitacion($tuRoom){
+		public function actualizarHabitacion($servicioHabitacion){
 
 			$con = new Data();
 			$conexion = $con->conect();
-                 $idRoom=$tuRoom->getIdHabitacion();
-                 $internet=$tuRoom->getInternetHabitacion();
-                 $cable=$tuRoom->getCableHabitacion();
-                 $cama=$tuRoom->getCamaHabitacion();
-                 $aire=$tuRoom->getAireAcondicionadoHabitacion();
-                 $ventilador=$tuRoom->getVentiladorHabitacion();
-                 $vista=$tuRoom->getVistaHabitacion();
-                 $camas=$tuRoom->getCantidadCamasHabitacion();
-                 $personas=$tuRoom->getCantidadPersonasHabitacion();
-                 $acceso=$tuRoom->getAccesibilidadHabitacion();
-                 $banos=$tuRoom->getBanosHabitacion();
-                 $idSitio=$tuRoom->getIdSitio();
+                 $idRoom=$servicioHabitacion->getIdHabitacion();
+                 $internet=$servicioHabitacion->getInternetHabitacion();
+                 $cable=$servicioHabitacion->getCableHabitacion();
+                 $cama=$servicioHabitacion->getCamaHabitacion();
+                 $aire=$servicioHabitacion->getAireAcondicionadoHabitacion();
+                 $ventilador=$servicioHabitacion->getVentiladorHabitacion();
+                 $vista=$servicioHabitacion->getVistaHabitacion();
+                 $camas=$servicioHabitacion->getCantidadCamasHabitacion();
+                 $personas=$servicioHabitacion->getCantidadPersonasHabitacion();
+                 $acceso=$servicioHabitacion->getAccesibilidadHabitacion();
+                 $banos=$servicioHabitacion->getBanosHabitacion();
+                 $idSitio=$servicioHabitacion->getIdSitio();
 
 
 			 $consultaActualizar = "UPDATE tbserviciohospedaje SET tipocamaserviciohospedaje= '".$cama."',
@@ -121,11 +121,11 @@ class TuRoomData {
         	return $result;
 		}
 
-		public function eliminarHabitacion($idTuRoom){
+		public function eliminarHabitacion($idServicioHabitacion){
 			$con = new Data();
 			$conexion = $con->conect();
 
-			 $consultaEliminar = "DELETE from tbserviciohospedaje where idserviciohospedaje=" . $idTuRoom . ";";
+			 $consultaEliminar = "DELETE from tbserviciohospedaje where idserviciohospedaje=" . $idServicioHabitacion . ";";
        		 $result = mysqli_query($conexion, $consultaEliminar);
         	mysqli_close($conexion);
 

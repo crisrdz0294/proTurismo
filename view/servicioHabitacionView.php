@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-    include '../business/tuRoomBusisnes.php';
+    include '../business/servicioHabitacionBusisnes.php';
 
-    $tuRoomBusisnes= new TuRoomBusisnes();
+    $servicioHabitacionBusisnes= new ServicioHabitacionBusisnes();
 
-    $listasitios=$tuRoomBusisnes->mostrarSitios();
+    $listasitios=$servicioHabitacionBusisnes->mostrarSitios();
 
      if(empty($listasitios)){
             echo "<h3>No se pueden crear servicios de habitacion porque no hay sitios turisticos ingresados en el sistema</h3>";
@@ -16,13 +16,13 @@
 ?>
 
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"> 
         <title>Manipular</title>
 
     </head>
     <body>
         <h1>Registrar Habitacion</h1>
-        <form id="formulario" method="post" action="../business/tuRoomAction.php">
+        <form id="formulario" method="post" action="../business/servicioHabitacionAction.php">
                 Estilo de cama:
                     <select name="estiloCama">
                         <option value="individual">INDIVIDUAL</option>
@@ -128,15 +128,15 @@
                 </tr>
 
                 <?php
-                    $tuRoomdBusiness = new TuRoomBusisnes();
-                    $todosHabitaciones= $tuRoomdBusiness->mostrarTuRoom();
-                    $sitios=$tuRoomBusisnes->mostrarSitios();
-                    foreach ($todosHabitaciones as $tuRoom) {
-                        echo '<form method="post" enctype="multipart/form-data" action="../business/tuRoomAction.php">';
-                        echo '<input type="hidden" name="idhabitacion" id="idhabitacion" value="' . $tuRoom->getIdHabitacion().'">';
+                    $servicioHabitacionBusiness = new ServicioHabitacionBusisnes();
+                    $todosHabitaciones= $servicioHabitacionBusiness->mostrarServicioHabitacion();
+                    $sitios=$servicioHabitacionBusisnes->mostrarSitios();
+                    foreach ($todosHabitaciones as $servicioHabitacion) {
+                        echo '<form method="post" enctype="multipart/form-data" action="../business/servicioHabitacionAction.php">';
+                        echo '<input type="hidden" name="idhabitacion" id="idhabitacion" value="' . $servicioHabitacion->getIdHabitacion().'">';
                         echo '<tr>';
 
-                        switch ($tuRoom->getCamaHabitacion()) {
+                        switch ($servicioHabitacion->getCamaHabitacion()) {
 
                             case 'individual':
                                 echo '<td><select name="estiloCama" id="estiloCama">
@@ -174,9 +174,9 @@
                         }
 
 
-                         echo '<td><input type="number" name="cantidadcamas" value="'.$tuRoom->getCantidadCamasHabitacion().'"/></td>';
+                         echo '<td><input type="number" name="cantidadcamas" value="'.$servicioHabitacion->getCantidadCamasHabitacion().'"/></td>';
 
-                        if($tuRoom->getInternetHabitacion()==0){
+                        if($servicioHabitacion->getInternetHabitacion()==0){
                             echo '<td><select name="cable" id="cable">
                                          <option selected value="0">NO DISPONIBLE</option>
                                            <option  value="1">DISPONIBLE</option>
@@ -194,7 +194,7 @@
 
 
 
-                          if ($tuRoom->getInternetHabitacion()==0) {
+                          if ($servicioHabitacion->getInternetHabitacion()==0) {
                             echo '<td><select name="internet" id="internet">
                                 <option selected value="0">NO DISPONIBLE</option>
                                   <option value="1">DISPONIBLE</option>
@@ -208,7 +208,7 @@
                             </td>';
                           }
 
-                                                    if ($tuRoom->getAireAcondicionadoHabitacion()==0) {
+                                                    if ($servicioHabitacion->getAireAcondicionadoHabitacion()==0) {
                                                       echo '<td><select name="aireAcondicionado" id="aireAcondicionado">
                                                           <option selected value="0">NO DISPONIBLE</option>
                                                             <option value="1">DISPONIBLE</option>
@@ -225,7 +225,7 @@
 
 
 
-                        switch ($tuRoom->getVentiladorHabitacion()) {
+                        switch ($servicioHabitacion->getVentiladorHabitacion()) {
 
                             case '0':
                                  echo '<td><select name="ventilador" id="ventilador">
@@ -248,7 +248,7 @@
                                 break;
                         }
 
-                        switch ($tuRoom->getBanosHabitacion()) {
+                        switch ($servicioHabitacion->getBanosHabitacion()) {
 
                             case '0':
                                  echo '<td><select name="banos" id="banos">
@@ -273,12 +273,12 @@
 
 
 
-                      echo '<td>  <textarea type="text" name="vista" placeholder="Describa la vista que tiene la habitacion">'.$tuRoom->getVistaHabitacion().'</textarea></td>';
+                      echo '<td>  <textarea type="text" name="vista" placeholder="Describa la vista que tiene la habitacion">'.$servicioHabitacion->getVistaHabitacion().'</textarea></td>';
 
-                     echo '<td><input type="number" name="cantidadpersonas" value="'.$tuRoom->getCantidadPersonasHabitacion().'"/></td>';
+                     echo '<td><input type="number" name="cantidadpersonas" value="'.$servicioHabitacion->getCantidadPersonasHabitacion().'"/></td>';
 
 
-                     switch ($tuRoom->getAccesibilidadHabitacion()) {
+                     switch ($servicioHabitacion->getAccesibilidadHabitacion()) {
 
                          case '0':
                               echo '<td><select name="acceso" id="acceso">

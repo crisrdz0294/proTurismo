@@ -13,7 +13,6 @@
 
 		
 
-
 		public function insertarTransporteBusiness($servicioTransporte){
 			return $this->servicioTransporteData->insertarServicioTransporte($servicioTransporte);
 		}

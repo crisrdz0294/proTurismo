@@ -1,6 +1,6 @@
 <?php
 
-include './tuRoomBusisnes.php';
+include './ServicioHabitacionBusisnes.php';
 
     if (isset($_POST['enviarFormulario'])) {
 
@@ -22,22 +22,22 @@ include './tuRoomBusisnes.php';
             && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0) {
 
 
-                    $nuevoCuarto = new TuRoom($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
+                    $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
 
-                    $tuRoonBusisnes = new TuRoomBusisnes();
+                    $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
 
-                    $result = $tuRoonBusisnes->insertTuRoom($nuevoCuarto);
+                    $result = $servicioHabitacionBusisnes->insertServicioHabitacion($nuevoCuarto);
 
                     if ($result == 1) {
-                         header("location: ../view/tuRoomView.php?success=inserted");
+                         header("location: ../view/servicioHabitacionView.php?success=inserted");
                     } else {
-                        header("location: ../view/tuRoomView.php?error=dbError");
+                        header("location: ../view/servicioHabitacionView.php?error=dbError");
                     }
             } else {
-                header("location: ../view/tuRoomView.php?error=numberFormat");
+                header("location: ../view/servicioHabitacionView.php?error=numberFormat");
             }
         } else {
-            header("location: ../view/tuRoomView.php?error=emptyField");
+            header("location: ../view/servicioHabitacionView.php?error=emptyField");
         }
 
     }else if (isset($_POST['update'])) {
@@ -60,40 +60,40 @@ include './tuRoomBusisnes.php';
             if (strlen($cama) >=0 && strlen($aire) >= 0 && strlen($inter) >= 0&& strlen($cable) >= 0
             && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0) {
             if (is_numeric($id)) {
-                  $nuevoCuarto = new TuRoom($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
+                  $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
 
-                    $tuRoonBusisnes = new TuRoomBusisnes();
+                    $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
 
-                    $result = $tuRoonBusisnes->actualizarTuRoom($nuevoCuarto);
+                    $result = $servicioHabitacionBusisnes->actualizarServicioHabitacion($nuevoCuarto);
 
                 if ($result == 1) {
-                         header("location: ../view/tuRoomView.php?success=update");
+                         header("location: ../view/servicioHabitacionView.php?success=update");
                     } else {
-                        header("location: ../view/tuRoomView.php?error=dbError");
+                        header("location: ../view/servicioHabitacionView.php?error=dbError");
                     }
             } else {
-                header("location: ../view/tuRoomView.php?error=numberFormat");
+                header("location: ../view/servicioHabitacionView.php?error=numberFormat");
             }
         } else {
-            header("location: ../view/tuRoomView.php?error=emptyField");
+            header("location: ../view/servicioHabitacionView.php?error=emptyField");
         }
     } else {
-        header("location: ../view/tuRoomView.php?error=error");
+        header("location: ../view/servicioHabitacionView.php?error=error");
     }
 } else if (isset($_POST['delete'])) {
 
     if (isset($_POST['idhabitacion'])) {
 
         $id = $_POST['idhabitacion'];
-        $tuRoonBusisnes = new TuRoomBusisnes();
-        $result = $tuRoonBusisnes->eliminarTuRoom($id);
+        $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
+        $result = $servicioHabitacionBusisnes->eliminarServicioHabitacion($id);
 
         if ($result == 1) {
-            header("location: ../view/tuRoomView.php?success=deleted");
+            header("location: ../view/servicioHabitacionView.php?success=deleted");
         } else {
-            header("location: ../view/tuRoomView.php?error=dbError");
+            header("location: ../view/servicioHabitacionView.php?error=dbError");
         }
     } else {
-        header("location: ../view/tuRoomView.php?error=error");
+        header("location: ../view/servicioHabitacionView.php?error=error");
     }
 }

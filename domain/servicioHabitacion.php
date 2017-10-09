@@ -1,7 +1,7 @@
 <?php
 
 
-class TuRoom {
+class ServicioHabitacion {
     private $idHabitacion;
    private $camaHabitacion;
    private $internetHabitacion;
@@ -14,7 +14,9 @@ class TuRoom {
    private $banosHabitacion;
    private $accesibilidadHabitacion;
    private $idSitio;
-   function TuRoom($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$banosHabitacion,$accesibilidadHabitacion,$idsitio){
+   
+
+   function ServicioHabitacion($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$banosHabitacion,$accesibilidadHabitacion,$idsitio){
        $this->camaHabitacion=$cama;
        $this->internetHabitacion=$internet;
        $this->aireAcondicionadoHabitacion=$ac;
