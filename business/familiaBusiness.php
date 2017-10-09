@@ -1,18 +1,18 @@
 <?php
 
-include_once '../data/tuFamiliaData.php';
+include_once '../data/familiaData.php';
 
 
-class TuFamiliaBusiness {
+class FamiliaBusiness {
 
     private $familia;
 
-    public function TuFamiliaBusiness(){
-        $this->familia= new TuFamiliaData();
+    public function FamiliaBusiness(){
+        $this->familia= new FamiliaData();
 
     }
-		public function insertarFamilias($tuFamilia){
-			return $this->familia->insertarFamilia($tuFamilia );
+		public function insertarFamilias($familia){
+			return $this->familia->insertarFamilia($familia );
 		}
 
 		public function mostrarFamilias(){
@@ -29,8 +29,8 @@ class TuFamiliaBusiness {
 		}
 
 
-		public function actualizarFamilias($tuFamilia){
-			return $this->familia->actualizarFamilia($tuFamilia);
+		public function actualizarFamilias($familia){
+			return $this->familia->actualizarFamilia($familia);
 		}
 
 		public function eliminarFamilias($idFamilia){

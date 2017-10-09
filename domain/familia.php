@@ -1,7 +1,7 @@
 <?php
 
 
-class TuFamilia {
+class Familia {
     private $idFamilia;
     private $adulltoMayorFamilia;
     private $adultoFamilia;
@@ -11,7 +11,7 @@ class TuFamilia {
     private $idResponsable;
     private $sitioTuristico;
 
-    function TuFamilia($idFamilia, $adulltoMayorFamilia, $adultoFamilia, $adolecenteFamilia, $ninoFamilia,$idResponsable,$sitioTuristico) {
+    function Familia($idFamilia, $adulltoMayorFamilia, $adultoFamilia, $adolecenteFamilia, $ninoFamilia,$idResponsable,$sitioTuristico) {
 
         $this->idFamilia = $idFamilia;
         $this->adulltoMayorFamilia = $adulltoMayorFamilia;
