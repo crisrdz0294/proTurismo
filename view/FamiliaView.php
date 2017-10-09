@@ -22,7 +22,7 @@
                     <br><a href="../index.php">Menu Principal</a>
                 <?php  
                     }else if(empty($listaResponsables)){
-                        echo "<h3>No se pueden crear familias porque no hay responsables ingresados en el sistema</h3?>";?>
+                        echo "<h3>No se pueden crear familias porque no hay responsables disponibles en el sistema</h3?>";?>
                       <br><br><a href="../view/responsableView.php">Crear Responsables</a>
                       <?php } else if(empty($listaSitios)){
                          echo "<h3>No se pueden crear familias porque no hay sitios turisticos en el sistema</h3>";?>
