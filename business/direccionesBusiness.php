@@ -21,9 +21,9 @@
   <?php
 
 	$op = $_POST['opcion'];
-	$agregarDescartar = new DireccionesBusiness;
+	$direccionesBusiness = new DireccionesBusiness;
 	if($op == 1){
-	 	$agregarDescartar->mostrarProvincias();
+	 	$direccionesBusiness->mostrarProvincias();
 	}
 
 ?>
