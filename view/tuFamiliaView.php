@@ -3,18 +3,33 @@
 <?php
 
 
-          include '../business/tuFamiliaBusiness.php';    
- 
+          include_once '../business/tuFamiliaBusiness.php';
+
+
 
                 $tuFamiliaBusiness = new TuFamiliaBusiness();
+
                 $todasFamilias= $tuFamiliaBusiness->mostrarFamilias();
 
-                $listaResponsables = $tuFamiliaBusiness->mostrarTodosResponsable();
+                $listaResponsables =   $tuFamiliaBusiness->obtenerResponsablesDisponibles();
+
 
                 $listaSitios = $tuFamiliaBusiness->mostrarTodosSitiosTuristicos();
+
+                if(empty($listaResponsables) && empty($listaSitios)){
+                    echo "<h3>No se pueden crear familias porque no hay responsables y sitios turisticos en el sistema</h3>";
+                    ?>
+                    <br><a href="../index.php">Menu Principal</a>
+                <?php  
+                    }else if(empty($listaResponsables)){
+                        echo "<h3>No se pueden crear familias porque no hay responsables ingresados en el sistema</h3?>";?>
+                      <br><br><a href="../view/responsableView.php">Crear Responsables</a>
+                      <?php } else if(empty($listaSitios)){
+                         echo "<h3>No se pueden crear familias porque no hay sitios turisticos en el sistema</h3>";?>
+                         <br><a href="../view/sitioturisticoview.php">Crear Sitios Turisticos</a>
+                         <?php }else {
+
 ?>
-
-
 
 
 
@@ -26,7 +41,7 @@
 <body>
     <h1>Registrar Familia</h1>
     <form id="formulario" method="post" action="../business/tuFamiliaAction.php">
-            
+
             Cantidad de adultos mayores:
             <input type="number" id="cantidadadultosmayores" name="cantidadadultosmayores">
             <br>
@@ -42,30 +57,30 @@
             Cantidad de niños:
             <input type="number" id="cantidadninos" name="cantidadninos">
             <br>
-            <br>          
+            <br>
             Responsable:
             <select id="idresponsable" name="idresponsable">
                 <?php
                     foreach ($listaResponsables as $Responsable){
                 ?>
                 <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
-                <?php 
-                   } 
+                <?php
+                   }
                 ?>
-                      
+
             </select>
             <br>
-            <br>  
+            <br>
             Sitio Turistico:
             <select id="sitioturistico" name="sitioturistico">
                 <?php
                     foreach ($listaSitios as $SitioTuristico){
                 ?>
                 <option value="<?php echo $SitioTuristico->getIdSitio();?>"><?php echo $SitioTuristico->getNombreComercial();?></option>;
-                <?php 
-                   } 
+                <?php
+                   }
                 ?>
-                      
+
             </select>
             <br>
             <br>
@@ -89,7 +104,7 @@
             </tr>
 
             <?php
-                
+
 
 
                 foreach ($todasFamilias as $tuFamilia) {
@@ -111,36 +126,40 @@
 
 
 
-             <?php  
+             <?php
 
                 echo '</select>';
-                echo '</td>'; 
+                echo '</td>';
 
                  echo '<td><select name="idresponsable" id="idresponsable"> '?>
-                        <?php
-                          foreach ($listaResponsables as $Responsable){
+
+
+
+                          <?php
+                              $listaRes=$tuFamiliaBusiness->obtenerResponsablesDisponiblesMasActual($tuFamilia->getIdResponsable());
+                              
+                          foreach ($listaRes as $Responsable){
                         ?>
                           <?php
                             if($Responsable->getIdResponsable()==$tuFamilia->getIdResponsable()){  ?>
-
                                <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
                               <?php }else{?>
 
                                  <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
                               <?php  } ?>
-                          
-                         
-                        <?php 
-                           } 
+
+
+                        <?php
+                           }
                         ?>
-                <?php  
+                <?php
 
 
 
-                
+
 
                 echo '</select>';
-                echo '</td>'; 
+                echo '</td>';
 
                  echo '<td><select name="idsitio" id="idsitio"> '?>
                         <?php
@@ -154,16 +173,16 @@
 
                                  <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
                               <?php  } ?>
-                          
-                         
-                        <?php 
-                           } 
+
+
+                        <?php
+                           }
                         ?>
-                <?php  
+                <?php
 
 
                 echo '</select>';
-                echo '</td>'; 
+                echo '</td>';
 
 
 
@@ -179,4 +198,8 @@
             ?>
     </table>
 </body>
+
+<?php  
+  }
+?>
 </html>

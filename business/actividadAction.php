@@ -74,11 +74,13 @@ include_once './actividadBusiness.php';
 
             $result = $actividadBusiness->actualizarActividad($actividad);
 
-            if ($result == 1) {
-                         header("location: ../view/actividadesView.php?success=update");
-                    } else {
-                        header("location: ../view/actividadesView.php?error=dbError");
-                    }    
+            if ($result==0) {
+                header("location: ../view/actividadesView.php?success=update");
+            }else if($result==1){
+                header("location: ../view/actividadesView.php?error=AgregadaRequisitos");
+            }else{
+                header("location: ../view/actividadesView.php?error=agregadaPaquete");
+            }    
 
         } else {
             header("location: ../view/actividadesView.php?error=error");
@@ -94,11 +96,13 @@ include_once './actividadBusiness.php';
 
         $actividadBusiness = new ActividadBusiness();
         $result = $actividadBusiness->eliminarActividad($id);
-        if ($result == 1) {
-            header("location: ../view/actividadesView.php?success=deleted");
-        } else {
-            header("location: ../view/actividadesView.php?error=dbError");
-        }
+         if ($result==0) {
+                header("location: ../view/actividadesView.php?success=delete");
+            }else if($result==1){
+                header("location: ../view/actividadesView.php?error=AgregadaRequisitos");
+            }else{
+                header("location: ../view/actividadesView.php?error=agregadaPaquete");
+            } 
     } else {
         header("location: ../view/actividadesView.php?error=error");
     }

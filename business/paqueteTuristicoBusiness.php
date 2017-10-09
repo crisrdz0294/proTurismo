@@ -17,12 +17,16 @@
 		}
 
 		public function mostrarTodosPaqueteTuristico(){
-			return $this->PaqueteTuristicoData->mostrarTodosPaqueteTuristico();
+			return $this->paqueteTuristicoData->mostrarTodosPaqueteTuristicos();
 		}
 
 
 		public function actualizarPaqueteTuristico($paqueteTuristico){
 			return $this->paqueteTuristicoData->actualizarPaqueteTuristico($paqueteTuristico);
+		}
+
+		public function obtenerNombrePaquete($idpaquete){
+			return $this->paqueteTuristicoData->obtenerNombrePaquete($idpaquete);
 		}
 
 	}

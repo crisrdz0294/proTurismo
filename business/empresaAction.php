@@ -64,7 +64,7 @@ include './empresaBusiness.php';
 
                     $result = $empresaBusiness->actualizarEmpresa($empre);
                 if ($result == 1) {
-                         header("location: ../view/empresaView.php?success=inserted");
+                         header("location: ../view/empresaView.php?success=update");
                     } else {
                         header("location: ../view/empresaView.php?error=dbError");
                     }
@@ -88,7 +88,7 @@ include './empresaBusiness.php';
 
         $result = $empresaBusiness->eliminarEmpresas($id);
         if ($result == 1) {
-            header("location: ../view/empresaView.php?success=deleted");
+            header("location: ../view/empresaView.php?success=update");
         } else {
             header("location: ../view/empresaView.php?error=dbError");
         }

@@ -5,11 +5,25 @@
 	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Turismo Rural</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<?php
-include '../business/empresaBusiness.php';
-$empresaBusiness = new EmpresaBusiness();
-$mostrarSitiosTuristicos=$empresaBusiness->mostrarSitios();
-$mostrarResponsables=$empresaBusiness->mostrarTodosResponsables();
+  <?php
+  include '../business/empresaBusiness.php';
+  $empresaBusiness = new EmpresaBusiness();
+  $mostrarSitiosTuristicos=$empresaBusiness->mostrarSitios();
+  $mostrarResponsables=$empresaBusiness->obtenerResponsablesDisponibles();
+
+    if(empty($mostrarResponsables) && empty($mostrarSitiosTuristicos)){
+                    echo "<h3>No se pueden crear microempresas porque no hay responsables y sitios turisticos en el sistema</h3>";
+                    ?>
+                    <br><a href="../index.php">Menu Principal</a>
+                <?php  
+                    }else if(empty($mostrarResponsables)){
+                        echo "<h3>No se pueden crear microempresas porque no hay responsables ingresados en el sistema</h3?>";?>
+                      <br><br><a href="../view/responsableView.php">Crear Responsables</a>
+                      <?php } else if(empty($mostrarSitiosTuristicos)){
+                         echo "<h3>No se pueden crear microempresas porque no hay sitios turisticos en el sistema</h3>";?>
+                         <br><a href="../view/sitioturisticoview.php">Crear Sitios Turisticos</a>
+                         <?php }else {
+
  ?>
 </head>
 <body>
@@ -69,8 +83,7 @@ echo ' </select><br><br>';
 
  <table border="1">
         <tr>
-            <th> NOMBRE</th>
-
+            <th>NOMBRE</th>
             <th>CONTACTO</th>
             <th>EMAIL</th>
             <th>SITIO WEB</th>
@@ -92,17 +105,17 @@ echo ' </select><br><br>';
                 echo '<tr>';
 
                 echo '<td>
-                        <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="' . $empresa->getNombreEmpresa().'"/>
+                        <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="'.$empresa->getNombreEmpresa().'"/>
                         </td>';
 												echo '<td>
-				                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" value="' . $empresa->getContactoTelefonicoEmpresa().'"/>
+				                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" value="'.$empresa->getContactoTelefonicoEmpresa().'"/>
 				                        </td>';
 
 												echo '<td>
-								                  <input type="email" name="emailEmpresa" id="emailEmpresa" value="' . $empresa->getEmailEmpresa().'"/>
+								                  <input type="email" name="emailEmpresa" id="emailEmpresa" value="'.$empresa->getEmailEmpresa().'"/>
 								                  </td>';
 												echo '<td>
-																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="' . $empresa->getSitioWebEmpresa().'"/>
+																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa().'"/>
 																						</td>';
 
 																				echo '<td>
@@ -121,9 +134,13 @@ echo ' </select><br><br>';
 																				echo '<td>
 	 																		 <select id="idEncargado" name="idEncargado">';
 
+                                                   $listaRes=$empresaBusiness->obtenerResponsablesDisponiblesMasActual($empresa->getIdResponsableEmpresa());
 
-	 																					 foreach ($todosEncargados as $responsable){
+	 																					 foreach ($listaRes as $responsable){
+                                              if($responsable->getIdResponsable()==$empresa->getIdResponsableEmpresa()){
+																								 echo '<option selected value="'.$responsable->getIdResponsable().'">'.$responsable->getNombreResponsable().'</option>;';
 
+																							}
 	 																					 echo '<option value="'.$responsable->getIdResponsable().'">'.$responsable->getNombreResponsable().'</option>;';
 
 	 																						}
@@ -147,4 +164,8 @@ echo ' </select><br><br>';
       ?>
 
 </body>
+
+<?php  
+  }
+?>
 </html>

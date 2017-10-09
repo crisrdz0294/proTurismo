@@ -63,7 +63,7 @@ include './requisitosActividadBusiness.php';
 
                     $result = $requisitosActividadBusisness->actualizarRequisitosActividad($requisitosActividad);
                 if ($result == 1) {
-                         header("location: ../view/requisitosActividadView.php?success=inserted");
+                         header("location: ../view/requisitosActividadView.php?success=update");
                     } else {
                         header("location: ../view/requisitosActividadView.php?error=dbError");
                     }

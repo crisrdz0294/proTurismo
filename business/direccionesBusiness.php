@@ -1,19 +1,29 @@
 <?php
 
-	include '../data/dataDirecciones.php';
+	include '../data/direccionesData.php';
 
 	class DireccionesBusiness{
 
-		private $dataDirecciones=null;
+		private $direccionesData=null;
 		
 
 		public function DireccionesBusiness(){
-			$this->dataDirecciones = new DataDirecciones();
+			$this->direccionesData = new DireccionesData();
 		}
 
 		public function mostrarProvincias(){
-			return $this->dataDirecciones->obtenerTodasProvincias();
+			return $this->direccionesData->obtenerProvincias();
 		}
 
 	}
   ?>
+
+  <?php
+
+	$op = $_POST['opcion'];
+	$agregarDescartar = new DireccionesBusiness;
+	if($op == 1){
+	 	$agregarDescartar->mostrarProvincias();
+	}
+
+?>

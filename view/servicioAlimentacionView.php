@@ -11,6 +11,13 @@
          $todosServicioalimentacion = $servicioalimentacionBusiness->mostrarTodosServicioAlimentacion();
 
          $listaSitios = $servicioalimentacionBusiness->mostrarTodosSitiosTuristicos();
+
+         if(empty($listasitios)){
+            echo "<h3>No se pueden crear servicios de alimentacion porque no hay sitios turisticos ingresados en el sistema</h3>";
+          ?>
+          <br><a href="../view/sitioturisticoview.php">Crear Sitio Turistico</a>
+          <?php  
+          }else{
      ?>
 
 
@@ -244,6 +251,10 @@
 
 
 </body>
+
+    <?php  
+  }
+?>
 
 
 </html>

@@ -11,6 +11,13 @@
     $requisitos = new requisitosActividadBusiness();
     $mostrarAct=$requisitos->mostrarActividades();
 
+    if(empty($mostrarAct)){
+            echo "<h3>No se pueden crear requisitos porque no hay actividades ingresadas en el sistema</h3>";
+          ?>
+          <br><a href="../view/actividadesView.php">Crear Actividades</a>
+          <?php  
+          }else{
+
      ?>
 
 </head>
@@ -64,7 +71,7 @@
 
     </form>
 
-    <table>
+    <table border="1">
         <tr>
             <th>Edad  </th>
             <th>Conocimiento </th>
@@ -72,7 +79,8 @@
             <th>Equipo necesario </th>
             <th>Aptitudes </th>
             <th>Actividad</th>
-            <th>Acciones</th>
+            <th>Opcion 1</th>
+            <th>Opcion 2</th>
         </tr>
 
          <?php
@@ -120,4 +128,8 @@
     </footer>
 
 </body>
+
+<?php  
+  }
+?>
 </html>

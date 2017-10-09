@@ -2,14 +2,15 @@
 <html>
 <head>
 	<title></title>
-
+<script src="../js/jquery-3.2.1.js"></script>
+  <script src="../js/jsPaqueteTuristico.js"></script>
 	
 </head>
 <body>
 
 	<h3>Registrar Paquete Turistico</h3>
 
-	<form method="post" action="../business/paqueteTuristicoBusiness.php">
+	<form method="post" action="../business/paqueteTuristicoBusinessAction.php">
 
 		Nombre: <br>
 		<input type="text" name="nombre" placeholder="Ingrese el nombre"><br>
@@ -34,36 +35,41 @@
         </tr>
 
 	<?php
-		/*
+		
 			include '../business/paqueteTuristicoBusiness.php';
-			$paqueteTuristicoBusiness = new PaqueteTuristicoBusiness();
-       		$todosPaquetes = $paqueteTuristicoBusiness->mostrarTodasActividades();
+			$paqueteTuristicoBusiness = new paqueteTuristicoBusiness();
+       		$todosPaquetes = $paqueteTuristicoBusiness->mostrarTodosPaqueteTuristico();
 
        		foreach ($todosPaquetes as $paqueteTuristico) {
-                echo '<form method="post" enctype="multipart/form-data" action="../business/paqueteTuristicoBusiness.php">';
+                echo '<form method="post" enctype="multipart/form-data" action="../business/paqueteTuristicoBusinessAction.php">';
                 	echo '<input type="hidden" name="idpaquete" id="idpaquete" value="' . $paqueteTuristico->getIdPaqueteTuristico() .'">';
                 	echo '<tr>';
 
                		echo '<td><input type="text" name="nombre" id="nombre" value="' . $paqueteTuristico->getNombrePaqueteTuristico() . '"/></td>';
 
                
-                	echo '<td><textarea  name="descripcion" id="descripcion"> '. $paqueteTuristico->getDescripcionPaqueteTuristico().'</textarea></td>';
+                	echo '<td><textarea  name="descripcion" id="descripcion">'.$paqueteTuristico->getDescripcionPaqueteTuristico().'</textarea></td>';
 
                  	echo '<td><input type="number" name="precio" id="precio" value="' . $paqueteTuristico->getPrecioPaqueteTuristico() . '"/></td>';
                 
-
-            
                 	echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
-               		echo '<td><input type="submit" value="Agregar Actividades" name="agregar"/></td>';
+                  echo "<td><input type=\"button\" value=\"Agregar actividades\" onclick=\"cargarPagina('../view/mostrarActividadesView.php?idpaquete=".$paqueteTuristico->getIdPaqueteTuristico()."')\"/></td>";
+                   echo '</form>';
 
-                echo '</tr>';
-                echo '</form>';
+                  
+                 echo '</tr>';
+               
+              
 
-
-       	*/
+            }
+       	
 
 	?>
 
 	</table>
+
+  <div id="divActividades">
+    
+  </div>
 </body>
 </html>
