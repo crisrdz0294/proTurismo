@@ -15,7 +15,7 @@
                     echo "<h3>No se pueden crear microempresas porque no hay responsables y sitios turisticos en el sistema</h3>";
                     ?>
                     <br><a href="../index.php">Menu Principal</a>
-                <?php  
+                <?php
                     }else if(empty($mostrarResponsables)){
                         echo "<h3>No se pueden crear microempresas porque no hay responsables ingresados en el sistema</h3?>";?>
                       <br><br><a href="../view/responsableView.php">Crear Responsables</a>
@@ -131,22 +131,36 @@ echo ' </select><br><br>';
 
 																				echo ' </select><br><br>';
 
-																				echo '<td>
-	 																		 <select id="idEncargado" name="idEncargado">';
 
-                                                   $listaRes=$empresaBusiness->obtenerResponsablesDisponiblesMasActual($empresa->getIdResponsableEmpresa());
-
-	 																					 foreach ($listaRes as $responsable){
-                                              if($responsable->getIdResponsable()==$empresa->getIdResponsableEmpresa()){
-																								 echo '<option selected value="'.$responsable->getIdResponsable().'">'.$responsable->getNombreResponsable().'</option>;';
-
-																							}
-	 																					 echo '<option value="'.$responsable->getIdResponsable().'">'.$responsable->getNombreResponsable().'</option>;';
-
-	 																						}
+																			 echo '<td><select name="idEncargado" id="idEncargado"> '?>
 
 
-	 																		 echo ' </select><br><br></td>';
+
+																								<?php
+																										$listaRes=$empresaBusiness->obtenerResponsablesDisponiblesMasActual($empresa->getIdResponsableEmpresa());
+
+																								foreach ($listaRes as $Responsable){
+																							?>
+																								<?php
+																									if($Responsable->getIdResponsable()==$empresa->getIdResponsableEmpresa()){  ?>
+																										 <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+																										<?php }else{?>
+
+																											 <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+																										<?php  } ?>
+
+
+																							<?php
+																								 }
+																							?>
+																			<?php
+
+
+
+
+
+																			echo '</select>';
+																			echo '</td>';
 
 																			 echo '<td><input type="submit" value="Actualizar" name="update"/></td>';
 																	 		echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
@@ -165,7 +179,7 @@ echo ' </select><br><br>';
 
 </body>
 
-<?php  
+<?php
   }
 ?>
 </html>
