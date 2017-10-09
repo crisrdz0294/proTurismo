@@ -1,26 +1,26 @@
 <?php
 include_once 'data.php';
-include '../domain/tuFamilia.php';
+include '../domain/familia.php';
 include '../domain/responsable.php';
 include '../domain/sitioTuristico.php';
 include '../domain/empresa.php';
 
-class TuFamiliaData{
+class FamiliaData{
 
-  public function tuFamiliaData(){}
+  public function FamiliaData(){}
 
-  public function insertarFamilia($tuFamilia){
+  public function insertarFamilia($familia){
 
     $con = new Data();
     $conexion = $con->conect();
 
 
-    $mayores=$tuFamilia->getAdultoMayorFamilia();
-    $adultos=$tuFamilia->getAdultoFamilia();
-    $adolecente=$tuFamilia->getAdolecenteFamilia();
-    $ninos=$tuFamilia->getNinoFamilia();
-    $idresponsable=$tuFamilia->getIdResponsable();
-    $idSitio=$tuFamilia->getSitioTuristico();
+    $mayores=$familia->getAdultoMayorFamilia();
+    $adultos=$familia->getAdultoFamilia();
+    $adolecente=$familia->getAdolecenteFamilia();
+    $ninos=$familia->getNinoFamilia();
+    $idresponsable=$familia->getIdResponsable();
+    $idSitio=$familia->getSitioTuristico();
 
 
     $consultaUltimoId ="SELECT MAX(idfamilia) AS idfamilia FROM tbfamilia";
@@ -51,7 +51,7 @@ class TuFamiliaData{
 
         $todasFamilias = [];
         while ($row = mysqli_fetch_array($result)) {
-            $tempFamilia = new TuFamilia($row['idfamilia'], $row['adultosmayoresfamilia'], $row['adultosfamilia'], $row['adolescentesfamilia'], $row['ninosfamilia'],$row['idresponsable'],$row['idsitioturistico']);
+            $tempFamilia = new Familia($row['idfamilia'], $row['adultosmayoresfamilia'], $row['adultosfamilia'], $row['adolescentesfamilia'], $row['ninosfamilia'],$row['idresponsable'],$row['idsitioturistico']);
             array_push($todasFamilias, $tempFamilia);
         }
         return $todasFamilias;
@@ -105,18 +105,18 @@ class TuFamiliaData{
         }
 
 
-  public function actualizarFamilia($tuFamilia){
+  public function actualizarFamilia($familia){
     $con = new Data();
     $conexion = $con->conect();
 
 
-    $mayores=$tuFamilia->getAdultoMayorFamilia();
-    $adultos=$tuFamilia->getAdultoFamilia();
-    $adolecente=$tuFamilia->getAdolecenteFamilia();
-    $ninos=$tuFamilia->getNinoFamilia();
-    $id=$tuFamilia->getIdFamilia();
-    $idresponsable=$tuFamilia->getIdResponsable();
-    $idSitio=$tuFamilia->getSitioTuristico();
+    $mayores=$familia->getAdultoMayorFamilia();
+    $adultos=$familia->getAdultoFamilia();
+    $adolecente=$familia->getAdolecenteFamilia();
+    $ninos=$familia->getNinoFamilia();
+    $id=$familia->getIdFamilia();
+    $idresponsable=$familia->getIdResponsable();
+    $idSitio=$familia->getSitioTuristico();
 
 
     $consultaUpdate="UPDATE tbfamilia SET adultosmayoresfamilia=".$mayores." , adultosfamilia=".$adultos.",adolescentesfamilia=".$adolecente.",ninosfamilia=".$ninos.",idresponsable=".$idresponsable.",idsitioturistico=".$idSitio." WHERE idfamilia=".$id.";";
