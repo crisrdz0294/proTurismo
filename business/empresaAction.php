@@ -88,7 +88,7 @@ include './empresaBusiness.php';
 
         $result = $empresaBusiness->eliminarEmpresas($id);
         if ($result == 1) {
-            header("location: ../view/empresaView.php?success=update");
+            header("location: ../view/empresaView.php?success=delete");
         } else {
             header("location: ../view/empresaView.php?error=dbError");
         }

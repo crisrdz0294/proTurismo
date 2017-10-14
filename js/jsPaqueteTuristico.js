@@ -17,7 +17,7 @@ function agregarActividad(idPaquete, idActividad){
     		contentType : false,
     		processData : false
     }).done(function(data) {
-        	alert("agrego");
+        	alert("Se agrego con exito la actividad");
     });
 	
 		
@@ -39,7 +39,7 @@ function descartarActividad(idActividad,idPaquete){
             contentType : false,
             processData : false
         }).done(function(data) {
-            alert("descarto");
+            alert("Se descarto con exito la actividad");
         });
 
 }
