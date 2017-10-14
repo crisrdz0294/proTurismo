@@ -3,18 +3,18 @@
 <?php
 
 
-          include_once '../business/tuFamiliaBusiness.php';
+          include_once '../business/familiaBusiness.php';
 
 
 
-                $tuFamiliaBusiness = new TuFamiliaBusiness();
+                $familiaBusiness = new FamiliaBusiness();
 
-                $todasFamilias= $tuFamiliaBusiness->mostrarFamilias();
+                $todasFamilias= $familiaBusiness->mostrarFamilias();
 
-                $listaResponsables =   $tuFamiliaBusiness->obtenerResponsablesDisponibles();
+                $listaResponsables =   $familiaBusiness->obtenerResponsablesDisponibles();
 
 
-                $listaSitios = $tuFamiliaBusiness->mostrarTodosSitiosTuristicos();
+                $listaSitios = $familiaBusiness->mostrarTodosSitiosTuristicos();
 
                 if(empty($listaResponsables) && empty($listaSitios)){
                     echo "<h3>No se pueden crear familias porque no hay responsables y sitios turisticos en el sistema</h3>";
@@ -22,7 +22,7 @@
                     <br><a href="../index.php">Menu Principal</a>
                 <?php  
                     }else if(empty($listaResponsables)){
-                        echo "<h3>No se pueden crear familias porque no hay responsables ingresados en el sistema</h3?>";?>
+                        echo "<h3>No se pueden crear familias porque no hay responsables disponibles en el sistema</h3?>";?>
                       <br><br><a href="../view/responsableView.php">Crear Responsables</a>
                       <?php } else if(empty($listaSitios)){
                          echo "<h3>No se pueden crear familias porque no hay sitios turisticos en el sistema</h3>";?>
@@ -40,7 +40,7 @@
 </head>
 <body>
     <h1>Registrar Familia</h1>
-    <form id="formulario" method="post" action="../business/tuFamiliaAction.php">
+    <form id="formulario" method="post" action="../business/familiaAction.php">
 
             Cantidad de adultos mayores:
             <input type="number" id="cantidadadultosmayores" name="cantidadadultosmayores">
@@ -107,17 +107,17 @@
 
 
 
-                foreach ($todasFamilias as $tuFamilia) {
+                foreach ($todasFamilias as $familia) {
 
 
-                    echo '<form method="post" enctype="multipart/form-data" action="../business/tuFamiliaAction.php">';
-                    echo '<input type="hidden" name="idfamilia" id="idfamilia" value="' . $tuFamilia->getIdFamilia().'">';
+                    echo '<form method="post" enctype="multipart/form-data" action="../business/familiaAction.php">';
+                    echo '<input type="hidden" name="idfamilia" id="idfamilia" value="' . $familia->getIdFamilia().'">';
 
-                    echo '<td><input type="number" name="cantidadadultosmayores" id="cantidadadultosmayores" value="' . $tuFamilia->getAdultoMayorFamilia().'"/></td>';
+                    echo '<td><input type="number" name="cantidadadultosmayores" id="cantidadadultosmayores" value="' . $familia->getAdultoMayorFamilia().'"/></td>';
 
-                    echo '<td><input type="number" name="adultosfamilia" id="adultosfamilia" value="' . $tuFamilia->getAdultoFamilia().'"/></td>';
-                    echo '<td><input type="number" name="cantidadadolecentes" id="cantidadadolecentes" value="' . $tuFamilia->getAdolecenteFamilia().'">';
-                    echo '<td><input type="number" name="cantidadninos" id="cantidadninos" value="' . $tuFamilia->getNinoFamilia().'">';
+                    echo '<td><input type="number" name="adultosfamilia" id="adultosfamilia" value="' . $familia->getAdultoFamilia().'"/></td>';
+                    echo '<td><input type="number" name="cantidadadolecentes" id="cantidadadolecentes" value="' . $familia->getAdolecenteFamilia().'">';
+                    echo '<td><input type="number" name="cantidadninos" id="cantidadninos" value="' . $familia->getNinoFamilia().'">';
 
              ?>
 
@@ -136,12 +136,12 @@
 
 
                           <?php
-                              $listaRes=$tuFamiliaBusiness->obtenerResponsablesDisponiblesMasActual($tuFamilia->getIdResponsable());
+                              $listaRes=$familiaBusiness->obtenerResponsablesDisponiblesMasActual($familia->getIdResponsable());
                               
                           foreach ($listaRes as $Responsable){
                         ?>
                           <?php
-                            if($Responsable->getIdResponsable()==$tuFamilia->getIdResponsable()){  ?>
+                            if($Responsable->getIdResponsable()==$familia->getIdResponsable()){  ?>
                                <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
                               <?php }else{?>
 
@@ -166,7 +166,7 @@
                           foreach ($listaSitios as $sitio){
                         ?>
                           <?php
-                            if($sitio->getIdSitio() == $tuFamilia->getSitioTuristico()){  ?>
+                            if($sitio->getIdSitio() == $familia->getSitioTuristico()){  ?>
 
                                <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
                               <?php }else{?>

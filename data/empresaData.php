@@ -4,7 +4,7 @@
 	include '../domain/empresa.php';
 	include '../domain/sitioTuristico.php';
    include '../domain/responsable.php';
-	    include '../domain/tuFamilia.php';
+	    include '../domain/familia.php';
 
 	class EmpresaData{
 
