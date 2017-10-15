@@ -13,8 +13,9 @@ class Empresa
   private $sitioWebEmpresa;
   private $idSitioTuristico;
   private $nombreEmpresa;
+  private $cedulaJuridicaEmpresa;
 
-  function Empresa($idempresa,$nombre,$contacto,$email,$sitio,$idSitio,$idresponsable)
+  function Empresa($idempresa,$nombre,$contacto,$email,$sitio,$idSitio,$idresponsable,$cedula)
   {
   $this->idEmpresa=$idempresa;
   $this->idResponsableEmpresa=$idresponsable;
@@ -23,6 +24,15 @@ class Empresa
   $this->sitioWebEmpresa=$sitio;
   $this->idSitioTuristico=$idSitio;
   $this->nombreEmpresa=$nombre;
+  $this->cedulaJuridicaEmpresa=$cedula;
+  }
+
+  public function setCedulaJuridicaEmpresa($cedula){
+    $this->cedulaJuridicaEmpresa=$cedula;
+  }
+
+  public function getCedulaJuridicaEmpresa(){
+    return $this->cedulaJuridicaEmpresa;
   }
 
   public function setIdEmpresa($idEmpre){

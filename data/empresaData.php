@@ -20,7 +20,7 @@
       $email=$empresa->getEmailEmpresa();
       $web=$empresa->getSitioWebEmpresa();
       $sitio=$empresa->getIdSitioTuristico();
-
+      $cedula=$empresa-> getCedulaJuridicaEmpresa();
 
 
 		 	$consultaUltimoId ="SELECT MAX(idmicroempresa ) AS idmicroempresa  FROM tbmicroempresa ";
@@ -33,6 +33,7 @@
 
         	$consultaInsertar="INSERT INTO tbmicroempresa  VALUES (
             ".$idSiguiente.",
+						'".$cedula."',
             '".$nombre."',
             '".$contacto."',
             '".$email."',
@@ -57,7 +58,7 @@
 			mysqli_close($conexion);
         	$empresas = [];
         	while ($row = mysqli_fetch_array($result)) {
-            	$empresaNueva = new Empresa($row['idmicroempresa'],$row['nombremicroempresa'],$row['contactotelefonomicroempresa'],$row['emailmicroempresa'],$row['sitiowebmicroempresa'],$row['idsitioturistico'],$row['idresponsable']);
+            	$empresaNueva = new Empresa($row['idmicroempresa'],$row['nombremicroempresa'],$row['contactotelefonomicroempresa'],$row['emailmicroempresa'],$row['sitiowebmicroempresa'],$row['idsitioturistico'],$row['idresponsable'],$row['cedulajuridicamicroempresa']);
             	array_push($empresas, $empresaNueva);
         	}
         	return $empresas;
@@ -89,8 +90,10 @@
       $email=$empresa->getEmailEmpresa();
       $web=$empresa->getSitioWebEmpresa();
       $sitio=$empresa->getIdSitioTuristico();
+			$cedula=$empresa-> getCedulaJuridicaEmpresa();
 
 		 	$consultaActualizar="UPDATE tbmicroempresa SET
+			cedulajuridicamicroempresa='".$cedula."',
 			 nombremicroempresa='".$nombre."',
       contactotelefonomicroempresa ='".$contacto."',
       emailmicroempresa='".$email."',
