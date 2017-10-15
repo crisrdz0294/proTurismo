@@ -38,7 +38,8 @@ include './requisitosActividadBusiness.php';
 }else if (isset($_POST['update'])) {
 
 
-    if (isset($_POST['idRequisitosActividad']) &&isset($_POST['edadRequisitosActividad']) && isset($_POST['conocimientoRequisitosActividad']) && isset($_POST['estadoFisicoRequisitosActividad'])&& isset($_POST['equipoNecesarioRequisitosActividad'])&& isset($_POST['aptitudesRequisitosActividad'])) {
+    if (isset($_POST['idRequisitosActividad']) &&isset($_POST['edadRequisitosActividad']) && isset($_POST['conocimientoRequisitosActividad']) && isset($_POST['estadoFisicoRequisitosActividad'])&& isset($_POST['equipoNecesarioRequisitosActividad'])&& isset($_POST['aptitudesRequisitosActividad'])) 
+    {
             $id=$_POST['idRequisitosActividad'];
             $edad = $_POST['edadRequisitosActividad'];
             $conocimiento= $_POST['conocimientoRequisitosActividad'];
