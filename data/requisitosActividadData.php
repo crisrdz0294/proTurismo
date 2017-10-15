@@ -14,11 +14,12 @@ include '../domain/actividad.php';
 			$conexion = $con->conect();
 
 			$edad=$requisitosActividad-> getEdadRequisitosActividad();
-                        $conocimiento=$requisitosActividad->getConocimientoRequisitosActividad();
-   			$estadoFisico=$requisitosActividad->getEstadoFisicoRequisitosActividad();
-                        $equipo=$requisitosActividad->getEquipoNecesarioRequisitosActividad();
-                        $aptitudes=$requisitosActividad->getAptitudesRequisitosActividad();
-                        $idAct=$requisitosActividad->getIdActividad();
+            $conocimiento=$requisitosActividad->getConocimientoRequisitosActividad();
+   			$estadoFisico=$requisitosActividad->getEstadoFisicoRequisitosActividad();   
+   			$equipo=$requisitosActividad->getEquipoNecesarioRequisitosActividad();
+            $aptitudes=$requisitosActividad->getAptitudesRequisitosActividad();
+            $idAct=$requisitosActividad->getIdActividad();
+			
 			$consultaUltimoId ="SELECT MAX(idrequisitos) AS idrequisitos FROM tbrequisitos";
 			$maximoId=mysqli_query($conexion,$consultaUltimoId);
 			$idSiguiente=1;
@@ -29,7 +30,7 @@ include '../domain/actividad.php';
 
         	$consultaInsertar="INSERT INTO tbrequisitos VALUES (
 						".$idSiguiente.",
-						".$edad.",
+						'".$edad."',
 						'".$conocimiento."',
 						'".$equipo."',
 						'".$estadoFisico."',
@@ -52,7 +53,15 @@ include '../domain/actividad.php';
         	while ($row = mysqli_fetch_array($result)) {
 
 
-            	$temporaralTipoActividad = new requisitosActividad($row['idrequisitos'], $row['edadrequisitos'], $row['conocimientorequisitos'],$row['estadofisicorequisitos'],$row['equiporequisitos'],$row['aptitudrequisitos'],$row['idactividad']);
+            	$temporaralTipoActividad = new requisitosActividad(
+
+            		$row['idrequisitos'], 
+            		$row['edadrequisitos'], 
+            		$row['conocimientorequisitos'],
+            		$row['estadofisicorequisitos'],
+            		$row['equiporequisitos'],
+            		$row['aptitudrequisitos'],
+            		$row['idactividad']);
 
 
             	array_push($requisitosActividad, $temporaralTipoActividad);
@@ -65,14 +74,24 @@ include '../domain/actividad.php';
 
 			 $con = new Data();
 			 $conexion = $con->conect();
-             $id=$requisitosActividad->getIdRequisitosActividad();
-             $edad=$requisitosActividad-> getEdadRequisitosActividad();
-             $conocimiento=$requisitosActividad->getConocimientoRequisitosActividad();
-   			 $estadoFisico=$requisitosActividad->getEstadoFisicoRequisitosActividad();
-             $equipo=$requisitosActividad->getEquipoNecesarioRequisitosActividad();
-             $aptitudes=$requisitosActividad->getAptitudesRequisitosActividad();
-             $idAct=$requisitosActividad->getIdActividad();
-			 $consultaActualizar = "UPDATE tbrequisitos SET edadrequisitos=" . $edad . ",conocimientorequisitos='" .$conocimiento."',equiporequisitos='".$equipo."',estadofisicorequisitos='".$estadoFisico."',aptitudrequisitos='".$aptitudes."',idrequisitos=".$idAct." WHERE idrequisitos=". $id.";";
+
+
+            $id=$requisitosActividad->getIdRequisitosActividad();
+            $edad=$requisitosActividad-> getEdadRequisitosActividad();
+            $conocimiento=$requisitosActividad->getConocimientoRequisitosActividad();
+   			$estadoFisico=$requisitosActividad->getEstadoFisicoRequisitosActividad();   
+   			$equipo=$requisitosActividad->getEquipoNecesarioRequisitosActividad();
+            $aptitudes=$requisitosActividad->getAptitudesRequisitosActividad();
+            $idAct=$requisitosActividad->getIdActividad();
+            
+			 
+			 $consultaActualizar = "UPDATE tbrequisitos SET 
+			 edadrequisitos='" .$edad. "',
+			 conocimientorequisitos='" .$conocimiento."',
+			 equiporequisitos='".$equipo."',
+			 estadofisicorequisitos='".$estadoFisico."',
+			 aptitudrequisitos='".$aptitudes."',
+			 idactividad=".$idAct." WHERE idrequisitos=".$id.";";
 
               	$result = mysqli_query($conexion, $consultaActualizar);
         	mysqli_close($conexion);
