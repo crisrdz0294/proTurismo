@@ -16,7 +16,8 @@
           ?>
           <br><a href="../view/actividadesView.php">Crear Actividades</a>
           <?php  
-          }else{
+          }
+          else{
 
      ?>
 
