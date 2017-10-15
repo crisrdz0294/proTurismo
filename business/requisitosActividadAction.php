@@ -47,7 +47,7 @@ include './requisitosActividadBusiness.php';
             $aptitudes=$_POST['aptitudesRequisitosActividad'];
                $idAct=$_POST['idActividad'];
 
-            if ($edad > 0 && strlen($conocimiento) > 0 && strlen($estado) > 0&& strlen($equipo) > 0&& strlen($aptitudes) > 0 ) {
+            if ($edad > 0 && strlen($conocimiento) > 0 && strlen($estado) > 0 && strlen($equipo) > 0 && strlen($aptitudes) > 0 ) {
 
                 
 

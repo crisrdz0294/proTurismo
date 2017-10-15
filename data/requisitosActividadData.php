@@ -91,7 +91,7 @@ include '../domain/actividad.php';
 			 equiporequisitos='".$equipo."',
 			 estadofisicorequisitos='".$estadoFisico."',
 			 aptitudrequisitos='".$aptitudes."',
-			 idactividad=".$idAct." WHERE idrequisitos=".$id.";";
+			 idactividad=".$idAct." WHERE idrequisitos=".$id.";" ;
 
               	$result = mysqli_query($conexion, $consultaActualizar);
         	mysqli_close($conexion);

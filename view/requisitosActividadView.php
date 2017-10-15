@@ -172,7 +172,6 @@
                                 </td>';
                             break;
 
-
                             default:
                                 # code...
                                 break;
