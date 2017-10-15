@@ -4,7 +4,8 @@ include_once 'data.php';
 include '../domain/requisitosActividad.php';
 include '../domain/actividad.php';
 
-	class requisitosActividadData{
+	class requisitosActividadData
+	{
 
 		public function requisitosActividadData(){}
 
