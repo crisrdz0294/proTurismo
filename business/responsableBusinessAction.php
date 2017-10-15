@@ -15,11 +15,16 @@ include './responsableBusiness.php';
     {
 
 
+
+
         $cedula = $_POST['cedulaResponsable'];
         $nombre = $_POST['nombreResponsable'];
         $primerApellido = $_POST['primerApellidoResponsable'];
         $segundoApellido = $_POST['segundoApellidoResponsable'];
-        $telefono =  $_POST['telefonoResponsable'];
+
+        $telefonoTemp=substr( $_POST['telefonoResponsable'],6);
+          $telefonoA = explode("-",$telefonoTemp);
+          $telefono=$telefonoA[0].$telefonoA[1];
         $email = $_POST['emailResponsable'];
 
 
