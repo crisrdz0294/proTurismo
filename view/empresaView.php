@@ -5,6 +5,20 @@
 	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Turismo Rural</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="../js/validarCorreo.js" type="text/javascript"></script>
+	<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
+<script>
+jQuery(function($){
+
+ $("#telefonoEmpresa").mask("(+506) 9999-9999")
+
+
+ $("#cedulaJuridicaEmpresa").mask("9-999-999999");
+
+
+});
+</script>
   <?php
   include '../business/empresaBusiness.php';
   $empresaBusiness = new EmpresaBusiness();
@@ -54,12 +68,14 @@
   <input type="text" id="telefonoEmpresa" name="telefonoEmpresa" required /><br>
   <br>
   Email:
-    <input type="email" id="emailEmpresa" name="emailEmpresa" required /><br>
+    <input type="email" id="emailEmpresa" name="emailEmpresa" onfocusout="validarCorreoEmpresa()" placeholder="example@example.com"  required /> <span id="emailOK"></span>
     <br>
+		<br>
   Pagina Web:
-    <input type="text" id="paginaEmpresa" name="paginaEmpresa"  /><br>
+    <input type="text" id="paginaEmpresa" name="paginaEmpresa" onfocusout="validarLink()"  required placeholder="http://www.example.com"/> <span id="emailOK2"></span>
     <br>
-Sitio Turistico:<br>
+		<br>
+Sitio Turistico:
 <?php
 echo '
 <select id="idSitioTuristico" name="idSitioTuristico">';
@@ -75,6 +91,9 @@ echo '
 echo ' </select><br><br>';
 ?>
    <br>
+	 Cedula Juridica:
+     <input type="text" id="cedulaJuridicaEmpresa" name="cedulaJuridicaEmpresa" placeholder="1-234-567890" /><br>
+     <br>
 
    <input type="submit" value="Guardar" name="guardarEmpresa" id="guardarEmpresa"/><br><br>
 </form>
@@ -161,6 +180,9 @@ echo ' </select><br><br>';
 
 																			echo '</select>';
 																			echo '</td>';
+																			echo '<td>
+																													<input type="text" name="cedulaJuridicaEmpresa" id="cedulaJuridicaEmpresa" value="'.$empresa->getCedulaJuridicaEmpresa().'"/>
+																													</td>';
 
 																			 echo '<td><input type="submit" value="Actualizar" name="update"/></td>';
 																	 		echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
