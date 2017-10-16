@@ -12,12 +12,12 @@
 
 			$con = new Data();
 			$conexion = $con->conect();
-			$consultaMostrar = "SELECT * FROM tbtipoactividad;";
+			$consultaMostrar = "SELECT * FROM tbtipoactividadturistica;";
 			$result = mysqli_query($conexion, $consultaMostrar);
 			mysqli_close($conexion);
         	$tiposActividades = [];
         	while ($row = mysqli_fetch_array($result)) {
-            	$temporaralTipoActividad = new TipoActividad($row['idtipoactividad'], $row['nombretipoactividad'], $row['descripciontipoactividad']);
+            	$temporaralTipoActividad = new TipoActividad($row['idtipoactividadturistica'], $row['nombretipoactividadturistica'], $row['descripciontipoactividadturistica']);
             	array_push($tiposActividades, $temporaralTipoActividad);
         	}
         	return $tiposActividades;

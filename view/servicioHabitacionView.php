@@ -16,8 +16,12 @@
 ?>
 
     <head>
-        <meta charset="UTF-8"> 
-        <title>Manipular</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+        <script src="../js/jquery-3.2.1.js"></script>
+        <script src="../js/jsDinero.js"></script>
 
     </head>
     <body>
@@ -86,6 +90,8 @@
                 <input type="number" name="cantidadCuartos">
                 <br>
                 <br>
+                Precio Habitacion: <br>
+                    <input type="text" name="precio" id="precio" onkeyup="format(this)"><br>
                 Accesibilidad:
                 <select name="acceso">
                     <option value="0">SI</option>
@@ -126,6 +132,7 @@
                     <th>Cantidad personas</th>
                     <th>Cantidad Cuartos</th>
                     <th>Accesibilidad</th>
+                    <th>Precio Habitacion</th>
                     <th>Sitio</th>
                     <th>Actulizar</th>
                     <th>Eliminar</th>
@@ -314,6 +321,8 @@
                              break;
 
                      }
+
+                     echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($servicioHabitacion->getPrecioServicioHabitacion(),2,'.',' ').'"/></td>';
                      echo '<td>
                      <select id="idEncargado" name="idEncargado">';
 
