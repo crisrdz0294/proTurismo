@@ -3,6 +3,12 @@
 <head>
 
     <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+   <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/jsDinero.js"></script>
 
     <?php 
          include '../business/servicioAlimentacionBusiness.php';
@@ -50,11 +56,11 @@
                     <br>
                     <br>
                     Precio Desayuno:
-                    <label>$<input required type="number" name="precioServicioAlimentacionD" id="precioServicioAlimentacionD" disabled = true/></label>
+                    <input required type="text" name="precioServicioAlimentacionD" id="precioServicioAlimentacionD" disabled = true onkeyup="format(this)">
                     Precio Almuerzo:
-                    <label>$<input required type="number" name="precioServicioAlimentacionA" id="precioServicioAlimentacionA" disabled = true/></label>
+                    <input required type="text" name="precioServicioAlimentacionA" id="precioServicioAlimentacionA" disabled = true onkeyup="format(this)">
                     Precio Cena:
-                    <label>$<input required type="number" name="precioServicioAlimentacionC" id="precioServicioAlimentacionC" disabled = true/></label>
+                     <input required type="text" name="precioServicioAlimentacionC" id="precioServicioAlimentacionC" disabled = true onkeyup="format(this)">
                     <br>
                     <br>
                     <br>
@@ -126,7 +132,7 @@
                 echo '<td><input type="text" name="descripcionAlimentacionServicioAlimentacion" id="descripcionAlimentacionServicioAlimentacion" value="' . $servicioAlimentacion->getDescripcionAlimentacionServicioAlimentacion() . '"/></td>';
 
 
-                echo '<td><input type="text" name="precioServicioAlimentacion" id="precioServicioAlimentacion" value="' . $servicioAlimentacion->getPrecioServicioAlimentacion() . '"/></td>';
+                echo '<td><input type="text" name="precioServicioAlimentacion" id="precioServicioAlimentacion" value="' . $servicioAlimentacion->getPrecioServicioAlimentacion() . '" onchange="numerosTabla()"/></td>';
 
 
                 echo '<td><input type="text" name="AdicionalesServicioAlimentacion" id="AdicionalesServicioAlimentacion" value="' . $servicioAlimentacion->getAdicionalesServicioAlimentacion() . '"/></td>';

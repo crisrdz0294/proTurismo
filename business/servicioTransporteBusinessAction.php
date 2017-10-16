@@ -25,18 +25,21 @@ include './servicioTransporteBusiness.php';
 
 
         $tipoVehiculo =  $_POST['tipoVehiculoServicioTransporte'];
-        $precio = $_POST['precioServicioTransporte'];
+        $montoTemp =str_replace(".","",$_POST['precioServicioTransporte']);
+        $precioFinal=str_replace("₡","",$montoTemp);
+
         $cantidadPersonas = $_POST['cantidadPersonasServicioTransporte'];
         $idSitio=$_POST['sitioturistico'];
 
 
 
         if (strlen($origen) > 0 && strlen($destino) > 0 && strlen($kilometros) > 0 && strlen($tipoCarretera) > 0 && 
-            strlen($tipoVehiculo) > 0 && strlen($precio) > 0 && strlen($cantidadPersonas) > 0) 
+            strlen($tipoVehiculo) > 0 && strlen($precioFinal) > 0 && strlen($cantidadPersonas) > 0) 
         {
             
             $servicioTransporte = new ServicioTransporte(0,$origen ,$destino,$kilometros,$tipoCarretera,$tipoVehiculo,
-            $precio,$cantidadPersonas,$idSitio);
+            $precioFinal,$cantidadPersonas,$idSitio);
+            
             $servicioTransporteBusiness = new ServicioTransporteBusiness();
             $result = $servicioTransporteBusiness->insertarTransporteBusiness($servicioTransporte);
 
@@ -74,17 +77,18 @@ else if (isset($_POST['update']))
         $kilometros = $_POST['KilometrosServicioTransporte'];
         $tipoCarretera = $_POST['tipoCarreteraServicioTransporte'];
         $tipoVehiculo =  $_POST['tipoVehiculoServicioTransporte'];
-        $precio = $_POST['precioServicioTransporte'];
+         $montoTemp =str_replace(".","",$_POST['precioServicioTransporte']);
+        $precioFinal=str_replace("₡","",$montoTemp);
         $cantidadPersonas = $_POST['cantidadPersonasServicioTransporte'];
         $idSitio=$_POST['idsitio'];
 
 
 
-        if (strlen($id) > 0 && strlen($origen) > 0 && strlen($destino) > 0 && strlen($kilometros) > 0 && strlen($tipoCarretera) > 0 && strlen($tipoVehiculo) > 0 && strlen($precio) > 0 && strlen($cantidadPersonas) > 0) 
+        if (strlen($id) > 0 && strlen($origen) > 0 && strlen($destino) > 0 && strlen($kilometros) > 0 && strlen($tipoCarretera) > 0 && strlen($tipoVehiculo) > 0 && strlen($precioFinal) > 0 && strlen($cantidadPersonas) > 0) 
         {
             
             $servicioTransporte = new ServicioTransporte($id,$origen ,$destino,$kilometros,$tipoCarretera,
-            $tipoVehiculo,$precio,$cantidadPersonas,$idSitio);
+            $tipoVehiculo,$precioFinal,$cantidadPersonas,$idSitio);
             
             $serviciotransporteBusiness = new ServicioTransporteBusiness();
             $result = $serviciotransporteBusiness->actualizarServicioTransporte($servicioTransporte);                

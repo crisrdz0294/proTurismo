@@ -35,6 +35,7 @@ class ServicioHabitacionData {
 
            $acceso=$servicioHabitacion->getAccesibilidadHabitacion();
            $banos=$servicioHabitacion->getBanosHabitacion();
+           $precio=$servicioHabitacion->getPrecioServicioHabitacion();
            $idSitio=$servicioHabitacion->getIdSitio();
 
            $consultaInsertar="INSERT INTO tbserviciohospedaje
@@ -50,6 +51,7 @@ class ServicioHabitacionData {
             '".$banos."',
             ".$acceso.",
             ".$cuarto.",
+            ".$precio.",
             ".$idSitio.");";
 
           $result = mysqli_query($conexion, $consultaInsertar);
@@ -82,6 +84,7 @@ class ServicioHabitacionData {
               $row['numerocuartosserviciohospedaje'], 
               $row['banosserviciohospedaje'],
               $row['accesibilidadserviciohospedaje'],
+              $row['precioserviciohospedaje'],
               $row['idsitioturistico']);
             	
               array_push($tuRoom, $temporalHabitacion);
@@ -110,6 +113,7 @@ class ServicioHabitacionData {
 
            $acceso=$servicioHabitacion->getAccesibilidadHabitacion();
            $banos=$servicioHabitacion->getBanosHabitacion();
+          $precio=$servicioHabitacion->getPrecioServicioHabitacion();
            $idSitio=$servicioHabitacion->getIdSitio();
 
 
@@ -125,7 +129,8 @@ class ServicioHabitacionData {
         vistaserviciohospedaje='".$vista."',
         banosserviciohospedaje='".$banos."',
         accesibilidadserviciohospedaje	=".$acceso.",
-        numerocuartosserviciohospedaje=".$cuarto.",     
+        numerocuartosserviciohospedaje=".$cuarto.",
+        precioserviciohospedaje=".$precio.",     
         idsitioturistico=".$idSitio."  WHERE idserviciohospedaje=".$idRoom.";";
 
               	$result = mysqli_query($conexion, $consultaActualizar);

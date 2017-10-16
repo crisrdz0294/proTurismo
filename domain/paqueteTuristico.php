@@ -6,13 +6,17 @@ class PaqueteTuristico
       private $idPaqueteTuristico;
       private $nombrePaqueteTuristico;
       private $descripcionPaqueteTuristico;
+      private $cantidadPersonasPaqueteTuristico;
+      private $itinerarioPaqueteTuristico;
       private $precioPaqueteTurisco;
 
 
-      function PaqueteTuristico($id,$name,$descripcion,$precio){
+      function PaqueteTuristico($id,$name,$descripcion,$cantidadPersonas,$itinerario,$precio){
            $this->idPaqueteTuristico=$id;
             $this->nombrePaqueteTuristico=$name;
             $this->descripcionPaqueteTuristico=$descripcion;
+            $this->cantidadPersonasPaqueteTuristico=$cantidadPersonas;
+            $this->itinerarioPaqueteTuristico=$itinerario;
             $this->precioPaqueteTurisco=$precio;
 
       }
@@ -48,13 +52,12 @@ public function getPrecioPaqueteTuristico(){
   return $this->precioPaqueteTurisco;
 }
 
-
-
-
-
-
-
-
+public function getCantidadPersonasPaqueteTuristico(){
+  return $this->cantidadPersonasPaqueteTuristico;
+}
+public function getItinerarioPaqueteTuristico(){
+  return $this->itinerarioPaqueteTuristico;
+}
 
 
 }

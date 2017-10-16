@@ -14,10 +14,11 @@ class ServicioHabitacion {
    private $cantidadCuartosHabitacion;
    private $banosHabitacion;
    private $accesibilidadHabitacion;
+   private $precioServicioHabitacion;
    private $idSitio;
    
 
-   function ServicioHabitacion($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$cantidadCuartosHabitacion,$banosHabitacion,$accesibilidadHabitacion,$idsitio){
+   function ServicioHabitacion($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$cantidadCuartosHabitacion,$banosHabitacion,$accesibilidadHabitacion,$precioServicioHabitacion,$idsitio){
        $this->camaHabitacion=$cama;
        $this->internetHabitacion=$internet;
        $this->aireAcondicionadoHabitacion=$ac;
@@ -32,6 +33,7 @@ class ServicioHabitacion {
 
        $this->banosHabitacion=$banosHabitacion;
        $this->accesibilidadHabitacion=$accesibilidadHabitacion;
+       $this->precioServicioHabitacion=$precioServicioHabitacion;
        $this->idSitio=$idsitio;
    }
 
@@ -145,5 +147,8 @@ class ServicioHabitacion {
      return $this->idSitio;
    }
 
+   function getPrecioServicioHabitacion(){
+     return $this->precioServicioHabitacion;
+   }
 
 }

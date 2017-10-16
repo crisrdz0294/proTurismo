@@ -13,9 +13,18 @@ include './servicioAlimentacionBusiness.php';
         $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionD']."  ,  ".$_POST['tiempoComidasServicioAlimentacionA']."  ,  ".$_POST['tiempoComidasServicioAlimentacionC'];
 
         $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD']."  ,  ".$_POST['descripcionAlimentacionServicioAlimentacionA']."  ,  ".$_POST['descripcionAlimentacionServicioAlimentacionC'];
+
+        $montoTempD =str_replace(".","",$_POST['precioServicioAlimentacionD']);
+        $precioFinalD=str_replace("₡","",$montoTempD);
+
+        $montoTempA =str_replace(".","",$_POST['precioServicioAlimentacionA']);
+        $precioFinalA=str_replace("₡","",$montoTempA);
+
+        $montoTempC =str_replace(".","",$_POST['precioServicioAlimentacionC']);
+        $precioFinalC=str_replace("₡","",$montoTempC);
         
         
-        $precio = $_POST['precioServicioAlimentacionD']."  ,  ".$_POST['precioServicioAlimentacionA']."  ,  ".$_POST['precioServicioAlimentacionC'];
+        $precio= $precioFinalD.",".$precioFinalA.",".$precioFinalC;
 
 
         $Adicionales  = $_POST['AdicionalesServicioAlimentacion'];

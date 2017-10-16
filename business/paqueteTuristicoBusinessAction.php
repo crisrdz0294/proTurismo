@@ -7,18 +7,19 @@ include './paqueteTuristicoBusiness.php';
 
  if (isset($_POST['guardarPaquete'])) {
     
-    if (isset($_POST['nombre']) && isset($_POST['descripcion']) &&isset($_POST['precio']) ) {
+    if (isset($_POST['nombre']) && isset($_POST['descripcion']) &&isset($_POST['cantidadpersonas']) &&isset($_POST['itinerario'])) {
         
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];        
-        $precio = $_POST['precio'];
+        $cantidadPersonas = $_POST['cantidadpersonas'];
+        $itinerario = $_POST['itinerario'];
 
-        if (strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($precio) > 0 )
+        if (strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($cantidadPersonas) > 0 && strlen($itinerario) > 0 )
         {
             
             
-        $paqueteTuristico = new PaqueteTuristico(0,$nombre,$descripcion ,$precio);
-        
+        $paqueteTuristico = new PaqueteTuristico(0,$nombre,$descripcion,$cantidadPersonas,$itinerario,0);
+                                           
         
         $paqueteTuristicoBusiness = new paqueteTuristicoBusiness();
         $result = $paqueteTuristicoBusiness->insertarPaqueteTuristico($paqueteTuristico);
@@ -42,21 +43,20 @@ else if (isset($_POST['update'])) {
     if (isset($_POST['idpaquete']) && 
         isset($_POST['nombre']) && 
         isset($_POST['descripcion']) &&
-        isset($_POST['precio']) 
+        isset($_POST['cantidadpersonas']) &&
+        isset($_POST['itinerario']) 
         ) {
 
         $id = $_POST['idpaquete'];
         $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];        
-        $precio = $_POST['precio'];
-        
-
-
-
-        if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($precio) > 0 )
+        $descripcion = $_POST['descripcion'];
+        $cantidadPersonas = $_POST['cantidadpersonas'];
+        $itinerario = $_POST['itinerario'];        
+     
+        if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($descripcion) > 0 && strlen($cantidadPersonas) > 0 && strlen($itinerario) > 0 )
         {
             
-        $paqueteTuristico = new PaqueteTuristico($id,$nombre,$descripcion ,$precio);
+        $paqueteTuristico = new PaqueteTuristico($id,$nombre,$descripcion ,$cantidadPersonas,$itinerario,0);
         
         
         $paqueteTuristicoBusiness = new paqueteTuristicoBusiness();
