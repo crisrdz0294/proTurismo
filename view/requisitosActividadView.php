@@ -182,11 +182,11 @@
                
 
 
-                echo '<td><textarea name="conocimientoRequisitosActividad" id="conocimientoRequisitosActividad"> '.$requisitosActividad->getConocimientoRequisitosActividad().'</textarea></td>';
+                echo '<td><textarea name="conocimientoRequisitosActividad" id="conocimientoRequisitosActividad">'.$requisitosActividad->getConocimientoRequisitosActividad().'</textarea></td>';
                 
-                  echo '<td><textarea name="estadoFisicoRequisitosActividad" id="estadoFisicoRequisitosActividad">'.$requisitosActividad->getEstadoFisicoRequisitosActividad() .'</textarea></td>';
-                 echo '<td><textarea  name="equipoNecesarioRequisitosActividad" id="equipoNecesarioRequisitosActividad"> '. $requisitosActividad->getEquipoNecesarioRequisitosActividad().'</textarea></td>';
-                echo '<td><textarea name="aptitudesRequisitosActividad" id="aptitudesRequisitosActividad" >'. $requisitosActividad->getAptitudesRequisitosActividad().'</textarea></td>';
+                  echo '<td><textarea name="estadoFisicoRequisitosActividad" id="estadoFisicoRequisitosActividad">'.$requisitosActividad->getEstadoFisicoRequisitosActividad().'</textarea></td>';
+                 echo '<td><textarea  name="equipoNecesarioRequisitosActividad" id="equipoNecesarioRequisitosActividad">'. $requisitosActividad->getEquipoNecesarioRequisitosActividad().'</textarea></td>';
+                echo '<td><textarea name="aptitudesRequisitosActividad" id="aptitudesRequisitosActividad">'.$requisitosActividad->getAptitudesRequisitosActividad().'</textarea></td>';
 
 
                 echo '<td>

@@ -1,7 +1,7 @@
 <?php
 	
 	include '../domain/tipoActividadTuristica.php';
-	include 'data.php';
+	include_once 'data.php';
 	class TipoActividadTuristicaData
 	{
 
