@@ -11,11 +11,11 @@
      <?php
 
          include '../business/sitioTuristicoBusiness.php';
-         include '../data/dataTipoActividad.php';
+         include '../data/tipoActividadTuristicaData.php';
 
 
-         $dataTipoActividad=new DataTipoActividad();
-         $listaTipos=$dataTipoActividad->mostrarTodosTiposActividades();
+         $dataTipoActividad=new TipoActividadTuristicaData();
+         $listaTipos=$dataTipoActividad->mostrarTodasTipoActividadTuristica();
          $sitioBusiness=new SitioTuristicoBusiness();
          $listaSitios= $sitioBusiness->mostrarTodosSitiosTuristicos();
 
@@ -90,7 +90,7 @@
                         <?php
                           foreach ($listaTipos as $tipoActividad){
                         ?>
-                          <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                          <option value="<?php echo $tipoActividad->getIdtipoactividadturistica();?>"><?php echo $tipoActividad->getNombretipoactividadturistica();?></option>;
                         <?php
                            }
                         ?>
@@ -182,12 +182,12 @@
                           foreach ($listaTipos as $tipoActividad){
                         ?>
                           <?php
-                            if($tipoActividad->getIdTipoActividad()==$actividad->getIdTipoActividadSitio()){  ?>
+                            if($tipoActividad->getIdtipoactividadturistica()==$actividad->getIdTipoActividadSitio()){  ?>
 
-                               <option selected value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                               <option selected value="<?php echo $tipoActividad->getIdtipoactividadturistica();?>"><?php echo $tipoActividad->getNombretipoactividadturistica();?></option>;
                               <?php }else{?>
 
-                                <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                                <option value="<?php echo $tipoActividad->getIdtipoactividadturistica();?>"><?php echo $tipoActividad->getNombretipoactividadturistica();?></option>;
                               <?php  } ?>
 
 

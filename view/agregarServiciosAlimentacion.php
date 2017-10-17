@@ -43,7 +43,7 @@
                		echo '<td><input readonly type="text" name="tiempos" id="tiempos" value="' . $servicio->getTiempoComidasServicioAlimentacion() . '"/></td>';
                		echo '<td><input readonly type="text" name="descripcion" id="descripcion" value="' . $servicio->getDescripcionAlimentacionServicioAlimentacion() . '"/></td>';
                		
-                  echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($servicio->getPrecioServicioAlimentacion(),2,'.',' ').'"/></td>';
+                  echo '<td><input type="text" readonly name="precio" id="precio" onkeyup="format(this)" value= "'."₡".$servicio->getPrecioServicioAlimentacion().'"/></td>';
 
                		if($servicio->getEstadoAgregado()==0){
                			echo "<td><input type=\"button\" id=\"botonAgregarDescartar\" value=\"Agregar\" onclick=\"agregarServicioAlimentacion(".$idpaquete.",'".$servicio->getIdServicioAlimentacion()."','".$servicio->getPrecioServicioAlimentacion()."'), cargarPaginaAlimentacion()\"/></td>";
