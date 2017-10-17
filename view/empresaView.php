@@ -9,6 +9,90 @@
 	<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
 <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
 <script>
+function validarCorreoEmpresa(){
+document.getElementById('emailEmpresa').addEventListener('input', function() {
+campo = event.target;
+valido = document.getElementById('emailOK');
+
+emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(campo.value)) {
+      valido.innerText = "valido";
+    } else {
+      valido.innerText = "incorrecto";
+
+
+    }
+});
+}
+function validarLink(){
+document.getElementById('paginaEmpresa').addEventListener('input', function() {
+campo = event.target;
+valido = document.getElementById('emailOK2');
+
+emailRegex = /^[a-z0-9\.-]+\.[a-z]{2,4}/gi;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(campo.value)) {
+      valido.innerText = "valido";
+    } else {
+      valido.innerText = "incorrecto";
+
+
+    }
+});
+}
+function dejarPasar(){
+	validoCedula=document.getElementById('emailOK2').innerHTML;
+	validoCorreo=document.getElementById('emailOK').innerHTML;
+if(validoCorreo=="valido"&&validoCedula=="valido"){
+					document.form.guardarEmpresa.disabled=false;
+}else{
+
+			document.form.guardarEmpresa.disabled=true;
+}
+function validarCorreoEmpresaTabla(){
+document.getElementById('emailEmpresa').addEventListener('input', function() {
+campo = event.target;
+valido = document.getElementById('emailOK');
+
+emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(campo.value)) {
+      valido.innerText = "valido";
+    } else {
+      valido.innerText = "incorrecto";
+
+
+    }
+});
+}
+function validarLinkTabla(){
+document.getElementById('paginaEmpresa').addEventListener('input', function() {
+campo = event.target;
+valido = document.getElementById('linktabla');
+
+emailRegex = /^[a-z0-9\.-]+\.[a-z]{2,4}/gi;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(campo.value)) {
+      valido.innerText = "valido";
+    } else {
+      valido.innerText = "incorrecto";
+    }
+});
+}
+function dejarPasarTabla(){
+	validoCedula=document.getElementById('emailOK2').innerHTML;
+	validoCorreo=document.getElementById('emailOK').innerHTML;
+if(validoCorreo=="valido"&&validoCedula=="valido"){
+					document.form.guardarEmpresa.disabled=false;
+}else{
+
+			document.form.guardarEmpresa.disabled=true;
+}
+
+
+
+}
 jQuery(function($){
 
  $("#telefonoEmpresa").mask("(+506) 9999-9999")
@@ -44,7 +128,7 @@ jQuery(function($){
 
   <h1>Registrar Empresa</h1>
   <br>
-<form id="form" method="post" action="../business/empresaAction.php">
+<form id="form" name="form" method="post" action="../business/empresaAction.php">
  Encargado de la empresa:
  <?php
  echo '
@@ -68,11 +152,11 @@ jQuery(function($){
   <input type="text" id="telefonoEmpresa" name="telefonoEmpresa" required /><br>
   <br>
   Email:
-    <input type="email" id="emailEmpresa" name="emailEmpresa" onfocusout="validarCorreoEmpresa()" placeholder="example@example.com"  required /> <span id="emailOK"></span>
+    <input type="email" id="emailEmpresa" name="emailEmpresa" onfocusout="validarCorreoEmpresa();dejarPasar();" placeholder="example@example.com"  required /> <span id="emailOK"></span>
     <br>
 		<br>
   Pagina Web:
-    <input type="text" id="paginaEmpresa" name="paginaEmpresa" onfocusout="validarLink()"  required placeholder="http://www.example.com"/> <span id="emailOK2"></span>
+    <input type="text" id="paginaEmpresa" name="paginaEmpresa" onfocusout="validarLink();dejarPasar();"  required placeholder="www.example.com"/> <span id="emailOK2"></span>
     <br>
 		<br>
 Sitio Turistico:
@@ -92,10 +176,10 @@ echo ' </select><br><br>';
 ?>
    <br>
 	 Cedula Juridica:
-     <input type="text" id="cedulaJuridicaEmpresa" name="cedulaJuridicaEmpresa" placeholder="1-234-567890" /><br>
+     <input type="text" id="cedulaJuridicaEmpresa" name="cedulaJuridicaEmpresa" placeholder="1-234-567890" onfocusout="dejarPasar()" /><br>
      <br>
 
-   <input type="submit" value="Guardar" name="guardarEmpresa" id="guardarEmpresa"/><br><br>
+   <input type="submit" value="Guardar" name="guardarEmpresa" id="guardarEmpresa" disabled="true"/><br><br>
 </form>
 
 <h2>EMPRESAS</h2>
@@ -134,7 +218,7 @@ echo ' </select><br><br>';
 								                  <input type="email" name="emailEmpresa" id="emailEmpresa" value="'.$empresa->getEmailEmpresa().'"/>
 								                  </td>';
 												echo '<td>
-																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa().'"/>
+																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa(). '" onfocusout="validarLinkTabla()"/><span id="linktabla"></span>
 																						</td>';
 
 																				echo '<td>
@@ -198,6 +282,23 @@ echo ' </select><br><br>';
 
 
       ?>
+</table>
+
+<?php
+							 if (isset($_GET['error'])) {
+									 if ($_GET['error'] == "dbError") {
+											 echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+									 }else if($_GET['error'] == "numberFormat"){
+										 echo '<script language="javascript">alert("Error: La empresa presanta un error no numerico");</script>';
+
+									 }else if($_GET['error'] == "emptyField"){
+										 echo '<script language="javascript">alert("Error: empresa presenta espacios nulos");</script>';
+									 }
+
+								}else if (isset($_GET['success'])) {
+									 echo '<script language="javascript">alert("Transacción Realizada");</script>';
+							 }
+							 ?>
 
 </body>
 

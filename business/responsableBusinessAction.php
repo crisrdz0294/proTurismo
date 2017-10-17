@@ -79,7 +79,10 @@ if (isset($_POST['update']))
         $nombre = $_POST['nombreResponsable'];
         $primerApellido = $_POST['primerapellidoResponsable'];
         $segundoApellido = $_POST['segundoapellidoResponsable'];
-        $telefono =  $_POST['telefonoResponsable'];
+
+        $telefonoTemp=substr( $_POST['telefonoResponsable'],6);
+          $telefonoA = explode("-",$telefonoTemp);
+          $telefono=$telefonoA[0].$telefonoA[1];
         $email = $_POST['emailResponsable'];
 
 
