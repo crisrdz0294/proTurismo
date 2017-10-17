@@ -20,7 +20,7 @@
                     echo "<h3>No se pueden crear familias porque no hay responsables y sitios turisticos en el sistema</h3>";
                     ?>
                     <br><a href="../index.php">Menu Principal</a>
-                <?php  
+                <?php
                     }else if(empty($listaResponsables)){
                         echo "<h3>No se pueden crear familias porque no hay responsables disponibles en el sistema</h3?>";?>
                       <br><br><a href="../view/responsableView.php">Crear Responsables</a>
@@ -137,7 +137,7 @@
 
                           <?php
                               $listaRes=$familiaBusiness->obtenerResponsablesDisponiblesMasActual($familia->getIdResponsable());
-                              
+
                           foreach ($listaRes as $Responsable){
                         ?>
                           <?php
@@ -197,9 +197,24 @@
                 }
             ?>
     </table>
+    <?php
+                   if (isset($_GET['error'])) {
+                       if ($_GET['error'] == "dbError") {
+                           echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+                       }else if($_GET['error'] == "numberFormat"){
+                         echo '<script language="javascript">alert("Error: la familia presenta un error no numerico");</script>';
+
+                       }else if($_GET['error'] == "emptyField"){
+                         echo '<script language="javascript">alert("Error: la familia presenta espacios nulos");</script>';
+                       }
+
+                    }else if (isset($_GET['success'])) {
+                       echo '<script language="javascript">alert("Transacción Realizada");</script>';
+                   }
+                   ?>
 </body>
 
-<?php  
+<?php
   }
 ?>
 </html>

@@ -57,10 +57,11 @@ include './empresaBusiness.php';
    $email=$_POST['emailEmpresa'];
    $web=$_POST['paginaEmpresa'];
    $sitio=$_POST['idSitioTuristico'];
-   
+
      $cedulaTemp=$_POST['cedulaJuridicaEmpresa'];
       $cedulaA=explode("-",$cedulaTemp);
       $cedula=$cedulaA[0].$cedulaA[1].$cedulaA[2];
+
 
                 if (strlen($nombre) > 0 && strlen($idRespon) > 0 && strlen($contacto) > 0&& strlen($email) > 0&& strlen($web) > 0&& strlen($sitio) > 0  && strlen($cedula) > 0)  {
 

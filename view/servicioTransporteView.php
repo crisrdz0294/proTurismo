@@ -246,6 +246,32 @@
     			
     		</table>
 
+
+
+          <?php
+                   
+               if (isset($_GET['error']))
+                {
+                          if ($_GET['error'] == "dbError") 
+                          {
+                              echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+                          }
+                          else if($_GET['error'] == "emptyField")
+                          {
+                             echo '<script language="javascript">alert("Error al procesar la transacción hay campos vacios");</script>'; 
+                          
+                          }
+                          else if($_GET['error'] == "error")
+                          {
+                              echo '<script language="javascript">alert("Error: Error al procesar la transacción No se ingresaron datos");</script>'; 
+                          }
+                      }
+                      else if (isset($_GET['success'])) 
+                      {
+                          echo '<script language="javascript">alert("Transacción Realizada");</script>'; 
+                      }
+        ?>
+
 </body>
 
 <?php  
