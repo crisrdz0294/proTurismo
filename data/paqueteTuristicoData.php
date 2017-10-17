@@ -15,6 +15,8 @@ public function insertarPaqueteTuristico($PaqueteTuristico){
 
   $nombre=$PaqueteTuristico->getNombrePaqueteTuristico();
   $descripcion=$PaqueteTuristico->getDescripcionPaqueteTuristico();
+  $cantidadPersonas=$PaqueteTuristico->getCantidadPersonasPaqueteTuristico();
+  $itinerario=$PaqueteTuristico->getItinerarioPaqueteTuristico();
   $precio=$PaqueteTuristico->getPrecioPaqueteTuristico();
 
   $consultaUltimoId ="SELECT MAX(idpaqueteturistico) AS idpaqueteturistico FROM tbpaqueteturistico";
@@ -28,6 +30,8 @@ public function insertarPaqueteTuristico($PaqueteTuristico){
       $consultaInsertar="INSERT INTO tbpaqueteturistico VALUES(".$idSiguiente.",
       '".$nombre."',
       '".$descripcion."',
+      ".$cantidadPersonas.",
+      '".$itinerario."',
       ".$precio.");";
 
       $result = mysqli_query($conexion, $consultaInsertar);
@@ -48,8 +52,7 @@ mysqli_close($conexion);
   $actividades = [];
 
   while($row = mysqli_fetch_array($result)){
-    $temporalPaquete=new PaqueteTuristico($row['idpaqueteturistico'],$row['nombrepaqueteturistico'],$row['descripcionpaqueteturistico'],$row['preciopaqueteturistico']);
-
+    $temporalPaquete=new PaqueteTuristico($row['idpaqueteturistico'],$row['nombrepaqueteturistico'],$row['descripcionpaqueteturistico'],$row['cantidadpersonaspaqueteturistico'],$row['itinerariopaqueteturistico'],$row['preciopaqueteturistico']);
     array_push($actividades,$temporalPaquete);
   }
 
@@ -65,8 +68,10 @@ public function actualizarPaqueteTuristico($PaqueteTuristico){
 
     $nombre=$PaqueteTuristico->getNombrePaqueteTuristico();
     $descripcion=$PaqueteTuristico->getDescripcionPaqueteTuristico();
+    $cantidadPersonas=$PaqueteTuristico->getCantidadPersonasPaqueteTuristico();
+    $itinerario=$PaqueteTuristico->getItinerarioPaqueteTuristico();
     $id=$PaqueteTuristico->getIdPaqueteTuristico();
-    $precio=$PaqueteTuristico->getPrecioPaqueteTuristico();
+    
 
     $consultaMostrar ="SELECT distinct idpaqueteturistico FROM tbpaqueteturisticoactividad where idpaqueteturistico=".$id."";
     $idPaquete=mysqli_query($conexion,$consultaMostrar);
@@ -80,7 +85,8 @@ public function actualizarPaqueteTuristico($PaqueteTuristico){
     }else{
         $consultaActualizar = "UPDATE tbpaqueteturistico SET  nombrepaqueteturistico= '".$nombre."',
         descripcionpaqueteturistico= '".$descripcion."',
-        preciopaqueteturistico = ".$precio."
+        cantidadpersonaspaqueteturistico = ".$cantidadPersonas.",
+        itinerariopaqueteturistico='".$itinerario."'
         WHERE idpaqueteturistico= ".$id.";";
 
         $result= mysqli_query($conexion,$consultaActualizar);
@@ -108,11 +114,6 @@ public function obtenerNombrePaquete($idpaquete){
           }
           return $nombrePaquete;
     }
-
-
-
-
-
 
 }
 

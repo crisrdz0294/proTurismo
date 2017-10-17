@@ -8,7 +8,7 @@ include_once './actividadBusiness.php';
 
 
     if (isset($_POST['nombreActividad']) && isset($_POST['descripcionActividad']) && isset($_POST['estadoActividad'])&& isset($_POST['cantidadpersonas'])&&isset($_POST['lugaractividad'])&&isset($_POST['distanciahospedaje'])&&
-        isset($_POST['habilidades'])&&isset($_POST['horarioactividad'])) {
+        isset($_POST['habilidades'])&&isset($_POST['horarioactividad'])&&isset($_POST['precio'])) {
             
             $name = $_POST['nombreActividad'];
             $description = $_POST['descripcionActividad'];
@@ -20,6 +20,8 @@ include_once './actividadBusiness.php';
             $horarioactividad=$_POST['horarioactividad'];
             $idSitio=$_POST['sitioturistico'];
             $idTipoActividad=$_POST['tipoactividad'];
+            $montoTemp =str_replace(".","",$_POST['precio']);
+            $precioFinal=str_replace("₡","",$montoTemp);
 
             $habilidadesSeleccionadas="";
  
@@ -32,7 +34,7 @@ include_once './actividadBusiness.php';
 
             json_encode($habilidadesSeleccionadas);
             
-            $actividad = new Actividad(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad,$idSitio,$idTipoActividad);
+            $actividad = new Actividad(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad,$idSitio,$idTipoActividad,$precioFinal);
 
 
             $actividadBusiness = new ActividadBusiness();
@@ -51,7 +53,7 @@ include_once './actividadBusiness.php';
 }else if (isset($_POST['update'])) {
    
    if (isset($_POST['nombreActividad']) && isset($_POST['descripcionActividad']) && isset($_POST['estadoActividad'])&& isset($_POST['cantidadpersonas'])&&isset($_POST['lugaractividad'])&&isset($_POST['distanciahospedaje'])&&
-        isset($_POST['habilidades'])&&isset($_POST['horarioactividad']) &&isset($_POST['idActividad'])&&isset($_POST['idtipo'])&&isset($_POST['idsitio'])) {
+        isset($_POST['habilidades'])&&isset($_POST['horarioactividad']) &&isset($_POST['idActividad'])&&isset($_POST['idtipo'])&&isset($_POST['idsitio'])&&isset($_POST['precio'])) {
 
 
             $name = $_POST['nombreActividad'];
@@ -64,9 +66,11 @@ include_once './actividadBusiness.php';
             $horarioactividad=$_POST['horarioactividad'];
             $idSitio=$_POST['idsitio'];
             $idTipoActividad=$_POST['idtipo'];
+            $montoTemp =str_replace(".","",$_POST['precio']);
+            $precioFinal=str_replace("₡","",$montoTemp);
             $id=$_POST['idActividad'];
 
-             $actividad = new Actividad($id,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidades,$horarioactividad,$idSitio,$idTipoActividad);
+             $actividad = new Actividad($id,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidades,$horarioactividad,$idSitio,$idTipoActividad,$precioFinal);
              
 
 

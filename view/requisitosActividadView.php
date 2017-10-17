@@ -16,7 +16,8 @@
           ?>
           <br><a href="../view/actividadesView.php">Crear Actividades</a>
           <?php  
-          }else{
+          }
+          else{
 
      ?>
 
@@ -31,7 +32,16 @@
              <br>
              <form id="form" method="post" action="../business/requisitosActividadAction.php">
                     Edad:
-                    <input required type="number" name="edadRequisitosActividad" id="edadRequisitosActividad" />
+                  <select name="edadRequisitosActividad" id="edadRequisitosActividad">
+                      
+                        <option value="8 - 15">8 - 15</option>
+                        <option value="16 - 25">16 - 25</option>
+                        <option value="26 - 35">26 - 35</option>
+                        <option value="36 - 50">36 - 50</option>
+                        <option value="51 o mas">51 o mas</option>
+                    
+                  </select>
+
                     <br>
                     <br>
                     Conocimiento:<br>
@@ -87,13 +97,92 @@
             $requisitosActividadBusiness = new requisitosActividadBusiness();
             $mostrarAct=$requisitos->mostrarActividades();
             $todosRequisitosActividad = $requisitosActividadBusiness->mostrarTodosRequisitosActividad();
-             foreach ($todosRequisitosActividad as $requisitosActividad) {
+             
+
+             foreach ($todosRequisitosActividad as $requisitosActividad) 
+             {
                 echo '<form method="post" enctype="multipart/form-data" action="../business/requisitosActividadAction.php">';
+               
+
+
                 echo '<input type="hidden" name="idRequisitosActividad" id="idRequisitosActividad" value="' . $requisitosActividad->getIdRequisitosActividad() .'">';
+               
+
                 echo '<tr>';
-                echo '<td><input type="number" name="edadRequisitosActividad" id="edadRequisitosActividad" value="' . $requisitosActividad->getEdadRequisitosActividad() . '"/></td>';
+               
+
+                switch ($requisitosActividad->getEdadRequisitosActividad()) 
+                   {
+                            case '8 - 15':
+                                echo '<td>
+                                <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
+                                        <option selected  value="8 - 15">8 - 15</option>
+                                        <option value="16 - 25">16 - 25</option>
+                                        <option value="26 - 35">26 - 35</option>
+                                        <option value="36 - 50">36 - 50</option>
+                                        <option value="51 o mas">51 o mas</option>                    
+                                  </select>
+                                </td>';
+                            break;
+
+                            case '16 - 25':
+                                echo '<td>
+                                <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
+                                        <option value="8 - 15">8 - 15</option>
+                                        <option selected value="16 - 25">16 - 25</option>
+                                        <option value="26 - 35">26 - 35</option>
+                                        <option value="36 - 50">36 - 50</option>
+                                        <option value="51 o mas">51 o mas</option>                    
+                                  </select>
+                                </td>';
+                            break;
+
+                            case '26 - 35':
+                                echo '<td>
+                                <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
+                                        <option value="8 - 15">8 - 15</option>
+                                        <option value="16 - 25">16 - 25</option>
+                                        <option selected value="26 - 35">26 - 35</option>
+                                        <option value="36 - 50">36 - 50</option>
+                                        <option value="51 o mas">51 o mas</option>                    
+                                  </select>
+                                </td>';
+                            break;
+
+                            case '36 - 50':
+                                echo '<td>
+                                <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
+                                        <option value="8 - 15">8 - 15</option>
+                                        <option value="16 - 25">16 - 25</option>
+                                        <option value="26 - 35">26 - 35</option>
+                                        <option selected value="36 - 50">36 - 50</option>
+                                        <option value="51 o mas">51 o mas</option>                    
+                                  </select>
+                                </td>';
+                            break;
+
+                            case '51 o mas':
+                                echo '<td>
+                                <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
+                                        <option value="8 - 15">8 - 15</option>
+                                        <option value="16 - 25">16 - 25</option>
+                                        <option value="26 - 35">26 - 35</option>
+                                        <option value="36 - 50">36 - 50</option>
+                                        <option selected value="51 o mas">51 o mas</option>                    
+                                  </select>
+                                </td>';
+                            break;
+
+                            default:
+                                # code...
+                                break;
+                        }
+
+               
+
 
                 echo '<td><textarea name="conocimientoRequisitosActividad" id="conocimientoRequisitosActividad"> '.$requisitosActividad->getConocimientoRequisitosActividad().'</textarea></td>';
+                
                   echo '<td><textarea name="estadoFisicoRequisitosActividad" id="estadoFisicoRequisitosActividad">'.$requisitosActividad->getEstadoFisicoRequisitosActividad() .'</textarea></td>';
                  echo '<td><textarea  name="equipoNecesarioRequisitosActividad" id="equipoNecesarioRequisitosActividad"> '. $requisitosActividad->getEquipoNecesarioRequisitosActividad().'</textarea></td>';
                 echo '<td><textarea name="aptitudesRequisitosActividad" id="aptitudesRequisitosActividad" >'. $requisitosActividad->getAptitudesRequisitosActividad().'</textarea></td>';

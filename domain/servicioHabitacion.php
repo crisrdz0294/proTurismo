@@ -11,12 +11,14 @@ class ServicioHabitacion {
    private $ventiladorHabitacion;
    private $vistaHabitacion;
    private $cantidadPersonasHabitacion;
+   private $cantidadCuartosHabitacion;
    private $banosHabitacion;
    private $accesibilidadHabitacion;
+   private $precioServicioHabitacion;
    private $idSitio;
    
 
-   function ServicioHabitacion($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$banosHabitacion,$accesibilidadHabitacion,$idsitio){
+   function ServicioHabitacion($cama,$internet,$ac,$cable,$id,$cantidadCamasHabitacion,$ventiladorHabitacion,$vistaHabitacion,$cantidadPersonasHabitacion,$cantidadCuartosHabitacion,$banosHabitacion,$accesibilidadHabitacion,$precioServicioHabitacion,$idsitio){
        $this->camaHabitacion=$cama;
        $this->internetHabitacion=$internet;
        $this->aireAcondicionadoHabitacion=$ac;
@@ -24,10 +26,14 @@ class ServicioHabitacion {
        $this->idHabitacion=$id;
        $this->cantidadCamasHabitacion=$cantidadCamasHabitacion;
        $this->ventiladorHabitacion=$ventiladorHabitacion;
-        $this->vistaHabitacion=$vistaHabitacion;
+       $this->vistaHabitacion=$vistaHabitacion;
+
        $this->cantidadPersonasHabitacion=$cantidadPersonasHabitacion;
+       $this->cantidadCuartosHabitacion=$cantidadCuartosHabitacion;
+
        $this->banosHabitacion=$banosHabitacion;
        $this->accesibilidadHabitacion=$accesibilidadHabitacion;
+       $this->precioServicioHabitacion=$precioServicioHabitacion;
        $this->idSitio=$idsitio;
    }
 
@@ -86,6 +92,9 @@ class ServicioHabitacion {
    function getVistaHabitacion(){
        return $this->vistaHabitacion;
    }
+   
+
+
    function  setCantidadPersonasHabitacion($id){
        $this->cantidadPersonasHabitacion=$id;
    }
@@ -93,6 +102,19 @@ class ServicioHabitacion {
    function getCantidadPersonasHabitacion(){
        return $this->cantidadPersonasHabitacion;
    }
+
+
+
+
+   function  setCantidadCuartosHabitacion($id){
+       $this->cantidadCuartosHabitacion=$id;
+   }
+
+   function getCantidadCuartosHabitacion(){
+       return $this->cantidadCuartosHabitacion;
+   }
+
+
 
    function  setBanosHabitacion($id){
        $this->banosHabitacion=$id;
@@ -125,5 +147,8 @@ class ServicioHabitacion {
      return $this->idSitio;
    }
 
+   function getPrecioServicioHabitacion(){
+     return $this->precioServicioHabitacion;
+   }
 
 }

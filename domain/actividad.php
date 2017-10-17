@@ -13,10 +13,11 @@
 	    private $horarioActividad;
 	    private $idSitio;
 	    private $idTipoActividad;
+	    private $precioActividad;
 	    private $estadoAgregado;
 	    
 
-	     function Actividad($idActividad,$nombreActividad,$descripcionActividad,$estadoActividad,$cantidadPersonasActividad,$lugarActividad, $distanciaHospedajeActividad,$habilidadesActividad,$horarioActividad,$idSitio,$idTipoActividad,$estadoAgregado) {
+	     function Actividad($idActividad,$nombreActividad,$descripcionActividad,$estadoActividad,$cantidadPersonasActividad,$lugarActividad, $distanciaHospedajeActividad,$habilidadesActividad,$horarioActividad,$idSitio,$idTipoActividad,$precioA,$estadoAgregado) {
 
 	        $this->idActividad=$idActividad;
 	        $this->nombreActividad = $nombreActividad;
@@ -29,6 +30,7 @@
 	        $this->horarioActividad = $horarioActividad;
 	        $this->idSitio=$idSitio;
 	        $this->idTipoActividad=$idTipoActividad;
+	        $this->precioActividad=$precioA;
 	       	$this->estadoAgregado=$estadoAgregado;
 	    }
 
@@ -82,6 +84,10 @@
 
 		public function getEstadoAgregado(){
 	    	return $this->estadoAgregado;
+	    }
+
+	    public function getPrecioActividad() {
+	        return $this->precioActividad;
 	    }
 
 	}

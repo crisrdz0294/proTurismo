@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+   <script src="../js/jquery-3.2.1.js"></script>
+  <script src="../js/jsDinero.js"></script>
+   
 	<?php
 		include '../business/servicioTransporteBusiness.php';
     
@@ -17,6 +24,8 @@
           <?php  
           }else{
 	?>
+
+
 </head>
 <body>
 
@@ -61,8 +70,9 @@
                     <br>
                     <br>
                     <br>
-                    Precio:
-                    <label>$<input required type="number" name="precioServicioTransporte" id="precioServicioTransporte" /></label>
+                    Precio Transporte: <br>
+                    <input type="text" name="precioServicioTransporte" id="precioServicioTransporte" onkeyup="format(this)"><br>
+
                     <br>
                     <br>
                     <br>
@@ -198,7 +208,7 @@
 
 
 
-                    echo '<td><input type="number" name="precioServicioTransporte" id="precioServicioTransporte" value="' . $servicioTransporte->getPrecioServicioTransporte() . '"/></td>';
+                    echo '<td><input type="text" name="precioServicioTransporte" id="precioServicioTransporte" onkeyup="format(this)" value="'."₡".number_format($servicioTransporte->getPrecioServicioTransporte(),2,'.',' ').'"/></td>';
                    
                     echo '<td><input type="number" name="cantidadPersonasServicioTransporte" id="cantidadPersonasServicioTransporte" value="' . $servicioTransporte->getCantidadPersonasServicioTransporte() . '"/></td>';
 

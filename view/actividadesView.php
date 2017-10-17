@@ -5,11 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Turismo Rural</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/jsDinero.js"></script>
 
      <?php
 
          include '../business/sitioTuristicoBusiness.php';
          include '../data/dataTipoActividad.php';
+
 
          $dataTipoActividad=new DataTipoActividad();
          $listaTipos=$dataTipoActividad->mostrarTodosTiposActividades();
@@ -77,6 +80,9 @@
                     Horario de la actividad:<br>
                     <textarea required  name="horarioactividad" id="horarioactividad" placeholder="Describa el horario de la actividad"></textarea><br><br>
 
+                    Precio Actividad: <br>
+                    <input type="text" name="precio" id="precio" onkeyup="format(this)"><br>
+
                     Tipo de actividad:<br>
 
                     <select id="tipoactividad" name="tipoactividad">
@@ -124,6 +130,7 @@
             <th>Distancia de hospedaje</th>
             <th>Habilidades</th>
             <th>Horario</th>
+            <th>Precio Actividad</th>
             <th>Tipo Actividad</th>
             <th>Sitio Turistico</th>
             <th>Opcion1</th>
@@ -167,6 +174,8 @@
                 echo '<td><input type="text" name="distanciahospedaje" id="distanciahospedaje" value="' . $actividad->getDistanciaHospedajeActividad() . '"/></td>';
                 echo '<td><textarea name="habilidades" id="habilidades" >'. $actividad->getHabilidadesActividad().'</textarea></td>';
                 echo '<td><textarea name="horarioactividad" id="horarioactividad" >'. $actividad->getHorarioActividad().'</textarea></td>';
+                 echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($actividad->getPrecioActividad(),2,'.',' ').'"/></td>';
+                
 
                 echo '<td><select name="idtipo" id="idtipo"> '?>
                         <?php

@@ -17,7 +17,6 @@ include './requisitosActividadBusiness.php';
 
             if ($edad > 0 && strlen($conocimiento) > 0 && strlen($estado) > 0&& strlen($equipo) > 0&& strlen($aptitudes) > 0 ) {
 
-                if (is_numeric($edad)) {
 
                     $requisitosActividad = new requisitosActividad(0,$edad,$conocimiento,$estado,$equipo,$aptitudes,$idAct);
                     $requisitosActividadBusisness = new requisitosActividadBusiness();
@@ -29,9 +28,7 @@ include './requisitosActividadBusiness.php';
                     } else {
                         header("location: ../view/requisitosActividadView.php?error=dbError");
                     }
-            } else {
-                header("location: ../view/requisitosActividadView.php?error=numberFormat");
-            }
+            
         } else {
             header("location: ../view/requisitosActividadView.php?error=emptyField");
         }
@@ -41,7 +38,8 @@ include './requisitosActividadBusiness.php';
 }else if (isset($_POST['update'])) {
 
 
-    if (isset($_POST['idRequisitosActividad']) &&isset($_POST['edadRequisitosActividad']) && isset($_POST['conocimientoRequisitosActividad']) && isset($_POST['estadoFisicoRequisitosActividad'])&& isset($_POST['equipoNecesarioRequisitosActividad'])&& isset($_POST['aptitudesRequisitosActividad'])) {
+    if (isset($_POST['idRequisitosActividad']) &&isset($_POST['edadRequisitosActividad']) && isset($_POST['conocimientoRequisitosActividad']) && isset($_POST['estadoFisicoRequisitosActividad'])&& isset($_POST['equipoNecesarioRequisitosActividad'])&& isset($_POST['aptitudesRequisitosActividad'])) 
+    {
             $id=$_POST['idRequisitosActividad'];
             $edad = $_POST['edadRequisitosActividad'];
             $conocimiento= $_POST['conocimientoRequisitosActividad'];
@@ -50,9 +48,9 @@ include './requisitosActividadBusiness.php';
             $aptitudes=$_POST['aptitudesRequisitosActividad'];
                $idAct=$_POST['idActividad'];
 
-            if ($edad > 0 && strlen($conocimiento) > 0 && strlen($estado) > 0&& strlen($equipo) > 0&& strlen($aptitudes) > 0 ) {
+            if ($edad > 0 && strlen($conocimiento) > 0 && strlen($estado) > 0 && strlen($equipo) > 0 && strlen($aptitudes) > 0 ) {
 
-                if (is_numeric($edad)) {
+                
 
                     $requisitosActividad = new requisitosActividad($id,$edad,$conocimiento,$estado,$equipo,$aptitudes,$idAct);
 
@@ -67,9 +65,7 @@ include './requisitosActividadBusiness.php';
                     } else {
                         header("location: ../view/requisitosActividadView.php?error=dbError");
                     }
-            } else {
-                header("location: ../view/requisitosActividadView.php?error=numberFormat");
-            }
+            
         } else {
             header("location: ../view/requisitosActividadView.php?error=emptyField");
         }

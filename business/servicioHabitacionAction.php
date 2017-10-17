@@ -4,8 +4,8 @@ include './ServicioHabitacionBusisnes.php';
 
     if (isset($_POST['enviarFormulario'])) {
 
-    if (isset($_POST['estiloCama']) && isset($_POST['aireAcondicionado']) && isset($_POST['internet'])&& isset($_POST['cable'])&& isset($_POST['cantidadcamas'])&& isset($_POST['cantidadpersonas'])&& isset($_POST['vista'])
-    && isset($_POST['banos'])&& isset($_POST['acceso']) && isset($_POST['ventilador'])) {
+    if (isset($_POST['estiloCama']) && isset($_POST['aireAcondicionado']) && isset($_POST['internet'])&& isset($_POST['cable'])&& isset($_POST['cantidadcamas'])&& isset($_POST['cantidadpersonas'])&& isset($_POST['cantidadCuartos'])&& isset($_POST['vista'])
+    && isset($_POST['banos'])&& isset($_POST['acceso']) && isset($_POST['ventilador']) && isset($_POST['precio'])) {
 
             $cama = $_POST['estiloCama'];
             $aire = $_POST['aireAcondicionado'];
@@ -13,16 +13,21 @@ include './ServicioHabitacionBusisnes.php';
             $cable=$_POST['cable'];
             $ventilador=$_POST['ventilador'];
             $personas=$_POST['cantidadpersonas'];
+            $cuartos=$_POST['cantidadCuartos'];
             $camas=$_POST['cantidadcamas'];
             $vista=$_POST['vista'];
             $acces=$_POST['acceso'];
             $banos=$_POST['banos'];
             $idSitio=$_POST['idEncargado'];
+            $montoTemp =str_replace(".","",$_POST['precio']);
+            $precioFinal=str_replace("₡","",$montoTemp);
+
+
             if (strlen($cama) >=0 && strlen($aire) >= 0 && strlen($inter) >= 0&& strlen($cable) >= 0
-            && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0) {
+            && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($cuartos) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0 &&strlen($precioFinal) > 0) {
 
 
-                    $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
+                    $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$cuartos,$banos,$acces,$precioFinal,$idSitio);
 
                     $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
 
@@ -43,24 +48,33 @@ include './ServicioHabitacionBusisnes.php';
     }else if (isset($_POST['update'])) {
 
 
-      if (isset($_POST['idhabitacion']) &&isset($_POST['estiloCama']) && isset($_POST['aireAcondicionado']) && isset($_POST['internet'])&& isset($_POST['cable'])&& isset($_POST['cantidadcamas'])&& isset($_POST['cantidadpersonas'])&& isset($_POST['vista'])
-      && isset($_POST['banos'])&& isset($_POST['acceso']) && isset($_POST['ventilador'])) {
-              $id=$_POST['idhabitacion'];
-              $cama = $_POST['estiloCama'];
-              $aire = $_POST['aireAcondicionado'];
-              $inter= $_POST['internet'];
-              $cable=$_POST['cable'];
-              $ventilador=$_POST['ventilador'];
-              $personas=$_POST['cantidadpersonas'];
-              $camas=$_POST['cantidadcamas'];
-              $vista=$_POST['vista'];
-              $acces=$_POST['acceso'];
-              $banos=$_POST['banos'];
-                $idSitio=$_POST['idEncargado'];
+    if (isset($_POST['idhabitacion']) && isset($_POST['estiloCama']) && isset($_POST['aireAcondicionado']) && isset($_POST['internet'])&& isset($_POST['cable'])&& isset($_POST['cantidadcamas'])&& isset($_POST['cantidadpersonas'])&& isset($_POST['cantidadCuartos'])&& isset($_POST['vista'])
+    && isset($_POST['banos'])&& isset($_POST['acceso']) && isset($_POST['ventilador'])&& isset($_POST['precio'])) {
+
+            $id=$_POST['idhabitacion'];
+            $cama = $_POST['estiloCama'];
+            $aire = $_POST['aireAcondicionado'];
+            $inter= $_POST['internet'];
+            $cable=$_POST['cable'];
+            $ventilador=$_POST['ventilador'];
+            $personas=$_POST['cantidadpersonas'];
+            $cuartos=$_POST['cantidadCuartos'];
+            $camas=$_POST['cantidadcamas'];
+            $vista=$_POST['vista'];
+            $acces=$_POST['acceso'];
+            $banos=$_POST['banos'];
+            $montoTemp =str_replace(".","",$_POST['precio']);
+            $precioFinal=str_replace("₡","",$montoTemp);
+            $idSitio=$_POST['idEncargado'];
+
+
             if (strlen($cama) >=0 && strlen($aire) >= 0 && strlen($inter) >= 0&& strlen($cable) >= 0
-            && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0) {
-            if (is_numeric($id)) {
-                  $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$banos,$acces,$idSitio);
+            && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($cuartos) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0) {
+            
+
+            if (is_numeric($id)) 
+            {
+                  $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$cuartos,$banos,$acces,$precioFinal,$idSitio);
 
                     $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
 

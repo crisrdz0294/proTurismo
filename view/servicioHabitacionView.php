@@ -16,8 +16,12 @@
 ?>
 
     <head>
-        <meta charset="UTF-8"> 
-        <title>Manipular</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+        <script src="../js/jquery-3.2.1.js"></script>
+        <script src="../js/jsDinero.js"></script>
 
     </head>
     <body>
@@ -66,11 +70,10 @@
                     </select>
                 <br>
                   <br>
-                Baños dentro de la habitacion:
-                    <select name="banos">
-                        <option value="0">SI</option>
-                        <option value="1">NO</option>
-                    </select>
+
+                Baños:
+                    <input type="radio" name="banos" value="Dentro Habitacion">Dentro Habitacion
+                    <input type="radio" name="banos" value="Compartido"> Compartido
 
                 <br>
                 <br>
@@ -83,6 +86,12 @@
                 <input type="number" name="cantidadpersonas">
                 <br>
                 <br>
+                Numero de cuartos disponibles
+                <input type="number" name="cantidadCuartos">
+                <br>
+                <br>
+                Precio Habitacion: <br>
+                    <input type="text" name="precio" id="precio" onkeyup="format(this)"><br>
                 Accesibilidad:
                 <select name="acceso">
                     <option value="0">SI</option>
@@ -118,10 +127,12 @@
                     <th>Internet</th>
                     <th>Aire</th>
                     <th>Ventilador</th>
-                    <th>Baños dentro</th>
+                    <th>Baños</th>
                     <th>Vista</th>
                     <th>Cantidad personas</th>
+                    <th>Cantidad Cuartos</th>
                     <th>Accesibilidad</th>
+                    <th>Precio Habitacion</th>
                     <th>Sitio</th>
                     <th>Actulizar</th>
                     <th>Eliminar</th>
@@ -131,6 +142,7 @@
                     $servicioHabitacionBusiness = new ServicioHabitacionBusisnes();
                     $todosHabitaciones= $servicioHabitacionBusiness->mostrarServicioHabitacion();
                     $sitios=$servicioHabitacionBusisnes->mostrarSitios();
+
                     foreach ($todosHabitaciones as $servicioHabitacion) {
                         echo '<form method="post" enctype="multipart/form-data" action="../business/servicioHabitacionAction.php">';
                         echo '<input type="hidden" name="idhabitacion" id="idhabitacion" value="' . $servicioHabitacion->getIdHabitacion().'">';
@@ -208,7 +220,9 @@
                             </td>';
                           }
 
-                                                    if ($servicioHabitacion->getAireAcondicionadoHabitacion()==0) {
+                        
+
+                        if ($servicioHabitacion->getAireAcondicionadoHabitacion()==0) {
                                                       echo '<td><select name="aireAcondicionado" id="aireAcondicionado">
                                                           <option selected value="0">NO DISPONIBLE</option>
                                                             <option value="1">DISPONIBLE</option>
@@ -248,20 +262,23 @@
                                 break;
                         }
 
+                        
+
+
                         switch ($servicioHabitacion->getBanosHabitacion()) {
 
-                            case '0':
+                            case "Dentro Habitacion":
                                  echo '<td><select name="banos" id="banos">
-                                     <option selected value="0">NO DISPONIBLE</option>
-                                     <option value="1">DISPONIBLE</option>
+                                     <option selected value="Dentro Habitacion">Dentro Habitacion</option>
+                                     <option value="Compartido">Compartido</option>
                                     </select>
                                 </td>';
                             break;
 
-                            case '1':
+                            case "Compartido":
                                  echo '<td><select name="banos" id="banos">
-                                     <option value="0">NO DISPONIBLE</option>
-                                     <option selected value="1">DISPONIBLE</option>
+                                     <option value="Dentro Habitacion">Dentro Habitacion</option>
+                                     <option selected value="Compartido">Compartido</option>
                                     </select>
                                 </td>';
                             break;
@@ -276,6 +293,9 @@
                       echo '<td>  <textarea type="text" name="vista" placeholder="Describa la vista que tiene la habitacion">'.$servicioHabitacion->getVistaHabitacion().'</textarea></td>';
 
                      echo '<td><input type="number" name="cantidadpersonas" value="'.$servicioHabitacion->getCantidadPersonasHabitacion().'"/></td>';
+
+                     echo '<td><input type="number" name="cantidadCuartos" value="'.$servicioHabitacion->getCantidadCuartosHabitacion().'"/></td>';
+
 
 
                      switch ($servicioHabitacion->getAccesibilidadHabitacion()) {
@@ -301,6 +321,8 @@
                              break;
 
                      }
+
+                     echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($servicioHabitacion->getPrecioServicioHabitacion(),2,'.',' ').'"/></td>';
                      echo '<td>
                      <select id="idEncargado" name="idEncargado">';
 
