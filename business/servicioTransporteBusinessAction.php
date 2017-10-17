@@ -38,7 +38,7 @@ include './servicioTransporteBusiness.php';
         {
             
             $servicioTransporte = new ServicioTransporte(0,$origen ,$destino,$kilometros,$tipoCarretera,$tipoVehiculo,
-            $precioFinal,$cantidadPersonas,$idSitio);
+            $precioFinal,$cantidadPersonas,$idSitio,0);
             
             $servicioTransporteBusiness = new ServicioTransporteBusiness();
             $result = $servicioTransporteBusiness->insertarTransporteBusiness($servicioTransporte);
@@ -57,9 +57,6 @@ include './servicioTransporteBusiness.php';
         header("location: ../view/servicioTransporteView.php?error=error");
     }
 }
-
-
-
 
 else if (isset($_POST['update'])) 
 {   
@@ -87,8 +84,8 @@ else if (isset($_POST['update']))
         if (strlen($id) > 0 && strlen($origen) > 0 && strlen($destino) > 0 && strlen($kilometros) > 0 && strlen($tipoCarretera) > 0 && strlen($tipoVehiculo) > 0 && strlen($precioFinal) > 0 && strlen($cantidadPersonas) > 0) 
         {
             
-            $servicioTransporte = new ServicioTransporte($id,$origen ,$destino,$kilometros,$tipoCarretera,
-            $tipoVehiculo,$precioFinal,$cantidadPersonas,$idSitio);
+            $servicioTransporte = new ServicioTransporte($id,$origen ,$destino,$kilometros,$tipoCarretera,$tipoVehiculo,$precioFinal,$cantidadPersonas,$idSitio,0);
+            
             
             $serviciotransporteBusiness = new ServicioTransporteBusiness();
             $result = $serviciotransporteBusiness->actualizarServicioTransporte($servicioTransporte);                
@@ -105,14 +102,6 @@ else if (isset($_POST['update']))
         header("location: ../view/servicioTransporteView.php?error=error");
     }
 } 
-
-
-
-
-
-
-
-
 
 
 else if (isset($_POST['delete'])) 

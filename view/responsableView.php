@@ -103,9 +103,6 @@ jQuery(function($){
 
                  echo '<td><input type="Email" name="emailResponsable" id="emailResponsable" value="' . $responsable->getEmailResponsable() . '" onblur="validarCorreo()"/></td>';
 
-
-
-
                 echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                 echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
 
