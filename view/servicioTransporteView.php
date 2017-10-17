@@ -202,12 +202,6 @@
                 }
  
 
-
-
-
-
-
-
                     echo '<td><input type="text" name="precioServicioTransporte" id="precioServicioTransporte" onkeyup="format(this)" value="'."₡".number_format($servicioTransporte->getPrecioServicioTransporte(),2,'.',' ').'"/></td>';
                    
                     echo '<td><input type="number" name="cantidadPersonasServicioTransporte" id="cantidadPersonasServicioTransporte" value="' . $servicioTransporte->getCantidadPersonasServicioTransporte() . '"/></td>';

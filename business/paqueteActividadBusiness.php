@@ -9,7 +9,6 @@
 		private $dataActividad=null;
 
 		public function PaqueteActividadBusiness(){
-
 			$this->dataActividad = new DataActividad();
 			$this->dataPaqueteActividad = new DataPaqueteActividad();
 		}

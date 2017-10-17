@@ -1,8 +1,8 @@
 <?php
 
-include_once  'data.php';
+include_once 'data.php';
 include '../domain/servicioHabitacion.php';
-include '../domain/sitioTuristico.php';
+include_once '../domain/sitioTuristico.php';
 
 
 class ServicioHabitacionData {
@@ -85,7 +85,7 @@ class ServicioHabitacionData {
               $row['banosserviciohospedaje'],
               $row['accesibilidadserviciohospedaje'],
               $row['precioserviciohospedaje'],
-              $row['idsitioturistico']);
+              $row['idsitioturistico'],0);
             	
               array_push($tuRoom, $temporalHabitacion);
         	}

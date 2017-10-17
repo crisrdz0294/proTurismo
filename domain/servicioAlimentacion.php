@@ -9,11 +9,11 @@ class ServicioAlimentacion
     private $precioServicioAlimentacion;
     private $adicionalesServicioAlimentacion;
     private $alimentacionllevarServicioAlimentacion;
-
     private $sitioTuristico;
+    private $estadoAgregado;
 
 
-   function ServicioAlimentacion($idServicioAlimentacion,$tiempoComidasServicioAlimentacion,$descripcionAlimentacionServicioAlimentacion,$precioServicioAlimentacion,$adicionalesServicioAlimentacion,$alimentacionllevarServicioAlimentacion,$sitioTuristico) 
+   function ServicioAlimentacion($idServicioAlimentacion,$tiempoComidasServicioAlimentacion,$descripcionAlimentacionServicioAlimentacion,$precioServicioAlimentacion,$adicionalesServicioAlimentacion,$alimentacionllevarServicioAlimentacion,$sitioTuristico,$estado) 
     {   
        $this->idServicioAlimentacion=$idServicioAlimentacion;
 	   $this->tiempoComidasServicioAlimentacion=$tiempoComidasServicioAlimentacion;
@@ -21,8 +21,8 @@ class ServicioAlimentacion
        $this->precioServicioAlimentacion=$precioServicioAlimentacion;
        $this->adicionalesServicioAlimentacion=$adicionalesServicioAlimentacion;
        $this->alimentacionllevarServicioAlimentacion=$alimentacionllevarServicioAlimentacion;
-
        $this->sitioTuristico=$sitioTuristico;
+       $this->estadoAgregado=$estado;
     }
 
 
@@ -50,18 +50,12 @@ class ServicioAlimentacion
         return $this->sitioTuristico;
     }
 
-
-
-
-
-
     public function setIdServicioAlimentacion($idServicioAlimentacion) {
         $this->idServicioAlimentacion = $idServicioAlimentacion;
     }
     public function setTiempoComidasServicioAlimentacion($tiempoComidasServicioAlimentacion) {
         $this->tiempoComidasServicioAlimentacion = $tiempoComidasServicioAlimentacion;
     }
-
 
     public function setDescripcionAlimentacionServicioAlimentacion($descripcionAlimentacionServicioAlimentacion) {
         $this->descripcionAlimentacionServicioAlimentacion = $descripcionAlimentacionServicioAlimentacion;
@@ -76,6 +70,12 @@ class ServicioAlimentacion
         $this->alimentacionllevarServicioAlimentacion = $alimentacionllevarServicioAlimentacion;
     }
 
+    public function getEstadoAgregado() {
+        return $this->estadoAgregado;
+    }
 
+    public function setEstadoAgregado($estado) {
+        $this->estadoAgregado = $estado;
+    }
 
 }

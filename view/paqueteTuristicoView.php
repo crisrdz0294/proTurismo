@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Refresh" content="45">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title></title>
 <script src="../js/jquery-3.2.1.js"></script>
   <script src="../js/jsPaqueteTuristico.js"></script>
+  <script src="../js/jsServicios.js"></script>
 	
 </head>
 <body>
+
 
 	<h3>Registrar Paquete Turistico</h3>
 
@@ -60,8 +65,9 @@
 
                   echo '<td><textarea  name="itinerario" id="itinerario">'.$paqueteTuristico->getItinerarioPaqueteTuristico().'</textarea></td>';
 
-                 	echo '<td><input type="number" name="precio" id="precio" value="' . $paqueteTuristico->getPrecioPaqueteTuristico() . '"/></td>';
-                  echo '<td><input type="number" name="precio" id="precio" value="' . $paqueteTuristico->getPrecioPaqueteTuristico() . '"/></td>';
+                     echo '<td><input type="text" readonly name="precio" id="precio" value= "'."₡".number_format($paqueteTuristico->getPrecioPaqueteTuristico(),2,'.',' ').'"/></td>';
+                     $precioTotal=$paqueteTuristico->getPrecioPaqueteTuristico();
+                    echo '<td><input type="text" readonly name="precio" id="precio" value= "'."₡".number_format(round($precioTotal-($paqueteTuristico->getPrecioPaqueteTuristico()*10)/100,-2),2,'.',' ').'"/></td>';
                 
                 	echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                   echo "<td><input type=\"button\" value=\"Agregar actividades\" onclick=\"cargarPagina('../view/mostrarActividadesView.php?idpaquete=".$paqueteTuristico->getIdPaqueteTuristico()."')\"/></td>";

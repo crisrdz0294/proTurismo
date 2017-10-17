@@ -11,8 +11,6 @@
 			$this->servicioTransporteData = new ServicioTransporteData();
 		}
 
-		
-
 		public function insertarTransporteBusiness($servicioTransporte){
 			return $this->servicioTransporteData->insertarServicioTransporte($servicioTransporte);
 		}
@@ -24,8 +22,6 @@
 		public function mostrarTodosSitiosTuristicos(){
 			return $this->servicioTransporteData->mostrarTodosSitiosTuristicos();
 		}
-
-		
 
 		public function actualizarServicioTransporte($servicioTransporte){
 			return $this->servicioTransporteData->actualizarServicioTransporte($servicioTransporte);

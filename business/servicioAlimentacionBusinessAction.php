@@ -37,7 +37,7 @@ include './servicioAlimentacionBusiness.php';
         if (strlen($tiempoComidas) > 0 && strlen($descripcionAlimentacion) > 0 && strlen($precio) > 0 && strlen($Adicionales) > 0 && strlen($alimentacionLlevar) > 0)
         {
             
-        $servicioAlimentacion = new ServicioAlimentacion(0,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar,$idSitio);
+        $servicioAlimentacion = new ServicioAlimentacion(0,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar,$idSitio,0);
         
         
         $servicioAlimentacionBusiness = new ServicioAlimentacionBusiness();
@@ -88,7 +88,7 @@ else if (isset($_POST['update']))
         if (strlen($id) > 0 && strlen($tiempoComidas) > 0 && strlen($descripcionAlimentacion) > 0 && strlen($precio) > 0 && strlen($Adicionales) > 0 && strlen($alimentacionLlevar) > 0)
         {
             
-        $servicioAlimentacion = new ServicioAlimentacion($id,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar,$idSitio);
+        $servicioAlimentacion = new ServicioAlimentacion($id,$tiempoComidas,$descripcionAlimentacion ,$precio,$Adicionales,$alimentacionLlevar,$idSitio,0);
         
         
         $servicioAlimentacionBusiness = new ServicioAlimentacionBusiness();

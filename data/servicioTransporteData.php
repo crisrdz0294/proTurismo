@@ -2,7 +2,7 @@
 	
 	include_once 'data.php';
 	include '../domain/serviciotransporte.php';
-    include '../domain/sitioTuristico.php';
+    include_once '../domain/sitioTuristico.php';
 	
 	class ServicioTransporteData{
 
@@ -53,16 +53,6 @@
         	return $result;
 		}
 
-
-
-
-
-
-
-
-
-
-
 		public function mostrarTodosServicioTransporte(){
 
 			$con = new Data();
@@ -83,17 +73,13 @@
     				$row['tipovehiculoserviciotransporte'], 
     				$row['precioserviciotransporte'], 
     				$row['cantidadpersonasserviciotransporte'],
-                    $row['idsitioturistico']
+                    $row['idsitioturistico'],0
     			);
 
             	array_push($servicioDeTransporte, $temporalServicioTransporte);
         	}
         	return $servicioDeTransporte;
 		}
-
-
-
-
 
          public function mostrarTodosSitiosTuristicos(){
 
@@ -110,22 +96,14 @@
             return $sitiosTuristicos;
         }
 
-        
-
-
-
-
 		public function actualizarServicioTransporte($serviciotransporte){
 			$con = new Data();
 			$conexion = $con->conect();
 
 			$consultaActualizar = "UPDATE tbserviciotransporte SET 
-    		
-          	origenserviciotransporte = '".$serviciotransporte->getOrigenServicioTransporte()."',
+    		origenserviciotransporte = '".$serviciotransporte->getOrigenServicioTransporte()."',
     		destinoserviciotransporte = '".$serviciotransporte->getDestinoServicioTransporte(). "',
-    		kilometrosserviciotransporte = ".$serviciotransporte->getKilometrosServicioTransporte().",
-   			tipocarreteraserviciotransporte = '".$serviciotransporte->getTipoCarreteraServicioTransporte()."',
-    		tipovehiculoserviciotransporte = '".$serviciotransporte->getTipoVehiculoServicioTransporte()."',
+    		kilometrosserviciotransporte = ".$serviciotransporte->getKilometrosServicioTransporte().",tipocarreteraserviciotransporte = '".$serviciotransporte->getTipoCarreteraServicioTransporte()."',tipovehiculoserviciotransporte = '".$serviciotransporte->getTipoVehiculoServicioTransporte()."',
     		precioserviciotransporte = ".$serviciotransporte->getPrecioServicioTransporte().",
     		cantidadpersonasserviciotransporte = ".$serviciotransporte->getCantidadPersonasServicioTransporte().",
             idsitioturistico = ".$serviciotransporte->getSitioTuristico()."		
@@ -137,15 +115,6 @@
 
         	return $result;
 		}
-
-
-
-
-
-
-
-
-
 
 		public function eliminarServicioTransporte($idserviciotransporte)
 		{
