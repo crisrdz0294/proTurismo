@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Turismo Rural</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="../js/jquery-3.2.1.js"></script>
 
     <?php
     include '../business/requisitosActividadBusiness.php';
@@ -181,11 +182,11 @@
                
 
 
-                echo '<td><textarea name="conocimientoRequisitosActividad" id="conocimientoRequisitosActividad"> '.$requisitosActividad->getConocimientoRequisitosActividad().'</textarea></td>';
+                echo '<td><textarea name="conocimientoRequisitosActividad" id="conocimientoRequisitosActividad">'.$requisitosActividad->getConocimientoRequisitosActividad().'</textarea></td>';
                 
-                  echo '<td><textarea name="estadoFisicoRequisitosActividad" id="estadoFisicoRequisitosActividad">'.$requisitosActividad->getEstadoFisicoRequisitosActividad() .'</textarea></td>';
-                 echo '<td><textarea  name="equipoNecesarioRequisitosActividad" id="equipoNecesarioRequisitosActividad"> '. $requisitosActividad->getEquipoNecesarioRequisitosActividad().'</textarea></td>';
-                echo '<td><textarea name="aptitudesRequisitosActividad" id="aptitudesRequisitosActividad" >'. $requisitosActividad->getAptitudesRequisitosActividad().'</textarea></td>';
+                  echo '<td><textarea name="estadoFisicoRequisitosActividad" id="estadoFisicoRequisitosActividad">'.$requisitosActividad->getEstadoFisicoRequisitosActividad().'</textarea></td>';
+                 echo '<td><textarea  name="equipoNecesarioRequisitosActividad" id="equipoNecesarioRequisitosActividad">'. $requisitosActividad->getEquipoNecesarioRequisitosActividad().'</textarea></td>';
+                echo '<td><textarea name="aptitudesRequisitosActividad" id="aptitudesRequisitosActividad">'.$requisitosActividad->getAptitudesRequisitosActividad().'</textarea></td>';
 
 
                 echo '<td>
@@ -212,6 +213,34 @@
 
 
     </table>
+
+
+         <?php
+                   
+               if (isset($_GET['error']))
+                {
+                          if ($_GET['error'] == "dbError") 
+                          {
+                              echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+                          }
+                          else if($_GET['error'] == "emptyField")
+                          {
+                             echo '<script language="javascript">alert("Error al procesar la transacción hay campos vacios");</script>'; 
+                          
+                          }
+                          else if($_GET['error'] == "error")
+                          {
+                              echo '<script language="javascript">alert("Error: Error al procesar la transacción No se ingresaron datos");</script>'; 
+                          }
+                      }
+                      else if (isset($_GET['success'])) 
+                      {
+                          echo '<script language="javascript">alert("Transacción Realizada");</script>'; 
+                      }
+        ?>
+
+
+
 
     <footer>
     </footer>
