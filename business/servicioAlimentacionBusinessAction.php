@@ -10,9 +10,85 @@ include './servicioAlimentacionBusiness.php';
     if ( isset($_POST['AdicionalesServicioAlimentacion']) && isset($_POST['alimentacionLlevarServicioAlimentacion'])) 
     {
 
-        $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionD']."  ,  ".$_POST['tiempoComidasServicioAlimentacionA']."  ,  ".$_POST['tiempoComidasServicioAlimentacionC'];
+      
+      if(isset($_POST['tiempoComidasServicioAlimentacionD']) && is_null($_POST['tiempoComidasServicioAlimentacionA']) && is_null($_POST['tiempoComidasServicioAlimentacionC']))
+      {
+           $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionD'];
+      }
 
-        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD']."  ,  ".$_POST['descripcionAlimentacionServicioAlimentacionA']."  ,  ".$_POST['descripcionAlimentacionServicioAlimentacionC'];
+      if(is_null($_POST['tiempoComidasServicioAlimentacionD']) && isset($_POST['tiempoComidasServicioAlimentacionA']) && is_null($_POST['tiempoComidasServicioAlimentacionC']))
+      {
+           $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionA'];
+      }
+
+      if(is_null($_POST['tiempoComidasServicioAlimentacionD']) && is_null($_POST['tiempoComidasServicioAlimentacionA']) && isset($_POST['tiempoComidasServicioAlimentacionC']))
+      {
+           $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionC'];
+      }
+      
+      if(isset($_POST['tiempoComidasServicioAlimentacionD']) && isset($_POST['tiempoComidasServicioAlimentacionA']) && is_null($_POST['tiempoComidasServicioAlimentacionC']))
+      {
+        $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionD'].",".$_POST['tiempoComidasServicioAlimentacionA'];
+      }
+
+      if(isset($_POST['tiempoComidasServicioAlimentacionD']) && is_null($_POST['tiempoComidasServicioAlimentacionA']) && isset($_POST['tiempoComidasServicioAlimentacionC']))
+      {
+         $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionD'].",".$_POST['tiempoComidasServicioAlimentacionC'];
+      }
+      
+      if(is_null($_POST['tiempoComidasServicioAlimentacionD']) && isset($_POST['tiempoComidasServicioAlimentacionA']) && isset($_POST['tiempoComidasServicioAlimentacionC']))
+      {
+         $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionA'].",".$_POST['tiempoComidasServicioAlimentacionC'];
+      }
+       if(isset($_POST['tiempoComidasServicioAlimentacionD']) && isset($_POST['tiempoComidasServicioAlimentacionA']) && isset($_POST['tiempoComidasServicioAlimentacionC']))
+      {
+          $tiempoComidas = $_POST['tiempoComidasServicioAlimentacionD'].",".$_POST['tiempoComidasServicioAlimentacionA'].",".$_POST['tiempoComidasServicioAlimentacionC'];
+      }
+
+
+
+        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD'].",".$_POST['descripcionAlimentacionServicioAlimentacionA'].",".$_POST['descripcionAlimentacionServicioAlimentacionC'];
+
+
+
+
+    if(isset($_POST['descripcionAlimentacionServicioAlimentacionD']) && is_null($_POST['descripcionAlimentacionServicioAlimentacionA']) && is_null($_POST['descripcionAlimentacionServicioAlimentacionC']))
+      {
+            $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD'];
+      }
+
+      if(is_null($_POST['descripcionAlimentacionServicioAlimentacionD']) && isset($_POST['descripcionAlimentacionServicioAlimentacionA']) && is_null($_POST['descripcionAlimentacionServicioAlimentacionC']))
+      {
+           $_POST['descripcionAlimentacionServicioAlimentacionA'];
+      }
+
+      if(is_null($_POST['descripcionAlimentacionServicioAlimentacionD']) && is_null($_POST['descripcionAlimentacionServicioAlimentacionA']) && isset($_POST['descripcionAlimentacionServicioAlimentacionC']))
+      {
+           $_POST['descripcionAlimentacionServicioAlimentacionC'];
+      }
+      
+      if(isset($_POST['descripcionAlimentacionServicioAlimentacionD']) && isset($_POST['descripcionAlimentacionServicioAlimentacionA']) && is_null($_POST['descripcionAlimentacionServicioAlimentacionC']))
+      {
+        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD'].",".$_POST['descripcionAlimentacionServicioAlimentacionA']; 
+      }
+
+      if(isset($_POST['descripcionAlimentacionServicioAlimentacionD']) && is_null($_POST['descripcionAlimentacionServicioAlimentacionA']) && isset($_POST['descripcionAlimentacionServicioAlimentacionC']))
+      {
+          $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD'].",".$_POST['descripcionAlimentacionServicioAlimentacionC'];
+      }
+      
+      if(is_null($_POST['descripcionAlimentacionServicioAlimentacionD']) && isset($_POST['descripcionAlimentacionServicioAlimentacionA']) && isset($_POST['descripcionAlimentacionServicioAlimentacionC']))
+      {
+        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionA'].",".$_POST['descripcionAlimentacionServicioAlimentacionC'];  
+      }
+       if(isset($_POST['descripcionAlimentacionServicioAlimentacionD']) && isset($_POST['descripcionAlimentacionServicioAlimentacionA']) && isset($_POST['descripcionAlimentacionServicioAlimentacionC']))
+      {
+           $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD'].",".$_POST['descripcionAlimentacionServicioAlimentacionA'].",".$_POST['descripcionAlimentacionServicioAlimentacionC'];
+      }
+
+
+
+
 
         $montoTempD =str_replace(".","",$_POST['precioServicioAlimentacionD']);
         $precioFinalD=str_replace("₡","",$montoTempD);
@@ -25,6 +101,45 @@ include './servicioAlimentacionBusiness.php';
         
         
         $precio= $precioFinalD.",".$precioFinalA.",".$precioFinalC;
+
+
+
+        if(isset($_POST['precioFinalD']) && is_null($_POST['precioFinalA']) && is_null($_POST['precioFinalC']))
+      {
+            $precio= $precioFinalD;
+      }
+
+      if(is_null($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && is_null($_POST['precioFinalC']))
+      {
+            $precio= $precioFinalA;
+      }
+
+      if(is_null($_POST['precioFinalD']) && is_null($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      {
+            $precio= $precioFinalC;
+      }
+      
+      if(isset($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && is_null($_POST['precioFinalC']))
+      {
+            $precio= $precioFinalD.",".$precioFinalA;
+      }
+
+      if(isset($_POST['precioFinalD']) && is_null($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      {
+          $precio= $precioFinalD.",".$precioFinalC;
+      }
+      
+      if(is_null($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      {
+        $precio= $precioFinalA.",".$precioFinalC;
+      }
+       if(isset($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      {
+         $precio= $precioFinalD.",".$precioFinalA.",".$precioFinalC;
+      }
+
+
+
 
 
         $Adicionales  = $_POST['AdicionalesServicioAlimentacion'];
