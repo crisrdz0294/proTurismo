@@ -2,9 +2,8 @@
     
     include_once 'data.php';
     include '../domain/servicioAlimentacion.php';
-    include '../domain/sitioTuristico.php';
+    include_once '../domain/sitioTuristico.php';
     
-
     class ServicioAlimentacionData{
 
         public function ServicioAlimentacionData(){}
@@ -77,7 +76,7 @@
                     $row['precioservicioalimentacion'],
                     $row['adicionalesservicioalimentacion'], 
                     $row['llevarservicioalimentacion'],
-                    $row['idsitioturistico']
+                    $row['idsitioturistico'],0
                 );
 
                 array_push($servicioDeAlimentacion, $temporaralServicioAlimentacion);
@@ -97,6 +96,7 @@
             $sitiosTuristicos = [];
             while ($row = mysqli_fetch_array($result)) {
                 $sitioTuristicoTemporal = new SitioTuristico($row['idsitioturistico'],$row['nombrecomercialsitioturistico'],$row['telefonositioturistico'],$row['idprovinciasitioturistico'],$row['idcantonsitioturistico'],$row['iddistritositioturistico'],$row['direccionexactasitioturistico'],$row['sitiowebsitioturistico']);
+
                 array_push($sitiosTuristicos, $sitioTuristicoTemporal);
             }
             return $sitiosTuristicos;

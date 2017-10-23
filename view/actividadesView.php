@@ -11,11 +11,11 @@
      <?php
 
          include '../business/sitioTuristicoBusiness.php';
-         include '../data/dataTipoActividad.php';
+         include '../data/tipoActividadTuristicaData.php';
 
 
-         $dataTipoActividad=new DataTipoActividad();
-         $listaTipos=$dataTipoActividad->mostrarTodosTiposActividades();
+         $dataTipoActividad=new TipoActividadTuristicaData();
+         $listaTipos=$dataTipoActividad->mostrarTodasTipoActividadTuristica();
          $sitioBusiness=new SitioTuristicoBusiness();
          $listaSitios= $sitioBusiness->mostrarTodosSitiosTuristicos();
 
@@ -23,7 +23,7 @@
             echo "<h3>No se pueden crear actividades porque no hay sitios turisticos ingresados en el sistema</h3>";
           ?>
           <br><a href="../view/sitioturisticoview.php">Crear Sitio Turistico</a>
-          <?php  
+          <?php
           }else{
 
      ?>
@@ -90,7 +90,7 @@
                         <?php
                           foreach ($listaTipos as $tipoActividad){
                         ?>
-                          <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                          <option value="<?php echo $tipoActividad->getIdtipoactividadturistica();?>"><?php echo $tipoActividad->getNombretipoactividadturistica();?></option>;
                         <?php
                            }
                         ?>
@@ -182,12 +182,12 @@
                           foreach ($listaTipos as $tipoActividad){
                         ?>
                           <?php
-                            if($tipoActividad->getIdTipoActividad()==$actividad->getIdTipoActividadSitio()){  ?>
+                            if($tipoActividad->getIdtipoactividadturistica()==$actividad->getIdTipoActividadSitio()){  ?>
 
-                               <option selected value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                               <option selected value="<?php echo $tipoActividad->getIdtipoactividadturistica();?>"><?php echo $tipoActividad->getNombretipoactividadturistica();?></option>;
                               <?php }else{?>
 
-                                <option value="<?php echo $tipoActividad->getIdTipoActividad();?>"><?php echo $tipoActividad->getNombreTipoActividad();?></option>;
+                                <option value="<?php echo $tipoActividad->getIdtipoactividadturistica();?>"><?php echo $tipoActividad->getNombretipoactividadturistica();?></option>;
                               <?php  } ?>
 
 
@@ -229,10 +229,10 @@
 
                  }
                  ?>
-        
-  
-                   
-     
+
+
+
+
     </table>
 
     </div>
@@ -240,16 +240,16 @@
      <?php
                     if (isset($_GET['error'])) {
                         if ($_GET['error'] == "dbError") {
-                            echo '<center><p style="color: red">Error al procesar la transacción</p></center>';
+                            echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
                         }else if($_GET['error'] == "AgregadaRequisitos"){
-                          echo '<script language="javascript">alert("Error: La actividad esta asociada a unos requisitos");</script>'; 
-                          
+                          echo '<script language="javascript">alert("Error: La actividad esta asociada a unos requisitos");</script>';
+
                         }else if($_GET['error'] == "agregadaPaquete"){
-                          echo '<script language="javascript">alert("Error: La actividad esta asociada a un paquete turistico");</script>'; 
+                          echo '<script language="javascript">alert("Error: La actividad esta asociada a un paquete turistico");</script>';
                         }
 
                      }else if (isset($_GET['success'])) {
-                        echo '<script language="javascript">alert("Transacción Realizada");</script>'; 
+                        echo '<script language="javascript">alert("Transacción Realizada");</script>';
                     }
                     ?>
 
@@ -259,7 +259,7 @@
     </footer>
 
 </body>
-<?php  
+<?php
   }
 ?>
 </html>

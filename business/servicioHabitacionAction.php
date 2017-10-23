@@ -27,7 +27,7 @@ include './ServicioHabitacionBusisnes.php';
             && strlen($ventilador) >= 0&& strlen($personas) >0&& strlen($cuartos) >0&& strlen($camas) >0&& strlen($vista) >= 0&& strlen($acces) >=0&& strlen($banos) >=0 &&strlen($precioFinal) > 0) {
 
 
-                    $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$cuartos,$banos,$acces,$precioFinal,$idSitio);
+                    $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,0,$camas,$ventilador,$vista,$personas,$cuartos,$banos,$acces,$precioFinal,$idSitio,0);
 
                     $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
 
@@ -74,7 +74,7 @@ include './ServicioHabitacionBusisnes.php';
 
             if (is_numeric($id)) 
             {
-                  $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$cuartos,$banos,$acces,$precioFinal,$idSitio);
+                  $nuevoCuarto = new ServicioHabitacion($cama,$inter,$aire,$cable,$id,$camas,$ventilador,$vista,$personas,$cuartos,$banos,$acces,$precioFinal,$idSitio,0);
 
                     $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
 
