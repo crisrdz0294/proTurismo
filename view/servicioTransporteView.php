@@ -51,12 +51,12 @@
                     <br>
                     <br>
                     Tipos de Carretera:
-                    <input type="checkbox" name="tipoCarreteraServicioTransporte1" id="tipoCarreteraServicioTransporte1" value="Asfalto">Asfalto&emsp;
-                    <input type="checkbox" name="tipoCarreteraServicioTransporte2" id="tipoCarreteraServicioTransporte2" value="Calle de Piedra">Calle de Piedra&emsp;
-                    <input type="checkbox" name="tipoCarreteraServicioTransporte3" id="tipoCarreteraServicioTransporte3" value="Calle de Tierra">Calle de Tierra&emsp;
-                    <input type="checkbox" name="tipoCarreteraServicioTransporte4" id="tipoCarreteraServicioTransporte4" value="Acuatica">Acuatica&emsp;
-                    <input type="checkbox" name="tipoCarreteraServicioTransporte5" id="tipoCarreteraServicioTransporte5" value="Via Ferrea">Via Ferrea&emsp;
-                    <input type="checkbox" name="tipoCarreteraServicioTransporte6" id="tipoCarreteraServicioTransporte6" value="Aerea">Aerea
+                    <input type="checkbox" name="tipoCarretera[]" id="tipoCarreteraServicioTransporte1" value="Asfalto">Asfalto&emsp;
+                    <input type="checkbox" name="tipoCarretera[]" id="tipoCarreteraServicioTransporte2" value="Calle de Piedra">Calle de Piedra&emsp;
+                    <input type="checkbox" name="tipoCarretera[]" id="tipoCarreteraServicioTransporte3" value="Calle de Tierra">Calle de Tierra&emsp;
+                    <input type="checkbox" name="tipoCarretera[]" id="tipoCarreteraServicioTransporte4" value="Acuatica">Acuatica&emsp;
+                    <input type="checkbox" name="tipoCarretera[]" id="tipoCarreteraServicioTransporte5" value="Via Ferrea">Via Ferrea&emsp;
+                    <input type="checkbox" name="tipoCarretera[]" id="tipoCarreteraServicioTransporte6" value="Aerea">Aerea
                     <br>
                     <br>
                     <br>
@@ -203,7 +203,7 @@
                 }
  
 
-                    echo '<td><input type="text" name="precioServicioTransporte" id="precioServicioTransporte" onkeyup="format(this)" value="'."₡".number_format($servicioTransporte->getPrecioServicioTransporte(),2,'.',' ').'"/></td>';
+                    echo '<td><input type="text" name="precioServicioTransporte" id="precioServicioTransporte" onkeyup="format(this)" value="'."₡".number_format($servicioTransporte->getPrecioServicioTransporte(),0,'.',"").'"/></td>';
                    
                     echo '<td><input type="number" name="cantidadPersonasServicioTransporte" id="cantidadPersonasServicioTransporte" value="' . $servicioTransporte->getCantidadPersonasServicioTransporte() . '"/></td>';
 
