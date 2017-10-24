@@ -115,9 +115,25 @@ public function obtenerNombrePaquete($idpaquete){
           return $nombrePaquete;
     }
 
+
+
+public function obtenerPrecioPaquete($idpaquete){
+      $con =new Data();
+      $conexion=$con->conect();
+      $consultaNombre="SELECT preciopaqueteturistico FROM tbpaqueteturistico where idpaqueteturistico=".$idpaquete."";
+
+      $result = mysqli_query($conexion, $consultaNombre);
+      mysqli_close($conexion);
+      $precioPaquete = array();
+          while ($row = mysqli_fetch_array($result)) {
+
+            $valores=array("precio"=>$row["preciopaqueteturistico"]);
+              array_push($precioPaquete, $valores);
+          }
+          return $nombrePaquete;
+    }
+
 }
-
-
 
 
 ?>

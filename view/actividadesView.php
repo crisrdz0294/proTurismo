@@ -174,7 +174,7 @@
                 echo '<td><input type="text" name="distanciahospedaje" id="distanciahospedaje" value="' . $actividad->getDistanciaHospedajeActividad() . '"/></td>';
                 echo '<td><textarea name="habilidades" id="habilidades" >'. $actividad->getHabilidadesActividad().'</textarea></td>';
                 echo '<td><textarea name="horarioactividad" id="horarioactividad" >'. $actividad->getHorarioActividad().'</textarea></td>';
-                 echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($actividad->getPrecioActividad(),2,'.',' ').'"/></td>';
+                 echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($actividad->getPrecioActividad(),0,'.',"").'"/></td>';
                 
 
                 echo '<td><select name="idtipo" id="idtipo"> '?>

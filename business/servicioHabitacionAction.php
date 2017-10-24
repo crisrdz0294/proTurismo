@@ -19,8 +19,16 @@ include './ServicioHabitacionBusisnes.php';
             $acces=$_POST['acceso'];
             $banos=$_POST['banos'];
             $idSitio=$_POST['idEncargado'];
-            $montoTemp =str_replace(".","",$_POST['precio']);
-            $precioFinal=str_replace("₡","",$montoTemp);
+            $montoTemp =str_replace("₡","",$_POST['precio']);
+            $precioFinal;
+
+            for($i=0;$i<count($montoTemp);$i++){
+                if($montoTemp[$i]=='.'){
+                    $precioFinal=str_replace(".","",$montoTemp);
+                }else{
+                    $precioFinal=$montoTemp;
+                }
+            }
 
 
             if (strlen($cama) >=0 && strlen($aire) >= 0 && strlen($inter) >= 0&& strlen($cable) >= 0
