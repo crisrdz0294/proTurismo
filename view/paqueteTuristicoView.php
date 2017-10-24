@@ -18,9 +18,9 @@
 	<form method="post" action="../business/paqueteTuristicoBusinessAction.php">
 
 		Nombre: <br>
-		<input type="text" name="nombre" placeholder="Ingrese el nombre"><br>
+		<input type="text" name="nombre" placeholder="Ingrese el nombre"><br><br>
 		Descripcion: <br>
-		<input type="text" name="descripcion" placeholder="Ingrese la descripcion"><br>
+		<input type="text" name="descripcion" placeholder="Ingrese la descripcion"><br><br>
 		Cantidad Personas: <br>
 		<input type="number" name="cantidadpersonas" placeholder="Ingrese la cantidad de personas"><br><br>
     Itinerario: <br>

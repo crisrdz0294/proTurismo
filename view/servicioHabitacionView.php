@@ -92,7 +92,7 @@
                 <br>
                 <br>
                 Precio Habitacion: <br>
-                    <input type="text" name="precio" id="precio" onkeyup="format(this)"><br>
+                    <input type="text" name="precio" id="precio" onkeyup="format(this)"><br><br>
                 Accesibilidad:
                 <select name="acceso">
                     <option value="0">SI</option>
