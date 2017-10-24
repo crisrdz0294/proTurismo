@@ -18,11 +18,19 @@ include './servicioTransporteBusiness.php';
 
         $origen = $_POST['origenServicioTransporte'];
         $destino = $_POST['destinoServicioTransporte'];
-        $kilometros = $_POST['KilometrosServicioTransporte'];
-        
 
-        $tipoCarretera = $_POST['tipoCarreteraServicioTransporte1']."  ,  ".$_POST['tipoCarreteraServicioTransporte2']."  ,  ".$_POST['tipoCarreteraServicioTransporte3']."  ,  ".$_POST['tipoCarreteraServicioTransporte4']."  ,  ".$_POST['tipoCarreteraServicioTransporte5']."  ,  ".$_POST['tipoCarreteraServicioTransporte6'];
+        $tipoCarreteras=$_POST['tipoCarretera'];
 
+        $tipoCarreteraSeleccionadas="";
+ 
+            for ($i=0;$i<count($tipoCarreteras);$i++)    {     
+               
+                $tipoCarreteraSeleccionadas.=$tipoCarreteras[$i].",";  
+            }
+
+            $tipoCarreteraSeleccionadas=substr($tipoCarreteraSeleccionadas,0,-1);
+
+            json_encode($tipoCarreteraSeleccionadas);
 
         $tipoVehiculo =  $_POST['tipoVehiculoServicioTransporte'];
         $montoTemp =str_replace(".","",$_POST['precioServicioTransporte']);
@@ -30,14 +38,16 @@ include './servicioTransporteBusiness.php';
 
         $cantidadPersonas = $_POST['cantidadPersonasServicioTransporte'];
         $idSitio=$_POST['sitioturistico'];
+        $kilometrosTemporales=str_replace(" ","",$_POST['KilometrosServicioTransporte']);
+        $kilometros=str_replace("km", "", $kilometrosTemporales);
 
 
 
-        if (strlen($origen) > 0 && strlen($destino) > 0 && strlen($kilometros) > 0 && strlen($tipoCarretera) > 0 && 
+        if (strlen($origen) > 0 && strlen($destino) > 0 && strlen($kilometros) > 0 && strlen($tipoCarreteraSeleccionadas) > 0 && 
             strlen($tipoVehiculo) > 0 && strlen($precioFinal) > 0 && strlen($cantidadPersonas) > 0) 
         {
             
-            $servicioTransporte = new ServicioTransporte(0,$origen ,$destino,$kilometros,$tipoCarretera,$tipoVehiculo,
+            $servicioTransporte = new ServicioTransporte(0,$origen ,$destino,$kilometros,$tipoCarreteraSeleccionadas,$tipoVehiculo,
             $precioFinal,$cantidadPersonas,$idSitio,0);
             
             $servicioTransporteBusiness = new ServicioTransporteBusiness();

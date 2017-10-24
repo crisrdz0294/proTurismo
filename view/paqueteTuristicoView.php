@@ -85,6 +85,23 @@
 
 	</table>
 
+  <?php
+                    if (isset($_GET['error'])) {
+                        if ($_GET['error'] == "dbError") {
+                            echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+                        }else if($_GET['error'] == "actividadesAgregadas"){
+                          echo '<script language="javascript">alert("Error: El paquete tiene asociado actividades");</script>';
+
+                        }else if($_GET['error'] == "emptyField"){
+                          echo '<script language="javascript">alert("Error: Hay campos vacios!");</script>';
+                        }
+
+                     }else if (isset($_GET['success'])) {
+                        echo '<script language="javascript">alert("Transacción Realizada");</script>';
+                    }
+                    ?>
+
+
   <div id="divActividades">
 
     

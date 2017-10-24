@@ -20,16 +20,8 @@ include_once './actividadBusiness.php';
             $horarioactividad=$_POST['horarioactividad'];
             $idSitio=$_POST['sitioturistico'];
             $idTipoActividad=$_POST['tipoactividad'];
-             $montoTemp =str_replace("₡","",$_POST['precio']);
-            $precioFinal;
-
-            for($i=0;$i<count($montoTemp);$i++){
-                if($montoTemp[$i]=='.'){
-                    $precioFinal=str_replace(".","",$montoTemp);
-                }else{
-                    $precioFinal=$montoTemp;
-                }
-            }
+            $montoTempD =str_replace(".","",$_POST['precio']);
+            $precio=str_replace("₡","",$montoTempD);
 
 
             $habilidadesSeleccionadas="";
@@ -43,7 +35,7 @@ include_once './actividadBusiness.php';
 
             json_encode($habilidadesSeleccionadas);
             
-            $actividad = new Actividad(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad,$idSitio,$idTipoActividad,$precioFinal);
+            $actividad = new Actividad(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad,$idSitio,$idTipoActividad,$precio);
 
 
             $actividadBusiness = new ActividadBusiness();
