@@ -20,8 +20,17 @@ include_once './actividadBusiness.php';
             $horarioactividad=$_POST['horarioactividad'];
             $idSitio=$_POST['sitioturistico'];
             $idTipoActividad=$_POST['tipoactividad'];
-            $montoTemp =str_replace(".","",$_POST['precio']);
-            $precioFinal=str_replace("₡","",$montoTemp);
+             $montoTemp =str_replace("₡","",$_POST['precio']);
+            $precioFinal;
+
+            for($i=0;$i<count($montoTemp);$i++){
+                if($montoTemp[$i]=='.'){
+                    $precioFinal=str_replace(".","",$montoTemp);
+                }else{
+                    $precioFinal=$montoTemp;
+                }
+            }
+
 
             $habilidadesSeleccionadas="";
  

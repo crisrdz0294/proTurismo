@@ -323,7 +323,7 @@
 
                      }
 
-                     echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($servicioHabitacion->getPrecioServicioHabitacion(),2,'.',' ').'"/></td>';
+                     echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($servicioHabitacion->getPrecioServicioHabitacion(),0,'.',"").'"/></td>';
                      echo '<td>
                      <select id="idEncargado" name="idEncargado">';
 
