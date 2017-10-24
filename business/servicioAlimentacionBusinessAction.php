@@ -47,7 +47,7 @@ include './servicioAlimentacionBusiness.php';
 
 
 
-        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD'].",".$_POST['descripcionAlimentacionServicioAlimentacionA'].",".$_POST['descripcionAlimentacionServicioAlimentacionC'];
+        $descripcionAlimentacion = $_POST['descripcionAlimentacionServicioAlimentacionD']."".$_POST['descripcionAlimentacionServicioAlimentacionA']."".$_POST['descripcionAlimentacionServicioAlimentacionC'];
 
 
 
@@ -100,43 +100,46 @@ include './servicioAlimentacionBusiness.php';
         $precioFinalC=str_replace("₡","",$montoTempC);
         
         
-        $precio= $precioFinalD.",".$precioFinalA.",".$precioFinalC;
 
 
 
-        if(isset($_POST['precioFinalD']) && is_null($_POST['precioFinalA']) && is_null($_POST['precioFinalC']))
+     
+      if(isset($precioFinalD) &&  empty($precioFinalA) &&  empty($precioFinalC))
       {
             $precio= $precioFinalD;
       }
 
-      if(is_null($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && is_null($_POST['precioFinalC']))
+      else if(empty($precioFinalD) && isset($precioFinalA) && empty($precioFinalC))
       {
             $precio= $precioFinalA;
       }
 
-      if(is_null($_POST['precioFinalD']) && is_null($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      else if(empty($precioFinalD) && empty($precioFinalA) && isset($precioFinalC))
       {
             $precio= $precioFinalC;
       }
       
-      if(isset($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && is_null($_POST['precioFinalC']))
+      else if(isset($precioFinalD) && isset($precioFinalA) && empty($precioFinalC))
       {
             $precio= $precioFinalD.",".$precioFinalA;
       }
 
-      if(isset($_POST['precioFinalD']) && is_null($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      else if(isset($precioFinalD) && empty($precioFinalA) && isset($precioFinalC))
       {
           $precio= $precioFinalD.",".$precioFinalC;
       }
       
-      if(is_null($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      else if(empty($precioFinalD) && isset($precioFinalA) && isset($precioFinalC))
       {
         $precio= $precioFinalA.",".$precioFinalC;
       }
-       if(isset($_POST['precioFinalD']) && isset($_POST['precioFinalA']) && isset($_POST['precioFinalC']))
+      else
       {
          $precio= $precioFinalD.",".$precioFinalA.",".$precioFinalC;
       }
+
+
+
 
 
 

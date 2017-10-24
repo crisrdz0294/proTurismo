@@ -8,6 +8,7 @@
   
    <script src="../js/jquery-3.2.1.js"></script>
   <script src="../js/jsDinero.js"></script>
+<script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
    
 	<?php
 		include '../business/servicioTransporteBusiness.php';
@@ -45,7 +46,7 @@
                     <br>
                     <br>
                     Kilometros:
-                    <input required type="number" name="KilometrosServicioTransporte" id="KilometrosServicioTransporte" /><label>km</label>
+                    <input required type="text" name="KilometrosServicioTransporte" id="KilometrosServicioTransporte" />
                     <br>
                     <br>
                     <br>
@@ -272,11 +273,25 @@
                       }
         ?>
 
+
+        <script>
+jQuery(function($)
+{
+  $("#KilometrosServicioTransporte").mask("999 km");
+  
+
+});
+
+</script>
+
+
 </body>
 
 <?php  
   }
 ?>
+
+
 </html>
 
 
