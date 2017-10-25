@@ -29,7 +29,22 @@
      			 $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."
         		WHERE idpaqueteturistico= ".$idpaquete.";";
 				$result2= mysqli_query($conexion,$consultaActualizar);
-        	}
+
+        	}else{
+
+                $porciones = explode(",", $precio);
+
+                for ($i=0; $i <count($porciones);$i++) { 
+
+                        $precioNuevo=$precioNuevo+$porciones[$i];    
+                    
+                }
+
+                $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."
+                        WHERE idpaqueteturistico= ".$idpaquete.";";
+                        $result2= mysqli_query($conexion,$consultaActualizar);
+            }
+
         	mysqli_close($conexion);
         	return $result;
 		}
@@ -108,7 +123,22 @@
      			 $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."
         		WHERE idpaqueteturistico= ".$idpaquete.";";
 				$result2= mysqli_query($conexion,$consultaActualizar);
-        	}
+        	}else{
+
+                $porciones = explode(",", $precio);
+
+                for ($i=0; $i <count($porciones);$i++) { 
+
+                        $precioNuevo=$precioNuevo+$porciones[$i];    
+                    
+                }
+
+                $precioFinal=$precioPaquete-$precioNuevo;
+
+                $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioFinal."
+                        WHERE idpaqueteturistico= ".$idpaquete.";";
+                        $result2= mysqli_query($conexion,$consultaActualizar);
+            }
         	mysqli_close($conexion);
         	return $result;
 		}

@@ -65,9 +65,9 @@
 
                   echo '<td><textarea  name="itinerario" id="itinerario">'.$paqueteTuristico->getItinerarioPaqueteTuristico().'</textarea></td>';
 
-                     echo '<td><input type="text" readonly name="precio" id="precio" value= "'."₡".number_format($paqueteTuristico->getPrecioPaqueteTuristico(),2,'.',' ').'"/></td>';
+                     echo '<td><input type="text" readonly name="precio" id="precio" value= "'."₡".$paqueteTuristico->getPrecioPaqueteTuristico().'"/></td>';
                      $precioTotal=$paqueteTuristico->getPrecioPaqueteTuristico();
-                    echo '<td><input type="text" readonly name="precio" id="precio" value= "'."₡".number_format(round($precioTotal-($paqueteTuristico->getPrecioPaqueteTuristico()*10)/100,-2),2,'.',' ').'"/></td>';
+                    echo '<td><input type="text" readonly name="precio" id="precio" value= "'."₡".round($precioTotal-($paqueteTuristico->getPrecioPaqueteTuristico()*10)/100,-2).'"/></td>';
                 
                 	echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
                   echo "<td><input type=\"button\" value=\"Agregar actividades\" onclick=\"cargarPagina('../view/mostrarActividadesView.php?idpaquete=".$paqueteTuristico->getIdPaqueteTuristico()."')\"/></td>";
