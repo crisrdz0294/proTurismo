@@ -92,7 +92,7 @@
                 <br>
                 <br>
                 Precio Habitacion: <br>
-                    <input type="text" name="precio" id="precio" onkeyup="format(this)"><br>
+                    <input type="text" name="precio" id="precio" onkeyup="format(this)"><br><br>
                 Accesibilidad:
                 <select name="acceso">
                     <option value="0">SI</option>
@@ -323,7 +323,7 @@
 
                      }
 
-                     echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($servicioHabitacion->getPrecioServicioHabitacion(),2,'.',' ').'"/></td>';
+                     echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($servicioHabitacion->getPrecioServicioHabitacion(),0,'.',"").'"/></td>';
                      echo '<td>
                      <select id="idEncargado" name="idEncargado">';
 
