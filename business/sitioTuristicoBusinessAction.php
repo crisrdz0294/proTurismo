@@ -1,12 +1,18 @@
-<?php 
-	include './sitioTuristicoBusiness.php';	
+<?php
+	include './sitioTuristicoBusiness.php';
 
 	if(isset($_POST['guardarSitio'])){
 
 		if(isset($_POST['nombrecomercial']) && isset($_POST['telefono']) && isset($_POST['provincia']) && isset($_POST['canton']) && isset($_POST['distrito']) && isset($_POST['direccion']) && isset($_POST['direccion'])){
 
 			$nombrecomercial=$_POST['nombrecomercial'];
-			$telefono=$_POST['telefono'];
+
+			$telefonoTemp=substr( $_POST['telefono'],6);
+
+			$telefonoA = explode("-",$telefonoTemp);
+			$telefono=$telefonoA[0].$telefonoA[1];
+
+
 			$provincia=$_POST['provincia'];
 			$canton=$_POST['canton'];
 			$distrito=$_POST['distrito'];
@@ -41,7 +47,9 @@
 		if(isset($_POST['idsitio'])&&isset($_POST['nombrecomercial']) && isset($_POST['telefono']) &&  isset($_POST['direccion'])&&isset($_POST['sitioweb'])){
 
 			$nombrecomercial=$_POST['nombrecomercial'];
-			$telefono=$_POST['telefono'];
+			$telefonoTemp=substr( $_POST['telefono'],6);
+			$telefonoA = explode("-",$telefonoTemp);
+			$telefono=$telefonoA[0].$telefonoA[1];
 			$direccion=$_POST['direccion'];
 			$id=$_POST['idsitio'];
 			$sitioweb=$_POST['sitioweb'];
@@ -86,7 +94,7 @@
 			$id=$_POST['idsitio'];
 
 			$sitioTuristicoBusiness= new SitioTuristicoBusiness();
-			
+
 			$result=$sitioTuristicoBusiness->eliminarSitioTuristico($id);
 
 			if($result==0){

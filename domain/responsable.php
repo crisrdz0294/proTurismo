@@ -1,5 +1,5 @@
-<?php 
-	
+<?php
+
 	class Responsable{
 
 		private $idResponsable;
@@ -46,9 +46,13 @@
 		public function getEmailResponsable(){
 			return $this->emailResponsable;
 		}
+		public function setTelefonoResponsable($telefono){
+			$this->telefonoResponsable=$telefono;
+		}
 
 
-	
-	
+
+
+
 	}
  ?>
