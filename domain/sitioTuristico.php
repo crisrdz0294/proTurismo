@@ -9,7 +9,7 @@
 		private $iddistrito;
 		private $direccionexacta;
         private $sitioWeb;
-	
+
 		function SitioTuristico($idsitio,$nombrecomercial,$telefonositio,$idprovincia,$idcanton,$iddistrito,$direccionexacta,$sitioWeb){
 
 			 $this->idsitio=$idsitio;
@@ -28,7 +28,7 @@
     	public function getNombreComercial() {
         	return $this->nombrecomercial;
     	}
-    
+
     	public function getTelefonoSitio() {
         	return $this->telefonositio;
     	}
@@ -48,6 +48,10 @@
         public function getSitioWeb() {
             return $this->sitioWeb;
         }
+
+				public function setTelefonoSitio($number) {
+						$this->telefonositio=$number;
+				}
 
 
 	}
