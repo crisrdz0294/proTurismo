@@ -35,11 +35,11 @@
                     Edad:
                   <select name="edadRequisitosActividad" id="edadRequisitosActividad">
                       
-                        <option value="8 - 15">8 - 15</option>
-                        <option value="16 - 25">16 - 25</option>
-                        <option value="26 - 35">26 - 35</option>
-                        <option value="36 - 50">36 - 50</option>
-                        <option value="51 o mas">51 o mas</option>
+                        <option value="8 - 15">8 - 15 años</option>
+                        <option value="16 - 25">16 - 25 años</option>
+                        <option value="26 - 35">26 - 35 años</option>
+                        <option value="36 - 50">36 - 50 años</option>
+                        <option value="51 o mas">51 o mas años</option>
                     
                   </select>
 
@@ -117,11 +117,11 @@
                             case '8 - 15':
                                 echo '<td>
                                 <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
-                                        <option selected  value="8 - 15">8 - 15</option>
-                                        <option value="16 - 25">16 - 25</option>
-                                        <option value="26 - 35">26 - 35</option>
-                                        <option value="36 - 50">36 - 50</option>
-                                        <option value="51 o mas">51 o mas</option>                    
+                                        <option selected  value="8 - 15">8 - 15 años</option>
+                                        <option value="16 - 25">16 - 25 años</option>
+                                        <option value="26 - 35">26 - 35 años</option>
+                                        <option value="36 - 50">36 - 50 años</option>
+                                        <option value="51 o mas">51 o mas años</option>                    
                                   </select>
                                 </td>';
                             break;
@@ -129,11 +129,11 @@
                             case '16 - 25':
                                 echo '<td>
                                 <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
-                                        <option value="8 - 15">8 - 15</option>
-                                        <option selected value="16 - 25">16 - 25</option>
-                                        <option value="26 - 35">26 - 35</option>
-                                        <option value="36 - 50">36 - 50</option>
-                                        <option value="51 o mas">51 o mas</option>                    
+                                        <option value="8 - 15">8 - 15 años</option>
+                                        <option selected value="16 - 25">16 - 25 años</option>
+                                        <option value="26 - 35">26 - 35 años</option>
+                                        <option value="36 - 50">36 - 50 años</option>
+                                        <option value="51 o mas">51 o mas años</option>                    
                                   </select>
                                 </td>';
                             break;
@@ -141,11 +141,11 @@
                             case '26 - 35':
                                 echo '<td>
                                 <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
-                                        <option value="8 - 15">8 - 15</option>
-                                        <option value="16 - 25">16 - 25</option>
-                                        <option selected value="26 - 35">26 - 35</option>
-                                        <option value="36 - 50">36 - 50</option>
-                                        <option value="51 o mas">51 o mas</option>                    
+                                        <option value="8 - 15">8 - 15 años</option>
+                                        <option value="16 - 25">16 - 25 años</option>
+                                        <option selected value="26 - 35">26 - 35 años</option>
+                                        <option value="36 - 50">36 - 50 años</option>
+                                        <option value="51 o mas">51 o mas años</option>                    
                                   </select>
                                 </td>';
                             break;
@@ -153,11 +153,11 @@
                             case '36 - 50':
                                 echo '<td>
                                 <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
-                                        <option value="8 - 15">8 - 15</option>
-                                        <option value="16 - 25">16 - 25</option>
-                                        <option value="26 - 35">26 - 35</option>
-                                        <option selected value="36 - 50">36 - 50</option>
-                                        <option value="51 o mas">51 o mas</option>                    
+                                        <option value="8 - 15">8 - 15 años</option>
+                                        <option value="16 - 25">16 - 25 años</option>
+                                        <option value="26 - 35">26 - 35 años</option>
+                                        <option selected value="36 - 50">36 - 50 años</option>
+                                        <option value="51 o mas">51 o mas años</option>                    
                                   </select>
                                 </td>';
                             break;
@@ -165,11 +165,11 @@
                             case '51 o mas':
                                 echo '<td>
                                 <select name="edadRequisitosActividad" id="edadRequisitosActividad">                      
-                                        <option value="8 - 15">8 - 15</option>
-                                        <option value="16 - 25">16 - 25</option>
-                                        <option value="26 - 35">26 - 35</option>
-                                        <option value="36 - 50">36 - 50</option>
-                                        <option selected value="51 o mas">51 o mas</option>                    
+                                        <option value="8 - 15">8 - 15 años</option>
+                                        <option value="16 - 25">16 - 25 años</option>
+                                        <option value="26 - 35">26 - 35 años</option>
+                                        <option value="36 - 50">36 - 50 años</option>
+                                        <option selected value="51 o mas">51 o mas años</option>                    
                                   </select>
                                 </td>';
                             break;

@@ -132,7 +132,7 @@
                 echo '<td><input type="text" name="descripcionAlimentacionServicioAlimentacion" id="descripcionAlimentacionServicioAlimentacion" value="' . $servicioAlimentacion->getDescripcionAlimentacionServicioAlimentacion() . '"/></td>';
 
 
-                echo '<td><input type="text" name="precioServicioAlimentacion" id="precioServicioAlimentacion" value="' . $servicioAlimentacion->getPrecioServicioAlimentacion() . '" onchange="numerosTabla()"/></td>';
+                echo '<td><input type="text" name="precioServicioAlimentacion" id="precioServicioAlimentacion" value="'."₡". $servicioAlimentacion->getPrecioServicioAlimentacion() . '" onchange="numerosTabla()"/></td>';
 
 
                 echo '<td><input type="text" name="AdicionalesServicioAlimentacion" id="AdicionalesServicioAlimentacion" value="' . $servicioAlimentacion->getAdicionalesServicioAlimentacion() . '"/></td>';
