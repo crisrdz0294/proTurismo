@@ -16,7 +16,6 @@
   }
 </style>
 <body>
-   <input type="text" id="total">
   <input type="" id="lugarorigen" size="50" placeholder="Digite el nombre del lugar"> <br><br>
 
   <div id="map-canvas"></div><br><br>
@@ -34,11 +33,28 @@
   <input type="hidden" id="destino">
 
   <input type="button" id="cargarRuta" onclick="cargarRuta()" value="Cargar Ruta" disabled>
-    <div id="panelDatos" ></div><br><br>
+  <div id="panelDatos" ></div><br><br>
    
 </body>
 <script type="text/javascript">
-  
+    
+    var geocoder = new google.maps.Geocoder();
+    function codificar(valor){
+      console.log(valor);
+      var latlngStr = valor.split(',', 2);
+      
+      var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+
+      geocoder.geocode({'location': latlng}, function(results, status) {
+
+         if (status === 'OK') {
+            if (results[1]) {
+              console.log(results[1].formatted_address);
+            }
+         }
+            
+      });
+    }
       var mapa=new google.maps.Map(document.getElementById('map-canvas'),{
           center:{
             lat:10.0000000,
@@ -58,6 +74,7 @@
 
 
        var input=document.getElementById('lugarorigen');
+       
        var busqueda= new google.maps.places.SearchBox(input);
 
         mapa.addListener('bounds_changed', function() {
@@ -69,7 +86,7 @@
           var lugares=busqueda.getPlaces();
           var bounds= new google.maps.LatLngBounds();
           var i,lugar;
-
+        
           for(i=0;lugar=lugares[i];i++){
           
             if(lugar!=null){
@@ -82,16 +99,24 @@
             
         });
 
+  
         function guardarLugar(){
+          
+          var costarica = {lat:10.0000000,lng:-84.0000000};
           var select=document.getElementById("opciones").value;
           if(select==="Seleccione"){
             alert("Debe seleccionar una opcion");
           }else if(select==="Lugar Origen"){
               document.getElementById("origen").value=marcador.getPosition().lat()+","+marcador.getPosition().lng();
+              codificar(document.getElementById("origen").value);
               document.getElementById('lugarorigen').value="";
+              mapa.setCenter(costarica);
+              mapa.setZoom(7);
           }else if(select==="Lugar Destino"){
              document.getElementById("destino").value=marcador.getPosition().lat()+","+marcador.getPosition().lng();
              document.getElementById('lugarorigen').value="";
+             mapa.setCenter(costarica);
+             mapa.setZoom(7);
           }
         }
 
@@ -116,6 +141,7 @@
         }
 
         function cargarRuta(){
+          marcador.setMap(null);
           var origenRuta=document.getElementById("origen").value;
           var destinoRuta=document.getElementById("destino").value;
             var request = {
@@ -137,7 +163,7 @@
           directionsService.route(request, function(result, status) {
           if (status == google.maps.DirectionsStatus.OK) {
               directionsDisplay.setDirections(result);
-              computeTotalDistance(result);
+              //computeTotalDistance(result);
           }
          });
 
