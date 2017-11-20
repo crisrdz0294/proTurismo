@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php 
+  session_start();
+
+    
+     if(isset($_SESSION['administrador'])){
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ ?>
 
 <?php
 

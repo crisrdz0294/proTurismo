@@ -10,12 +10,30 @@
   <script type="text/javascript" src="../js/jsModales.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/estilosModal.css">  
 </head>
+
   <?php 
     include '../business/paqueteTuristicoBusiness.php';
     $paqueteTuristicoBusiness = new paqueteTuristicoBusiness(); 
       $todosPaquetes = $paqueteTuristicoBusiness->mostrarTodosPaqueteTuristico();
+
+      session_start();
+    
+     if(isset($_SESSION['usuario'])){
+       $nombre=$_SESSION['nombre'];
+
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ 
+      
     ?>
 <body>
+  <span style="margin-right: 50%"><?php echo $nombre  ?></span>
+  <input type="button" onclick="location.href='cerrarSesion.php';" value="Cerrar Sesion" />
+
+
 <input type="hidden" id="idPaqueteTem">
 <input type="hidden" id="idActividadTem">
   <h2>Paquetes Turisticos Disponibles</h2>

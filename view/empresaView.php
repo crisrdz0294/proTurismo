@@ -8,6 +8,18 @@
 	<script src="../js/validarCorreo.js" type="text/javascript"></script>
 	<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
 <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
+
+<?php 
+	session_start();
+
+  	
+     if(isset($_SESSION['administrador'])){
+
+     }else{
+     	header("Location: ../index.php");
+     }
+
+ ?>
 <script>
 function validarCorreoEmpresa(){
 document.getElementById('emailEmpresa').addEventListener('input', function() {

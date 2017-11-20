@@ -143,29 +143,29 @@
             <br>
             <br>
             Nombre:
-            <input required type="text" name="nombreResponsable" id="nombreResponsable"  onblur="dejarPasar()"   maxlength="15"/>
+            <input required type="text" name="nombreResponsable" id="nombreResponsable"    maxlength="15"/>
             <br>
             <br>
             <br>
             Primer Apellido:
-          <input required type="text" name="primerApellidoResponsable" id="primerApellidoResponsable"  onblur="dejarPasar()"   maxlength="15" />
+          <input required type="text" name="primerApellidoResponsable" id="primerApellidoResponsable"  maxlength="15" />
             <br>
             <br>
             <br>
             Segundo Apellido:
-        <input required type="text" name="segundoApellidoResponsable" id="segundoApellidoResponsable"  onblur="dejarPasar()"   maxlength="15" />
+        <input required type="text" name="segundoApellidoResponsable" id="segundoApellidoResponsable"  maxlength="15" />
             <br>
             <br>
             <br>
             Telefono:
-            <input required type="text" name="telefonoResponsable" id="telefonoResponsable"  onblur="dejarPasar()" size="15" maxlength="15" />
+            <input required type="text" name="telefonoResponsable" id="telefonoResponsable"  size="15" maxlength="15" />
 
 
             <br>
             <br>
             <br>
             Email:
-            <input required type="Email" name="emailResponsable" id="emailResponsable" onkeyup="validarCorreo(this);dejarPasar();" /> <span id="emailOK"></span>
+            <input required type="Email" name="emailResponsable" id="emailResponsable"  /> <span id="emailOK"></span>
             <br>
             <br>
             <br>
@@ -177,7 +177,7 @@
             <br>
             <br>
 
-            <input type="submit" value="Guardar" name="RegistrarUsuario" id="RegistrarUsuario" disabled="true" /><br><br>
+            <input type="submit" value="Guardar" name="RegistrarUsuario" id="RegistrarUsuario" /><br><br>
 
 </form>
 
