@@ -3,6 +3,33 @@ function actualizarPaqueteTuristico(){
    if(document.getElementById("nombre").value==""||document.getElementById("descripcion").value==""||
     document.getElementById("cantidad").value==""||document.getElementById("itinerario").value==""){
     alert("Hay campos vacios");
+   }else{
+        var nombre=document.getElementById("nombre").value;
+        var descripcion=document.getElementById("descripcion").value;
+        var cantidad=document.getElementById("cantidad").value;
+        var itinerario=document.getElementById("itinerario").value;
+        var idpaquete=document.getElementById("idPaqueteTem").value;
+
+        var formData= new FormData();
+        formData.append("opcion",3);
+        formData.append("idpaquete",idpaquete);
+        formData.append("nombre",nombre);
+        formData.append("descripcion",descripcion);
+        formData.append("itinerario",itinerario);
+        formData.append("cantidad",cantidad);
+
+        $.ajax({
+        url : "../business/traerPaqueteTuristicoBusiness.php",
+        type : "post",
+        dataType : "html",
+        async:false,
+        data : formData,
+        cache : false,
+        contentType : false,
+        processData : false
+        }).done(function(data) {
+            alert(data);
+        });
    }
  
 }
@@ -87,6 +114,10 @@ function cargarTablaPaqueteTuristico(){
 	eliminarFilas(document.getElementById('tablaActividades'));
 
 	document.getElementById('contenedorActividades').style.display = 'none';
+    document.getElementById('contenedorhospedaje').style.display = 'none';
+    document.getElementById('contenedorAlimentacion').style.display = 'none';
+    document.getElementById('contenedortransporte').style.display = 'none';
+    document.getElementById('contenedorGeneral').style.display = 'none';
 
 	$("#boton1").click(function() {
   		document.getElementById('boton1').disabled=true;

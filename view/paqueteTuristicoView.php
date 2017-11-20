@@ -117,13 +117,13 @@
 
   <form method="post" action="../business/paqueteTuristicoBusinessAction.php">
 
-    Nombre: <br>
+    Nombre <br>
     <input type="text" name="nombre" placeholder="Ingrese el nombre"><br><br>
-    Descripcion: <br>
+    Descripcion <br>
     <input type="text" name="descripcion" placeholder="Ingrese la descripcion"><br><br>
-    Cantidad Personas: <br>
+    Cantidad Personas <br>
     <input type="number" name="cantidadpersonas" placeholder="Ingrese la cantidad de personas"><br><br>
-    Itinerario: <br>
+    Itinerario <br>
     <textarea required name="itinerario" id="itinerario" cols="30" rows="5" placeholder="Describa el itinerario del paquete"></textarea><br><br>
 
     <input type="submit" name="guardarPaquete" value="Guardar">
