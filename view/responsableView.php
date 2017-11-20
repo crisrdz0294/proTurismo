@@ -148,7 +148,7 @@ jQuery(document).ready(function(){
          <h1>Registrar Responsable</h1><br>
         	<form id="form1" name="form1" method="post" action="../business/responsableBusinessAction.php">
                     Cedula:
-                    <input required type="text" name="cedulaResponsable" id="cedulaResponsable" maxlength="20" onblur="caracteres()"/><span id="cedulaok"></span>
+                    <input required type="text" name="cedulaResponsable" id="cedulaResponsable" maxlength="20" onkeyup="caracteres()"/><span id="cedulaok"></span>
                     <br>
                     <br>
                     <br>
@@ -210,7 +210,7 @@ jQuery(document).ready(function(){
                 echo '<input type="hidden" name="idResponsable" id="idResponsable" value="' . $responsable->getIdResponsable() .'">';
 
 
-                echo '<td><input type="text" name="cedulaResponsable" id="cedulaResponsable" value="' . $responsable->getCedulaResponsable() . '" onkeyup="caracteres2(this,'.$contador.')"/><span id="cedulaok2'.$contador.'"></span></td>';
+                echo '<td><input type="text" name="cedulaResponsable" id="cedulaResponsable" value="' . $responsable->getCedulaResponsable() . '" onkeyup="caracteres2(this,'.$contador.')"/><span id="cedulaok2'.$contador.'">valido</span></td>';
 
                 echo '<td><input type="text" name="nombreResponsable" id="nombreResponsable" value="' . $responsable->getNombreResponsable() . '"/></td>';
 
@@ -224,9 +224,9 @@ jQuery(document).ready(function(){
                   $responsable->setTelefonoResponsable($number);
 
 
-                echo '<td><input type="text" name="telefonoResponsable" id="telefonoResponsable"  onkeyup="validarTelefono(this,'.$contador.')" value="'.$responsable->getTelefonoResponsable().'" maxlength="16" placeholder="(+506) 1234-5678" /><span id="telefonoOk'.$contador.'" name="telefonoOk'.$contador.'"></span></td>';
+                echo '<td><input type="text" name="telefonoResponsable" id="telefonoResponsable"  onkeyup="validarTelefono(this,'.$contador.')" value="'.$responsable->getTelefonoResponsable().'" maxlength="16" placeholder="(+506) 1234-5678" /><span id="telefonoOk'.$contador.'" name="telefonoOk'.$contador.'">valido</span></td>';
 
-                 echo '<td><input type="Email" name="emailResponsable" id="emailResponsable" value="' . $responsable->getEmailResponsable() .'" onkeyup="validarCorreo2(this,'.$contador.')"/> <span id="emailOK2'.$contador.'"></span></td>';
+                 echo '<td><input type="Email" name="emailResponsable" id="emailResponsable" value="' . $responsable->getEmailResponsable() .'" onkeyup="validarCorreo2(this,'.$contador.')"/> <span id="emailOK2'.$contador.'">valido</span></td>';
 
                 echo '<td><input type="button" value="Actualizar" name="update" id="update" onclick="dejarPasar2(this,'.$contador.')" /></td>';
                 echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
