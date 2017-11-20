@@ -50,12 +50,6 @@ class Familia {
         return $this->sitioTuristico;
     }
 
-
-
-
-
-
-
     function setIdFamilia($idFamilia) {
         $this->idFamilia = $idFamilia;
     }

@@ -2,6 +2,17 @@
 <html>
 <head>
 	<title></title>
+    <?php 
+  session_start();
+
+    
+     if(isset($_SESSION['administrador'])){
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ ?>
 	<?php
 		include '../business/responsableBusiness.php';
 
@@ -10,7 +21,7 @@
 	<script src="../js/validarCorreo.js" type="text/javascript"></script>
 	<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
 <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
-<script src="../js/jquery.validate.min.js" type="text/javascript"></script>
+
 <script>
 
 function caracteres(){

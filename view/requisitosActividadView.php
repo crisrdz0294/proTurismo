@@ -6,7 +6,17 @@
     <title>Turismo Rural</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="../js/jquery-3.2.1.js"></script>
+<?php 
+  session_start();
 
+    
+     if(isset($_SESSION['administrador'])){
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ ?>
     <?php
     include '../business/requisitosActividadBusiness.php';
     $requisitos = new requisitosActividadBusiness();

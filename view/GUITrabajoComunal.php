@@ -5,6 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>GUI Trabajo Comunal</title>
   <script src="../js/jquery-3.2.1.js"></script>
+  <?php 
+  session_start();
+
+    
+     if(isset($_SESSION['administrador'])){
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ ?>
 	<?php
 		include '../business/sitioTuristicoBusiness.php';
 
@@ -27,7 +38,7 @@
 		<form id="form" method="post" action="../business/trabajoComunalAction.php">
 
 			Nombre Trabajo Comunal:<br>
-			<textarea required name="nombre" id="nombre" placeholder="Ingrese el nombre"></textarea> <br>
+      <input type="text" name="nombre" placeholder="Ingrese el nombre" required><br>
 			Descripcion Trabajo Comunal:<br>
 			<textarea required name="descripcion" id="descripcion" placeholder="Ingrese la descripcion"></textarea><br>
 			Actividades Trabajo Comunal:<br>
@@ -68,6 +79,7 @@
 			</tr>
 			
 			<?php
+     
 				include '../business/trabajoComunalBusiness.php';
 
             	$trabajoComunalB = new TrabajoComunalBusiness();
@@ -78,11 +90,24 @@
             		echo '<form method="post" enctype="multipart/form-data" action="../business/trabajoComunalAction.php">';
                 	echo '<input type="hidden" name="idTrabajoComunal" id="idTrabajoComunal" value="' . $trabajoComunal->getIdTrabajoComunal().'">';
                 	echo '<tr>';
+
                 	echo '<td><input type="text" name="nombreTrabajoComunal" id="nombreTrabajoComunal" value="'.$trabajoComunal->getNombreTrabajoComunal().'"/></td>';
-                	echo '<td><input type="text" name="descripcionTrabajoComunal" id="descripcionTrabajoComunal" value="'.$trabajoComunal->getDescripcionTrabajoComunal().'"/></td>';
-                	echo '<td><input type="text" name="actividadesTrabajoComunal" id="actividadesTrabajoComunal" value="'.$trabajoComunal->getActividadesTrabajoComunal().'"/></td>';
-                	echo '<td><input type="text" name="requisitosTrabajoComunal" id="requisitosTrabajoComunal" value="'.$trabajoComunal->getRequisitosTrabajoComunal().'"/></td>';
-                	echo '<td><input type="text" name="direccionTrabajoComunal" id="direccionTrabajoComunal" value="'.$trabajoComunal->getDireccionTrabajoComunal().'"/></td>';
+
+                	echo '<td>
+                  <textarea required name="descripcionTrabajoComunal" id="descripcionTrabajoComunal" placeholder="Ingrese la descripcion">'.$trabajoComunal->getDescripcionTrabajoComunal().'</textarea>
+                  </td>';
+
+                  echo '<td>
+                  <textarea required name="actividadesTrabajoComunal" id="actividadesTrabajoComunal" placeholder="Ingrese las actividades">'.$trabajoComunal->getActividadesTrabajoComunal().'</textarea>
+                  </td>';
+
+                   echo '<td>
+                  <textarea required name="requisitosTrabajoComunal" id="requisitosTrabajoComunal" placeholder="Ingrese los requisitos">'.$trabajoComunal->getRequisitosTrabajoComunal().'</textarea>
+                  </td>';
+
+                    echo '<td>
+                  <textarea required name="direccionTrabajoComunal" id="direccionTrabajoComunal" placeholder="Ingrese la direccion">'.$trabajoComunal->getDireccionTrabajoComunal().'</textarea>
+                  </td>';
 
                 	echo '<td><select name="idsitio" id="idsitio"> '?>
                         <?php

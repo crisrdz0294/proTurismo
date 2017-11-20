@@ -22,14 +22,15 @@
   
         <script src="../js/jquery-3.2.1.js"></script>
         <script src="../js/jsDinero.js"></script>
+        <script src="../js/jsSitioTuristico.js"></script>
         
 
     </head>
     <body>
         <h1>Registrar Habitacion</h1>
-        <form id="formulario" method="post" action="../business/servicioHabitacionAction.php">
+        <form id="formulario" method="post" action="javascript:Guardar4();" enctype="multipart/form-data">
                 Estilo de cama:
-                    <select name="estiloCama">
+                    <select name="estiloCama" id="estiloCama">
                         <option value="individual">INDIVIDUAL</option>
                         <option value="matrimonial">MATRIMONIAL</option>
                         <option value="camarote">CAMAROTE</option>
@@ -42,7 +43,7 @@
                 <br>
                   <br>
                 Internet:
-                    <select name="internet">
+                    <select name="internet" id="internet">
                         <option value="0">NO DISPONIBLE</option>
                         <option value="1">DISPONIBLE</option>
 
@@ -50,7 +51,7 @@
                 <br>
                   <br>
                Aire Acondicionado:
-                    <select name="aireAcondicionado">
+                    <select name="aireAcondicionado" id="aireAcondicionado">
                         <option value="0">NO DISPONIBLE</option>
                         <option value="1">DISPONIBLE</option>
 
@@ -58,14 +59,14 @@
                     <br>
                   <br>
                     Ventilador:
-                         <select name="ventilador">
+                         <select name="ventilador" id="ventilador">
                              <option value="0">NO DISPONIBLE</option>
                              <option value="1">DISPONIBLE</option>
                            </select>
                 <br>
                   <br>
                 Cable:
-                    <select name="cable">
+                    <select name="cable" id="cable">
                       <option value="0">NO DISPONIBLE</option>
                       <option value="1">DISPONIBLE</option>
                     </select>
@@ -73,22 +74,22 @@
                   <br>
 
                 Baños:
-                    <input type="radio" name="banos" value="Dentro Habitacion">Dentro Habitacion
+                    <input type="radio" name="banos" id="banos" value="Dentro Habitacion">Dentro Habitacion
                     <input type="radio" name="banos" value="Compartido"> Compartido
 
                 <br>
                 <br>
                 Vista:
                 <br>
-                <textarea  name="vista" cols="30" rows="5" placeholder="Describa la vista que tiene la habitacion"></textarea>
+                <textarea  name="vista"  id="vista" cols="30" rows="5" placeholder="Describa la vista que tiene la habitacion"></textarea>
                 <br>
                 <br>
                 Numero maxino de personas:
-                <input type="number" name="cantidadpersonas">
+                <input type="number" name="cantidadpersonas" id="cantidadpersonas">
                 <br>
                 <br>
                 Numero de cuartos disponibles
-                <input type="number" name="cantidadCuartos">
+                <input type="number" name="cantidadCuartos" id="cantidadCuartos">
                 <br>
                 <br>
                 Precio Habitacion: <br>
@@ -115,7 +116,10 @@
 
                 echo ' </select><br><br>';
                ?>
-
+                 <input type="file" multiple="true" id="archivos" name="archivos" />
+                    <br>
+                    <br>
+                    <br>
                  <input type="submit" id="enviarFormulario" name="enviarFormulario" value="ENVIAR">
 
         </form>

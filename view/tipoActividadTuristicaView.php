@@ -9,7 +9,17 @@
     <?php  
          include '../business/tipoActividadTuristicaBusiness.php';
     ?>
+<?php 
+  session_start();
 
+    
+     if(isset($_SESSION['administrador'])){
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ ?>
 
 </head>
 
@@ -27,8 +37,8 @@
                     <br>
                     <br>
                     <br>
-                    Descripcion:
-                    <input type="text" name="descripciontipoactividadturistica" id="descripciontipoactividadturistica" required />
+                    Descripcion:<br>
+                    <textarea required name="descripciontipoactividadturistica" id="descripciontipoactividadturistica" placeholder="Ingrese la descripcion"></textarea><br>
                     <br>
                     <br>
                     <br>
@@ -44,7 +54,7 @@
 
             </form>
 
-        <h2>Responsable</h2>
+        <h2>Tipos de actividad</h2>
             <table border="1">
             <tr>
                 <th>Nombre</th>
@@ -66,15 +76,15 @@
 
                 echo '<form method="post" enctype="multipart/form-data" action="../business/tipoActividadTuristicaAction.php">';
 
-
-
                 echo '<input type="hidden" name="idtipoactividadturistica" id="idtipoactividadturistica" value="' . $tipoActividadTuristica->getIdtipoactividadturistica() .'">';
 
 
                 echo '<td><input type="text" name="nombretipoactividadturistica" id="nombretipoactividadturistica" value="' . $tipoActividadTuristica->getNombretipoactividadturistica() . '"/></td>';
 
 
-                echo '<td><input type="text" name="descripciontipoactividadturistica" id="descripciontipoactividadturistica" value="' . $tipoActividadTuristica->getDescripciontipoactividadturistica() . '"/></td>';
+                echo '<td>
+                  <textarea required name="descripciontipoactividadturistica" id="descripciontipoactividadturistica" placeholder="Ingrese la descripcion">'.$tipoActividadTuristica->getDescripciontipoactividadturistica().'</textarea>
+              </td>';
 
 
 

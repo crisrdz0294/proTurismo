@@ -159,7 +159,7 @@ include './servicioAlimentacionBusiness.php';
         
         
         $servicioAlimentacionBusiness = new ServicioAlimentacionBusiness();
-        $result = $servicioAlimentacionBusiness->insertarServicioAlimentacion($servicioAlimentacion);
+        $result = $servicioAlimentacionBusiness->insertarServicioAlimentacion($servicioAlimentacion,$_FILES);
 
             if ($result == 1) 
             {

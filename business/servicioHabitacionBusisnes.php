@@ -10,9 +10,9 @@ class ServicioHabitacionBusisnes {
         $this->servicioHabitacionData = new ServicioHabitacionData();
     }
 
-    public function insertServicioHabitacion($servicioHabitacion){
+    public function insertServicioHabitacion($servicioHabitacion,$imagenes){
 
-        return $this->servicioHabitacionData->insertServicioHabitacion($servicioHabitacion);
+        return $this->servicioHabitacionData->insertServicioHabitacion($servicioHabitacion,$imagenes);
     }
     public function actualizarServicioHabitacion($servicioHabitacion){
         return $this->servicioHabitacionData->actualizarHabitacion($servicioHabitacion);
