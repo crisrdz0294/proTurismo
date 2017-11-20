@@ -74,38 +74,45 @@ public function mostrarPaquetePorId($idpaquete){
     return $paquete;
 }
 
-public function actualizarPaqueteTuristico($PaqueteTuristico){
+public function actualizarPaqueteTuristico($idpaquete,$nombre,$descripcion,$cantidad,$itinerario){
 
     $con = new Data();
     $conexion = $con->conect();
-    $retorno;
+    $retorno=0;
     $idTemporal=0;
 
-    $nombre=$PaqueteTuristico->getNombrePaqueteTuristico();
-    $descripcion=$PaqueteTuristico->getDescripcionPaqueteTuristico();
-    $cantidadPersonas=$PaqueteTuristico->getCantidadPersonasPaqueteTuristico();
-    $itinerario=$PaqueteTuristico->getItinerarioPaqueteTuristico();
-    $id=$PaqueteTuristico->getIdPaqueteTuristico();
-    
-
-    $consultaMostrar ="SELECT distinct idpaqueteturistico FROM tbpaqueteturisticoactividad where idpaqueteturistico=".$id."";
+    $consultaMostrar ="SELECT distinct idpaqueteturistico FROM tbpaqueteturisticoactividad where idpaqueteturistico=".$idpaquete."";
     $idPaquete=mysqli_query($conexion,$consultaMostrar);
 
     if ($row = mysqli_fetch_row($idPaquete)) {
         $idTemporal = trim($row[0]);
     }
 
-    if($idTemporal==$id){
+    if($idTemporal==$idpaquete){
       $retorno=1;
     }else{
-        $consultaActualizar = "UPDATE tbpaqueteturistico SET  nombrepaqueteturistico= '".$nombre."',
+        
+
+       $consultaMostrar ="SELECT distinct idpaqueteturistico FROM tbpaqueteturisticoservicio where idpaqueteturistico=".$idpaquete."";
+        $idPaquete=mysqli_query($conexion,$consultaMostrar);
+
+        if ($row = mysqli_fetch_row($idPaquete)) {
+          $idTemporal = trim($row[0]);
+        }
+
+        if($idTemporal==$idpaquete){
+          $retorno=2;
+        }else{
+          $consultaActualizar = "UPDATE tbpaqueteturistico SET  nombrepaqueteturistico= '".$nombre."',
         descripcionpaqueteturistico= '".$descripcion."',
-        cantidadpersonaspaqueteturistico = ".$cantidadPersonas.",
+        cantidadpersonaspaqueteturistico = ".$cantidad.",
         itinerariopaqueteturistico='".$itinerario."'
-        WHERE idpaqueteturistico= ".$id.";";
+        WHERE idpaqueteturistico= ".$idpaquete.";";
 
         $result= mysqli_query($conexion,$consultaActualizar);
         mysqli_close($conexion);
+      }
+        
     }
 
 
