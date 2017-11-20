@@ -18,13 +18,15 @@
 			$this->dataServicios = new DataServicios();
 		}
 
-		public function obtenerServiciosAlimentacionAgregados($idPaquete){
+		public function obtenerServiciosAlimentacionAgregados(){
 
 			$listaAlimentacion=$this->dataAlimentacion->mostrarTodosServicioAlimentacion();
 			$listaIdServicios=$this->dataServicios->obtenerIdServiciosAlimentacion();
 
+			$idPaquete=$_POST['idpaquete'];
 			$agregados=array();
 			$agregado=false;
+			$respuestaFinal = array();
 
 			for($i=0;$i<count($listaAlimentacion);$i++){
 
@@ -49,27 +51,28 @@
 				}
 
 				if($agregado==false){
-					$listaAlimentacion[$i]->setEstadoAgregado(0);
+					$valores=array("idalimentacion"=>$listaAlimentacion[$i]->getIdServicioAlimentacion(),"tiempocomidas"=>$listaAlimentacion[$i]->getTiempoComidasServicioAlimentacion(),"descripcioncomidas"=>$listaAlimentacion[$i]->getDescripcionAlimentacionServicioAlimentacion(),"precio"=>$listaAlimentacion[$i]->getPrecioServicioAlimentacion(),"estadoagregada"=>0);
+            		
 				}else{
-					$listaAlimentacion[$i]->setEstadoAgregado(1);
+					$valores=array("idalimentacion"=>$listaAlimentacion[$i]->getIdServicioAlimentacion(),"tiempocomidas"=>$listaAlimentacion[$i]->getTiempoComidasServicioAlimentacion(),"descripcioncomidas"=>$listaAlimentacion[$i]->getDescripcionAlimentacionServicioAlimentacion(),"precio"=>$listaAlimentacion[$i]->getPrecioServicioAlimentacion(),"estadoagregada"=>1);
 					$agregado=false;	
 				}
 
+				array_push($respuestaFinal, $valores);
 			}
 
-			if (!$listaAlimentacion) {
-				return false;
-			} else {
-				return $listaAlimentacion;
-			}
+			echo "".json_encode($respuestaFinal).""; 
 		}
-		public function obtenerServiciosTransporteAgregados($idPaquete){
+
+		public function obtenerServiciosTransporteAgregados(){
 
 			$listaTransportes=$this->dataTransporte->mostrarTodosServicioTransporte();
 			$listaIdServicios=$this->dataServicios->obtenerIdServiciosTransporte();
 
+			$idPaquete=$_POST['idpaquete'];
 			$agregados=array();
 			$agregado=false;
+			$respuestaFinal = array();
 
 			for($i=0;$i<count($listaTransportes);$i++){
 
@@ -94,28 +97,29 @@
 				}
 
 				if($agregado==false){
-					$listaTransportes[$i]->setEstadoAgregado(0);
+					$valores=array("idtransporte"=>$listaTransportes[$i]->getIdServicioTransporte(),"origen"=>$listaTransportes[$i]->getOrigenServicioTransporte(),"destino"=>$listaTransportes[$i]->getDestinoServicioTransporte(),"kilometros"=>$listaTransportes[$i]->getKilometrosServicioTransporte(),"precio"=>$listaTransportes[$i]->getPrecioServicioTransporte(),"estadoagregada"=>0);
+            		
 				}else{
-					$listaTransportes[$i]->setEstadoAgregado(1);
+					$valores=array("idtransporte"=>$listaTransportes[$i]->getIdServicioTransporte(),"origen"=>$listaTransportes[$i]->getOrigenServicioTransporte(),"destino"=>$listaTransportes[$i]->getDestinoServicioTransporte(),"kilometros"=>$listaTransportes[$i]->getKilometrosServicioTransporte(),"precio"=>$listaTransportes[$i]->getPrecioServicioTransporte(),"estadoagregada"=>1);
 					$agregado=false;	
 				}
+				
+				array_push($respuestaFinal, $valores);
 
 			}
 
-			if (!$listaTransportes) {
-				return false;
-			} else {
-				return $listaTransportes;
-			}
-
+			echo "".json_encode($respuestaFinal).""; 
 		}
-		public function obtenerServiciosHospedajeAgregados($idPaquete){
+
+		public function obtenerServiciosHospedajeAgregados(){
 
 			$listaHospedaje=$this->dataHabitacion->mostrarHabitaciones();
 			$listaIdServicios=$this->dataServicios->obtenerIdServiciosHospedaje();
 
+			$idPaquete=$_POST['idpaquete'];
 			$agregados=array();
 			$agregado=false;
+			$respuestaFinal = array();
 
 			for($i=0;$i<count($listaHospedaje);$i++){
 
@@ -140,20 +144,33 @@
 				}
 
 				if($agregado==false){
-					$listaHospedaje[$i]->setEstadoAgregado(0);
+					$valores=array("idhospedaje"=>$listaHospedaje[$i]->getIdHabitacion(),"estilocama"=>$listaHospedaje[$i]->getCamaHabitacion(),"numerocamas"=>$listaHospedaje[$i]->getCantidadCamasHabitacion(),"numeropersonas"=>$listaHospedaje[$i]->getCantidadPersonasHabitacion(),"numerocuartos"=>$listaHospedaje[$i]->getCantidadCuartosHabitacion(),"precio"=>$listaHospedaje[$i]->getPrecioServicioHabitacion(),"estadoagregada"=>0);
+            		
 				}else{
-					$listaHospedaje[$i]->setEstadoAgregado(1);
+					$valores=array("idhospedaje"=>$listaHospedaje[$i]->getIdHabitacion(),"estilocama"=>$listaHospedaje[$i]->getCamaHabitacion(),"numerocamas"=>$listaHospedaje[$i]->getCantidadCamasHabitacion(),"numeropersonas"=>$listaHospedaje[$i]->getCantidadPersonasHabitacion(),"numerocuartos"=>$listaHospedaje[$i]->getCantidadCuartosHabitacion(),"precio"=>$listaHospedaje[$i]->getPrecioServicioHabitacion(),"estadoagregada"=>1);
 					$agregado=false;	
 				}
+				
+				array_push($respuestaFinal, $valores);				
 
 			}
 
-			if (!$listaHospedaje) {
-				return false;
-			} else {
-				return $listaHospedaje;
-			}
+			echo "".json_encode($respuestaFinal).""; 
 
 		}
 	}
+?>
+
+<?php
+
+	$op = $_POST['opcion'];
+	$mostrarServicios = new MostrarServiciosBusiness;
+	if($op == 1){
+	 	$mostrarServicios->obtenerServiciosAlimentacionAgregados();
+	}else if($op == 2){
+		$mostrarServicios->obtenerServiciosTransporteAgregados();
+	}else if($op == 3){
+		$mostrarServicios->obtenerServiciosHospedajeAgregados();
+	}
+	
 ?>

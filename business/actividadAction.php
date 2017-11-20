@@ -35,7 +35,7 @@ include_once './actividadBusiness.php';
 
             json_encode($habilidadesSeleccionadas);
             
-            $actividad = new Actividad(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad,$idSitio,$idTipoActividad,$precio);
+            $actividad = new Actividad(0,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidadesSeleccionadas,$horarioactividad,$idSitio,$idTipoActividad,$precio,0);
 
 
             $actividadBusiness = new ActividadBusiness();
@@ -71,7 +71,7 @@ include_once './actividadBusiness.php';
             $precioFinal=str_replace("₡","",$montoTemp);
             $id=$_POST['idActividad'];
 
-             $actividad = new Actividad($id,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidades,$horarioactividad,$idSitio,$idTipoActividad,$precioFinal);
+             $actividad = new Actividad($id,$name,$description,$estadoActividad,$cantidadpersonas,$lugaractividad, $distanciahospedaje,$habilidades,$horarioactividad,$idSitio,$idTipoActividad,$precioFinal,0);
              
 
 
