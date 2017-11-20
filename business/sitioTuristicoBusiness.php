@@ -10,8 +10,8 @@
 			$this->dataSitioTuristico=new DataSitioTuristico();
 		}
 
-		public function insertarSitioTuristico($sitioTuristico){
-			return $this->dataSitioTuristico->insertarSitioTuristico($sitioTuristico);
+		public function insertarSitioTuristico($sitioTuristico,$imagenes){
+			return $this->dataSitioTuristico->insertarSitioTuristico($sitioTuristico,$imagenes);
 		}
 
 		public function mostrarTodosSitiosTuristicos(){

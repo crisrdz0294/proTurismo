@@ -8,6 +8,36 @@
 
 		public function ServicioTransporteData(){}
 
+
+
+        function uploadImagen($imagenes,$id){
+            
+            $flag = false;
+            $con =new Data();
+            $conexion=$con->conect();
+            $archivos="";
+            $cont = 1;
+            foreach ($imagenes as $imagen) 
+            {
+                 $target_path = "../imagenes/";
+                 $name = $imagen['name'];
+                $extension = end(explode(".", $name));
+                $target_path = $target_path ."tr-".$cont."-".$id.".".$extension;
+                if(move_uploaded_file($imagen['tmp_name'], $target_path)) 
+                {
+                    $flag = true;
+                    $archivos=$archivos.$target_path.";";
+                    
+                }
+                $cont++;
+            }
+            $update ="UPDATE tbserviciotransporte SET imagenes = '$archivos' WHERE idserviciotransporte='$id'";
+            mysqli_query($conexion,$update);
+            return $flag;
+        }
+
+
+
 		public function insertarServicioTransporte($serviciotransporte){
 
 			$con = new Data();
@@ -23,6 +53,7 @@
     		$cantidadPersonas=$serviciotransporte->getCantidadPersonasServicioTransporte();
 
             $idSitio=$serviciotransporte->getSitioTuristico();
+            $imagenes=$serviciotransporte->getImagenes();
 
 
 			$consultaUltimoId ="SELECT MAX(idserviciotransporte) AS idserviciotransporte FROM tbserviciotransporte";
@@ -33,7 +64,7 @@
             	$idSiguiente = trim($row[0]) + 1;
         	}
 
-        	$consultaInsertar="INSERT INTO tbserviciotransporte VALUES (
+        	$consultaInsertar="INSERT INTO tbserviciotransporte(idserviciotransporte,origenserviciotransporte,destinoserviciotransporte,kilometrosserviciotransporte,tipocarreteraserviciotransporte,tipovehiculoserviciotransporte,precioserviciotransporte,cantidadpersonasserviciotransporte,idsitioturistico) VALUES (
         	
         	".$idSiguiente.",
         	'".$origen."',
@@ -48,7 +79,8 @@
         	);";
 
 
-            $result = mysqli_query($conexion, $consultaInsertar);
+            $result = mysqli_query($conexion, $consultaInsertar);            
+            $this->uploadImagen($imagenes,$idSiguiente);
         	mysqli_close($conexion);
         	return $result;
 		}
@@ -73,7 +105,8 @@
     				$row['tipovehiculoserviciotransporte'], 
     				$row['precioserviciotransporte'], 
     				$row['cantidadpersonasserviciotransporte'],
-                    $row['idsitioturistico'],0
+                    $row['idsitioturistico'],0,
+                    $row['imagenes']
     			);
 
             	array_push($servicioDeTransporte, $temporalServicioTransporte);

@@ -11,8 +11,8 @@
 			$this->servicioAlimentacionData = new ServicioAlimentacionData();
 		}
 
-		public function insertarServicioAlimentacion($servicioAlimentacion){
-			return $this->servicioAlimentacionData->insertarServicioAlimentacion($servicioAlimentacion);
+		public function insertarServicioAlimentacion($servicioAlimentacion,$imagenes){
+			return $this->servicioAlimentacionData->insertarServicioAlimentacion($servicioAlimentacion,$imagenes);
 		}
 
 		public function mostrarTodosServicioAlimentacion(){

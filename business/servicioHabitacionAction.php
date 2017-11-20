@@ -39,7 +39,7 @@ include './ServicioHabitacionBusisnes.php';
 
                     $servicioHabitacionBusisnes = new ServicioHabitacionBusisnes();
 
-                    $result = $servicioHabitacionBusisnes->insertServicioHabitacion($nuevoCuarto);
+                    $result = $servicioHabitacionBusisnes->insertServicioHabitacion($nuevoCuarto,$_FILES);
 
                     if ($result == 1) {
                          header("location: ../view/servicioHabitacionView.php?success=inserted");
