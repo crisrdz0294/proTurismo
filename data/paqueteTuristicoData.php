@@ -59,6 +59,21 @@ mysqli_close($conexion);
   return $actividades;
 }
 
+public function mostrarPaquetePorId($idpaquete){
+
+    $con= new Data();
+    $conexion=$con->conect();
+
+    $consultaMostrar="SELECT * FROM tbpaqueteturistico where idpaqueteturistico=".$idpaquete." ;";
+
+    $result = mysqli_query($conexion, $consultaMostrar);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+    $paquete = array("idpaquete"=>$row['idpaqueteturistico'],"nombrepaquete"=>$row['nombrepaqueteturistico'],"descripcionpaquete"=>$row['descripcionpaqueteturistico'],"cantidadpersonaspaquete"=>$row['cantidadpersonaspaqueteturistico'],"itinerariopaquete"=>$row['itinerariopaqueteturistico'],"preciopaquete"=>$row['preciopaqueteturistico']);
+    mysqli_close($conexion);
+    return $paquete;
+}
+
 public function actualizarPaqueteTuristico($PaqueteTuristico){
 
     $con = new Data();
@@ -116,21 +131,17 @@ public function obtenerNombrePaquete($idpaquete){
     }
 
 
-
 public function obtenerPrecioPaquete($idpaquete){
       $con =new Data();
       $conexion=$con->conect();
       $consultaNombre="SELECT preciopaqueteturistico FROM tbpaqueteturistico where idpaqueteturistico=".$idpaquete."";
 
       $result = mysqli_query($conexion, $consultaNombre);
-      mysqli_close($conexion);
-      $precioPaquete = array();
-          while ($row = mysqli_fetch_array($result)) {
+      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-            $valores=array("precio"=>$row["preciopaqueteturistico"]);
-              array_push($precioPaquete, $valores);
-          }
-          return $nombrePaquete;
+      $precioPaquete = array("precio"=>$row['preciopaqueteturistico']);
+      mysqli_close($conexion);
+      return $precioPaquete;
     }
 
 }

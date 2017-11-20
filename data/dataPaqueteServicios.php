@@ -5,12 +5,13 @@
 	class DataPaqueteServicios{
 		public function DataPaqueteServicios(){}
 
-		public function agregarServicioAlimentacion($idpaquete,$idservicioalimentacion,$precio){
+		public function agregarServicioAlimentacion($idpaquete,$idservicioalimentacion){
 			$con =new Data();
 			$conexion=$con->conect();
 			$tipoAlimentacion="sa";
 			$precioPaquete;
     		$precioNuevo;
+            $precioAlimentacion;
 
 			$consultaAgregar="INSERT INTO tbpaqueteturisticoservicio VALUES(".$idpaquete.",".$idservicioalimentacion.",'".$tipoAlimentacion."');";
 			$result = mysqli_query($conexion, $consultaAgregar);
@@ -23,22 +24,32 @@
         		$precioPaquete = trim($row[0]);
     		}
 
-    		if(is_numeric($precio)){
+            $consultaPrecioAlimentacion ="SELECT precioservicioalimentacion FROM tbservicioalimentacion where idservicioalimentacion=".$idservicioalimentacion."";
 
-      			$precioNuevo=$precioPaquete+$precio;
+            $precioAlimentacionConsulta=mysqli_query($conexion,$consultaPrecioAlimentacion);
+            
+
+            if ($row = mysqli_fetch_row($precioAlimentacionConsulta)) {
+                $precioAlimentacion = trim($row[0]);
+            }
+
+    		if(is_numeric($precioAlimentacion)){
+
+      			$precioNuevo=$precioPaquete+$precioAlimentacion;
      			 $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."
         		WHERE idpaqueteturistico= ".$idpaquete.";";
 				$result2= mysqli_query($conexion,$consultaActualizar);
 
         	}else{
 
-                $porciones = explode(",", $precio);
+                $porciones = explode(",", $precioAlimentacion);
 
                 for ($i=0; $i <count($porciones);$i++) { 
 
                         $precioNuevo=$precioNuevo+$porciones[$i];    
                     
                 }
+                $precioNuevo=$precioNuevo+$precioPaquete;
 
                 $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."
                         WHERE idpaqueteturistico= ".$idpaquete.";";
@@ -49,12 +60,13 @@
         	return $result;
 		}
 
-		public function agregarServicioTransporte($idpaquete,$idserviciotransporte,$precio){
+		public function agregarServicioTransporte($idpaquete,$idserviciotransporte){
 			$con =new Data();
 			$conexion=$con->conect();
 			$tipoTransporte="st";
 			$precioPaquete;
     		$precioNuevo;
+            $precioTransporte;
 
 			$consultaAgregar="INSERT INTO tbpaqueteturisticoservicio VALUES(".$idpaquete.",".$idserviciotransporte.",'".$tipoTransporte."');";
 			$result = mysqli_query($conexion, $consultaAgregar);
@@ -66,7 +78,16 @@
     		if ($row = mysqli_fetch_row($precioConsulta)) {
         		$precioPaquete = trim($row[0]);
     		}
-          	$precioNuevo=$precioPaquete+$precio;
+
+            $consultaMostrar2 ="SELECT precioserviciotransporte FROM tbserviciotransporte where idserviciotransporte=".$idserviciotransporte."";
+            $precioConsulta2=mysqli_query($conexion,$consultaMostrar2);
+            
+
+            if ($row = mysqli_fetch_row($precioConsulta2)) {
+                $precioTransporte = trim($row[0]);
+            }
+
+          	$precioNuevo=$precioPaquete+$precioTransporte;
      		$consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo." WHERE idpaqueteturistico= ".$idpaquete.";";
 			$result2= mysqli_query($conexion,$consultaActualizar);
         	
@@ -74,12 +95,13 @@
         	return $result;
 		}
 
-		public function agregarServicioHospedaje($idpaquete,$idserviciohospedaje,$precio){
+		public function agregarServicioHospedaje($idpaquete,$idserviciohospedaje){
 			$con =new Data();
 			$conexion=$con->conect();
 			$tipoHospedaje="sh";
 			$precioPaquete;
     		$precioNuevo;
+            $precioHospedaje;
 
 			$consultaAgregar="INSERT INTO tbpaqueteturisticoservicio VALUES(".$idpaquete.",".$idserviciohospedaje.",'".$tipoHospedaje."');";
 			$result = mysqli_query($conexion, $consultaAgregar);
@@ -91,7 +113,16 @@
     		if ($row = mysqli_fetch_row($precioConsulta)) {
         		$precioPaquete = trim($row[0]);
     		}
-          	$precioNuevo=$precioPaquete+$precio;
+
+            $consultaMostrar2 ="SELECT precioserviciohospedaje FROM tbserviciohospedaje where idserviciohospedaje=".$idserviciohospedaje."";
+            $precioConsulta2=mysqli_query($conexion,$consultaMostrar2);
+            
+
+            if ($row = mysqli_fetch_row($precioConsulta2)) {
+                $precioHospedaje = trim($row[0]);
+            }
+
+          	$precioNuevo=$precioPaquete+$precioHospedaje;
      		$consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo." WHERE idpaqueteturistico= ".$idpaquete.";";
 			$result2= mysqli_query($conexion,$consultaActualizar);
 
@@ -99,12 +130,13 @@
         	return $result;
 		}
 
-		public function descartarServicioAlimentacion($idpaquete,$idservicioalimentacion,$precio){
+		public function descartarServicioAlimentacion($idpaquete,$idservicioalimentacion){
 			$con =new Data();
 			$conexion=$con->conect();
 			$tipoAlimentacion="sa";
 			$precioPaquete;
     		$precioNuevo;
+              $precioAlimentacion;
 
 			$consultaDescartar="DELETE FROM tbpaqueteturisticoservicio WHERE idpaqueteturistico=".$idpaquete." AND idservicio=".$idservicioalimentacion." AND idtiposervicio='".$tipoAlimentacion."';";
 			$result = mysqli_query($conexion, $consultaDescartar);
@@ -117,15 +149,26 @@
         		$precioPaquete = trim($row[0]);
     		}
 
-    		if(is_numeric($precio)){
+            $consultaPrecioAlimentacion ="SELECT precioservicioalimentacion FROM tbservicioalimentacion where idservicioalimentacion=".$idservicioalimentacion."";
 
-      			$precioNuevo=$precioPaquete-$precio;
+            $precioAlimentacionConsulta=mysqli_query($conexion,$consultaPrecioAlimentacion);
+            
+
+            if ($row = mysqli_fetch_row($precioAlimentacionConsulta)) {
+                $precioAlimentacion = trim($row[0]);
+            }
+
+            
+
+    		if(is_numeric($precioAlimentacion)){
+
+      			$precioNuevo=$precioPaquete-$precioAlimentacion;
      			 $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."
         		WHERE idpaqueteturistico= ".$idpaquete.";";
 				$result2= mysqli_query($conexion,$consultaActualizar);
         	}else{
 
-                $porciones = explode(",", $precio);
+                $porciones = explode(",", $precioAlimentacion);
 
                 for ($i=0; $i <count($porciones);$i++) { 
 
@@ -133,21 +176,22 @@
                     
                 }
 
-                $precioFinal=$precioPaquete-$precioNuevo;
+                $precioNuevo=$precioPaquete-$precioNuevo;
 
-                $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioFinal."
+                $consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."
                         WHERE idpaqueteturistico= ".$idpaquete.";";
                         $result2= mysqli_query($conexion,$consultaActualizar);
             }
         	mysqli_close($conexion);
         	return $result;
 		}
-		public function descartarServicioTransporte($idpaquete,$idserviciotransporte,$precio){
+		public function descartarServicioTransporte($idpaquete,$idserviciotransporte){
 			$con =new Data();
 			$conexion=$con->conect();
 			$tipoTransporte="st";
 			$precioPaquete;
     		$precioNuevo;
+            $precioTransporte;
 
 			$consultaDescartar="DELETE FROM tbpaqueteturisticoservicio WHERE idpaqueteturistico=".$idpaquete." AND idservicio=".$idserviciotransporte." AND idtiposervicio='".$tipoTransporte."';";
 			$result = mysqli_query($conexion, $consultaDescartar);
@@ -159,33 +203,53 @@
     		if ($row = mysqli_fetch_row($precioConsulta)) {
         		$precioPaquete = trim($row[0]);
     		}
-      		$precioNuevo=$precioPaquete-$precio;
+
+            $consultaMostrar2 ="SELECT precioserviciotransporte FROM tbserviciotransporte where idserviciotransporte=".$idserviciotransporte."";
+            $precioConsulta2=mysqli_query($conexion,$consultaMostrar2);
+            
+
+            if ($row = mysqli_fetch_row($precioConsulta2)) {
+                $precioTransporte = trim($row[0]);
+            }
+
+            $precioNuevo=$precioPaquete-$precioTransporte;
      		$consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo." WHERE idpaqueteturistico= ".$idpaquete.";";
 				$result2= mysqli_query($conexion,$consultaActualizar);
         
         	mysqli_close($conexion);
         	return $result;
 		}
-		public function descartarServicioHospedaje($idpaquete,$idserviciohospedaje,$precio){
+	public function descartarServicioHospedaje($idpaquete,$idserviciohospedaje){
 			$con =new Data();
 			$conexion=$con->conect();
 			$tipoHospedaje="sh";
 			$precioPaquete;
     		$precioNuevo;
+            $precio;
 
 			$consultaDescartar="DELETE FROM tbpaqueteturisticoservicio WHERE idpaqueteturistico=".$idpaquete." AND idservicio=".$idserviciohospedaje." AND idtiposervicio='".$tipoHospedaje."';";
 			$result = mysqli_query($conexion, $consultaDescartar);
 
 			$consultaMostrar ="SELECT preciopaqueteturistico FROM tbpaqueteturistico where idpaqueteturistico=".$idpaquete."";
-    		$precioConsulta=mysqli_query($conexion,$consultaMostrar);
-    		
+            $precioConsulta=mysqli_query($conexion,$consultaMostrar);
+            
 
-    		if ($row = mysqli_fetch_row($precioConsulta)) {
-        		$precioPaquete = trim($row[0]);
-    		}
+            if ($row = mysqli_fetch_row($precioConsulta)) {
+                $precioPaquete = trim($row[0]);
+            }
+
+            $consultaHospedaje ="SELECT precioserviciohospedaje FROM tbserviciohospedaje where idserviciohospedaje=".$idserviciohospedaje."";
+            $precioConsultaHospedaje=mysqli_query($conexion,$consultaHospedaje);
+            
+
+            if ($row = mysqli_fetch_row($precioConsultaHospedaje)) {
+                $precio = trim($row[0]);
+            }
+
       		$precioNuevo=$precioPaquete-$precio;
-     		$consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo."WHERE idpaqueteturistico= ".$idpaquete.";";
-				$result2= mysqli_query($conexion,$consultaActualizar);
+     		$consultaActualizar = "UPDATE tbpaqueteturistico SET preciopaqueteturistico= ".$precioNuevo." WHERE idpaqueteturistico= ".$idpaquete.";";
+
+			$result2= mysqli_query($conexion,$consultaActualizar);
         
         	mysqli_close($conexion);
         	return $result;

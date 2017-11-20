@@ -15,45 +15,39 @@
 			
 			$idpaquete=$_POST['idpaquete'];
 			$idservicio=$_POST['idservicio'];
-			$precio=$_POST['precio'];
-			return $this->dataPaqueteServicios->agregarServicioAlimentacion($idpaquete,$idservicio,$precio);
+			return $this->dataPaqueteServicios->agregarServicioAlimentacion($idpaquete,$idservicio);
 		}
 
 		public function agregarServicioTransporte(){
 			
 			$idpaquete=$_POST['idpaquete'];
 			$idservicio=$_POST['idservicio'];
-			$precio=$_POST['precio'];
-			return $this->dataPaqueteServicios->agregarServicioTransporte($idpaquete,$idservicio,$precio);
+			return $this->dataPaqueteServicios->agregarServicioTransporte($idpaquete,$idservicio);
 		}
 
 		public function agregarServicioHospedaje(){
 			
 			$idpaquete=$_POST['idpaquete'];
 			$idservicio=$_POST['idservicio'];
-			$precio=$_POST['precio'];
-			return $this->dataPaqueteServicios->agregarServicioHospedaje($idpaquete,$idservicio,$precio);
+			return $this->dataPaqueteServicios->agregarServicioHospedaje($idpaquete,$idservicio);
 		}
 
 		public function descartarServicioAlimentacion(){
 			$idpaquete=$_POST['idpaquete'];
 			$idservicio=$_POST['idservicio'];
-			$precio=$_POST['precio'];
-			return $this->dataPaqueteServicios->descartarServicioAlimentacion($idpaquete,$idservicio,$precio);
+			return $this->dataPaqueteServicios->descartarServicioAlimentacion($idpaquete,$idservicio);
 		}
 
 		public function descartarServicioTransporte(){
 			$idpaquete=$_POST['idpaquete'];
 			$idservicio=$_POST['idservicio'];
-			$precio=$_POST['precio'];
-			return $this->dataPaqueteServicios->descartarServicioTransporte($idpaquete,$idservicio,$precio);
+			return $this->dataPaqueteServicios->descartarServicioTransporte($idpaquete,$idservicio);
 		}
 
 		public function descartarServicioHospedaje(){
 			$idpaquete=$_POST['idpaquete'];
 			$idservicio=$_POST['idservicio'];
-			$precio=$_POST['precio'];
-			return $this->dataPaqueteServicios->descartarServicioHospedaje($idpaquete,$idservicio,$precio);
+			return $this->dataPaqueteServicios->descartarServicioHospedaje($idpaquete,$idservicio);
 		}		
 
 	}
