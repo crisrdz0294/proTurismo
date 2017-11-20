@@ -16,6 +16,7 @@ function VerificarLogin(){
                 {
                   console.log(responseText);
                        location.href=responseText;
+                       
                     //var url = "index.php";
 
                         }

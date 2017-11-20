@@ -5,6 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>GUI Trabajo Comunal</title>
   <script src="../js/jquery-3.2.1.js"></script>
+  <?php 
+  session_start();
+
+    
+     if(isset($_SESSION['administrador'])){
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ ?>
 	<?php
 		include '../business/sitioTuristicoBusiness.php';
 
