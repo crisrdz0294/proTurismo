@@ -8,20 +8,52 @@
 
         public function ServicioAlimentacionData(){}
 
-        public function insertarServicioAlimentacion($servicioalimentacion)
+
+        
+        function uploadImagen($imagenes,$id){
+            
+            $flag = false;
+            $con =new Data();
+            $conexion=$con->conect();
+            $archivos="";
+            $cont = 1;
+            foreach ($imagenes as $imagen) 
+            {
+                 $target_path = "../imagenes/";
+                 $name = $imagen['name'];
+                $extension = end(explode(".", $name));
+                $target_path = $target_path ."al-".$cont."-".$id.".".$extension;
+                if(move_uploaded_file($imagen['tmp_name'], $target_path)) 
+                {
+                    $flag = true;
+                    $archivos=$archivos.$target_path.";";
+                    
+                }
+                $cont++;
+            }
+            $update ="UPDATE tbservicioalimentacion SET imagenes = '$archivos' WHERE idservicioalimentacion='$id'";
+            mysqli_query($conexion,$update);
+            return $flag;
+        }
+
+
+
+
+
+        public function insertarServicioAlimentacion($servicioalimentacion,$imagenes)
         {
 
             $con = new Data();
             $conexion = $con->conect();
             
 
-        $tiempoComidas = $servicioalimentacion->getTiempoComidasServicioAlimentacion();
-        $descripcionAlimentacion = $servicioalimentacion->getDescripcionAlimentacionServicioAlimentacion();
-        $precio = $servicioalimentacion->getPrecioServicioAlimentacion();
-        $adicionales = $servicioalimentacion->getAdicionalesServicioAlimentacion();
-        $alimentacionLlevar = $servicioalimentacion->getAlimentacionllevarServicioAlimentacion();
+            $tiempoComidas = $servicioalimentacion->getTiempoComidasServicioAlimentacion();
+            $descripcionAlimentacion = $servicioalimentacion->getDescripcionAlimentacionServicioAlimentacion();
+            $precio = $servicioalimentacion->getPrecioServicioAlimentacion();
+            $adicionales = $servicioalimentacion->getAdicionalesServicioAlimentacion();
+            $alimentacionLlevar = $servicioalimentacion->getAlimentacionllevarServicioAlimentacion();
 
-        $idSitio=$servicioalimentacion->getSitioTuristico();
+            $idSitio=$servicioalimentacion->getSitioTuristico();
 
 
 
@@ -33,7 +65,7 @@
                 $idSiguiente = trim($row[0]) + 1;
             }
 
-            $consultaInsertar="INSERT INTO tbservicioalimentacion VALUES (
+            $consultaInsertar="INSERT INTO tbservicioalimentacion(idservicioalimentacion,tiemposservicioalimentacion,descripcionservicioalimentacion,precioservicioalimentacion,adicionalesservicioalimentacion,llevarservicioalimentacion,idsitioturistico) VALUES (
             
             ".$idSiguiente.",
             '".$tiempoComidas."',
@@ -47,6 +79,7 @@
 
 
             $result = mysqli_query($conexion, $consultaInsertar);
+            $this->uploadImagen($imagenes,$idSiguiente);
             mysqli_close($conexion);
             return $result;
         }

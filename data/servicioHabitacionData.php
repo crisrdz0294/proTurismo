@@ -9,7 +9,37 @@ class ServicioHabitacionData {
 
     function ServicioHabitacionData(){}
 
-    public function insertServicioHabitacion($servicioHabitacion)
+
+    function uploadImagen($imagenes,$id){
+            
+            $flag = false;
+            $con =new Data();
+            $conexion=$con->conect();
+            $archivos="";
+            $cont = 1;
+            foreach ($imagenes as $imagen) 
+            {
+                 $target_path = "../imagenes/";
+                 $name = $imagen['name'];
+                $extension = end(explode(".", $name));
+                $target_path = $target_path ."hb-".$cont."-".$id.".".$extension;
+                if(move_uploaded_file($imagen['tmp_name'], $target_path)) 
+                {
+                    $flag = true;
+                    $archivos=$archivos.$target_path.";";
+                    
+                }
+                $cont++;
+            }
+            $update ="UPDATE tbserviciohospedaje SET imagenes = '$archivos' WHERE idserviciohospedaje='$id'";
+            mysqli_query($conexion,$update);
+            return $flag;
+        }
+
+
+
+
+    public function insertServicioHabitacion($servicioHabitacion,$imagenes)
     {
         $con= new Data();
         $conexion=$con->conect();
@@ -28,17 +58,17 @@ class ServicioHabitacionData {
            $aire=$servicioHabitacion->getAireAcondicionadoHabitacion();
            $ventilador=$servicioHabitacion->getVentiladorHabitacion();
            $vista=$servicioHabitacion->getVistaHabitacion();
-           $camas=$servicioHabitacion->getCantidadCamasHabitacion();
-           
+           $camas=$servicioHabitacion->getCantidadCamasHabitacion();           
            $personas=$servicioHabitacion->getCantidadPersonasHabitacion();
            $cuarto=$servicioHabitacion->getCantidadCuartosHabitacion();
-
            $acceso=$servicioHabitacion->getAccesibilidadHabitacion();
            $banos=$servicioHabitacion->getBanosHabitacion();
            $precio=$servicioHabitacion->getPrecioServicioHabitacion();
            $idSitio=$servicioHabitacion->getIdSitio();
 
-           $consultaInsertar="INSERT INTO tbserviciohospedaje
+
+           $consultaInsertar="INSERT INTO tbserviciohospedaje(idserviciohospedaje,tipocamaserviciohospedaje,internetserviciohospedaje,cableserviciohospedaje,aireacondicionadoserviciohospedaje,ventiladorserviciohospedaje,cantidadcamasserviciohospedaje,cantidadpersonasserviciohospedaje,vistaserviciohospedaje,banosserviciohospedaje,accesibilidadserviciohospedaje,numerocuartosserviciohospedaje,precioserviciohospedaje,idsitioturistico)
+           
             VALUES (".$idSiguiente.",
             '".$cama."',
             ".$internet.",
@@ -54,7 +84,8 @@ class ServicioHabitacionData {
             ".$precio.",
             ".$idSitio.");";
 
-          $result = mysqli_query($conexion, $consultaInsertar);
+          $result = mysqli_query($conexion, $consultaInsertar);         
+          $this->uploadImagen($imagenes,$idSiguiente);
         	mysqli_close($conexion);
         	return $result;
 

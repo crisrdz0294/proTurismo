@@ -9,6 +9,7 @@
    <script src="../js/jquery-3.2.1.js"></script>
   <script src="../js/jsDinero.js"></script>
 <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
+<script src="../js/jsSitioTuristico.js"></script>
    
 	<?php
 		include '../business/servicioTransporteBusiness.php';
@@ -34,7 +35,7 @@
         </header>
 
          <h1>Registrar Transporte</h1><br>
-        	<form id="form" method="post" action="../business/servicioTransporteBusinessAction.php">               
+        	<form id="form" method="post" action="javascript:Guardar3();" enctype="multipart/form-data">               
                     Origen:<br>
                     <textarea required name="origenServicioTransporte" id="origenServicioTransporte" cols="30" rows="5" placeholder="Describa el lugar de salida"></textarea>
                     <br>
@@ -94,8 +95,11 @@
                     </select>
                     <br>
                     <br>
+                    <br> 
+                  <input type="file" multiple="true" id="archivos" name="archivos" />
                     <br>
-                    
+                    <br>
+                    <br>
                     <input type="submit" value="Guardar" name="guardarServicioTransporte" id="guardarServicioTransporte"/><br><br>
 
     		</form>
