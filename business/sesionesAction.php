@@ -2,18 +2,17 @@
 
 
 require_once  'sesionesBusiness.php';
-include_once '../Domain/sesion.php';
+include_once '../domain/sesion.php';
 
-if (isset($_POST['accion'])) {
-$accion=$_POST['accion'];
-
+if (isset($_POST['logear'])) {
 
 
-if ($accion=="taste") {
-    
-    if (isset($_POST['user'])&isset($_POST['password'])){
-$usuario=$_POST['user'];
-$password=$_POST['password'];
+
+
+
+    if (isset($_POST['emailLogin'])&isset($_POST['passwordLogin'])){
+$usuario=$_POST['emailLogin'];
+$password=$_POST['passwordLogin'];
 
 
 
@@ -21,48 +20,49 @@ $sesionesBusiness =new sesionesBusiness();
 
 $sesion= new Sesion($usuario,$password);
 
+
+
 $resultado=$sesionesBusiness->validarSesion($sesion);
 
-if($resultado[0]=="estudiante") 
+
+if($resultado[5]=="usuario")
 {
-   
-   
+
+
     session_start();
-    $_SESSION['estudiante']="$resultado[0]";
-     $_SESSION['usuario']=$resultado[1];
+    $_SESSION['usuario']="usuario";
+     $_SESSION['identificador']=$resultado[0];
+        $_SESSION['nombre']=$resultado[1]."".$resultado[2];
+          $_SESSION['correo']=$resultado[3];
 
-   //header("location: ../View/principal.php");
-   
- echo 'View/principal.php';
 
-    exit(); 
-}
- 
+   echo "view/UsuarioView.php";
 
-else if($resultado[0]=="administrador") 
-{
-    session_start();
-    $_SESSION['admnistrador']="$usuario";
-    
-      header("location: ../../view/");
-    exit(); 
-}
- 
 
-else if($resultado[0]=="asistente") 
-{
-    session_start();
-    $_SESSION['asistente']="$usuario";
-    header("location: ");
+
     exit();
-} 
-else 
-{
-   
-  
-   
 }
-}
- 
 
-}}
+
+else if($resultado[5]=="administrador")
+{
+    session_start();
+    $_SESSION['admnistrador']="administrador";
+     $_SESSION['identificador']=$resultado[0];
+        $_SESSION['nombre']=$resultado[1]."".$resultado[2];
+          $_SESSION['correo']=$resultado[3];
+
+    echo "view/AdministradorView.php";
+
+    exit();
+}
+else
+{
+ echo "index.php";
+
+
+}
+}
+
+
+}

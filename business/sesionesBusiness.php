@@ -1,13 +1,13 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-include '../Data/sesionData.php';
+include '../data/sesionesData.php';
 class sesionesBusiness{
-    
+
     private $sesionData=null;
     public function sesionesBusiness(){
         $this->sesionData= new SesionesData();
@@ -15,7 +15,5 @@ class sesionesBusiness{
      public function validarSesion($sesion){
          return $this->sesionData->validarSesion($sesion);
      }
-    
+
 }
-
-
