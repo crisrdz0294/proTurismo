@@ -5,16 +5,22 @@ include './empresaBusiness.php';
 
  if (isset($_POST['guardarEmpresa'])) {
 
+
     if (isset($_POST['nombreEmpresa']) && isset($_POST['cedulaJuridicaEmpresa']) && isset($_POST['telefonoEmpresa']) && isset($_POST['emailEmpresa'])
     && isset($_POST['paginaEmpresa'])) {
 
             $nombre = $_POST['nombreEmpresa'];
             $idRespon= $_POST['idEncargado'];
-            $contacto=$_POST['telefonoEmpresa'];
+            $telefonoTemp=substr( $_POST['telefonoEmpresa'],6);
+            $telefonoA = explode("-",$telefonoTemp);
+            $contacto=$telefonoA[0].$telefonoA[1];
+
            $email=$_POST['emailEmpresa'];
            $web=$_POST['paginaEmpresa'];
            $sitio=$_POST['idSitioTuristico'];
-            $cedula=$_POST['cedulaJuridicaEmpresa'];
+           $cedulaTemp=$_POST['cedulaJuridicaEmpresa'];
+            $cedulaA=explode("-",$cedulaTemp);
+            $cedula=$cedulaA[0].$cedulaA[1].$cedulaA[2];
 
             if (strlen($nombre) > 0 && strlen($contacto) > 0&& strlen($email) > 0&& strlen($web) > 0&& strlen($sitio) > 0 &&strlen($cedula) > 0) {
 
@@ -49,10 +55,11 @@ include './empresaBusiness.php';
     $nombre = $_POST['nombreEmpresa'];
     $idRespon= $_POST['idEncargado'];
 
-
     $telefonoTemp=substr( $_POST['telefonoEmpresa'],6);
-      $telefonoA = explode("-",$telefonoTemp);
-      $contacto=$telefonoA[0].$telefonoA[1];
+    $telefonoA = explode("-",$telefonoTemp);
+    $contacto=$telefonoA[0].$telefonoA[1];
+
+
 
    $email=$_POST['emailEmpresa'];
    $web=$_POST['paginaEmpresa'];
