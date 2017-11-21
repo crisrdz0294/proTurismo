@@ -14,9 +14,12 @@ function VerificarLogin(){
         },
                 function (responseText)
                 {
-                  console.log(responseText);
+                  if(responseText=="index.php"){
+                      alert("Error usuario o contraseña incorrectos");
+                  }
+
                        location.href=responseText;
-                       
+
                     //var url = "index.php";
 
                         }
