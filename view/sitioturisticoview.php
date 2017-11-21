@@ -10,7 +10,7 @@
 <!--<script src="../js/validarCorreo.js" type="text/javascript"></script>-->
 	<script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
 
-<script src="../js/jsSitioTuristico.js"></script>
+		<script src="../js/jsSitioTuristico.js" type="text/javascript"></script>
 
 		<script language="javascript">
 

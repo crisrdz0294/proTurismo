@@ -194,19 +194,11 @@
                     </td>';
                 }
 
-
-
-
-
-
-
-
-
-
-
-
                 
-                echo '<td><input type="text" name="descripcionAlimentacionServicioAlimentacion" id="descripcionAlimentacionServicioAlimentacion" value="' . $servicioAlimentacion->getDescripcionAlimentacionServicioAlimentacion() . '"/></td>';
+                echo '<td><textarea rows="2" cols="25" name="descripcionAlimentacionServicioAlimentacion" id="descripcionAlimentacionServicioAlimentacion"> ' . $servicioAlimentacion->getDescripcionAlimentacionServicioAlimentacion() . '</textarea></td>';
+
+
+
 
 
                 echo '<td><input type="text" name="precioServicioAlimentacion" id="precioServicioAlimentacion" value="'."₡". $servicioAlimentacion->getPrecioServicioAlimentacion() . '" onchange="numerosTabla()"/></td>';

@@ -19,12 +19,28 @@
          $sitioBusiness=new SitioTuristicoBusiness();
          $listaSitios= $sitioBusiness->mostrarTodosSitiosTuristicos();
 
-         if(empty($listaSitios)){
-            echo "<h3>No se pueden crear actividades porque no hay sitios turisticos ingresados en el sistema</h3>";
+         if(empty($listaSitios) || empty($listaTipos)){
+            echo "<h3>No se pueden crear actividades porque no hay sitios turisticos ni tipos de actividad ingresados en el sistema</h3>";
           ?>
-          <br><a href="../view/sitioturisticoview.php">Crear Sitio Turistico</a>
+          <br><a href="menuAdministradorView.php">Volver a Menu</a>
           <?php
-          }else{
+          }
+          else if(empty($listaSitios))
+          {
+            echo "<h3>No se pueden crear actividades porque no hay sitios turisticos ingresados en el sistema</h3>";?>
+          <br><a href="../view/sitioturisticoview.php">Crear Sitio Turistico</a>
+          <?php                      
+          } 
+
+          else if(empty($listaTipos))
+          {
+            echo "<h3>No se pueden crear actividades porque no hay tipos de actividad ingresados en el sistema</h3>";
+            ?>
+            <br><a href="../view/tipoActividadTuristicaView.php">Crear Tipo Actividad Turistica</a>
+            <?php
+          } 
+
+          else{
 
      ?>
 
@@ -65,16 +81,16 @@
                     Distancia del lugar de hospedaje:<br>
                     <input required type="text" name="distanciahospedaje" id="distanciahospedaje"/><br>
                     Habilidades requeridas:<br>
-                          Ninguna <input type="checkbox" name="habilidades[]" value="ninguna" /><br>
-                          Caminar <input type="checkbox" name="habilidades[]" value="caminar" /><br>
-                          Limpiar <input type="checkbox" name="habilidades[]" value="limpiar" /><br>
-                          Pintar <input type="checkbox" name="habilidades[]" value="pintar" /><br>
-                          Cocinar <input type="checkbox" name="habilidades[]" value="cocinar" /><br>
+                          Ninguna <input type="checkbox" name="habilidades[]" id="ninguna"  onclick="Functioncheck()"  value="ninguna" /><br>
+                          Caminar <input type="checkbox" name="habilidades[]" id="caminar" value="caminar" /><br>
+                          Limpiar <input type="checkbox" name="habilidades[]" id="limpiar" value="limpiar" /><br>
+                          Pintar <input type="checkbox" name="habilidades[]"  id="pintar" value="pintar" /><br>
+                          Cocinar <input type="checkbox" name="habilidades[]" id="cocinar" value="cocinar" /><br>
                           <div id="posicion2Radios">
-                            Jugar <input type="checkbox" name="habilidades[]" value="jugar" /><br>
-                            Construir <input type="checkbox" name="habilidades[]" value="construir" /><br>
-                            Artesanales<input type="checkbox" name="habilidades[]" value="artesanales" /><br>
-                            Buena memoria<input type="checkbox" name="habilidades[]" value="buena memoria" />
+                            Jugar <input type="checkbox" name="habilidades[]" id="jugar" value="jugar" /><br>
+                            Construir <input type="checkbox" name="habilidades[]" id="construir" value="construir" /><br>
+                            Artesanales<input type="checkbox" name="habilidades[]"  id="artesanales" value="artesanales" /><br>
+                            Buena memoria<input type="checkbox" name="habilidades[]"  id="memoria" value="buena memoria" />
                           </div><br>
 
 
@@ -260,6 +276,45 @@
     </footer>
 
 </body>
+
+<script>
+function Functioncheck() 
+{
+    if(document.getElementById("ninguna").checked)
+     {          
+          document.getElementById("caminar").disabled = true;
+          document.getElementById("limpiar").disabled = true;
+          document.getElementById("pintar").disabled = true;
+          document.getElementById("cocinar").disabled = true;
+          document.getElementById("jugar").disabled = true;
+          document.getElementById("construir").disabled = true;
+          document.getElementById("artesanales").disabled = true;
+          document.getElementById("memoria").disabled = true;
+
+          document.getElementById("caminar").checked = false;
+          document.getElementById("limpiar").checked = false;
+          document.getElementById("pintar").checked = false;
+          document.getElementById("cocinar").checked = false;
+          document.getElementById("jugar").checked = false;
+          document.getElementById("construir").checked = false;
+          document.getElementById("artesanales").checked = false;
+          document.getElementById("memoria").checked = false;
+     }
+     else
+     {
+          document.getElementById("caminar").disabled = false;
+          document.getElementById("limpiar").disabled = false;
+          document.getElementById("pintar").disabled = false;
+          document.getElementById("cocinar").disabled = false;
+          document.getElementById("jugar").disabled = false;
+          document.getElementById("construir").disabled = false;
+          document.getElementById("artesanales").disabled = false;
+          document.getElementById("memoria").disabled = false;
+
+          
+     }
+}
+</script>
 <?php
   }
 ?>
