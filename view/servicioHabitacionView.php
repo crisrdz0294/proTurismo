@@ -28,7 +28,7 @@
     </head>
     <body>
         <h1>Registrar Habitacion</h1>
-        <form id="formulario" method="post" action="javascript:Guardar4();" enctype="multipart/form-data">
+        <form id="formulario" method="post"  enctype="multipart/form-data">
                 Estilo de cama:
                     <select name="estiloCama" id="estiloCama">
                         <option value="individual">INDIVIDUAL</option>
@@ -95,7 +95,7 @@
                 Precio Habitacion: <br>
                     <input type="text" name="precio" id="precio" onkeyup="format(this)"><br><br>
                 Accesibilidad:
-                <select name="acceso">
+                <select name="acceso" id="acceso">
                     <option value="0">SI</option>
                     <option value="1">NO</option>
                 </select>
@@ -120,7 +120,7 @@
                     <br>
                     <br>
                     <br>
-                 <input type="submit" id="enviarFormulario" name="enviarFormulario" value="Guardar">
+                 <input type="submit" id="enviarFormulario" name="enviarFormulario" value="Guardar" onclick="Guardar4()">
 
         </form>
         <h2>Habitaciones</h2>
