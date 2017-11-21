@@ -38,7 +38,7 @@
 
 
 
-		public function insertarServicioTransporte($serviciotransporte,$imagenes){
+		public function insertarServicioTransporte($serviciotransporte){
 
 			$con = new Data();
 			$conexion = $con->conect();
@@ -80,7 +80,7 @@
 
 
             $result = mysqli_query($conexion, $consultaInsertar);            
-            $this->uploadImagen($imagenes,$idSiguiente);
+           // $this->uploadImagen($imagenes,$idSiguiente);
         	mysqli_close($conexion);
         	return $result;
 		}

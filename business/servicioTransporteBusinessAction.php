@@ -3,9 +3,7 @@
 
 include './servicioTransporteBusiness.php';
 
- 
-
- if (isset($_POST['guardarServicioTransporte'])) 
+ if (isset($_POST['guardar'])) 
  {
 
     if (isset($_POST['origenServicioTransporte']) && isset($_POST['destinoServicioTransporte']) && 

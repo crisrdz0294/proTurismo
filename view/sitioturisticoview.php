@@ -47,9 +47,9 @@ console.log(validoCedula);
 
 		}
 
-		function validarLinkSitio(){
-		document.getElementById('sitioweb').addEventListener('input', function() {
-		campo = event.target;
+		function validarLinkSitio(input){
+		
+		campo = input.value;
 		valido = document.getElementById('linkOk');
 
 		emailRegex = /^(www)+\.[a-z0-9\.-]+\.[a-z]{2,4}/gi;
@@ -62,7 +62,7 @@ console.log(validoCedula);
 
 
 		    }
-		});
+		
 		}
 
 			$(document).ready(function(){
@@ -150,9 +150,9 @@ console.log(validoCedula);
 	<form method="POST" name="form1" id="form1" action="javascript:Guardar();" enctype="multipart/form-data">
 
 		Nombre comercial:<br>
-		<input type="text" name="nombrecomercial" id="nombrecomercial" onkeyup="dejarPasar()" placeholder="Ingrese el nombre del sitio" required /><br><br>
+		<input type="text" name="nombrecomercial" id="nombrecomercial"  placeholder="Ingrese el nombre del sitio" required /><br><br>
 		Numero de telefono del sitio:<br>
-		<input type="text" name="telefono" id="telefono" onkeyup="dejarPasar()" placeholder="Ingrese el numero de telefono del sitio" required /><br><br>
+		<input type="text" name="telefono" id="telefono" placeholder="Ingrese el numero de telefono del sitio" required /><br><br>
 		Provincia del sitio:<br>
 		<select id="provincia" name="provincia" required />
 			<option value="0" selected disabled="true">Seleccione una provincia</option>
@@ -170,9 +170,10 @@ console.log(validoCedula);
 		Distrito del sitio:<br>
 		<select id="distrito" name="distrito"></select><br><br>
 		Direccion Exacta del sitio:<br>
-		<textarea name="direccion" id="direccion" onkeyup="dejarPasar()" placeholder="Ingrese la direccion exacta del sitio"  required></textarea><br><br>
+		<textarea name="direccion" id="direccion" onkeyup="" placeholder="Ingrese la direccion exacta del sitio"  required></textarea><br><br>
 		Sitio web:<br>
-		<input type="text" name="sitioweb" id="sitioweb" onkeyup="validarLinkSitio();dejarPasar();" placeholder="Ingrese el sitio web"><span id="linkOk"></span><br><br>
+		<input type="text" name="sitioweb" id="sitioweb" 
+		placeholder="Ingrese el sitio web"><span id="linkOk"></span><br><br>
 		<input type="file" multiple="true" id="archivos" name="archivos" />
 		<input type="submit" value="Guardar" name="guardarSitio" id="images" /><br><br>
 

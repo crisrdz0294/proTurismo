@@ -99,12 +99,14 @@ function Guardar2() {
 
 
 function Guardar3() {
+
   img = document.getElementById("archivos").files;
   var data = new FormData();
   for(i=0;i<img.length;i++){
     data.append('uploadedfile'+i,img[i]);
   }
-  data.append('guardarServicioTransporte',"guardarServicioTransporte");
+
+  data.append("guardar","guardarServicioTransporte");
   data.append('origenServicioTransporte',document.getElementById("origenServicioTransporte").value);
   data.append('destinoServicioTransporte',document.getElementById("destinoServicioTransporte").value);
   data.append('KilometrosServicioTransporte',document.getElementById("KilometrosServicioTransporte").value);
@@ -123,19 +125,22 @@ function Guardar3() {
       url: "../business/servicioTransporteBusinessAction.php",
       type: 'POST',
       data: data,
+      accion: "guardar",
       contentType: false,
       cache: false,
       processData: false,
       success: function(data) {
+      
             window.location.assign("../view/servicioTransporteView.php");
       },
-      error: function(xhr, status, error){quitarLoadingModal();  },
+      error: function(xhr, status, error){
+       
+      },
       beforeSend: function( xhr ) {
        
       }
     });
 };
-
 
 
 
@@ -169,13 +174,14 @@ function Guardar4() {
       url: "../business/servicioHabitacionAction.php",
       type: 'POST',
       data: data,
+      guardar:"enviarFormulario",
       contentType: false,
       cache: false,
       processData: false,
       success: function(data) {
             window.location.assign("../view/servicioHabitacionView.php");
       },
-      error: function(xhr, status, error){quitarLoadingModal();  },
+      error: function(xhr, status, error){},
       beforeSend: function( xhr ) {
        
       }
