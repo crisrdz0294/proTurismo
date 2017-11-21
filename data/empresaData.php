@@ -73,7 +73,7 @@
 
 					$todasFamilias = [];
 					while ($row = mysqli_fetch_array($result)) {
-							$tempFamilia = new TuFamilia($row['idfamilia'], $row['adultosmayoresfamilia'], $row['adultosfamilia'], $row['adolescentesfamilia'], $row['ninosfamilia'],$row['idresponsable'],$row['idsitioturistico']);
+							$tempFamilia = new Familia($row['idfamilia'], $row['adultosmayoresfamilia'], $row['adultosfamilia'], $row['adolescentesfamilia'], $row['ninosfamilia'],$row['idresponsable'],$row['idsitioturistico']);
 							array_push($todasFamilias, $tempFamilia);
 					}
 					return $todasFamilias;

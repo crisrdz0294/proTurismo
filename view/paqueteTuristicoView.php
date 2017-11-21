@@ -18,15 +18,11 @@
 
       session_start();
     
-     if(isset($_SESSION['usuario'])){
+     if(isset($_SESSION['usuario'])||isset($_SESSION['administrador'])){
        $nombre=$_SESSION['nombre'];
-
-
      }else{
       header("Location: ../index.php");
      }
-
- 
       
     ?>
 <body>
