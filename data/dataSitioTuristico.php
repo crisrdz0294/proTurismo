@@ -7,7 +7,34 @@
 
 		public function DataSitioTuristico(){}
 
-		public function insertarSitioTuristico($sitioTuristico){
+
+        function uploadImagen($imagenes,$id){
+            
+            $flag = false;
+            $con =new Data();
+            $conexion=$con->conect();
+            $archivos="";
+            $cont = 1;
+            foreach ($imagenes as $imagen) 
+            {
+                 $target_path = "../imagenes/";
+                 $name = $imagen['name'];
+                $extension = end(explode(".", $name));
+                $target_path = $target_path .$cont."-".$id.".".$extension;
+                if(move_uploaded_file($imagen['tmp_name'], $target_path)) 
+                {
+                    $flag = true;
+                    $archivos=$archivos.$target_path.";";
+                    
+                }
+                $cont++;
+            }
+            $update ="UPDATE tbsitioturistico SET imagenes = '$archivos' WHERE idsitioturistico='$id'";
+            mysqli_query($conexion,$update);
+            return $flag;
+        }
+
+		public function insertarSitioTuristico($sitioTuristico,$imagenes){
 			$con =new Data();
 			$conexion=$con->conect();
 
@@ -27,11 +54,12 @@
             	$idSiguiente = trim($row[0]) + 1;
         	}
 
-        	$consultaInsertar="INSERT INTO tbsitioturistico VALUES (".$idSiguiente.",'".$nombrecomercial."','".$telefonositio."',".$idprovincia.",".$idcanton.",".$iddistrito.",'".$direccionexacta."','".$sitioWeb."');";
+        	$consultaInsertar="INSERT INTO tbsitioturistico(idsitioturistico,nombrecomercialsitioturistico,telefonositioturistico,idprovinciasitioturistico,idcantonsitioturistico,iddistritositioturistico,   direccionexactasitioturistico,sitiowebsitioturistico) VALUES (".$idSiguiente.",'".$nombrecomercial."','".$telefonositio."',".$idprovincia.",".$idcanton.",".$iddistrito.",'".$direccionexacta."','".$sitioWeb."');";
 
 
-
-             $result = mysqli_query($conexion, $consultaInsertar);
+            
+            $result = mysqli_query($conexion, $consultaInsertar);
+            $this->uploadImagen($imagenes,$idSiguiente);
         	mysqli_close($conexion);
         	return $result;
 

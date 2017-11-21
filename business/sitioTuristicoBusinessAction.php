@@ -1,6 +1,6 @@
 <?php
 	include './sitioTuristicoBusiness.php';
-
+	echo "[;ayp";
 	if(isset($_POST['guardarSitio'])){
 
 		if(isset($_POST['nombrecomercial']) && isset($_POST['telefono']) && isset($_POST['provincia']) && isset($_POST['canton']) && isset($_POST['distrito']) && isset($_POST['direccion']) && isset($_POST['direccion'])){
@@ -12,7 +12,6 @@
 			$telefonoA = explode("-",$telefonoTemp);
 			$telefono=$telefonoA[0].$telefonoA[1];
 
-
 			$provincia=$_POST['provincia'];
 			$canton=$_POST['canton'];
 			$distrito=$_POST['distrito'];
@@ -23,12 +22,11 @@
 			   strlen($canton)>0 && strlen($distrito)>0 && strlen($direccion)>0 && strlen($sitioWeb)>0){
 
 				$sitioTuristico = new SitioTuristico(0,$nombrecomercial,$telefono,$provincia,
-					$canton,$distrito,$direccion,$sitioWeb);
-
+				$canton,$distrito,$direccion,$sitioWeb);
 
 				$sitioTuristicoBusiness= new SitioTuristicoBusiness();
 
-				$result=$sitioTuristicoBusiness->insertarSitioTuristico($sitioTuristico);
+				$result=$sitioTuristicoBusiness->insertarSitioTuristico($sitioTuristico,$_FILES);
 
 				if($result==1){
 					header("location: ../view/sitioturisticoview.php?success=inserted");

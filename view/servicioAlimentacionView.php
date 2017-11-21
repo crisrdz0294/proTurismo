@@ -9,6 +9,7 @@
   
    <script src="../js/jquery-3.2.1.js"></script>
     <script src="../js/jsDinero.js"></script>
+    <script src="../js/jsSitioTuristico.js"></script>
 
     <?php 
          include '../business/servicioAlimentacionBusiness.php';
@@ -38,7 +39,7 @@
     
              <h1>SERVICIO ALIMENTACION</h1>
              <br>
-                <form id="form" method="post" action="../business/servicioAlimentacionBusinessAction.php">
+                <form id="form" method="post" action="javascript:Guardar2();" enctype="multipart/form-data">
                   
                     
                     Tiempo de Comidas:
@@ -88,6 +89,10 @@
                     ?>
                       
             </select>
+                     <br>
+                    <br>
+                    <br>
+                  <input type="file" multiple="true" id="archivos" name="archivos" />
             <br>
             <br>
                     
@@ -122,10 +127,82 @@
                 echo '<form method="post" enctype="multipart/form-data" action="../business/servicioAlimentacionBusinessAction.php">';
 
                 echo '<input type="hidden" name="idServicioAlimentacion" id="idServicioAlimentacion" value="' . $servicioAlimentacion->getIdServicioAlimentacion() .'">';                
-                
+                           
 
-                echo ' <td><input type="text" name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion" value="'
-                . $servicioAlimentacion->getTiempoComidasServicioAlimentacion(). '"/></td>';
+
+
+
+              if($servicioAlimentacion->getTiempoComidasServicioAlimentacion()=="Desayuno")
+                {
+                  echo '<td>
+                  <select required name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion">                
+                          <option selected value="Desayuno">Desayuno</option>
+                        </select>
+                    </td>';
+                }
+                else if($servicioAlimentacion->getTiempoComidasServicioAlimentacion()=="Almuerzo")
+                {
+                   echo '<td>
+                  <select required name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion">                
+                          <option selected value="Almuerzo">Almuerzo</option>
+                        </select>
+                    </td>';
+                }
+                else if($servicioAlimentacion->getTiempoComidasServicioAlimentacion()=="Cena")
+                {
+                   echo '<td>
+                  <select required name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion">                
+                          <option selected value="Cena">Cena</option>
+                        </select>
+                    </td>';
+                }
+                else if($servicioAlimentacion->getTiempoComidasServicioAlimentacion()=="Desayuno,Almuerzo")
+                {
+                     echo '<td>
+                  <select required name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion">                
+                          <option selected value="Desayuno">Desayuno</option>
+                          <option selected value="Almuerzo">Almuerzo</option>
+                        </select>
+                    </td>';
+                }
+                else if($servicioAlimentacion->getTiempoComidasServicioAlimentacion()=="Desayuno,Cena")
+                {
+                     echo '<td>
+                  <select required name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion">                
+                          <option selected value="Desayuno">Desayuno</option>
+                          <option selected value="Cena">Cena</option>
+                        </select>
+                    </td>';
+                }
+                else if($servicioAlimentacion->getTiempoComidasServicioAlimentacion()=="Almuerzo,Cena")
+                {
+                     echo '<td>
+                  <select required name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion">                
+                          <option selected value="Almuerzo">Almuerzo</option>
+                          <option selected value="Cena">Cena</option>
+                        </select>
+                    </td>';
+                }
+                else if($servicioAlimentacion->getTiempoComidasServicioAlimentacion()=="Desayuno,Almuerzo,Cena")
+                {
+                     echo '<td>
+                  <select required name="tiempoComidasServicioAlimentacion" id="tiempoComidasServicioAlimentacion">                
+                          <option selected value="Desayuno">Desayuno</option>
+                          <option selected value="Almuerzo">Almuerzo</option>
+                          <option selected value="Cena">Cena</option>
+                        </select>
+                    </td>';
+                }
+
+
+
+
+
+
+
+
+
+
 
 
                 

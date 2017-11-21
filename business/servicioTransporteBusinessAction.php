@@ -48,7 +48,7 @@ include './servicioTransporteBusiness.php';
         {
             
             $servicioTransporte = new ServicioTransporte(0,$origen ,$destino,$kilometros,$tipoCarreteraSeleccionadas,$tipoVehiculo,
-            $precioFinal,$cantidadPersonas,$idSitio,0);
+            $precioFinal,$cantidadPersonas,$idSitio,0,$_FILES);
             
             $servicioTransporteBusiness = new ServicioTransporteBusiness();
             $result = $servicioTransporteBusiness->insertarTransporteBusiness($servicioTransporte);

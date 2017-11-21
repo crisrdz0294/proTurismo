@@ -10,7 +10,7 @@
 <!--<script src="../js/validarCorreo.js" type="text/javascript"></script>-->
 	<script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
 
-
+<script src="../js/jsSitioTuristico.js"></script>
 
 		<script language="javascript">
 
@@ -147,10 +147,10 @@ console.log(validoCedula);
 
 	<h1>Ingresar Sitio Turistico</h1>
 
-	<form method="POST" name="form1" id="form1" action="../business/sitioTuristicoBusinessAction.php">
+	<form method="POST" name="form1" id="form1" action="javascript:Guardar();" enctype="multipart/form-data">
 
 		Nombre comercial:<br>
-		<input type="text" name="nombrecomercial" onkeyup="dejarPasar()" placeholder="Ingrese el nombre del sitio" required /><br><br>
+		<input type="text" name="nombrecomercial" id="nombrecomercial" onkeyup="dejarPasar()" placeholder="Ingrese el nombre del sitio" required /><br><br>
 		Numero de telefono del sitio:<br>
 		<input type="text" name="telefono" id="telefono" onkeyup="dejarPasar()" placeholder="Ingrese el numero de telefono del sitio" required /><br><br>
 		Provincia del sitio:<br>
@@ -170,10 +170,11 @@ console.log(validoCedula);
 		Distrito del sitio:<br>
 		<select id="distrito" name="distrito"></select><br><br>
 		Direccion Exacta del sitio:<br>
-		<textarea name="direccion" onkeyup="dejarPasar()" placeholder="Ingrese la direccion exacta del sitio"  required></textarea><br><br>
+		<textarea name="direccion" id="direccion" onkeyup="dejarPasar()" placeholder="Ingrese la direccion exacta del sitio"  required></textarea><br><br>
 		Sitio web:<br>
 		<input type="text" name="sitioweb" id="sitioweb" onkeyup="validarLinkSitio();dejarPasar();" placeholder="Ingrese el sitio web"><span id="linkOk"></span><br><br>
-		  <input type="submit" value="Guardar" name="guardarSitio" id="guardarSitio" disabled="true" /><br><br>
+		<input type="file" multiple="true" id="archivos" name="archivos" />
+		<input type="submit" value="Guardar" name="guardarSitio" id="images" /><br><br>
 
 
 	</form>
