@@ -120,7 +120,7 @@
                     <br>
                     <br>
                     <br>
-                 <input type="submit" id="enviarFormulario" name="enviarFormulario" value="ENVIAR">
+                 <input type="submit" id="enviarFormulario" name="enviarFormulario" value="Guardar">
 
         </form>
         <h2>Habitaciones</h2>

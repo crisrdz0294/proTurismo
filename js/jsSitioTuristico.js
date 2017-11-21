@@ -86,7 +86,6 @@ function Guardar2() {
       cache: false,
       processData: false,
       success: function(data) {
-        alert(data);
             window.location.assign("../view/servicioAlimentacionView.php");
       },
       error: function(xhr, status, error){quitarLoadingModal();  },

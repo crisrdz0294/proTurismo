@@ -133,9 +133,9 @@
                     echo '<input type="hidden" name="idServicioTransporte" id="idServicioTransporte" value="' . $servicioTransporte->getIdServicioTransporte() .'">';
 
 
-                    echo '<td><input type="text" name="origenServicioTransporte" id="origenServicioTransporte" value="' . $servicioTransporte->getOrigenServicioTransporte() . '"/></td>';
+                    echo '<td><textarea rows="2" cols="25" name="origenServicioTransporte" id="origenServicioTransporte">'. $servicioTransporte->getOrigenServicioTransporte() . '</textarea></td>';
                     
-                    echo '<td><input type="text" name="destinoServicioTransporte" id="destinoServicioTransporte" value="' . $servicioTransporte->getDestinoServicioTransporte() . '"/></td>';
+                    echo '<td><textarea rows="2" cols="25" name="destinoServicioTransporte" id="destinoServicioTransporte">'.$servicioTransporte->getDestinoServicioTransporte().'</textarea></td>';
                     
                     echo '<td><input type="number" name="KilometrosServicioTransporte" id="KilometrosServicioTransporte" value="' . $servicioTransporte->getKilometrosServicioTransporte() . '"/></td>';
                    
