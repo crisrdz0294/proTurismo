@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<?php 
+<?php
   session_start();
 
-    
+
      if(isset($_SESSION['administrador'])){
 
      }else{
@@ -30,14 +30,400 @@
                 if(empty($listaResponsables) && empty($listaSitios)){
                     echo "<h3>No se pueden crear familias porque no hay responsables y sitios turisticos en el sistema</h3>";
                     ?>
-                    <br><a href="../index.php">Menu Principal</a>
+                    <br><a href="../view/menuAdministradorView.php">Menu Principal</a>
+                  </head>
+                  <body>
+
+                      <h2>Familias Registradas</h2>
+                       <table border="1">
+                              <tr>
+
+                                  <th>Adultos Mayores</th>
+                                  <th>Adultos</th>
+                                  <th>Adolecentes</th>
+                                  <th>Niños</th>
+                                  <th>Responsable</th>
+                                  <th>Sitio Turistico</th>
+                                  <th>Opcion 1</th>
+                                  <th>Opcion 2 </th>
+
+                              </tr>
+
+                              <?php
+
+
+
+                                  foreach ($todasFamilias as $familia) {
+
+
+                                      echo '<form method="post" enctype="multipart/form-data" action="../business/familiaAction.php">';
+                                      echo '<input type="hidden" name="idfamilia" id="idfamilia" value="' . $familia->getIdFamilia().'">';
+
+                                      echo '<td><input type="number" name="cantidadadultosmayores" id="cantidadadultosmayores" value="' . $familia->getAdultoMayorFamilia().'"/></td>';
+
+                                      echo '<td><input type="number" name="adultosfamilia" id="adultosfamilia" value="' . $familia->getAdultoFamilia().'"/></td>';
+                                      echo '<td><input type="number" name="cantidadadolecentes" id="cantidadadolecentes" value="' . $familia->getAdolecenteFamilia().'">';
+                                      echo '<td><input type="number" name="cantidadninos" id="cantidadninos" value="' . $familia->getNinoFamilia().'">';
+
+                               ?>
+
+
+
+
+
+
+                               <?php
+
+                                  echo '</select>';
+                                  echo '</td>';
+
+                                   echo '<td><select name="idresponsable" id="idresponsable"> '?>
+
+
+
+                                            <?php
+                                                $listaRes=$familiaBusiness->obtenerResponsablesDisponiblesMasActual($familia->getIdResponsable());
+
+                                            foreach ($listaRes as $Responsable){
+                                          ?>
+                                            <?php
+                                              if($Responsable->getIdResponsable()==$familia->getIdResponsable()){  ?>
+                                                 <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+                                                <?php }else{?>
+
+                                                   <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+                                                <?php  } ?>
+
+
+                                          <?php
+                                             }
+                                          ?>
+                                  <?php
+
+
+
+
+
+                                  echo '</select>';
+                                  echo '</td>';
+
+                                   echo '<td><select name="idsitio" id="idsitio"> '?>
+                                          <?php
+                                            foreach ($listaSitios as $sitio){
+                                          ?>
+                                            <?php
+                                              if($sitio->getIdSitio() == $familia->getSitioTuristico()){  ?>
+
+                                                 <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                                                <?php }else{?>
+
+                                                   <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                                                <?php  } ?>
+
+
+                                          <?php
+                                             }
+                                          ?>
+                                  <?php
+
+
+                                  echo '</select>';
+                                  echo '</td>';
+
+
+
+
+
+
+                                      echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
+                                      echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
+
+                                      echo '</tr>';
+                                      echo '</form>';
+                                  }
+                              ?>
+                      </table>
+                      <?php
+                                     if (isset($_GET['error'])) {
+                                         if ($_GET['error'] == "dbError") {
+                                             echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+                                         }else if($_GET['error'] == "numberFormat"){
+                                           echo '<script language="javascript">alert("Error: la familia presenta un error no numerico");</script>';
+
+                                         }else if($_GET['error'] == "emptyField"){
+                                           echo '<script language="javascript">alert("Error: la familia presenta espacios nulos");</script>';
+                                         }
+
+                                      }else if (isset($_GET['success'])) {
+                                         echo '<script language="javascript">alert("Transacción Realizada");</script>';
+                                     }
+                                     ?>
+                  </body>
                 <?php
                     }else if(empty($listaResponsables)){
                         echo "<h3>No se pueden crear familias porque no hay responsables disponibles en el sistema</h3?>";?>
                       <br><br><a href="../view/responsableView.php">Crear Responsables</a>
+                      <br><br>
+                    </head>
+                    <body>
+
+                        <h2>Familias Registradas</h2>
+                         <table border="1">
+                                <tr>
+
+                                    <th>Adultos Mayores</th>
+                                    <th>Adultos</th>
+                                    <th>Adolecentes</th>
+                                    <th>Niños</th>
+                                    <th>Responsable</th>
+                                    <th>Sitio Turistico</th>
+                                    <th>Opcion 1</th>
+                                    <th>Opcion 2 </th>
+
+                                </tr>
+
+                                <?php
+
+
+
+                                    foreach ($todasFamilias as $familia) {
+
+
+                                        echo '<form method="post" enctype="multipart/form-data" action="../business/familiaAction.php">';
+                                        echo '<input type="hidden" name="idfamilia" id="idfamilia" value="' . $familia->getIdFamilia().'">';
+
+                                        echo '<td><input type="number" name="cantidadadultosmayores" id="cantidadadultosmayores" value="' . $familia->getAdultoMayorFamilia().'"/></td>';
+
+                                        echo '<td><input type="number" name="adultosfamilia" id="adultosfamilia" value="' . $familia->getAdultoFamilia().'"/></td>';
+                                        echo '<td><input type="number" name="cantidadadolecentes" id="cantidadadolecentes" value="' . $familia->getAdolecenteFamilia().'">';
+                                        echo '<td><input type="number" name="cantidadninos" id="cantidadninos" value="' . $familia->getNinoFamilia().'">';
+
+                                 ?>
+
+
+
+
+
+
+                                 <?php
+
+                                    echo '</select>';
+                                    echo '</td>';
+
+                                     echo '<td><select name="idresponsable" id="idresponsable"> '?>
+
+
+
+                                              <?php
+                                                  $listaRes=$familiaBusiness->obtenerResponsablesDisponiblesMasActual($familia->getIdResponsable());
+
+                                              foreach ($listaRes as $Responsable){
+                                            ?>
+                                              <?php
+                                                if($Responsable->getIdResponsable()==$familia->getIdResponsable()){  ?>
+                                                   <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+                                                  <?php }else{?>
+
+                                                     <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+                                                  <?php  } ?>
+
+
+                                            <?php
+                                               }
+                                            ?>
+                                    <?php
+
+
+
+
+
+                                    echo '</select>';
+                                    echo '</td>';
+
+                                     echo '<td><select name="idsitio" id="idsitio"> '?>
+                                            <?php
+                                              foreach ($listaSitios as $sitio){
+                                            ?>
+                                              <?php
+                                                if($sitio->getIdSitio() == $familia->getSitioTuristico()){  ?>
+
+                                                   <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                                                  <?php }else{?>
+
+                                                     <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                                                  <?php  } ?>
+
+
+                                            <?php
+                                               }
+                                            ?>
+                                    <?php
+
+
+                                    echo '</select>';
+                                    echo '</td>';
+
+
+
+
+
+
+                                        echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
+                                        echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
+
+                                        echo '</tr>';
+                                        echo '</form>';
+                                    }
+                                ?>
+                        </table>
+                        <?php
+                                       if (isset($_GET['error'])) {
+                                           if ($_GET['error'] == "dbError") {
+                                               echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+                                           }else if($_GET['error'] == "numberFormat"){
+                                             echo '<script language="javascript">alert("Error: la familia presenta un error no numerico");</script>';
+
+                                           }else if($_GET['error'] == "emptyField"){
+                                             echo '<script language="javascript">alert("Error: la familia presenta espacios nulos");</script>';
+                                           }
+
+                                        }else if (isset($_GET['success'])) {
+                                           echo '<script language="javascript">alert("Transacción Realizada");</script>';
+                                       }
+                                       ?>
+                    </body>
                       <?php } else if(empty($listaSitios)){
                          echo "<h3>No se pueden crear familias porque no hay sitios turisticos en el sistema</h3>";?>
                          <br><a href="../view/sitioturisticoview.php">Crear Sitios Turisticos</a>
+                         <br><br>
+                       </head>
+                       <body>
+
+                           <h2>Familias Registradas</h2>
+                            <table border="1">
+                                   <tr>
+
+                                       <th>Adultos Mayores</th>
+                                       <th>Adultos</th>
+                                       <th>Adolecentes</th>
+                                       <th>Niños</th>
+                                       <th>Responsable</th>
+                                       <th>Sitio Turistico</th>
+                                       <th>Opcion 1</th>
+                                       <th>Opcion 2 </th>
+
+                                   </tr>
+
+                                   <?php
+
+
+
+                                       foreach ($todasFamilias as $familia) {
+
+
+                                           echo '<form method="post" enctype="multipart/form-data" action="../business/familiaAction.php">';
+                                           echo '<input type="hidden" name="idfamilia" id="idfamilia" value="' . $familia->getIdFamilia().'">';
+
+                                           echo '<td><input type="number" name="cantidadadultosmayores" id="cantidadadultosmayores" value="' . $familia->getAdultoMayorFamilia().'"/></td>';
+
+                                           echo '<td><input type="number" name="adultosfamilia" id="adultosfamilia" value="' . $familia->getAdultoFamilia().'"/></td>';
+                                           echo '<td><input type="number" name="cantidadadolecentes" id="cantidadadolecentes" value="' . $familia->getAdolecenteFamilia().'">';
+                                           echo '<td><input type="number" name="cantidadninos" id="cantidadninos" value="' . $familia->getNinoFamilia().'">';
+
+                                    ?>
+
+
+
+
+
+
+                                    <?php
+
+                                       echo '</select>';
+                                       echo '</td>';
+
+                                        echo '<td><select name="idresponsable" id="idresponsable"> '?>
+
+
+
+                                                 <?php
+                                                     $listaRes=$familiaBusiness->obtenerResponsablesDisponiblesMasActual($familia->getIdResponsable());
+
+                                                 foreach ($listaRes as $Responsable){
+                                               ?>
+                                                 <?php
+                                                   if($Responsable->getIdResponsable()==$familia->getIdResponsable()){  ?>
+                                                      <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+                                                     <?php }else{?>
+
+                                                        <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+                                                     <?php  } ?>
+
+
+                                               <?php
+                                                  }
+                                               ?>
+                                       <?php
+
+
+
+
+
+                                       echo '</select>';
+                                       echo '</td>';
+
+                                        echo '<td><select name="idsitio" id="idsitio"> '?>
+                                               <?php
+                                                 foreach ($listaSitios as $sitio){
+                                               ?>
+                                                 <?php
+                                                   if($sitio->getIdSitio() == $familia->getSitioTuristico()){  ?>
+
+                                                      <option selected value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                                                     <?php }else{?>
+
+                                                        <option value="<?php echo $sitio->getIdSitio();?>"><?php echo $sitio->getNombreComercial();?></option>;
+                                                     <?php  } ?>
+
+
+                                               <?php
+                                                  }
+                                               ?>
+                                       <?php
+
+
+                                       echo '</select>';
+                                       echo '</td>';
+
+
+
+
+
+
+                                           echo '<td><input type="submit" value="Actualizar" name="update" id="update"/></td>';
+                                           echo '<td><input type="submit" value="Eliminar" name="delete" id="delete"/></td>';
+
+                                           echo '</tr>';
+                                           echo '</form>';
+                                       }
+                                   ?>
+                           </table>
+                           <?php
+                                          if (isset($_GET['error'])) {
+                                              if ($_GET['error'] == "dbError") {
+                                                  echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+                                              }else if($_GET['error'] == "numberFormat"){
+                                                echo '<script language="javascript">alert("Error: la familia presenta un error no numerico");</script>';
+
+                                              }else if($_GET['error'] == "emptyField"){
+                                                echo '<script language="javascript">alert("Error: la familia presenta espacios nulos");</script>';
+                                              }
+
+                                           }else if (isset($_GET['success'])) {
+                                              echo '<script language="javascript">alert("Transacción Realizada");</script>';
+                                          }
+                                          ?>
+                       </body>
                          <?php }else {
 
 ?>
