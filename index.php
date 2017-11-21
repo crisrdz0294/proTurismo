@@ -41,7 +41,7 @@ Contraseña: <input type="password" id="passwordLogin">
 <br>
 <br>
 
-<input type="button" id="logear" name="logear" value="ingresar" onclick="VerificarLogin()">
+<input type="button" id="logear" name="logear" value="Ingresar" onclick="VerificarLogin()">
 
 </form>
 
