@@ -11,8 +11,8 @@
 			$this->servicioTransporteData = new ServicioTransporteData();
 		}
 
-		public function insertarTransporteBusiness($servicioTransporte){
-			return $this->servicioTransporteData->insertarServicioTransporte($servicioTransporte);
+		public function insertarTransporteBusiness($servicioTransporte,$imagenes){
+			return $this->servicioTransporteData->insertarServicioTransporte($servicioTransporte,$imagenes);
 		}
 
 		public function mostrarTodosServicioTransporte(){
