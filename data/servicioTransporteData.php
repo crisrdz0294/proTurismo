@@ -38,7 +38,7 @@
 
 
 
-		public function insertarServicioTransporte($serviciotransporte){
+		public function insertarServicioTransporte($serviciotransporte,$imagenes){
 
 			$con = new Data();
 			$conexion = $con->conect();
@@ -53,7 +53,7 @@
     		$cantidadPersonas=$serviciotransporte->getCantidadPersonasServicioTransporte();
 
             $idSitio=$serviciotransporte->getSitioTuristico();
-            $imagenes=$serviciotransporte->getImagenes();
+        
 
 
 			$consultaUltimoId ="SELECT MAX(idserviciotransporte) AS idserviciotransporte FROM tbserviciotransporte";
