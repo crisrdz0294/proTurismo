@@ -9,10 +9,10 @@
 	<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
 <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
 
-<?php 
+<?php
 	session_start();
 
-  	
+
      if(isset($_SESSION['administrador'])){
 
      }else{
@@ -206,14 +206,447 @@ jQuery(function($){
     if(empty($mostrarResponsables) && empty($mostrarSitiosTuristicos)){
                     echo "<h3>No se pueden crear microempresas porque no hay responsables y sitios turisticos en el sistema</h3>";
                     ?>
-                    <br><a href="../index.php">Menu Principal</a>
+                    <br><a href="../view/menuAdministradorView.php">Menu Principal</a>
+										<br><br>
+										<body>
+
+										  <h1>Registrar Empresa</h1>
+										  <br>
+
+										<h2>EMPRESAS</h2>
+
+										 <table border="1">
+										        <tr>
+										            <th>NOMBRE</th>
+										            <th>CONTACTO</th>
+										            <th>EMAIL</th>
+										            <th>SITIO WEB</th>
+										            <th>SITIO TURISTICO</th>
+										            <th>ENCARGADO</th>
+																  <th>CEDULA JURIDICA</th>
+										            <th>Actulizar</th>
+										            <th>Eliminar</th>
+										        </tr>
+
+										      <?php
+
+										            $todosEmpresa= $empresaBusiness->mostrarEmpresas();
+																$todosSitios=$empresaBusiness->mostrarSitios();
+																$todosEncargados=$empresaBusiness->mostrarTodosResponsables();
+																 $cont=1;
+										            foreach ($todosEmpresa as $empresa) {
+
+										            	 echo '<form method="post" enctype="multipart/form-data" action="../business/empresaAction.php">';
+										      	 		echo '<input type="hidden" name="idEmpresa" id="idEmpresa" value="' . $empresa->getIdEmpresa().'"/>';
+										                echo '<tr>';
+
+										                echo '<td>
+										                        <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="'.$empresa->getNombreEmpresa().'"/>
+										                        </td>';
+																						$telefono=$empresa->getContactoTelefonicoEmpresa();
+																					$pre= substr($telefono,0,5);
+																					 $pre1= substr($telefono,5,9);
+																					$number="(+506) ".$pre."-".$pre1;
+																					 $empresa->setContactoTelefonicoEmpresa($number);
+																						echo '<td>
+
+														                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" onkeyup="validarTelefono(this,'.$cont.')"
+																										 value="'.$empresa->getContactoTelefonicoEmpresa().'"/>
+																										 <span id="telefonoOk'.$cont.'">valido</span>
+														                        </td>';
+
+
+																						echo '<td>
+																		                  <input type="email" name="emailEmpresa" id="emailEmpresa" onkeyup="validarCorreoEmpresaTabla(this,'.$cont.')" value="'.$empresa->getEmailEmpresa().'"/>
+																											<span id="correo'.$cont.'">valido</span>
+																		                  </td>';
+																						echo '<td>
+																																<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa(). '" onkeyup="validarLinkTabla(this,'.$cont.')"/><span id="linktabla'.$cont.'">valido</span>
+																																</td>';
+
+																														echo '<td>
+																														<select id="idSitioTuristico" name="idSitioTuristico">';
+
+
+																																	foreach ($todosSitios as $sitioTuristico){
+
+																																	echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+
+																																	 }
+
+
+																														echo ' </select><br><br>';
+
+
+																													 echo '<td><select name="idEncargado" id="idEncargado"> '?>
+
+
+
+																																		<?php
+																																				$listaRes=$empresaBusiness->obtenerResponsablesDisponiblesMasActual($empresa->getIdResponsableEmpresa());
+
+																																		foreach ($listaRes as $Responsable){
+																																	?>
+																																		<?php
+																																			if($Responsable->getIdResponsable()==$empresa->getIdResponsableEmpresa()){  ?>
+																																				 <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+																																				<?php }else{?>
+
+																																					 <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+																																				<?php  } ?>
+
+
+																																	<?php
+																																		 }
+																																	?>
+																													<?php
+
+																													$cedu=$empresa->getCedulaJuridicaEmpresa();
+																											 $pre= substr($cedu,0,1);
+																												$pre1= substr($cedu,1,3);
+																												$pre2=substr($cedu,4,8);
+																											 $number=$pre."-".$pre1."-".$pre2;
+																												$empresa->setCedulaJuridicaEmpresa($number);
+
+
+
+																													echo '</select>';
+																													echo '</td>';
+																													echo '<td>
+																																							<input type="text" name="cedulaJuridicaEmpresa" id="cedulaJuridicaEmpresa" value="'.$empresa->getCedulaJuridicaEmpresa().'" onkeyup="validarCedulaJuridica(this,'.$cont.')" maxlength=12/><span id="cedulaOk2'.$cont.'" >valido</span>
+																																							</td>';
+
+																													 echo '<td><input type="button" value="Actualizar" id="update" name="update" onclick="dejarPasar2(this,'.$cont.')"/ ></td>';
+																											 		echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
+
+										                                       $cont++;
+
+
+
+
+																													    echo'   <br>
+												 					 				                        </td>';
+										            }
+
+
+										      ?>
+										</table>
+
+										<?php
+																	 if (isset($_GET['error'])) {
+																			 if ($_GET['error'] == "dbError") {
+																					 echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+																			 }else if($_GET['error'] == "numberFormat"){
+																				 echo '<script language="javascript">alert("Error: La empresa presanta un error no numerico");</script>';
+
+																			 }else if($_GET['error'] == "emptyField"){
+																				 echo '<script language="javascript">alert("Error: empresa presenta espacios nulos");</script>';
+																			 }
+
+																		}else if (isset($_GET['success'])) {
+																			 echo '<script language="javascript">alert("Transacción Realizada");</script>';
+																	 }
+																	 ?>
+
+										</body>
+
+
                 <?php
                     }else if(empty($mostrarResponsables)){
                         echo "<h3>No se pueden crear microempresas porque no hay responsables ingresados en el sistema</h3?>";?>
                       <br><br><a href="../view/responsableView.php">Crear Responsables</a>
+                      <br><br>
+											<body>
+
+											  <h1>Registrar Empresa</h1>
+											  <br>
+
+
+											<h2>EMPRESAS</h2>
+
+											 <table border="1">
+											        <tr>
+											            <th>NOMBRE</th>
+											            <th>CONTACTO</th>
+											            <th>EMAIL</th>
+											            <th>SITIO WEB</th>
+											            <th>SITIO TURISTICO</th>
+											            <th>ENCARGADO</th>
+																	  <th>CEDULA JURIDICA</th>
+											            <th>Actulizar</th>
+											            <th>Eliminar</th>
+											        </tr>
+
+											      <?php
+
+											            $todosEmpresa= $empresaBusiness->mostrarEmpresas();
+																	$todosSitios=$empresaBusiness->mostrarSitios();
+																	$todosEncargados=$empresaBusiness->mostrarTodosResponsables();
+																	 $cont=1;
+											            foreach ($todosEmpresa as $empresa) {
+
+											            	 echo '<form method="post" enctype="multipart/form-data" action="../business/empresaAction.php">';
+											      	 		echo '<input type="hidden" name="idEmpresa" id="idEmpresa" value="' . $empresa->getIdEmpresa().'"/>';
+											                echo '<tr>';
+
+											                echo '<td>
+											                        <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="'.$empresa->getNombreEmpresa().'"/>
+											                        </td>';
+																							$telefono=$empresa->getContactoTelefonicoEmpresa();
+																						$pre= substr($telefono,0,5);
+																						 $pre1= substr($telefono,5,9);
+																						$number="(+506) ".$pre."-".$pre1;
+																						 $empresa->setContactoTelefonicoEmpresa($number);
+																							echo '<td>
+
+															                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" onkeyup="validarTelefono(this,'.$cont.')"
+																											 value="'.$empresa->getContactoTelefonicoEmpresa().'"/>
+																											 <span id="telefonoOk'.$cont.'">valido</span>
+															                        </td>';
+
+
+																							echo '<td>
+																			                  <input type="email" name="emailEmpresa" id="emailEmpresa" onkeyup="validarCorreoEmpresaTabla(this,'.$cont.')" value="'.$empresa->getEmailEmpresa().'"/>
+																												<span id="correo'.$cont.'">valido</span>
+																			                  </td>';
+																							echo '<td>
+																																	<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa(). '" onkeyup="validarLinkTabla(this,'.$cont.')"/><span id="linktabla'.$cont.'">valido</span>
+																																	</td>';
+
+																															echo '<td>
+																															<select id="idSitioTuristico" name="idSitioTuristico">';
+
+
+																																		foreach ($todosSitios as $sitioTuristico){
+
+																																		echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+
+																																		 }
+
+
+																															echo ' </select><br><br>';
+
+
+																														 echo '<td><select name="idEncargado" id="idEncargado"> '?>
+
+
+
+																																			<?php
+																																					$listaRes=$empresaBusiness->obtenerResponsablesDisponiblesMasActual($empresa->getIdResponsableEmpresa());
+
+																																			foreach ($listaRes as $Responsable){
+																																		?>
+																																			<?php
+																																				if($Responsable->getIdResponsable()==$empresa->getIdResponsableEmpresa()){  ?>
+																																					 <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+																																					<?php }else{?>
+
+																																						 <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+																																					<?php  } ?>
+
+
+																																		<?php
+																																			 }
+																																		?>
+																														<?php
+
+																														$cedu=$empresa->getCedulaJuridicaEmpresa();
+																												 $pre= substr($cedu,0,1);
+																													$pre1= substr($cedu,1,3);
+																													$pre2=substr($cedu,4,8);
+																												 $number=$pre."-".$pre1."-".$pre2;
+																													$empresa->setCedulaJuridicaEmpresa($number);
+
+
+
+																														echo '</select>';
+																														echo '</td>';
+																														echo '<td>
+																																								<input type="text" name="cedulaJuridicaEmpresa" id="cedulaJuridicaEmpresa" value="'.$empresa->getCedulaJuridicaEmpresa().'" onkeyup="validarCedulaJuridica(this,'.$cont.')" maxlength=12/><span id="cedulaOk2'.$cont.'" >valido</span>
+																																								</td>';
+
+																														 echo '<td><input type="button" value="Actualizar" id="update" name="update" onclick="dejarPasar2(this,'.$cont.')"/ ></td>';
+																												 		echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
+
+											                                       $cont++;
+
+
+
+
+																														    echo'   <br>
+													 					 				                        </td>';
+											            }
+
+
+											      ?>
+											</table>
+
+											<?php
+																		 if (isset($_GET['error'])) {
+																				 if ($_GET['error'] == "dbError") {
+																						 echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+																				 }else if($_GET['error'] == "numberFormat"){
+																					 echo '<script language="javascript">alert("Error: La empresa presanta un error no numerico");</script>';
+
+																				 }else if($_GET['error'] == "emptyField"){
+																					 echo '<script language="javascript">alert("Error: empresa presenta espacios nulos");</script>';
+																				 }
+
+																			}else if (isset($_GET['success'])) {
+																				 echo '<script language="javascript">alert("Transacción Realizada");</script>';
+																		 }
+																		 ?>
+
+											</body>
+
+
+
                       <?php } else if(empty($mostrarSitiosTuristicos)){
                          echo "<h3>No se pueden crear microempresas porque no hay sitios turisticos en el sistema</h3>";?>
                          <br><a href="../view/sitioturisticoview.php">Crear Sitios Turisticos</a>
+												 <br><br>
+												 <body>
+
+												   <h1>Registrar Empresa</h1>
+												   <br>
+
+												 <h2>EMPRESAS</h2>
+
+												  <table border="1">
+												         <tr>
+												             <th>NOMBRE</th>
+												             <th>CONTACTO</th>
+												             <th>EMAIL</th>
+												             <th>SITIO WEB</th>
+												             <th>SITIO TURISTICO</th>
+												             <th>ENCARGADO</th>
+												 						  <th>CEDULA JURIDICA</th>
+												             <th>Actulizar</th>
+												             <th>Eliminar</th>
+												         </tr>
+
+												       <?php
+
+												             $todosEmpresa= $empresaBusiness->mostrarEmpresas();
+												 						$todosSitios=$empresaBusiness->mostrarSitios();
+												 						$todosEncargados=$empresaBusiness->mostrarTodosResponsables();
+												 						 $cont=1;
+												             foreach ($todosEmpresa as $empresa) {
+
+												             	 echo '<form method="post" enctype="multipart/form-data" action="../business/empresaAction.php">';
+												       	 		echo '<input type="hidden" name="idEmpresa" id="idEmpresa" value="' . $empresa->getIdEmpresa().'"/>';
+												                 echo '<tr>';
+
+												                 echo '<td>
+												                         <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="'.$empresa->getNombreEmpresa().'"/>
+												                         </td>';
+												 												$telefono=$empresa->getContactoTelefonicoEmpresa();
+												 											$pre= substr($telefono,0,5);
+												 											 $pre1= substr($telefono,5,9);
+												 											$number="(+506) ".$pre."-".$pre1;
+												 											 $empresa->setContactoTelefonicoEmpresa($number);
+												 												echo '<td>
+
+												 				                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" onkeyup="validarTelefono(this,'.$cont.')"
+												 																 value="'.$empresa->getContactoTelefonicoEmpresa().'"/>
+												 																 <span id="telefonoOk'.$cont.'">valido</span>
+												 				                        </td>';
+
+
+												 												echo '<td>
+												 								                  <input type="email" name="emailEmpresa" id="emailEmpresa" onkeyup="validarCorreoEmpresaTabla(this,'.$cont.')" value="'.$empresa->getEmailEmpresa().'"/>
+												 																	<span id="correo'.$cont.'">valido</span>
+												 								                  </td>';
+												 												echo '<td>
+												 																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa(). '" onkeyup="validarLinkTabla(this,'.$cont.')"/><span id="linktabla'.$cont.'">valido</span>
+												 																						</td>';
+
+												 																				echo '<td>
+												 																				<select id="idSitioTuristico" name="idSitioTuristico">';
+
+
+												 																							foreach ($todosSitios as $sitioTuristico){
+
+												 																							echo '<option value="'.$sitioTuristico->getIdSitio().'">'.$sitioTuristico->getNombreComercial().'</option>;';
+
+												 																							 }
+
+
+												 																				echo ' </select><br><br>';
+
+
+												 																			 echo '<td><select name="idEncargado" id="idEncargado"> '?>
+
+
+
+												 																								<?php
+												 																										$listaRes=$empresaBusiness->obtenerResponsablesDisponiblesMasActual($empresa->getIdResponsableEmpresa());
+
+												 																								foreach ($listaRes as $Responsable){
+												 																							?>
+												 																								<?php
+												 																									if($Responsable->getIdResponsable()==$empresa->getIdResponsableEmpresa()){  ?>
+												 																										 <option selected value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+												 																										<?php }else{?>
+
+												 																											 <option value="<?php echo $Responsable->getIdResponsable();?>"><?php echo $Responsable->getNombreResponsable();?></option>;
+												 																										<?php  } ?>
+
+
+												 																							<?php
+												 																								 }
+												 																							?>
+												 																			<?php
+
+												 																			$cedu=$empresa->getCedulaJuridicaEmpresa();
+												 																	 $pre= substr($cedu,0,1);
+												 																		$pre1= substr($cedu,1,3);
+												 																		$pre2=substr($cedu,4,8);
+												 																	 $number=$pre."-".$pre1."-".$pre2;
+												 																		$empresa->setCedulaJuridicaEmpresa($number);
+
+
+
+												 																			echo '</select>';
+												 																			echo '</td>';
+												 																			echo '<td>
+												 																													<input type="text" name="cedulaJuridicaEmpresa" id="cedulaJuridicaEmpresa" value="'.$empresa->getCedulaJuridicaEmpresa().'" onkeyup="validarCedulaJuridica(this,'.$cont.')" maxlength=12/><span id="cedulaOk2'.$cont.'" >valido</span>
+												 																													</td>';
+
+												 																			 echo '<td><input type="button" value="Actualizar" id="update" name="update" onclick="dejarPasar2(this,'.$cont.')"/ ></td>';
+												 																	 		echo '<td><input type="submit" value="Eliminar" name="delete" /></td>';
+
+												                                        $cont++;
+
+
+
+
+												 																			    echo'   <br>
+												 		 					 				                        </td>';
+												             }
+
+
+												       ?>
+												 </table>
+
+												 <?php
+												 							 if (isset($_GET['error'])) {
+												 									 if ($_GET['error'] == "dbError") {
+												 											 echo '<script language="javascript">alert("Error al procesar la transacción");</script>';
+												 									 }else if($_GET['error'] == "numberFormat"){
+												 										 echo '<script language="javascript">alert("Error: La empresa presanta un error no numerico");</script>';
+
+												 									 }else if($_GET['error'] == "emptyField"){
+												 										 echo '<script language="javascript">alert("Error: empresa presenta espacios nulos");</script>';
+												 									 }
+
+												 								}else if (isset($_GET['success'])) {
+												 									 echo '<script language="javascript">alert("Transacción Realizada");</script>';
+												 							 }
+												 							 ?>
+
+												 </body>
+
                          <?php }else {
 
  ?>

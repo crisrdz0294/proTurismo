@@ -2,10 +2,10 @@
 <html>
 <head>
 	<title></title>
-    <?php 
+    <?php
   session_start();
 
-    
+
      if(isset($_SESSION['administrador'])){
 
      }else{
@@ -44,21 +44,21 @@ valido.innerText="tamano minimo 9 caracteres";
   valido.innerText="valido";
 }
 }
-function validarCorreo(){
-document.getElementById('emailResponsable').addEventListener('input', function() {
-campo = event.target;
-valido = document.getElementById('emailOK');
+function validarCorreo(input){
 
-emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+campo = input.value;
+valido = document.getElementById('emailOK');
+console.log(campo);
+var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (emailRegex.test(campo.value)) {
+    if (emailRegex.test(campo)) {
       valido.innerText = "valido";
     } else {
       valido.innerText = "incorrecto";
 
 
     }
-});
+
 }
 function validarCorreo2(input, contador){
 var name="emailOK2";
@@ -186,7 +186,7 @@ jQuery(document).ready(function(){
                     <br>
                     <br>
                     Email:
-                    <input required type="Email" name="emailResponsable" id="emailResponsable" onkeyup="validarCorreo();dejarPasar();" /> <span id="emailOK"></span>
+                    <input required type="Email" name="emailResponsable" id="emailResponsable" onkeyup="validarCorreo(this);dejarPasar();" /> <span id="emailOK"></span>
                     <br>
                     <br>
                     <br>
