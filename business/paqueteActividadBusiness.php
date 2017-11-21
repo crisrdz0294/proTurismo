@@ -1,3 +1,4 @@
+
 <?php
 	
 	include_once '../data/dataActividad.php';
@@ -13,13 +14,14 @@
 			$this->dataPaqueteActividad = new DataPaqueteActividad();
 		}
 
-		public function obtenerActividadesAgregadas($idPaquete){
+		public function obtenerActividadesAgregadas(){
 
 			$listaActividades= $this->dataActividad->mostrarTodasActividades();
 			$listaIdActividades=$this->dataPaqueteActividad->obtenerIdActividadesPaquete();
-
+			$idPaquete=$_POST['idpaquete'];
 			$agregados=array();
 			$agregado=false;
+			$respuestaFinal = array();
 
 			for($i=0;$i<count($listaActividades);$i++){
 
@@ -34,7 +36,7 @@
 				}
 			}
 
-			for($i=0;$i<count($listaActividades);$i++){
+		for($i=0;$i<count($listaActividades);$i++){
 				
 				for($j=0;$j<count($agregados);$j++){
 
@@ -44,19 +46,20 @@
 				}
 
 				if($agregado==false){
-					$listaActividades[$i]->setEstadoAgregado(0);
+					$valores=array("idactividad"=>$listaActividades[$i]->getIdActividad(),"nombreactividad"=>$listaActividades[$i]->getNombreActividad(),"descripcionactividad"=>$listaActividades[$i]->getDescripcionActividad(),"precioactividad"=>$listaActividades[$i]->getPrecioActividad(),"estadoagregada"=>0);
+            		
 				}else{
-					$listaActividades[$i]->setEstadoAgregado(1);
+					$valores=array("idactividad"=>$listaActividades[$i]->getIdActividad(),"nombreactividad"=>$listaActividades[$i]->getNombreActividad(),"descripcionactividad"=>$listaActividades[$i]->getDescripcionActividad(),"precioactividad"=>$listaActividades[$i]->getPrecioActividad(),"estadoagregada"=>1);
 					$agregado=false;	
 				}
-
+				
+				array_push($respuestaFinal, $valores);
 			}
 
-			if (!$listaActividades) {
-				return false;
-			} else {
-				return $listaActividades;
-			}
+		
+
+		
+		echo "".json_encode($respuestaFinal).""; 
 
 		}
 
@@ -65,3 +68,12 @@
 	}
 ?>
 
+<?php
+
+	$op = $_POST['opcion'];
+	$paqueteBusiness = new PaqueteActividadBusiness;
+	if($op == 1){
+	 	$paqueteBusiness->obtenerActividadesAgregadas();
+	}
+	
+?>

@@ -65,6 +65,7 @@
                     Distancia del lugar de hospedaje:<br>
                     <input required type="text" name="distanciahospedaje" id="distanciahospedaje"/><br>
                     Habilidades requeridas:<br>
+                          Ninguna <input type="checkbox" name="habilidades[]" value="ninguna" /><br>
                           Caminar <input type="checkbox" name="habilidades[]" value="caminar" /><br>
                           Limpiar <input type="checkbox" name="habilidades[]" value="limpiar" /><br>
                           Pintar <input type="checkbox" name="habilidades[]" value="pintar" /><br>
@@ -175,7 +176,7 @@
                 echo '<td><textarea name="habilidades" id="habilidades" >'. $actividad->getHabilidadesActividad().'</textarea></td>';
                 echo '<td><textarea name="horarioactividad" id="horarioactividad" >'. $actividad->getHorarioActividad().'</textarea></td>';
                  echo '<td><input type="text" name="precio" id="precio" onkeyup="format(this)" value= "'."₡".number_format($actividad->getPrecioActividad(),0,'.',"").'"/></td>';
-                
+
 
                 echo '<td><select name="idtipo" id="idtipo"> '?>
                         <?php

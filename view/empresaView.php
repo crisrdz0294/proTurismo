@@ -303,16 +303,16 @@ echo ' </select><br><br>';
 
 				                        <input type="text" name="telefonoEmpresa" id="telefonoEmpresa" onkeyup="validarTelefono(this,'.$cont.')"
 																 value="'.$empresa->getContactoTelefonicoEmpresa().'"/>
-																 <span id="telefonoOk'.$cont.'"></span>
+																 <span id="telefonoOk'.$cont.'">valido</span>
 				                        </td>';
 
 
 												echo '<td>
 								                  <input type="email" name="emailEmpresa" id="emailEmpresa" onkeyup="validarCorreoEmpresaTabla(this,'.$cont.')" value="'.$empresa->getEmailEmpresa().'"/>
-																	<span id="correo'.$cont.'"></span>
+																	<span id="correo'.$cont.'">valido</span>
 								                  </td>';
 												echo '<td>
-																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa(). '" onkeyup="validarLinkTabla(this,'.$cont.')"/><span id="linktabla'.$cont.'"></span>
+																						<input type="text" name="paginaEmpresa" id="paginaEmpresa" value="'.$empresa->getSitioWebEmpresa(). '" onkeyup="validarLinkTabla(this,'.$cont.')"/><span id="linktabla'.$cont.'">valido</span>
 																						</td>';
 
 																				echo '<td>
@@ -364,7 +364,7 @@ echo ' </select><br><br>';
 																			echo '</select>';
 																			echo '</td>';
 																			echo '<td>
-																													<input type="text" name="cedulaJuridicaEmpresa" id="cedulaJuridicaEmpresa" value="'.$empresa->getCedulaJuridicaEmpresa().'" onkeyup="validarCedulaJuridica(this,'.$cont.')" maxlength=12/><span id="cedulaOk2'.$cont.'" ></span>
+																													<input type="text" name="cedulaJuridicaEmpresa" id="cedulaJuridicaEmpresa" value="'.$empresa->getCedulaJuridicaEmpresa().'" onkeyup="validarCedulaJuridica(this,'.$cont.')" maxlength=12/><span id="cedulaOk2'.$cont.'" >valido</span>
 																													</td>';
 
 																			 echo '<td><input type="button" value="Actualizar" id="update" name="update" onclick="dejarPasar2(this,'.$cont.')"/ ></td>';

@@ -15,16 +15,13 @@
 			include_once '../domain/paqueteActividad.php';
 			$idpaquete=$_POST['idpaquete'];
 			$idactividad=$_POST['idactividad'];
-
-			$actividadPaquete=new PaqueteActividad($idpaquete,$idactividad); 
-
-			return $this->dataPaqueteActividad->agregarActividadPaquete($actividadPaquete);
+			return $this->dataPaqueteActividad->agregarActividadPaquete($idpaquete,$idactividad);
 		}
 
 		public function descartarActividadPaquete(){
 			$idactividad=$_POST['idactividad'];
 			$idpaquete=$_POST['idpaquete'];
-			return $this->dataPaqueteActividad->descartarActividadPaquete($idactividad,$idpaquete);
+			return $this->dataPaqueteActividad->descartarActividadPaquete($idpaquete,$idactividad);
 		}		
 
 	}
