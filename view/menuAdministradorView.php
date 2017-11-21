@@ -2,19 +2,25 @@
 <html>
 <head>
 	<title>Menu Principal</title>
-  <?php
-
-        session_start();
-
-//Si la variable sesión está vacía
-if (!isset($_SESSION['administrador'])&&!isset($_SESSION['identificador'])&&!isset($_SESSION['nombre'])&&!isset($_SESSION['correo']))
-{
-
-  header("location: ../index.php");
-}
-?>
+		
+	
 </head>
+<?php  session_start();
+    
+     if(isset($_SESSION['administrador'])){
+       $nombre=$_SESSION['nombre'];
+
+
+     }else{
+      header("Location: ../index.php");
+     }
+
+ 
+      
+    ?>
 <body>
+ <span style="margin-right: 50%"><?php echo $nombre  ?></span>
+  <input type="button" onclick="location.href='cerrarSesion.php';" value="Cerrar Sesion" />
 
 	<h1>Menu Principal</h1><br>
 	<a href="actividadesView.php">Manipular Actividades</a><br>

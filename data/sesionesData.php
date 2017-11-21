@@ -23,7 +23,7 @@
 
       if($result){
         while ($row = mysqli_fetch_assoc($result)) {
-					  array_push(  $usuarioFinal,"entroaqui");
+					
         array_push(  $usuarioFinal,$row['cedulausuario']);
         array_push($usuarioFinal,$row['nombreusuario']);
         array_push($usuarioFinal,$row['apellidosusuario']);
