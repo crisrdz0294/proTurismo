@@ -22,7 +22,7 @@
          if(empty($listaSitios) || empty($listaTipos)){
             echo "<h3>No se pueden crear actividades porque no hay sitios turisticos ni tipos de actividad ingresados en el sistema</h3>";
           ?>
-          <br><a href="menuAdministradorView.php"> No se puede Crear </a>
+          <br><a href="menuAdministradorView.php">Volver a Menu</a>
           <?php
           }
           else if(empty($listaSitios))
@@ -36,7 +36,7 @@
           {
             echo "<h3>No se pueden crear actividades porque no hay tipos de actividad ingresados en el sistema</h3>";
             ?>
-            <br><a href="../view/tipoActividadTuristicaView.php">Crear tipo Actividad Turistica</a>
+            <br><a href="../view/tipoActividadTuristicaView.php">Crear Tipo Actividad Turistica</a>
             <?php
           } 
 

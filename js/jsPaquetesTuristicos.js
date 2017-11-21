@@ -29,6 +29,7 @@ function actualizarPaqueteTuristico(){
         processData : false
         }).done(function(data) {
             alert(data);
+            location.reload(true);
         });
    }
  
